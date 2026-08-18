@@ -1,0 +1,5 @@
+country,total_child_rows,linked_rows,unmatched_rows,missing_birth_order_raw,min_birth_order,median_birth_order,mean_birth_order,max_birth_order,n_unique_birth_order_values
+ethiopia,13565,13565,0,0,1,3.0,3.585772207887947,17,17
+ghana,9353,9353,0,0,1,3.0,3.161552443066396,13,13
+kenya,19530,19530,0,0,1,3.0,3.210957501280082,15,15
+nigeria,27783,27783,0,0,1,3.0,3.6898823021272,17,17

@@ -1,0 +1,5 @@
+country,ge_rows,ge_unique_dhsclust,kr_unique_psu,kr_clusters_matched_in_ge,kr_clusters_unmatched,unique_merged_clusters,unique_kr_psu
+ethiopia,797,797,797,797,0,797,797
+ghana,618,618,618,618,0,618,618
+kenya,1691,1691,1691,1691,0,1691,1691
+nigeria,1380,1380,1375,1375,0,1375,1375

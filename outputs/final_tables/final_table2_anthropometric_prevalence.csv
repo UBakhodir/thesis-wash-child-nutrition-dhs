@@ -1,0 +1,14 @@
+Country,Outcome,Valid Unweighted N,Weighted Prevalence (%),95% CI
+Ethiopia,Stunting,5843,39.9,"[37.6, 42.2]"
+Ethiopia,Wasting,5884,5.0,"[4.1, 6.0]"
+Ethiopia,Underweight,5955,18.2,"[16.3, 20.4]"
+Ghana,Stunting,4405,16.9,"[15.4, 18.5]"
+Ghana,Wasting,4408,6.2,"[5.2, 7.3]"
+Ghana,Underweight,4411,12.2,"[10.9, 13.6]"
+Kenya,Stunting,17327,17.4,"[16.5, 18.3]"
+Kenya,Wasting,17332,4.9,"[4.5, 5.4]"
+Kenya,Underweight,17381,10.0,"[9.4, 10.7]"
+Nigeria,Stunting,9410,39.1,"[37.4, 40.9]"
+Nigeria,Wasting,9464,8.4,"[7.7, 9.2]"
+Nigeria,Underweight,9513,26.4,"[25.2, 27.7]"
+

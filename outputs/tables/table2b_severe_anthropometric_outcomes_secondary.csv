@@ -1,0 +1,13 @@
+Country,Outcome,Outcome Type,Total KR N,Valid Unweighted N,Missing Unweighted N,Outcome=1 Unweighted n,Outcome=0 Unweighted n,Weighted Prevalence (%),SE (%),95% CI Lower (%),95% CI Upper (%),Design df
+Ethiopia,Severe stunting,Secondary / robustness,13565,5843,7722,949,4894,14.9,0.8,13.3,16.5,760
+Ethiopia,Severe wasting,Secondary / robustness,13565,5884,7681,91,5793,1.1,0.3,0.7,1.8,760
+Ethiopia,Severe underweight,Secondary / robustness,13565,5955,7610,336,5619,3.9,0.4,3.2,4.8,760
+Ghana,Severe stunting,Secondary / robustness,9353,4405,4948,198,4207,4.3,0.4,3.6,5.2,584
+Ghana,Severe wasting,Secondary / robustness,9353,4408,4945,46,4362,1.3,0.3,0.8,1.9,584
+Ghana,Severe underweight,Secondary / robustness,9353,4411,4942,106,4305,2.5,0.4,1.9,3.3,584
+Kenya,Severe stunting,Secondary / robustness,19530,17327,2203,751,16576,4.0,0.2,3.6,4.4,1596
+Kenya,Severe wasting,Secondary / robustness,19530,17332,2198,161,17171,0.6,0.1,0.5,0.7,1596
+Kenya,Severe underweight,Secondary / robustness,19530,17381,2149,406,16975,1.7,0.1,1.5,2.0,1596
+Nigeria,Severe stunting,Secondary / robustness,27783,9410,18373,1560,7850,18.2,0.7,16.9,19.5,1269
+Nigeria,Severe wasting,Secondary / robustness,27783,9464,18319,175,9289,1.9,0.2,1.5,2.3,1269
+Nigeria,Severe underweight,Secondary / robustness,27783,9513,18270,751,8762,8.3,0.4,7.5,9.1,1269

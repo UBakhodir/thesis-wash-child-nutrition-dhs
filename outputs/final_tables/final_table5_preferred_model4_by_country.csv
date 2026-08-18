@@ -1,0 +1,16 @@
+# Panel: HAZ
+Term,Pooled,Ethiopia,Ghana,Kenya,Nigeria
+Water coverage (LOO rate),"0.033 [-0.083, 0.150]","0.024 [-0.268, 0.317]","-0.009 [-0.228, 0.211]","0.082 [-0.023, 0.188]","0.134 [-0.043, 0.312]"
+"Sanitation coverage (LOO rate, core)","0.008 [-0.113, 0.129]","0.141 [-0.134, 0.416]","-0.039 [-0.297, 0.220]","0.017 [-0.126, 0.161]","-0.184 [-0.355, -0.013]"
+
+# Panel: WAZ
+Term,Pooled,Ethiopia,Ghana,Kenya,Nigeria
+Water coverage (LOO rate),"0.066 [-0.023, 0.155]","0.073 [-0.147, 0.294]","0.120 [-0.072, 0.312]","0.031 [-0.056, 0.118]","0.113 [-0.014, 0.239]"
+"Sanitation coverage (LOO rate, core)","0.059 [-0.047, 0.164]","0.186 [-0.044, 0.416]","-0.020 [-0.281, 0.241]","0.032 [-0.097, 0.161]","-0.023 [-0.168, 0.121]"
+
+# Panel: WHZ
+Term,Pooled,Ethiopia,Ghana,Kenya,Nigeria
+Water coverage (LOO rate),"0.057 [-0.042, 0.155]","0.069 [-0.168, 0.307]","0.181 [-0.001, 0.363]","-0.047 [-0.142, 0.048]","0.069 [-0.081, 0.218]"
+"Sanitation coverage (LOO rate, core)","0.076 [-0.031, 0.184]","0.187 [-0.082, 0.457]","-0.037 [-0.286, 0.212]","0.060 [-0.073, 0.194]","0.097 [-0.060, 0.253]"
+
+Notes: Estimates are associations, not causal effects. Primary WASH exposures are continuous cluster-level household leave-one-out coverage rates on [0,1]. Coefficients are the estimated association per 1.0 (100-percentage-point) increase in cluster coverage; a 10-percentage-point association equals coefficient x 0.10. Pooled models use a model-specific equal-total-country temporary weight (never persisted); country-specific models use the DHS-supplied weight (weight_original). Pooled standard errors are clustered by country_psu; country-specific standard errors are clustered by psu. Model 4 includes country-qualified administrative-region fixed effects (country_admin_region); no survey-year fixed effect or spatial grid fixed effect is included in any model.

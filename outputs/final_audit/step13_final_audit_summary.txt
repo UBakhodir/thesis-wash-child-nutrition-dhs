@@ -1,0 +1,21 @@
+STEP 13 FINAL AUDIT SUMMARY
+========================================
+
+Generated: 2026-08-12T13:43:15.640788+00:00
+Integrity checks: 24/24 PASSED
+
+Source -> Final output mapping:
+  table1/2/3/4 (Step 07)        -> final_tables/final_table1-3.csv, final_appendix/A7
+  main_continuous_models.csv     -> final_tables/final_table4.csv, final_table5.csv, figure2
+  robustness_binary_lpm.csv      -> final_tables/final_table6.csv, appendix A6, appendix figure A1
+  appendix/severe_outcomes.csv   -> final_appendix/A1
+  robustness_biodigester.csv     -> final_appendix/A2
+  robustness_household_wash.csv  -> final_appendix/A3
+  robustness_alternative_weights.csv -> final_appendix/A4
+  robustness_loo_denominator.csv -> final_appendix/A5
+  step09/step08 diagnostic reports -> final_appendix/A8
+
+WARNINGS carried forward:
+  - severe_wasted: 24/114 zero-event administrative-region FE cells (see appendix A1).
+  - haz/sanitation_rate_loo_core sign is sensitive to the pooled weighting scheme (positive under equal-country and unweighted, negative under raw weight_original) - see appendix A4.
+  - Step 11 bug provenance: see step11_bug_provenance_note.txt.

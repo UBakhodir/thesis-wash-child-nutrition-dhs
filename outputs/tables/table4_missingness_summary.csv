@@ -1,0 +1,89 @@
+Country,Variable,Status,Unweighted n,Unweighted %
+Ethiopia,Stunting,Valid,5843,43.1
+Ethiopia,Stunting,Ordinary / system missing,7722,56.9
+Ethiopia,Wasting,Valid,5884,43.4
+Ethiopia,Wasting,Ordinary / system missing,7681,56.6
+Ethiopia,Underweight,Valid,5955,43.9
+Ethiopia,Underweight,Ordinary / system missing,7610,56.1
+Ethiopia,Severe stunting,Valid,5843,43.1
+Ethiopia,Severe stunting,Ordinary / system missing,7722,56.9
+Ethiopia,Severe wasting,Valid,5884,43.4
+Ethiopia,Severe wasting,Ordinary / system missing,7681,56.6
+Ethiopia,Severe underweight,Valid,5955,43.9
+Ethiopia,Severe underweight,Ordinary / system missing,7610,56.1
+Ethiopia,Drinking water source,Classified / substantive response,13259,97.7
+Ethiopia,Drinking water source,Unclassified bio-digester (Ghana),0,0.0
+Ethiopia,Drinking water source,Unknown,79,0.6
+Ethiopia,Drinking water source,Structural / not applicable,227,1.7
+Ethiopia,Drinking water source,Ordinary / system missing,0,0.0
+Ethiopia,Sanitation service level,Classified / substantive response,13285,97.9
+Ethiopia,Sanitation service level,Unclassified bio-digester (Ghana),0,0.0
+Ethiopia,Sanitation service level,Unknown,53,0.4
+Ethiopia,Sanitation service level,Structural / not applicable,227,1.7
+Ethiopia,Sanitation service level,Ordinary / system missing,0,0.0
+Ghana,Stunting,Valid,4405,47.1
+Ghana,Stunting,Ordinary / system missing,4948,52.9
+Ghana,Wasting,Valid,4408,47.1
+Ghana,Wasting,Ordinary / system missing,4945,52.9
+Ghana,Underweight,Valid,4411,47.2
+Ghana,Underweight,Ordinary / system missing,4942,52.8
+Ghana,Severe stunting,Valid,4405,47.1
+Ghana,Severe stunting,Ordinary / system missing,4948,52.9
+Ghana,Severe wasting,Valid,4408,47.1
+Ghana,Severe wasting,Ordinary / system missing,4945,52.9
+Ghana,Severe underweight,Valid,4411,47.2
+Ghana,Severe underweight,Ordinary / system missing,4942,52.8
+Ghana,Drinking water source,Classified / substantive response,9217,98.5
+Ghana,Drinking water source,Unclassified bio-digester (Ghana),0,0.0
+Ghana,Drinking water source,Unknown,0,0.0
+Ghana,Drinking water source,Structural / not applicable,136,1.5
+Ghana,Drinking water source,Ordinary / system missing,0,0.0
+Ghana,Sanitation service level,Classified / substantive response,9065,96.9
+Ghana,Sanitation service level,Unclassified bio-digester (Ghana),137,1.5
+Ghana,Sanitation service level,Unknown,15,0.2
+Ghana,Sanitation service level,Structural / not applicable,136,1.5
+Ghana,Sanitation service level,Ordinary / system missing,0,0.0
+Kenya,Stunting,Valid,17327,88.7
+Kenya,Stunting,Ordinary / system missing,2203,11.3
+Kenya,Wasting,Valid,17332,88.7
+Kenya,Wasting,Ordinary / system missing,2198,11.3
+Kenya,Underweight,Valid,17381,89.0
+Kenya,Underweight,Ordinary / system missing,2149,11.0
+Kenya,Severe stunting,Valid,17327,88.7
+Kenya,Severe stunting,Ordinary / system missing,2203,11.3
+Kenya,Severe wasting,Valid,17332,88.7
+Kenya,Severe wasting,Ordinary / system missing,2198,11.3
+Kenya,Severe underweight,Valid,17381,89.0
+Kenya,Severe underweight,Ordinary / system missing,2149,11.0
+Kenya,Drinking water source,Classified / substantive response,18782,96.2
+Kenya,Drinking water source,Unclassified bio-digester (Ghana),0,0.0
+Kenya,Drinking water source,Unknown,210,1.1
+Kenya,Drinking water source,Structural / not applicable,538,2.8
+Kenya,Drinking water source,Ordinary / system missing,0,0.0
+Kenya,Sanitation service level,Classified / substantive response,18957,97.1
+Kenya,Sanitation service level,Unclassified bio-digester (Ghana),0,0.0
+Kenya,Sanitation service level,Unknown,35,0.2
+Kenya,Sanitation service level,Structural / not applicable,538,2.8
+Kenya,Sanitation service level,Ordinary / system missing,0,0.0
+Nigeria,Stunting,Valid,9410,33.9
+Nigeria,Stunting,Ordinary / system missing,18373,66.1
+Nigeria,Wasting,Valid,9464,34.1
+Nigeria,Wasting,Ordinary / system missing,18319,65.9
+Nigeria,Underweight,Valid,9513,34.2
+Nigeria,Underweight,Ordinary / system missing,18270,65.8
+Nigeria,Severe stunting,Valid,9410,33.9
+Nigeria,Severe stunting,Ordinary / system missing,18373,66.1
+Nigeria,Severe wasting,Valid,9464,34.1
+Nigeria,Severe wasting,Ordinary / system missing,18319,65.9
+Nigeria,Severe underweight,Valid,9513,34.2
+Nigeria,Severe underweight,Ordinary / system missing,18270,65.8
+Nigeria,Drinking water source,Classified / substantive response,27594,99.3
+Nigeria,Drinking water source,Unclassified bio-digester (Ghana),0,0.0
+Nigeria,Drinking water source,Unknown,5,0.0
+Nigeria,Drinking water source,Structural / not applicable,184,0.7
+Nigeria,Drinking water source,Ordinary / system missing,0,0.0
+Nigeria,Sanitation service level,Classified / substantive response,27591,99.3
+Nigeria,Sanitation service level,Unclassified bio-digester (Ghana),0,0.0
+Nigeria,Sanitation service level,Unknown,8,0.0
+Nigeria,Sanitation service level,Structural / not applicable,184,0.7
+Nigeria,Sanitation service level,Ordinary / system missing,0,0.0

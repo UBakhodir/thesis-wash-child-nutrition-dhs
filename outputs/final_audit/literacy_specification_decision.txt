@@ -1,0 +1,125 @@
+LITERACY CONTROL-VARIABLE SPECIFICATION DECISION
+====================================================
+Stage: post pre-freeze remediation, final specification-freeze decision.
+This is a documentation-and-provenance record only. No script, data,
+regression output, table, or figure was modified as a result of this
+decision.
+
+
+DISCREPANCY DISCOVERED
+-----------------------
+`literacy` (DHS `v155`, 5-category, reference "Cannot read at all") is
+implemented as a regression control in Models 3-4 of
+scripts/dhs_harmonization/11_main_regressions.py, and is carried through
+all 6 robustness families in 12_robustness.py. The original version of
+docs/thesis_design.md Section 7.3 (self-declared "Status: Methodology
+locked... single source of truth for the thesis's empirical design") listed
+exactly 8 household/child-level controls, including "Mother's education,"
+but did not list literacy. docs/data_dictionary.md (self-declared
+companion to thesis_design.md) independently corroborated this omission:
+its Section 5 (derived variables) and Section 6 (KR required source
+columns) were both exhaustive enumerations that did not include `v155` or
+`literacy` anywhere.
+
+
+PROVENANCE INVESTIGATION RESULT
+--------------------------------
+A dedicated, strictly read-only provenance investigation searched
+docs/thesis_design.md, docs/data_dictionary.md, docs/project_timeline.md,
+README.md, CONTRIBUTORS.md, every pipeline script's docstrings/comments,
+and all existing audit/provenance files for evidence that literacy's
+inclusion was an intentional, reviewed decision as part of the original
+approved design. No such record was found.
+
+One weak, disconnected trace was identified: 00_config.py's
+REFERENCE_CATEGORIES dict includes a `"literacy": "cannot_read"` entry, but
+that dict is itself already self-documented (by an earlier audit note in
+the same file) as never having been imported by any downstream script and
+as predating the actual implementation without ever being wired up to it.
+This shows literacy was contemplated at some point during early
+implementation, but does not constitute evidence of a reviewed approval
+decision.
+
+Conclusion of the investigation: intentional approval of literacy as part
+of the original locked design COULD NOT BE ESTABLISHED from the project
+record. The investigation also found no evidence that its inclusion was an
+error - the variable is technically valid (full-rank design matrices
+confirmed in every model that includes it), conceptually distinct from
+`mother_education` (independent variation confirmed by a read-only
+crosstab across the analytical sample, except for a known DHS
+instrument-design artifact in the "Higher education" category), and is a
+recognized covariate choice in closely related literature already in this
+project's evidence base (Spears 2013, a Core source for this thesis's
+central exposure-outcome relationship, uses maternal literacy as a control
+in the same type of DHS child-height regression).
+
+
+EXPLICIT DECISION
+-------------------
+KEEP `literacy` exactly as currently implemented:
+  - full five-category DHS v155 variable, no binary collapse;
+  - reference category "Cannot read at all", unchanged;
+  - included in Models 3-4 (pooled and all four country-specific scopes)
+    and all 6 Step 12 robustness families, unchanged;
+  - no regression specification, design matrix, weighting, clustering, or
+    standard-error methodology was altered.
+
+Decision made by: the thesis author (explicit instruction).
+
+
+WHY
+-----
+1. Literacy entered the implementation before the final specification and
+   results were produced - it is not a change proposed after the fact.
+2. It has been used consistently across every applicable model and
+   robustness specification from that point forward, not inconsistently
+   or selectively.
+3. It is technically valid: full-rank design matrices confirmed wherever
+   it appears, no missingness, no unmapped codes.
+4. It is conceptually and empirically distinct from mother's education,
+   not a duplicate or near-duplicate control.
+5. The empirical results (coefficients, tables, figures) were already known
+   at the time this documentation discrepancy was discovered. Removing the
+   variable now would constitute a NEW, post-results specification change,
+   requiring a full rerun of Steps 11-13 and invalidating the "no
+   analytical output changed" status established by the prior pre-freeze
+   remediation stage - a materially larger and riskier intervention than
+   correcting the documentation to accurately describe what was actually
+   estimated.
+
+This decision does NOT claim, and the accompanying documentation updates do
+NOT claim, that the original thesis_design.md or data_dictionary.md already
+contained literacy. Both documents have been updated to record the
+as-implemented final specification, with an explicit implementation note
+stating that literacy was added during empirical implementation and that no
+record of prior approval exists. This is a transparent correction of the
+documentation to match reality, not a retroactive rewriting of the
+project's design history.
+
+
+DOCUMENTATION CHANGES MADE (see also the main freeze report for exact
+diffs)
+------------------------------------------------------------------------
+- docs/thesis_design.md, Section 7.3: added "Mother's literacy (DHS v155)"
+  to the household/child-level control list, plus a new "Implementation
+  note" paragraph explaining the discrepancy and this decision transparently.
+- docs/data_dictionary.md: added a `v155` row to Section 1 (KR raw
+  variables), a `literacy` row to Section 5 (derived variables), and
+  updated Section 6's Children's Recode raw/derived variable lists to
+  include `v155`/`literacy`.
+
+No other section of either document was altered.
+
+
+CONFIRMATION
+--------------
+No regression was rerun. No coefficient, standard error, confidence
+interval, p-value, sample size, weight, cluster count, fixed-effect level
+count, or WASH classification was changed, recomputed, or regenerated as a
+result of this decision or these documentation updates. See
+outputs/final_audit/prefreeze_remediation_report.txt and the accompanying
+final freeze checksum verification for the full before/after integrity
+comparison.
+
+This is a specification-provenance and documentation record, not a thesis
+result.

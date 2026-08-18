@@ -1,0 +1,21 @@
+outcome,weighting_scheme,term,coefficient,standard_error,p_value
+haz,A: equal-total-country (approved),water_rate_loo,0.033,0.059,0.5733430737476422
+haz,A: equal-total-country (approved),sanitation_rate_loo_core,0.008,0.062,0.893844594898651
+haz,B: raw DHS weight_original,water_rate_loo,0.053,0.05,0.2885673059120278
+haz,B: raw DHS weight_original,sanitation_rate_loo_core,-0.009,0.052,0.8662786611521869
+haz,C: unweighted,water_rate_loo,0.058,0.035,0.0938203206946247
+haz,C: unweighted,sanitation_rate_loo_core,0.03,0.039,0.4365678052511452
+waz,A: equal-total-country (approved),water_rate_loo,0.066,0.045,0.145812504801481
+waz,A: equal-total-country (approved),sanitation_rate_loo_core,0.059,0.054,0.2754779889314558
+waz,B: raw DHS weight_original,water_rate_loo,0.056,0.037,0.135542922062096
+waz,B: raw DHS weight_original,sanitation_rate_loo_core,0.053,0.044,0.2286359992767217
+waz,C: unweighted,water_rate_loo,0.051,0.029,0.0736832078693468
+waz,C: unweighted,sanitation_rate_loo_core,0.063,0.034,0.0622699522247548
+whz,A: equal-total-country (approved),water_rate_loo,0.057,0.05,0.2608038576703325
+whz,A: equal-total-country (approved),sanitation_rate_loo_core,0.076,0.055,0.1645591424477376
+whz,B: raw DHS weight_original,water_rate_loo,0.024,0.043,0.5711472812818694
+whz,B: raw DHS weight_original,sanitation_rate_loo_core,0.087,0.046,0.0590621641224648
+whz,C: unweighted,water_rate_loo,0.018,0.029,0.532160309050141
+whz,C: unweighted,sanitation_rate_loo_core,0.05,0.035,0.1539937211346747
+
+Weighting sensitivity check only - not a re-specification of the preferred model.

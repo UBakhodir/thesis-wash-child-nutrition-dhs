@@ -1,0 +1,115 @@
+country,admin_region_code,admin_region_name,country_admin_region,child_n,unique_psu_n,percent_of_country_children
+ethiopia,1,tigray,ethiopia::01,1104,70,8.1386
+ethiopia,2,afar,ethiopia::02,1373,52,10.1216
+ethiopia,3,amhara,ethiopia::03,980,67,7.2245
+ethiopia,4,oromia,ethiopia::04,1383,79,10.1954
+ethiopia,5,somali,ethiopia::05,1545,60,11.3896
+ethiopia,6,benishangul-gumuz,ethiopia::06,833,50,6.1408
+ethiopia,7,central ethiopia,ethiopia::07,959,60,7.0697
+ethiopia,8,sidama,ethiopia::08,850,60,6.2661
+ethiopia,9,south west ethiopia,ethiopia::09,832,56,6.1334
+ethiopia,10,south ethiopia,ethiopia::10,1166,62,8.5957
+ethiopia,12,gambella,ethiopia::12,753,45,5.5511
+ethiopia,13,harari,ethiopia::13,626,40,4.6148
+ethiopia,14,addis ababa,ethiopia::14,569,54,4.1946
+ethiopia,15,dire dawa,ethiopia::15,592,42,4.3642
+ghana,1,western,ghana::01,454,37,4.8541
+ghana,2,central,ghana::02,510,40,5.4528
+ghana,3,greater accra,ghana::03,455,48,4.8647
+ghana,4,volta,ghana::04,383,37,4.0949
+ghana,5,eastern,ghana::05,436,41,4.6616
+ghana,6,ashanti,ghana::06,592,48,6.3295
+ghana,7,western north,ghana::07,434,37,4.6402
+ghana,8,ahafo,ghana::08,497,36,5.3138
+ghana,9,bono,ghana::09,427,36,4.5654
+ghana,10,bono east,ghana::10,659,36,7.0459
+ghana,11,oti,ghana::11,632,36,6.7572
+ghana,12,northern,ghana::12,970,39,10.371
+ghana,13,savannah,ghana::13,797,37,8.5213
+ghana,14,north east,ghana::14,868,36,9.2804
+ghana,15,upper east,ghana::15,638,37,6.8213
+ghana,16,upper west,ghana::16,601,37,6.4257
+kenya,1,mombasa,kenya::01,360,39,1.8433
+kenya,2,kwale,kenya::02,419,34,2.1454
+kenya,3,kilifi,kenya::03,385,37,1.9713
+kenya,4,tana river,kenya::04,617,33,3.1592
+kenya,5,lamu,kenya::05,431,32,2.2069
+kenya,6,taita taveta,kenya::06,252,33,1.2903
+kenya,7,garissa,kenya::07,583,34,2.9852
+kenya,8,wajir,kenya::08,686,34,3.5125
+kenya,9,mandera,kenya::09,884,33,4.5264
+kenya,10,marsabit,kenya::10,522,33,2.6728
+kenya,11,isiolo,kenya::11,469,33,2.4014
+kenya,12,meru,kenya::12,284,38,1.4542
+kenya,13,tharaka-nithi,kenya::13,257,33,1.3159
+kenya,14,embu,kenya::14,265,35,1.3569
+kenya,15,kitui,kenya::15,318,36,1.6283
+kenya,16,machakos,kenya::16,274,38,1.403
+kenya,17,makueni,kenya::17,324,36,1.659
+kenya,18,nyandarua,kenya::18,298,35,1.5259
+kenya,19,nyeri,kenya::19,237,36,1.2135
+kenya,20,kirinyaga,kenya::20,268,35,1.3722
+kenya,21,murang'a,kenya::21,265,37,1.3569
+kenya,22,kiambu,kenya::22,351,42,1.7972
+kenya,23,turkana,kenya::23,599,35,3.0671
+kenya,24,west pokot,kenya::24,777,34,3.9785
+kenya,25,samburu,kenya::25,575,33,2.9442
+kenya,26,trans nzoia,kenya::26,379,36,1.9406
+kenya,27,uasin gishu,kenya::27,389,37,1.9918
+kenya,28,elgeyo-marakwet,kenya::28,397,33,2.0328
+kenya,29,nandi,kenya::29,360,35,1.8433
+kenya,30,baringo,kenya::30,454,34,2.3246
+kenya,31,laikipia,kenya::31,287,34,1.4695
+kenya,32,nakuru,kenya::32,422,40,2.1608
+kenya,33,narok,kenya::33,558,36,2.8571
+kenya,34,kajiado,kenya::34,427,38,2.1864
+kenya,35,kericho,kenya::35,400,36,2.0481
+kenya,36,bomet,kenya::36,403,35,2.0635
+kenya,37,kakamega,kenya::37,396,38,2.0276
+kenya,38,vihiga,kenya::38,325,34,1.6641
+kenya,39,bungoma,kenya::39,444,37,2.2734
+kenya,40,busia,kenya::40,428,35,2.1915
+kenya,41,siaya,kenya::41,391,36,2.002
+kenya,42,kisumu,kenya::42,425,37,2.1761
+kenya,43,homa bay,kenya::43,406,36,2.0789
+kenya,44,migori,kenya::44,503,36,2.5755
+kenya,45,kisii,kenya::45,319,37,1.6334
+kenya,46,nyamira,kenya::46,257,35,1.3159
+kenya,47,nairobi,kenya::47,460,58,2.3554
+nigeria,1,fct-abuja,nigeria::01,456,36,1.6413
+nigeria,2,benue,nigeria::02,560,39,2.0156
+nigeria,3,kogi,nigeria::03,725,36,2.6095
+nigeria,4,kwara,nigeria::04,622,36,2.2388
+nigeria,5,nasarawa,nigeria::05,776,36,2.7931
+nigeria,6,niger,nigeria::06,1025,39,3.6893
+nigeria,7,plateau,nigeria::07,893,39,3.2142
+nigeria,8,adamawa,nigeria::08,935,36,3.3654
+nigeria,9,bauchi,nigeria::09,1075,41,3.8693
+nigeria,10,borno,nigeria::10,928,35,3.3402
+nigeria,11,gombe,nigeria::11,984,31,3.5417
+nigeria,12,taraba,nigeria::12,726,35,2.6131
+nigeria,13,yobe,nigeria::13,1244,33,4.4776
+nigeria,14,jigawa,nigeria::14,1319,36,4.7475
+nigeria,15,kaduna,nigeria::15,1284,42,4.6215
+nigeria,16,kano,nigeria::16,1528,45,5.4998
+nigeria,17,katsina,nigeria::17,1141,38,4.1068
+nigeria,18,kebbi,nigeria::18,1315,36,4.7331
+nigeria,19,sokoto,nigeria::19,1153,37,4.15
+nigeria,20,zamfara,nigeria::20,859,25,3.0918
+nigeria,21,abia,nigeria::21,417,35,1.5009
+nigeria,22,anambra,nigeria::22,615,38,2.2136
+nigeria,23,ebonyi,nigeria::23,889,34,3.1998
+nigeria,24,enugu,nigeria::24,477,37,1.7169
+nigeria,25,imo,nigeria::25,659,37,2.372
+nigeria,26,akwa ibom,nigeria::26,354,39,1.2742
+nigeria,27,bayelsa,nigeria::27,477,29,1.7169
+nigeria,28,cross river,nigeria::28,368,35,1.3246
+nigeria,29,delta,nigeria::29,522,40,1.8788
+nigeria,30,edo,nigeria::30,410,36,1.4757
+nigeria,31,rivers,nigeria::31,539,42,1.94
+nigeria,32,ekiti,nigeria::32,282,31,1.015
+nigeria,33,lagos,nigeria::33,442,49,1.5909
+nigeria,34,ogun,nigeria::34,536,46,1.9292
+nigeria,35,ondo,nigeria::35,346,35,1.2454
+nigeria,36,osun,nigeria::36,356,38,1.2814
+nigeria,37,oyo,nigeria::37,546,43,1.9652

@@ -1,0 +1,13 @@
+Country,Outcome,Outcome Type,Total KR N,Valid Unweighted N,Missing Unweighted N,Outcome=1 Unweighted n,Outcome=0 Unweighted n,Weighted Prevalence (%),SE (%),95% CI Lower (%),95% CI Upper (%),Design df
+Ethiopia,Stunting,Core,13565,5843,7722,2204,3639,39.9,1.2,37.6,42.2,760
+Ethiopia,Wasting,Core,13565,5884,7681,380,5504,5.0,0.5,4.1,6.0,760
+Ethiopia,Underweight,Core,13565,5955,7610,1254,4701,18.2,1.0,16.3,20.4,760
+Ghana,Stunting,Core,9353,4405,4948,802,3603,16.9,0.8,15.4,18.5,584
+Ghana,Wasting,Core,9353,4408,4945,259,4149,6.2,0.5,5.2,7.3,584
+Ghana,Underweight,Core,9353,4411,4942,575,3836,12.2,0.7,10.9,13.6,584
+Kenya,Stunting,Core,19530,17327,2203,3122,14205,17.4,0.4,16.5,18.3,1596
+Kenya,Wasting,Core,19530,17332,2198,1247,16085,4.9,0.2,4.5,5.4,1596
+Kenya,Underweight,Core,19530,17381,2149,2189,15192,10.0,0.3,9.4,10.7,1596
+Nigeria,Stunting,Core,27783,9410,18373,3441,5969,39.1,0.9,37.4,40.9,1269
+Nigeria,Wasting,Core,27783,9464,18319,787,8677,8.4,0.4,7.7,9.2,1269
+Nigeria,Underweight,Core,27783,9513,18270,2398,7115,26.4,0.6,25.2,27.7,1269

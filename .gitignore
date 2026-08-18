@@ -1,0 +1,42 @@
+# DHS / analytical data
+data/
+**/data/
+*.dta
+*.sav
+*.sas7bdat
+*.parquet
+*.feather
+*.arrow
+
+# Geographic source data
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+
+# Archives
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# Python environments/cache
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+
+# IDE / tool working folders
+.vscode/
+.claude/
+
+# OS temporary files
+.DS_Store
+Thumbs.db
+desktop.ini

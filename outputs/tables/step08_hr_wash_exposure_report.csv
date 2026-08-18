@@ -1,0 +1,5 @@
+country,hr_rows,hr_unique_households,hr_clusters,hh_per_cluster_min,hh_per_cluster_median,hh_per_cluster_mean,hh_per_cluster_max,kr_households_checked,kr_households_unmatched_to_hr,n_children,water_rate_loo_nonmissing_n,water_rate_loo_nonmissing_pct,sanitation_rate_loo_core_nonmissing_n,sanitation_rate_loo_core_nonmissing_pct,sanitation_rate_loo_robustness_biodigester_nonmissing_n,sanitation_rate_loo_robustness_biodigester_nonmissing_pct
+ethiopia,21241,21241,797,13,27.0,26.651191969887076,28,9228,0,13565,13565,100.0,13565,100.0,13565,100.0
+ghana,17933,17933,618,19,30.0,29.01779935275081,30,6542,0,9353,9353,100.0,9353,100.0,9353,100.0
+kenya,37911,37911,1691,4,23.0,22.419278533412182,31,13835,0,19530,19530,100.0,19530,100.0,19530,100.0
+nigeria,40047,40047,1380,11,30.0,29.019565217391303,30,16548,0,27783,27783,100.0,27783,100.0,27783,100.0

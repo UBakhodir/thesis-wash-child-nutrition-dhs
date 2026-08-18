@@ -1,0 +1,62 @@
+Country,WASH Domain,Category,Unweighted N,Weighted %
+Ethiopia,Drinking water source,Improved,8583,68.1
+Ethiopia,Drinking water source,Structural / not applicable,227,1.7
+Ethiopia,Drinking water source,Surface water,1789,7.7
+Ethiopia,Drinking water source,Unimproved,2887,22.3
+Ethiopia,Drinking water source,Unknown,79,0.3
+Ethiopia,Sanitation service level,Basic sanitation,3317,27.4
+Ethiopia,Sanitation service level,Limited sanitation,2018,15.1
+Ethiopia,Sanitation service level,Open defecation,5227,28.8
+Ethiopia,Sanitation service level,Structural / not applicable,227,1.7
+Ethiopia,Sanitation service level,Unimproved,2723,26.6
+Ethiopia,Sanitation service level,Unknown,53,0.3
+Ethiopia,Sanitation (collapsed),Improved,5335,42.5
+Ethiopia,Sanitation (collapsed),Non-improved,7950,55.5
+Ethiopia,Sanitation (collapsed),Structural / not applicable,227,1.7
+Ethiopia,Sanitation (collapsed),Unknown,53,0.3
+Ghana,Drinking water source,Improved,7379,84.2
+Ghana,Drinking water source,Structural / not applicable,136,1.7
+Ghana,Drinking water source,Surface water,1385,11.4
+Ghana,Drinking water source,Unimproved,453,2.8
+Ghana,Sanitation service level,Basic sanitation,1469,18.0
+Ghana,Sanitation service level,Limited sanitation,2734,37.2
+Ghana,Sanitation service level,Open defecation,3653,28.6
+Ghana,Sanitation service level,Structural / not applicable,136,1.7
+Ghana,Sanitation service level,Unclassified bio-digester (Ghana),137,2.4
+Ghana,Sanitation service level,Unimproved,1209,11.8
+Ghana,Sanitation service level,Unknown,15,0.3
+Ghana,Sanitation (collapsed),Improved,4203,55.2
+Ghana,Sanitation (collapsed),Non-improved,4862,40.4
+Ghana,Sanitation (collapsed),Structural / not applicable,136,1.7
+Ghana,Sanitation (collapsed),Unclassified bio-digester (Ghana),137,2.4
+Ghana,Sanitation (collapsed),Unknown,15,0.3
+Kenya,Drinking water source,Improved,13729,74.5
+Kenya,Drinking water source,Structural / not applicable,538,3.0
+Kenya,Drinking water source,Surface water,3745,15.4
+Kenya,Drinking water source,Unimproved,1308,5.7
+Kenya,Drinking water source,Unknown,210,1.4
+Kenya,Sanitation service level,Basic sanitation,5983,35.0
+Kenya,Sanitation service level,Limited sanitation,5302,28.8
+Kenya,Sanitation service level,Open defecation,3386,9.4
+Kenya,Sanitation service level,Structural / not applicable,538,3.0
+Kenya,Sanitation service level,Unimproved,4286,23.7
+Kenya,Sanitation service level,Unknown,35,0.1
+Kenya,Sanitation (collapsed),Improved,11285,63.8
+Kenya,Sanitation (collapsed),Non-improved,7672,33.1
+Kenya,Sanitation (collapsed),Structural / not applicable,538,3.0
+Kenya,Sanitation (collapsed),Unknown,35,0.1
+Nigeria,Drinking water source,Improved,19409,71.9
+Nigeria,Drinking water source,Structural / not applicable,184,0.5
+Nigeria,Drinking water source,Surface water,3217,9.7
+Nigeria,Drinking water source,Unimproved,4968,17.9
+Nigeria,Drinking water source,Unknown,5,0.0
+Nigeria,Sanitation service level,Basic sanitation,11725,45.7
+Nigeria,Sanitation service level,Limited sanitation,4190,15.5
+Nigeria,Sanitation service level,Open defecation,6627,20.3
+Nigeria,Sanitation service level,Structural / not applicable,184,0.5
+Nigeria,Sanitation service level,Unimproved,5049,17.9
+Nigeria,Sanitation service level,Unknown,8,0.0
+Nigeria,Sanitation (collapsed),Improved,15915,61.2
+Nigeria,Sanitation (collapsed),Non-improved,11676,38.2
+Nigeria,Sanitation (collapsed),Structural / not applicable,184,0.5
+Nigeria,Sanitation (collapsed),Unknown,8,0.0

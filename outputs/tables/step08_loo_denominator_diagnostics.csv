@@ -1,0 +1,13 @@
+country,rate,n_households,min_other_hh,p25_other_hh,median_other_hh,mean_other_hh,p75_other_hh,max_other_hh,n_zero_other_hh,pct_zero_other_hh
+ethiopia,water,21241,8.0,25.0,26.0,25.659338072595453,27.0,27.0,0,0.0
+ethiopia,sanitation_core,21241,12.0,25.0,26.0,25.717433265853774,27.0,27.0,0,0.0
+ethiopia,sanitation_robustness,21241,12.0,25.0,26.0,25.717433265853774,27.0,27.0,0,0.0
+ghana,water,17933,18.0,28.0,29.0,28.088997936764624,29.0,29.0,0,0.0
+ghana,sanitation_core,17933,16.0,27.0,28.0,27.471254112529973,29.0,29.0,0,0.0
+ghana,sanitation_robustness,17933,18.0,28.0,29.0,28.03964757709251,29.0,29.0,0,0.0
+kenya,water,37911,1.0,21.0,22.0,21.4383951887315,23.0,30.0,0,0.0
+kenya,sanitation_core,37911,3.0,21.0,22.0,21.695391838780303,23.0,30.0,0,0.0
+kenya,sanitation_robustness,37911,3.0,21.0,22.0,21.695391838780303,23.0,30.0,0,0.0
+nigeria,water,40047,10.0,28.0,29.0,28.175144205558468,29.0,29.0,0,0.0
+nigeria,sanitation_core,40047,10.0,28.0,29.0,28.147077184308436,29.0,29.0,0,0.0
+nigeria,sanitation_robustness,40047,10.0,28.0,29.0,28.147077184308436,29.0,29.0,0,0.0

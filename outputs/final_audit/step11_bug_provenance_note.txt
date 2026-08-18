@@ -1,0 +1,6 @@
+STEP 11 REGRESSION SCRIPT - REPRODUCIBILITY NOTE
+==================================================
+
+An early development execution of the Step 11 regression script omitted the two primary exposure variables from the design matrix. Manual output inspection identified the specification error before results were accepted. The script was corrected and all retained Step 11 and Step 12 results derive exclusively from the corrected implementation. The technical details remain documented in 11_main_regressions.py.
+
+This is a reproducibility record, not a thesis result.

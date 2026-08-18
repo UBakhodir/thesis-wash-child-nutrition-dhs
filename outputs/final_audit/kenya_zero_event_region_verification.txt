@@ -1,0 +1,61 @@
+KENYA ZERO-EVENT FE REGION COUNT - PRE-FREEZE VERIFICATION
+============================================================
+
+Context
+-------
+12_robustness.py's module docstring (FAMILY 2: SEVERE OUTCOMES) states that
+severe_wasted has "24/114 zero-event FE regions (18 of them in Kenya
+alone)" as the justification for running the severe-outcomes family pooled
+only, never country-specific. The prior supervisor-facing reproducibility
+audit found this specific "18 in Kenya" figure was asserted only in prose
+and was not independently persisted or verified anywhere in the codebase
+or outputs.
+
+Method
+------
+Read-only verification performed during the pre-freeze remediation stage.
+The exact sample/grouping logic used by run_severe_outcomes_family() in
+12_robustness.py was independently reproduced against the current Step 10
+output (data/processed/pooled_kr_four_country_birth_order.parquet,
+70231 rows x 90 columns - checksum-matched to the file already in use by
+the pipeline, not regenerated):
+
+    base_mask = reg.build_estimation_sample(df, "severe_wasted")
+    sample    = df[base_mask]                      # pooled scope
+    region_events = sample.groupby("country_admin_region")["severe_wasted"].sum()
+    n_zero_event_regions = (region_events == 0).sum()
+
+No model was fit and no regression was run. This is a groupby/sum
+diagnostic only, identical in logic to the diagnostic already computed
+(and already written to robustness_binary_lpm's sibling output,
+severe_outcomes.csv) by 12_robustness.py itself at estimation time.
+
+Result
+------
+Pooled severe_wasted estimation sample: N = 37,088
+Zero-event FE regions: 24 / 114 total regions
+
+Per-country breakdown of the 24 zero-event regions:
+    kenya:     18
+    nigeria:    3
+    ghana:      2
+    ethiopia:   1
+    ------------
+    total:     24
+
+Total distinct FE regions present in this sample, by country (for context):
+    ethiopia:  14
+    ghana:     16
+    kenya:     47
+    nigeria:   37
+
+Conclusion
+----------
+The "24/114 zero-event FE regions (18 of them in Kenya alone)" claim in
+12_robustness.py's docstring is EXACTLY REPRODUCIBLE from the existing,
+unmodified analytical dataset. No correction to the claim was needed. A
+pointer to this note was added to the relevant docstring comment in
+12_robustness.py (comment-only change; no analytical code, sample
+definition, model specification, or output file was altered).
+
+This is a reproducibility/verification record, not a thesis result.
