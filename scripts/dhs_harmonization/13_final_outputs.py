@@ -71,6 +71,7 @@ No analytical parquet, no Step 00-12 script, and no Step 00-12 result file
 is ever opened in write mode.
 """
 
+import csv
 import hashlib
 from pathlib import Path
 from datetime import datetime, timezone
@@ -281,13 +282,17 @@ def build_final_table3(t3):
 
 def build_final_table4(mc):
     """Main pooled regression, Models 1-4, exposure rows + model-information
-    rows (controls/FE/N/PSU present or not), one panel per outcome."""
-    panels = {}
+    rows (controls/FE/N/PSU present or not). Single rectangular table with
+    a leading Outcome column (one CSV header for all three outcomes,
+    rather than one repeated header per outcome) - a presentation-layer
+    choice only; every value is identical to the prior per-outcome-panel
+    layout."""
+    all_rows = []
     for outcome in ["haz", "waz", "whz"]:
         sub = mc[(mc["outcome"] == outcome) & (mc["country_scope"] == "pooled")]
         rows = []
         for term in EXPOSURE_TERMS:
-            row = {"Term": EXPOSURE_LABELS[term]}
+            row = {"Outcome": OUTCOME_LABELS[outcome], "Term": EXPOSURE_LABELS[term]}
             for model in [1, 2, 3, 4]:
                 r = sub[(sub["model"] == model) & (sub["term"] == term)]
                 if len(r):
@@ -304,53 +309,58 @@ def build_final_table4(mc):
             ("Administrative-region FE", ["No", "No", "No", "Yes"]),
         ]
         for label, vals in info_rows:
-            rows.append({"Term": label, **{f"Model {m}": v for m, v in zip([1, 2, 3, 4], vals)}})
-        n_row, psu_row = {"Term": "N"}, {"Term": "PSU count"}
+            rows.append({"Outcome": OUTCOME_LABELS[outcome], "Term": label,
+                         **{f"Model {m}": v for m, v in zip([1, 2, 3, 4], vals)}})
+        n_row = {"Outcome": OUTCOME_LABELS[outcome], "Term": "N"}
+        psu_row = {"Outcome": OUTCOME_LABELS[outcome], "Term": "PSU count"}
         for model in [1, 2, 3, 4]:
             r = sub[sub["model"] == model]
             n_row[f"Model {model}"] = int(r["estimation_n"].iloc[0])
             psu_row[f"Model {model}"] = int(r["psu_count"].iloc[0])
         rows += [n_row, psu_row]
-        panels[outcome] = pd.DataFrame(rows)
-    return panels
+        all_rows.extend(rows)
+    return pd.DataFrame(all_rows)
 
 
 def build_final_table5(mc):
-    """Preferred Model 4, exposure rows only, coefficient [95% CI], one
-    panel per outcome, columns = pooled + 4 countries."""
+    """Preferred Model 4, exposure rows only, coefficient [95% CI], columns
+    = pooled + 4 countries. Single rectangular table with a leading
+    Outcome column; every value is identical to the prior per-outcome-
+    panel layout."""
     scopes = ["pooled"] + COUNTRIES
-    panels = {}
+    all_rows = []
     for outcome in ["haz", "waz", "whz"]:
         sub = mc[(mc["outcome"] == outcome) & (mc["model"] == 4)]
-        rows = []
         for term in EXPOSURE_TERMS:
-            row = {"Term": EXPOSURE_LABELS[term]}
+            row = {"Outcome": OUTCOME_LABELS[outcome], "Term": EXPOSURE_LABELS[term]}
             for scope in scopes:
                 r = sub[(sub["country_scope"] == scope) & (sub["term"] == term)]
                 coef, lo, hi = r["coefficient"].iloc[0], r["ci_lower"].iloc[0], r["ci_upper"].iloc[0]
                 row[COUNTRY_LABELS[scope]] = f"{coef:.{DP_COEF}f} {fmt_ci(lo, hi)}"
-            rows.append(row)
-        panels[outcome] = pd.DataFrame(rows)
-    return panels
+            all_rows.append(row)
+    return pd.DataFrame(all_rows)
 
 
 def build_final_table6(bl):
     """Binary LPM robustness, preferred Model 4 exposure rows, coefficient
-    [95% CI], columns = pooled + 4 countries, one panel per outcome."""
+    [95% CI], columns = pooled + 4 countries. Single rectangular table
+    with a leading Outcome column; every value is identical to the prior
+    per-outcome-panel layout."""
     scopes = ["pooled"] + COUNTRIES
-    panels = {}
+    all_rows = []
     for outcome in ["stunted", "wasted", "underweight"]:
         sub = bl[bl["outcome"] == outcome]
-        rows = []
         for term in EXPOSURE_TERMS:
-            row = {"Term": EXPOSURE_LABELS[term]}
+            # Outcome label matches the raw outcome string exactly, as the
+            # prior "# Panel: X" line did for these three outcomes (they
+            # are not keys in OUTCOME_LABELS, which only covers haz/waz/whz).
+            row = {"Outcome": outcome, "Term": EXPOSURE_LABELS[term]}
             for scope in scopes:
                 r = sub[(sub["country_scope"] == scope) & (sub["term"] == term)]
                 coef, lo, hi = r["coefficient"].iloc[0], r["ci_lower"].iloc[0], r["ci_upper"].iloc[0]
                 row[COUNTRY_LABELS[scope]] = f"{coef:.{DP_COEF}f} {fmt_ci(lo, hi)}"
-            rows.append(row)
-        panels[outcome] = pd.DataFrame(rows)
-    return panels
+            all_rows.append(row)
+    return pd.DataFrame(all_rows)
 
 
 # Every regression table gets this identical footnote block - locked wording.
@@ -368,22 +378,19 @@ REGRESSION_TABLE_NOTES = (
 )
 
 
-def write_table_with_notes(df_or_panels, path, notes=REGRESSION_TABLE_NOTES):
-    """Writes a table (or dict of outcome->panel) as CSV with the locked
-    notes block appended as trailing rows, so the notes travel with the
+def write_table_with_notes(df, path, notes=REGRESSION_TABLE_NOTES):
+    """Writes a single rectangular table as CSV, with the locked notes
+    text (if any) appended as one well-formed trailing CSV row - a single
+    cell holding the note, padded with empty cells to the table's own
+    column count - so the file stays a single-header, uniform-column-count
+    CSV throughout (no comment lines, no repeated per-outcome headers, no
+    unquoted free-text row), while the notes still travel with the
     machine-readable file itself."""
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:
-        if isinstance(df_or_panels, dict):
-            for outcome, panel in df_or_panels.items():
-                f.write(f"# Panel: {OUTCOME_LABELS.get(outcome, outcome)}\n")
-                panel.to_csv(f, index=False)
-                f.write("\n")
-        else:
-            df_or_panels.to_csv(f, index=False)
-            f.write("\n")
+        df.to_csv(f, index=False)
         if notes:
-            f.write(f"{notes}\n")
+            csv.writer(f).writerow([notes] + [""] * (len(df.columns) - 1))
 
 
 # ============================================================================
@@ -718,17 +725,17 @@ def main():
     write_table_with_notes(t3_final, FINAL_TABLES_DIR / "final_table3_wash_characteristics.csv", notes=None)
     print(f"  Final Table 3: {t3_final.shape}")
 
-    t4_panels = build_final_table4(src["main_continuous"])
-    write_table_with_notes(t4_panels, FINAL_TABLES_DIR / "final_table4_main_pooled_models1to4.csv")
-    print(f"  Final Table 4: {len(t4_panels)} panels (HAZ/WAZ/WHZ)")
+    t4_final = build_final_table4(src["main_continuous"])
+    write_table_with_notes(t4_final, FINAL_TABLES_DIR / "final_table4_main_pooled_models1to4.csv")
+    print(f"  Final Table 4: {t4_final.shape} (Outcome column: HAZ/WAZ/WHZ)")
 
-    t5_panels = build_final_table5(src["main_continuous"])
-    write_table_with_notes(t5_panels, FINAL_TABLES_DIR / "final_table5_preferred_model4_by_country.csv")
-    print(f"  Final Table 5: {len(t5_panels)} panels (HAZ/WAZ/WHZ)")
+    t5_final = build_final_table5(src["main_continuous"])
+    write_table_with_notes(t5_final, FINAL_TABLES_DIR / "final_table5_preferred_model4_by_country.csv")
+    print(f"  Final Table 5: {t5_final.shape} (Outcome column: HAZ/WAZ/WHZ)")
 
-    t6_panels = build_final_table6(src["binary_lpm"])
-    write_table_with_notes(t6_panels, FINAL_TABLES_DIR / "final_table6_binary_lpm_robustness.csv")
-    print(f"  Final Table 6: {len(t6_panels)} panels (stunted/wasted/underweight)")
+    t6_final = build_final_table6(src["binary_lpm"])
+    write_table_with_notes(t6_final, FINAL_TABLES_DIR / "final_table6_binary_lpm_robustness.csv")
+    print(f"  Final Table 6: {t6_final.shape} (Outcome column: stunted/wasted/underweight)")
 
     # ---- SECTION 3: final appendix tables ----
     print(f"\n{'='*90}\nSECTION 3: FINAL APPENDIX TABLES\n{'='*90}")
@@ -767,14 +774,29 @@ def main():
     print(f"  A7 Missingness/availability: {src['table4'].shape}")
 
     a8_admin, a8_hrwash, a8_loo = build_appendix_a8(src["admin_region_report"], src["hr_wash_report"], src["loo_denom_diag"])
-    with open(FINAL_APPENDIX_DIR / "appendix_A8_admin_region_and_loo_support.csv", "w", newline="", encoding="utf-8") as f:
-        f.write("# Panel 1: Administrative-region FE support (Step 09)\n")
-        a8_admin.to_csv(f, index=False)
-        f.write("\n# Panel 2: HR/WASH exposure linkage support (Step 08)\n")
-        a8_hrwash.to_csv(f, index=False)
-        f.write("\n# Panel 3: LOO denominator distribution (Step 08)\n")
-        a8_loo.to_csv(f, index=False)
-    print(f"  A8 Admin-region/LOO support: 3 panels ({a8_admin.shape}, {a8_hrwash.shape}, {a8_loo.shape})")
+    # These three source tables have different schemas and different row
+    # grains (one row per country x admin-region; one row per country;
+    # one row per country x rate-type) - they cannot honestly be reduced
+    # to a single shared column set. Instead of "# Panel N:" comment lines
+    # followed by three separate, differently-shaped headers (which is
+    # what triggered the inconsistent-column warning), every row is
+    # tagged with an explicit leading "Panel" column and the three
+    # tables' columns are unioned into one single-header CSV, with cells
+    # that don't apply to a given panel left blank. No value from any of
+    # the three source tables is altered - this only relabels which
+    # columns are populated on which rows.
+    a8_admin_labeled = a8_admin.copy()
+    a8_admin_labeled.insert(0, "Panel", "Administrative-region FE support (Step 09)")
+    a8_hrwash_labeled = a8_hrwash.copy()
+    a8_hrwash_labeled.insert(0, "Panel", "HR/WASH exposure linkage support (Step 08)")
+    a8_loo_labeled = a8_loo.copy()
+    a8_loo_labeled.insert(0, "Panel", "LOO denominator distribution (Step 08)")
+    a8_combined = pd.concat(
+        [a8_admin_labeled, a8_hrwash_labeled, a8_loo_labeled], ignore_index=True, sort=False
+    ).convert_dtypes()  # nullable Int64/Float64 so blank cells don't force "123.0"-style float rendering onto whole-number columns
+    write_table_with_notes(a8_combined, FINAL_APPENDIX_DIR / "appendix_A8_admin_region_and_loo_support.csv", notes=None)
+    print(f"  A8 Admin-region/LOO support: {a8_combined.shape} (Panel column: 3 source tables, "
+          f"{a8_admin.shape[0]}+{a8_hrwash.shape[0]}+{a8_loo.shape[0]} rows)")
 
     # ---- SECTION 4: figures ----
     print(f"\n{'='*90}\nSECTION 4: FIGURES\n{'='*90}")

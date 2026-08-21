@@ -5,5 +5,4 @@ severe_wasted,water_rate_loo,0.003,0.004,-0.005,0.011,0.499,473,0.01275345125107
 severe_wasted,sanitation_rate_loo_core,-0.0,0.006,-0.012,0.011,0.943,473,0.0127534512510785,24,114,1.3
 severe_underweight,water_rate_loo,-0.012,0.007,-0.026,0.002,0.098,1599,0.042914653784219,2,114,4.3
 severe_underweight,sanitation_rate_loo_core,-0.011,0.01,-0.03,0.008,0.255,1599,0.042914653784219,2,114,4.3
-
-WARNING: severe_wasted has 24/114 administrative-region FE cells with zero events - coefficients for this outcome should be treated as secondary/exploratory, not a headline result.
+"WARNING: severe_wasted has 24/114 administrative-region FE cells with zero events - coefficients for this outcome should be treated as secondary/exploratory, not a headline result.",,,,,,,,,,,

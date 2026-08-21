@@ -1,16 +1,8 @@
-# Panel: stunted
-Term,Pooled,Ethiopia,Ghana,Kenya,Nigeria
-Water coverage (LOO rate),"-0.017 [-0.051, 0.016]","0.030 [-0.051, 0.110]","-0.021 [-0.091, 0.049]","-0.030 [-0.064, 0.005]","-0.059 [-0.111, -0.006]"
-"Sanitation coverage (LOO rate, core)","0.011 [-0.027, 0.049]","-0.036 [-0.125, 0.053]","0.018 [-0.061, 0.098]","0.005 [-0.037, 0.047]","0.077 [0.024, 0.130]"
-
-# Panel: wasted
-Term,Pooled,Ethiopia,Ghana,Kenya,Nigeria
-Water coverage (LOO rate),"-0.004 [-0.020, 0.011]","-0.015 [-0.051, 0.020]","-0.012 [-0.044, 0.020]","0.020 [0.002, 0.038]","-0.004 [-0.032, 0.024]"
-"Sanitation coverage (LOO rate, core)","-0.002 [-0.023, 0.019]","0.029 [-0.020, 0.077]","-0.007 [-0.051, 0.037]","-0.011 [-0.034, 0.011]","-0.030 [-0.064, 0.004]"
-
-# Panel: underweight
-Term,Pooled,Ethiopia,Ghana,Kenya,Nigeria
-Water coverage (LOO rate),"-0.010 [-0.041, 0.021]","-0.026 [-0.103, 0.050]","0.001 [-0.055, 0.057]","0.011 [-0.017, 0.040]","-0.019 [-0.066, 0.028]"
-"Sanitation coverage (LOO rate, core)","-0.031 [-0.065, 0.002]","-0.059 [-0.140, 0.021]","-0.037 [-0.101, 0.027]","-0.030 [-0.065, 0.006]","0.009 [-0.042, 0.061]"
-
-Notes: Estimates are associations, not causal effects. Primary WASH exposures are continuous cluster-level household leave-one-out coverage rates on [0,1]. Coefficients are the estimated association per 1.0 (100-percentage-point) increase in cluster coverage; a 10-percentage-point association equals coefficient x 0.10. Pooled models use a model-specific equal-total-country temporary weight (never persisted); country-specific models use the DHS-supplied weight (weight_original). Pooled standard errors are clustered by country_psu; country-specific standard errors are clustered by psu. Model 4 includes country-qualified administrative-region fixed effects (country_admin_region); no survey-year fixed effect or spatial grid fixed effect is included in any model.
+Outcome,Term,Pooled,Ethiopia,Ghana,Kenya,Nigeria
+stunted,Water coverage (LOO rate),"-0.017 [-0.051, 0.016]","0.030 [-0.051, 0.110]","-0.021 [-0.091, 0.049]","-0.030 [-0.064, 0.005]","-0.059 [-0.111, -0.006]"
+stunted,"Sanitation coverage (LOO rate, core)","0.011 [-0.027, 0.049]","-0.036 [-0.125, 0.053]","0.018 [-0.061, 0.098]","0.005 [-0.037, 0.047]","0.077 [0.024, 0.130]"
+wasted,Water coverage (LOO rate),"-0.004 [-0.020, 0.011]","-0.015 [-0.051, 0.020]","-0.012 [-0.044, 0.020]","0.020 [0.002, 0.038]","-0.004 [-0.032, 0.024]"
+wasted,"Sanitation coverage (LOO rate, core)","-0.002 [-0.023, 0.019]","0.029 [-0.020, 0.077]","-0.007 [-0.051, 0.037]","-0.011 [-0.034, 0.011]","-0.030 [-0.064, 0.004]"
+underweight,Water coverage (LOO rate),"-0.010 [-0.041, 0.021]","-0.026 [-0.103, 0.050]","0.001 [-0.055, 0.057]","0.011 [-0.017, 0.040]","-0.019 [-0.066, 0.028]"
+underweight,"Sanitation coverage (LOO rate, core)","-0.031 [-0.065, 0.002]","-0.059 [-0.140, 0.021]","-0.037 [-0.101, 0.027]","-0.030 [-0.065, 0.006]","0.009 [-0.042, 0.061]"
+"Notes: Estimates are associations, not causal effects. Primary WASH exposures are continuous cluster-level household leave-one-out coverage rates on [0,1]. Coefficients are the estimated association per 1.0 (100-percentage-point) increase in cluster coverage; a 10-percentage-point association equals coefficient x 0.10. Pooled models use a model-specific equal-total-country temporary weight (never persisted); country-specific models use the DHS-supplied weight (weight_original). Pooled standard errors are clustered by country_psu; country-specific standard errors are clustered by psu. Model 4 includes country-qualified administrative-region fixed effects (country_admin_region); no survey-year fixed effect or spatial grid fixed effect is included in any model.",,,,,,

@@ -17,7 +17,7 @@ PROJECT_ROOT = Path(r"c:\Users\user\Documents\Graduation_Thesis")
 
 DATA_RAW = PROJECT_ROOT / "data" / "raw" / "DHS"           # untouched ZIP archives
 DATA_INTERIM = PROJECT_ROOT / "data" / "interim" / "DHS"   # untouched extracted DHS files
-DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"        # Claude-generated outputs ONLY
+DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"        # pipeline-generated outputs ONLY
 DATA_STAGING = DATA_PROCESSED / "staging"                   # intermediate analytical files
 
 # ----------------------------------------------------------------------

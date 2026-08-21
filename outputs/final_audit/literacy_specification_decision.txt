@@ -25,11 +25,12 @@ columns) were both exhaustive enumerations that did not include `v155` or
 PROVENANCE INVESTIGATION RESULT
 --------------------------------
 A dedicated, strictly read-only provenance investigation searched
-docs/thesis_design.md, docs/data_dictionary.md, docs/project_timeline.md,
-README.md, CONTRIBUTORS.md, every pipeline script's docstrings/comments,
-and all existing audit/provenance files for evidence that literacy's
-inclusion was an intentional, reviewed decision as part of the original
-approved design. No such record was found.
+docs/thesis_design.md, docs/data_dictionary.md, the master project's
+internal docs/project_timeline.md planning document (not included in the
+shareable package), README.md, CONTRIBUTORS.md, every pipeline script's
+docstrings/comments, and all existing audit/provenance files for evidence
+that literacy's inclusion was an intentional, reviewed decision as part of
+the original approved design. No such record was found.
 
 One weak, disconnected trace was identified: 00_config.py's
 REFERENCE_CATEGORIES dict includes a `"literacy": "cannot_read"` entry, but
@@ -64,7 +65,7 @@ KEEP `literacy` exactly as currently implemented:
   - no regression specification, design matrix, weighting, clustering, or
     standard-error methodology was altered.
 
-Decision made by: the thesis author (explicit instruction).
+Decision made by: the thesis author.
 
 
 WHY

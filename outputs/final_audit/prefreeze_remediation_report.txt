@@ -2,8 +2,8 @@ PRE-FREEZE REMEDIATION AND VERIFICATION REPORT
 ================================================
 Stage: Controlled pre-freeze remediation (post supervisor-facing
 reproducibility audit, pre thesis-writing). This stage addressed ONLY the
-limited items authorized by the user; no methodological finding was
-altered, no regression was re-run, and no analytical output was
+limited items approved for this stage's scope; no methodological finding
+was altered, no regression was re-run, and no analytical output was
 regenerated.
 
 
@@ -21,8 +21,11 @@ A. FILES INSPECTED
   for the Kenya zero-event verification)
 - outputs/tables/table1_sample_characteristics.csv (read-only, for the
   literacy audit)
-- docs/thesis_design.md, docs/data_dictionary.md, docs/methodology_notes/
-  (read-only, for the literacy design-documentation check)
+- docs/thesis_design.md, docs/data_dictionary.md, and the master project's
+  internal docs/methodology_notes/ planning-notes folder (empty at the
+  time of this check; an internal working folder, not included in the
+  shareable package) (read-only, for the literacy design-documentation
+  check)
 - All existing outputs/regressions/*.csv, outputs/final_tables/*.csv,
   outputs/final_appendix/*, outputs/final_figures/*, outputs/final_audit/*,
   outputs/tables/*.csv, sources/summaries/*, sources/bibliography/* (for
@@ -55,7 +58,7 @@ C. EXACT CHANGES MADE
    installed in .venv (confirmed via `pip show polars`). No other package
    version was touched. The 6 packages the audit found declared-but-unused
    (rasterio, rasterstats, shapely, seaborn, jupyter, linearmodels) were
-   NOT removed, per instruction - see Section D.
+   NOT removed - see Section D.
 
 2. scripts/dhs_harmonization/00_config.py
    Added a documentation-only comment above the ANTHRO_VARS constant,
@@ -76,8 +79,8 @@ C. EXACT CHANGES MADE
    a. Added a new function `_assert_exposures_in_every_model(model_specs,
       exposures)` immediately after MODEL_SPECS is defined, and a single
       call `_assert_exposures_in_every_model(MODEL_SPECS, EXPOSURES)`
-      immediately after that. This is the defensive assertion requested in
-      Section 3 of the task. It performs a pure read-only check -
+      immediately after that. This is the defensive assertion added during
+      this remediation stage. It performs a pure read-only check -
       `set(EXPOSURES).issubset(set(spec["continuous"]))` for every entry in
       MODEL_SPECS - and raises RuntimeError with a diagnostic message if
       violated. It does not modify MODEL_SPECS, EXPOSURES, the design
@@ -128,8 +131,8 @@ Step 03's duplicated `expected_collapse` dict (identified by the prior
 audit as a hardcoded copy of 01_wash_mapping.py's
 SANITATION_SERVICE_COLLAPSE_MAP, with a theoretical drift risk if the
 source dict is ever edited) was deliberately NOT touched in this stage,
-per the explicit instruction not to alter Step 03 WASH mappings and to
-leave anything with even a small possibility of affecting validation
+consistent with the decision to leave Step 03's WASH mappings unaltered and
+to leave anything with even a small possibility of affecting validation
 behavior unchanged. Reported here, not acted on.
 
 
@@ -145,12 +148,12 @@ reinforcing that pinning it explicitly is appropriate.
 
 The 6 declared-but-apparently-unused packages (rasterio, rasterstats,
 shapely, seaborn, jupyter, linearmodels) were left in requirements.txt
-unchanged, as instructed. They are documented here as apparently unused by
+unchanged this stage. They are documented here as apparently unused by
 the active 00-13 pipeline (no import of any of them was found anywhere in
 scripts/dhs_harmonization/*.py during the original audit); rasterio/
 rasterstats/shapely most likely trace back to an earlier-considered,
 not-implemented raster/geospatial-covariate design path. No removal action
-was taken.
+was taken this stage.
 
 
 E. STEP-11 DEFENSIVE ASSERTION RESULT
@@ -182,8 +185,7 @@ output file was rewritten.
 
 F. VERIFIED KENYA ZERO-EVENT-REGION COUNT
 ---------------------------------------------
-RESULT: 18 is EXACTLY REPRODUCIBLE. No correction was needed - option (A)
-from the task's decision tree applies.
+RESULT: 18 is EXACTLY REPRODUCIBLE. No correction was needed.
 
 Full method and result are persisted in
 outputs/final_audit/kenya_zero_event_region_verification.txt. Summary:
@@ -198,7 +200,7 @@ was run to answer this question - it is a groupby/sum diagnostic only.
 
 G. LITERACY-VARIABLE AUDIT RESULT
 -------------------------------------
-NOT CHANGED, per instruction. Findings only:
+NOT CHANGED at this stage. Findings only:
 
 1. Construction: scripts/dhs_harmonization/04_build_country_kr.py, line
    157: `merged["literacy"] = map_known_code(merged["v155_raw"],
@@ -248,19 +250,21 @@ NOT CHANGED, per instruction. Findings only:
    reproducibility audit (correct reference-level handling, rank-checked,
    no missingness).
 
-5. Design-documentation check - IMPORTANT FINDING, FLAGGED FOR YOUR
-   DECISION, NOT RESOLVED HERE:
+5. Design-documentation check - IMPORTANT FINDING, REQUIRING A
+   SPECIFICATION DECISION, NOT RESOLVED HERE:
    docs/thesis_design.md, Section 7.3 "Control Variables", lists exactly
    eight household/child-level controls: child age, child sex, birth
    order, mother's age, mother's education, household wealth quintile,
    household size, and urban/rural residence. "Literacy" does not appear
    anywhere in this list, under that name or any variant (a full-text
-   search of thesis_design.md, data_dictionary.md, and
-   docs/methodology_notes/ for "literacy"/"v155"/"read"/"reading" returned
-   no matches other than the one already-quoted "Low maternal education
-   flag" heterogeneity-moderator definition, which is a different,
-   binary, not-yet-implemented variable for a later heterogeneity stage,
-   not the currently-implemented `literacy` control).
+   search of thesis_design.md, data_dictionary.md, and the master
+   project's internal docs/methodology_notes/ planning-notes folder (empty
+   at the time of this check; not included in the shareable package) for
+   "literacy"/"v155"/"read"/"reading" returned no matches other than the
+   one already-quoted "Low maternal education flag" heterogeneity-
+   moderator definition, which is a different, binary, not-yet-implemented
+   variable for a later heterogeneity stage, not the currently-implemented
+   `literacy` control).
 
    This means the open question is not merely "should literacy be 5-
    category or binary" (the framing in the original audit) - it is more
@@ -271,8 +275,8 @@ NOT CHANGED, per instruction. Findings only:
    constructs, and DHS commonly collects both), or it may be an
    unintended addition that should be reconciled with thesis_design.md
    before the specification is treated as final. This is a substantive
-   specification question, not a code-correctness question - per your
-   explicit instruction, it has NOT been decided or changed here, and is
+   specification question, not a code-correctness question - it was
+   intentionally left undecided and unchanged at this stage, and is
    listed as an open item in Section K below.
 
 
@@ -291,9 +295,9 @@ Section C for exact text):
   - 08_hr_cluster_wash_exposure.py: added a comment at the rename step
     clarifying internal-vs-exported WASH rate-column naming.
 
-Deliberately NOT made (left unchanged and reported instead, per
-instruction to be conservative about anything with even a small
-possibility of affecting behavior):
+Deliberately NOT made (left unchanged and reported instead, taking a
+conservative approach toward anything with even a small possibility of
+affecting behavior):
   - Step 03's duplicated `expected_collapse` mapping (see Section C) - not
     touched, because it sits inside Step 03's WASH-mapping validation
     logic, which is explicitly protected in this stage.
@@ -339,16 +343,16 @@ K. REMAINING UNRESOLVED METHODOLOGICAL/DOCUMENTATION DECISIONS
 1. Literacy control-variable specification (Section G, item 5): the
    currently-implemented 5-category `literacy` (v155) control is not
    listed in docs/thesis_design.md's 8-variable control-variable
-   specification. This requires your decision: (a) treat it as an
+   specification. This required a specification decision: (a) treat it as an
    intentional, documented enrichment and update thesis_design.md to
    reflect it, (b) reconsider whether it should be a control at all, given
    it is not in the original design, or (c) some other resolution. NOT
    decided in this stage.
 
 2. (Carried forward from the original audit, not addressed in this
-   pre-freeze stage per your explicit scope limitation - these will be
-   handled in Methods/Results/Discussion/Limitations text at the thesis-
-   writing stage, not here):
+   pre-freeze stage given its defined scope - these will be handled in
+   Methods/Results/Discussion/Limitations text at the thesis-writing
+   stage, not here):
    a. Pooled weighting must be described as this thesis's own equal-
       country-total weighting construction, not as an implementation of
       the DHS Sampling Manual's population-proportional pooled-survey
@@ -369,13 +373,13 @@ K. REMAINING UNRESOLVED METHODOLOGICAL/DOCUMENTATION DECISIONS
 L. IS THE EMPIRICAL PIPELINE NOW SAFE TO FREEZE?
 -----------------------------------------------------
 YES, subject to Section K item 1 (the literacy control-variable
-specification question) being explicitly resolved by you before the
-pipeline is treated as fully locked. All other pre-freeze items authorized
-for this stage (requirements.txt gap, Step 11 defensive assertion, Kenya
-zero-event verification, minor readability cleanups) are complete, and
-zero analytical output changed as a result. No new CRITICAL or IMPORTANT
+specification question) being explicitly resolved before the pipeline is
+treated as fully locked. All other pre-freeze items approved for this
+stage (requirements.txt gap, Step 11 defensive assertion, Kenya zero-event
+verification, minor readability cleanups) are complete, and zero
+analytical output changed as a result. No new CRITICAL or IMPORTANT
 issue was discovered during this remediation stage beyond the literacy
 documentation gap identified in Section G/K.1, which is a specification-
-completeness question for you to resolve, not a code-correctness defect.
+completeness question requiring resolution, not a code-correctness defect.
 
 This is a reproducibility/remediation record, not a thesis result.

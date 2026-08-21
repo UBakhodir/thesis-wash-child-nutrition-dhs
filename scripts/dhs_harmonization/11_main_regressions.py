@@ -77,7 +77,7 @@ not by any automated check in the script at the time. The fix: MODEL1_CONTINUOUS
 script was re-run after the fix, and the first (invalid) contents of
 main_continuous_models.csv / step11_model_sample_flow.csv were overwritten by
 the corrected re-run before being reported. Every Step 11 coefficient/SE/CI/
-p-value that was ever reported to the user comes exclusively from the
+p-value that was ever reported in the thesis comes exclusively from the
 corrected re-run - none of the invalid first-run numbers were reported.
 """
 

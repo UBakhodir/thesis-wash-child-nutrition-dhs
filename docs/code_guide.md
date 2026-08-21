@@ -105,4 +105,4 @@ All full-detail documents live in `outputs/final_audit/` (see `outputs/final_aud
 
 **Hard-fail validation philosophy**: every script raises `RuntimeError` rather than silently continuing whenever an assumption it depends on is violated (unexpected row counts, checksum mismatches, rank-deficient design matrices, unmapped codes, etc.). A `RuntimeError` from any script is the pipeline working as intended — it means a specific, named assumption failed, not that the code crashed unexpectedly. Read the specific error message; it names the exact check that failed.
 
-No master pipeline runner is provided or recommended — see the project's package-design audit for the reasoning (raw and processed DHS data are both access-gated, so a runner cannot itself be run by anyone without independent DHS authorization regardless of tooling).
+No master pipeline runner is provided or recommended, because raw and processed DHS data are both access-gated, so a runner cannot itself be run by anyone without independent DHS authorization regardless of tooling.

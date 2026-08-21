@@ -17,5 +17,4 @@ whz,>=5 other households (both exposures),water_rate_loo,0.057,0.05,0.2606368650
 whz,>=5 other households (both exposures),sanitation_rate_loo_core,0.076,0.055,0.1643977910496674,37060,99.9245
 whz,>=10 other households (both exposures),water_rate_loo,0.059,0.05,0.2438472484841709,36898,99.4877
 whz,>=10 other households (both exposures),sanitation_rate_loo_core,0.077,0.055,0.1612786266127864,36898,99.4877
-
-Sensitivity analysis only - thresholds are illustrative, not a new preferred sample.
+"Sensitivity analysis only - thresholds are illustrative, not a new preferred sample.",,,,,,,
