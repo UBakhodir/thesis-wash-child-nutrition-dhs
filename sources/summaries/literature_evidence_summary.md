@@ -28,7 +28,7 @@ By priority: **6 Core**, **17 Supporting**, **12 Background** (not forced — ma
 |---|---|---|
 | **Ethiopia** | Gebru et al. 2019 (S05) — general determinants study, water/toilet as secondary covariates, national null finding for water | No dedicated *WASH-focused* (not general-determinants) Ethiopia study found |
 | **Ghana** | Addae et al. 2024 (S13) — dedicated, significant findings | **MICS, not DHS** — must not be conflated or pooled with our DHS-based results |
-| **Kenya** | Rakotomanana et al. 2020 (S11) — dedicated, DHS-based | Kenya-specific numeric coefficient not independently re-confirmed this stage — flagged for re-check before citing exact figures |
+| **Kenya** | Rakotomanana et al. 2020 (S11) — dedicated, DHS-based | Kenya-specific numeric coefficient confirmed: beta=0.13 (p<0.01), R2=0.20 (Table 4, p.8) |
 | **Nigeria** | DHS SAR23 (S28) — official DHS Program, dedicated, cluster-vs-household contrast | Own-inclusive, not leave-one-out; mixed regional pattern (significant in only 2 of 6 geopolitical zones) |
 
 All four countries now have at least one dedicated source; Ethiopia's remains the weakest (general-determinants only, not WASH-focused).
@@ -45,7 +45,6 @@ Using our own already-completed, unmodified pooled Model 4 and binary-LPM result
 
 - **No source anywhere in the literature implements leave-one-out cluster exposure for a WASH→anthropometric-outcome relationship specifically** (Geruso & Spears's leave-one-out precedent is for mortality in India).
 - **Ethiopia** still lacks a WASH-focused (rather than general-determinants) DHS study.
-- **Kenya's** specific numeric WASH-HAZ estimate needs re-verification against the exact results table in Rakotomanana et al. (2020).
 - **JMP's own estimation methodology** (Annex 1 of the 2025 report) has not been independently read — relevant if the methods chapter wants to describe JMP's interpolation approach in detail.
 - No dedicated environmental-enteropathy / biological-mechanism paper is in the collection — the water→gut inflammation→growth pathway is only referenced secondhand via review articles.
 
@@ -61,7 +60,7 @@ Using our own already-completed, unmodified pooled Model 4 and binary-LPM result
 - **Methods — administrative-region FE justification**: S04, S16, S19
 - **Results comparison / Discussion**: S05, S12, S13, S28, S33, S34 — see `literature_results_comparison.csv` for the specific directional comparisons and caveats
 - **Discussion — causal vs. associational framing**: S10 (essential), S15, S16
-- **Limitations**: S09 (spatial-grid alternative not taken), S17 (unused geospatial-covariate extension), S25 (unread -2SD/-3SD cutoff chapter)
+- **Limitations**: S09 (spatial-grid alternative not taken), S17 (unused geospatial-covariate extension), S25 (LMS-derived -2SD/-3SD cutoff formulas now confirmed, p.303 - cite for outcome-construction methodology, not as an unread gap)
 - **Policy implications**: S21, S22
 
 ---
