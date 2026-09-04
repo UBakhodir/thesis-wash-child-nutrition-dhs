@@ -1,7 +1,7 @@
 PRE-FREEZE REMEDIATION AND VERIFICATION REPORT
 ================================================
-Stage: Controlled pre-freeze remediation (post supervisor-facing
-reproducibility audit, pre thesis-writing). This stage addressed ONLY the
+Stage: Controlled pre-freeze remediation (post reproducibility audit, pre
+thesis-writing). This stage addressed ONLY the
 limited items approved for this stage's scope; no methodological finding
 was altered, no regression was re-run, and no analytical output was
 regenerated.

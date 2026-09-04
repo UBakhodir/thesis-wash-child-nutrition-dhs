@@ -6,7 +6,7 @@ Context
 12_robustness.py's module docstring (FAMILY 2: SEVERE OUTCOMES) states that
 severe_wasted has "24/114 zero-event FE regions (18 of them in Kenya
 alone)" as the justification for running the severe-outcomes family pooled
-only, never country-specific. The prior supervisor-facing reproducibility
+only, never country-specific. The prior reproducibility
 audit found this specific "18 in Kenya" figure was asserted only in prose
 and was not independently persisted or verified anywhere in the codebase
 or outputs.

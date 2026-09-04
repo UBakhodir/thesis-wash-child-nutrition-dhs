@@ -4,7 +4,7 @@
 
 ## 1. What literature we now have
 
-35 PDFs across 7 folders: `sources/articles/01_Child_Nutrition/` (6), `02_WASH/` (7), `03_DHS/` (3), `04_GIS/` (1), `06_Methodology/` (2), `sources/reports/` (13), `sources/papers/` (3). 25 were assembled and audited in an earlier literature-intake stage; 10 were added in a subsequent targeted gap search (Kenya/Nigeria/Ghana-specific WASH evidence, leave-one-out exposure methodology, and official DHS sampling/GPS documentation). Of the 35, 25 have been fully or near-fully deep-read; the remaining large institutional reports (JMP 2025, the WHO growth-standard monographs, `Guide to DHS Statistics`) were read via targeted sections rather than cover-to-cover, given their length (up to 834 pages).
+35 PDFs across 7 folders: `sources/articles/01_Child_Nutrition/` (6), `02_WASH/` (7), `03_DHS/` (3), `04_GIS/` (1), `06_Methodology/` (2), `sources/reports/` (13), `sources/papers/` (3). 25 were part of the initial literature collection; 10 were added to address identified evidence gaps (Kenya/Nigeria/Ghana-specific WASH evidence, leave-one-out exposure methodology, and official DHS sampling/GPS documentation). Of the 35, 25 have been read in full or near-full; the remaining large institutional reports (JMP 2025, the WHO growth-standard monographs, `Guide to DHS Statistics`) were read via targeted sections rather than cover-to-cover, given their length (up to 834 pages).
 
 By priority: **6 Core**, **17 Supporting**, **12 Background** (not forced — many sources genuinely are background/contextual only).
 

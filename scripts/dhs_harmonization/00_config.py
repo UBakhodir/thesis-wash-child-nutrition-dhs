@@ -72,7 +72,7 @@ POOLED_GEOLINKED_OUTPUT = DATA_PROCESSED / "pooled_kr_four_country_geolinked.par
 # ----------------------------------------------------------------------
 # DHS identifier / survey-design variable names (differ KR/IR vs HR)
 #
-# NOTE (added during the Step 13 supervisor-readability audit): ID_VARS and
+# NOTE (added during the Step 13 readability review): ID_VARS and
 # GE_CLUSTER_VAR below are early planning-stage references and are NOT
 # currently imported by any downstream script - every stage script (02
 # onward) hardcodes its own ID_COLS/cluster-variable names inline instead
@@ -113,7 +113,7 @@ SEVERE_CUTOFF = -3.0   # secondary/robustness outcomes only
 # ----------------------------------------------------------------------
 # Approved reference categories
 #
-# NOTE (added during the Step 13 supervisor-readability audit):
+# NOTE (added during the Step 13 readability review):
 # REFERENCE_CATEGORIES below is NOT currently imported by any downstream
 # script, and its lowercase snake_case values ("male", "no_education", ...)
 # do not match the actual decoded DHS label strings used as reference
@@ -137,7 +137,7 @@ REFERENCE_CATEGORIES = {
 # ----------------------------------------------------------------------
 # Weight handling (approved)
 #
-# NOTE (added during the Step 13 supervisor-readability audit):
+# NOTE (added during the Step 13 readability review):
 # PRESERVE_ORIGINAL_WEIGHT and POOLED_WEIGHT_RESCALE_METHOD below are NOT
 # currently imported by any downstream script. WEIGHT_DIVISOR (used to
 # rescale v005/hv005 to weight_original) IS actively used, in
