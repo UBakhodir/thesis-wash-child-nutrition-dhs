@@ -1,0 +1,215 @@
+==========================================================================================
+BASELINE FILE SHA-256 HASHES (recorded before development estimation)
+==========================================================================================
+  step11_main_regressions_script: ab2df40edfce5cf70d2a55ea52f085510f164b21c92a8c0f9e013e561a24d1ea  (C:\Users\user\Documents\Graduation_Thesis\scripts\dhs_harmonization\11_main_regressions.py)
+  step12_robustness_script: 136a375de86ba2c4fcaa09b0b5e3d974fd0e0c69b5632884d8265681946a8aee  (C:\Users\user\Documents\Graduation_Thesis\scripts\dhs_harmonization\12_robustness.py)
+  main_continuous_models_output: de6d905e92623d1e16d8ec42130f0db42ba3924bf3d5414d6efc3ff7c203026f  (c:\Users\user\Documents\Graduation_Thesis\outputs\regressions\main_continuous_models.csv)
+  robustness_household_wash_output: 945d326eebf6a244a3b3ffb0341c4f9ce2b5be56eaa57c3a65299994f054fd09  (c:\Users\user\Documents\Graduation_Thesis\outputs\regressions\robustness_household_wash.csv)
+
+==========================================================================================
+PART 0: LOAD + PRE-RUN VALIDATION
+==========================================================================================
+Loaded: c:\Users\user\Documents\Graduation_Thesis\data\processed\pooled_kr_four_country_birth_order.parquet  shape=(70231, 90)
+Shape and per-country row counts match the frozen Step-10 baseline exactly.
+Reconstructed Model-4 masks via reg.build_estimation_sample(): haz N=36985, waz N=37260, whz N=37088
+Model-4 N's match the prior audit exactly (haz=36985, waz=37260, whz=37088). No discrepancy.
+country_child_id: unique and non-null across all 70,231 rows.
+  haz: mean=-1.1600 median=-1.1400 min=-5.99 max=5.95 (negative mean consistent with SSA stunting/underweight burden; direction not reversed)
+  waz: mean=-0.9282 median=-0.9100 min=-6.00 max=4.85 (negative mean consistent with SSA stunting/underweight burden; direction not reversed)
+  whz: mean=-0.3693 median=-0.3800 min=-5.00 max=4.99 (negative mean consistent with SSA stunting/underweight burden; direction not reversed)
+Household water binary: {1.0: 49100, 0.0: 19752, nan: 1379}
+Household sanitation binary: {1.0: 36738, 0.0: 32160, nan: 1333}
+Household WASH binary coding: passed (values restricted to {0.0, 1.0, NaN}).
+Community LOO exposures: all non-missing values in [0,1]. Confirmed, not assumed.
+Nesting check: every one of 4481 country_psu values maps to exactly ONE country_admin_region. Confirmed by direct computation, not assumed.
+b19_raw range: [0, 59] - confirmed within [0,59].
+Impossible-value checks: passed for all four WASH exposure variables.
+
+PART 0: ALL PRE-RUN VALIDATION CHECKS PASSED. Proceeding to estimation.
+
+CLUSTER-FE CONTROL-SET ADJUSTMENT: 'residence' excluded from all country_psu-cluster-FE models. Verified: every one of 4,481 DHS PSUs is 100% urban or 100% rural (0 exceptions) - 'residence' has zero within-cluster variation by DHS's own sampling design and is exactly absorbed by cluster FE. All other controls unchanged. Cluster-FE categorical set: ['child_sex', 'maternal_education', 'literacy', 'wealth_quintile'] (region-FE models keep the full set: ['child_sex', 'maternal_education', 'literacy', 'wealth_quintile', 'residence']).
+
+Generic estimation helpers defined (explicit-dummy WLS; weighted-demeaning cluster-FE; manual finite-cluster SE correction). Proceeding to Part 1.
+
+==========================================================================================
+PART 1: COMMON COMPARISON SAMPLE
+==========================================================================================
+  [haz] common sample N=36040 (Model-4 N=36985, diff=-945) unique_hh=25627 unique_psu=4426 unique_admin=114
+  [waz] common sample N=36308 (Model-4 N=37260, diff=-952) unique_hh=25759 unique_psu=4426 unique_admin=114
+  [whz] common sample N=36145 (Model-4 N=37088, diff=-943) unique_hh=25665 unique_psu=4426 unique_admin=114
+Written: 01_development_sample_flow.csv
+
+==========================================================================================
+PART 2: MODEL A - HOUSEHOLD WASH + REGION FE
+==========================================================================================
+  A1 [haz] N=36040 PSUs=4426 OK
+  A2 [haz] N=36040 PSUs=4426 OK
+  A1 [waz] N=36308 PSUs=4426 OK
+  A2 [waz] N=36308 PSUs=4426 OK
+  A1 [whz] N=36145 PSUs=4426 OK
+  A2 [whz] N=36145 PSUs=4426 OK
+Written: 02_household_region_fe.csv
+
+==========================================================================================
+PART 3: MODEL B - HOUSEHOLD WASH + CLUSTER (PSU) FE
+==========================================================================================
+  [haz] support: 4426 PSUs total; water-informative 1399 (31.6%); sanitation-informative 2238 (50.6%); both 995
+    statsmodels res.cov_kwds for [haz] Model B fit: {'use_t': False, 'adjust_df': True, 'groups': 4          ethiopia_1
+5          ethiopia_1
+7          ethiopia_1
+8          ethiopia_1
+9          ethiopia_1
+             ...     
+70206    nigeria_1398
+70213    nigeria_1398
+70214    nigeria_1398
+70219    nigeria_1399
+70225    nigeria_1400
+Name: country_psu, Length: 36040, dtype: str, 'use_correction': True, 'description': 'Standard Errors are robust to cluster correlation (cluster)'}
+  B [haz] N=36040 clusters=4426 se_scale=1.0677 OK
+  [waz] support: 4426 PSUs total; water-informative 1401 (31.7%); sanitation-informative 2249 (50.8%); both 998
+    statsmodels res.cov_kwds for [waz] Model B fit: {'use_t': False, 'adjust_df': True, 'groups': 4          ethiopia_1
+5          ethiopia_1
+7          ethiopia_1
+8          ethiopia_1
+9          ethiopia_1
+             ...     
+70206    nigeria_1398
+70213    nigeria_1398
+70214    nigeria_1398
+70219    nigeria_1399
+70225    nigeria_1400
+Name: country_psu, Length: 36308, dtype: str, 'use_correction': True, 'description': 'Standard Errors are robust to cluster correlation (cluster)'}
+  B [waz] N=36308 clusters=4426 se_scale=1.0672 OK
+  [whz] support: 4426 PSUs total; water-informative 1398 (31.6%); sanitation-informative 2239 (50.6%); both 995
+    statsmodels res.cov_kwds for [whz] Model B fit: {'use_t': False, 'adjust_df': True, 'groups': 4          ethiopia_1
+5          ethiopia_1
+7          ethiopia_1
+8          ethiopia_1
+9          ethiopia_1
+             ...     
+70206    nigeria_1398
+70213    nigeria_1398
+70214    nigeria_1398
+70219    nigeria_1399
+70225    nigeria_1400
+Name: country_psu, Length: 36145, dtype: str, 'use_correction': True, 'description': 'Standard Errors are robust to cluster correlation (cluster)'}
+  B [whz] N=36145 clusters=4426 se_scale=1.0675 OK
+Written: 04_household_cluster_fe_support.csv
+
+==========================================================================================
+PART 3B: CLUSTER-FE ESTIMATOR VALIDATION
+==========================================================================================
+Estimator choice: weighted within-cluster demeaning (Frisch-Waugh-Lovell, weighted case), NOT explicit PSU dummies for the full pooled sample (~4,434-4,481 clusters would require a dense design matrix of order 37,000 x ~4,450 columns - computationally unsafe/slow for this task) and NOT linearmodels.PanelOLS (linearmodels IS installed - v7.0 - but avoided here for consistency with this project's own established convention, documented verbatim in 11_main_regressions.py: 'NOT linearmodels.PanelOLS, NOT any artificial panel structure'). Validated below against an explicit-dummy WLS fit on a computationally tractable subset (Ghana, ~618 PSUs).
+    _water_hh_binary         explicit=-0.0019935383  demeaned=-0.0019935383  |diff|=2.59e-15
+    _sani_hh_binary          explicit=+0.0592370729  demeaned=+0.0592370729  |diff|=5.57e-15
+    b19_raw                  explicit=-0.0071050708  demeaned=-0.0071050708  |diff|=4.73e-16
+    birth_order_raw          explicit=-0.0317612921  demeaned=-0.0317612921  |diff|=2.86e-15
+    maternal_age             explicit=+0.0226305570  demeaned=+0.0226305570  |diff|=3.85e-16
+    household_size_raw       explicit=+0.0112528826  demeaned=+0.0112528826  |diff|=2.11e-15
+VALIDATION PASSED: max |coefficient difference| across 6 terms = 5.57e-15 (tolerance 1e-06). Weighted demeaning confirmed mathematically equivalent to explicit PSU-dummy WLS on the Ghana/haz subset (N=4287, 613 PSUs).
+Written: 03_household_cluster_fe.csv (includes the estimator-validation block)
+
+==========================================================================================
+PART 4: MODEL C - HOUSEHOLD + COMMUNITY WASH JOINT MODEL
+==========================================================================================
+  C [haz] N=36040 PSUs=4426 OK
+  C [waz] N=36308 PSUs=4426 OK
+  C [whz] N=36145 PSUs=4426 OK
+Written: 05_joint_household_community.csv
+
+==========================================================================================
+PART 4B: MULTICOLLINEARITY DIAGNOSTICS (Model C)
+==========================================================================================
+Written: 06_joint_model_collinearity.csv
+
+==========================================================================================
+PART 5: FAIR COMMUNITY MODEL ON COMMON SAMPLE + COMPARISON TABLE
+==========================================================================================
+  D(community-only, common sample) [haz] N=36040 OK
+  D(community-only, common sample) [waz] N=36308 OK
+  D(community-only, common sample) [whz] N=36145 OK
+Written: 07_common_sample_community_vs_household.csv
+
+==========================================================================================
+PART 6: FLEXIBLE CHILD-AGE CONTROL (age-month FE vs linear)
+==========================================================================================
+  A [haz] linear-age vs age-month-FE: OK (N=36040)
+  A [waz] linear-age vs age-month-FE: OK (N=36308)
+  A [whz] linear-age vs age-month-FE: OK (N=36145)
+  D [haz] linear-age vs age-month-FE: OK (N=36040)
+  D [waz] linear-age vs age-month-FE: OK (N=36308)
+  D [whz] linear-age vs age-month-FE: OK (N=36145)
+  B [haz] linear-age vs age-month-FE (demeaned): OK (N=36040)
+  B [waz] linear-age vs age-month-FE (demeaned): OK (N=36308)
+  B [whz] linear-age vs age-month-FE (demeaned): OK (N=36145)
+Written: 08_flexible_age_sensitivity.csv
+
+==========================================================================================
+PART 7: AGE HETEROGENEITY (household WASH x age-band)
+==========================================================================================
+  H1 [haz] N=36040 OK
+  H1 [waz] N=36308 OK
+  H1 [whz] N=36145 OK
+  H2 [haz] N=36040 se_scale=1.0678 OK
+  H2 [waz] N=36308 se_scale=1.0672 OK
+  H2 [whz] N=36145 se_scale=1.0676 OK
+Written: 09_age_heterogeneity.csv, 09b_age_heterogeneity_descriptive_bands.csv (supplementary)
+Written: 10_age_heterogeneity_joint_tests.csv
+
+==========================================================================================
+PART 8: NIGERIA SANITATION -> HAZ SIGN-REVERSAL DIAGNOSTIC
+==========================================================================================
+  M1 Nigeria sanitation_rate_loo_core: beta=+0.2745 p=0.0040
+  M2 Nigeria sanitation_rate_loo_core: beta=+0.2956 p=0.0011
+  M3 Nigeria sanitation_rate_loo_core: beta=-0.4571 p=0.0000
+  M4 Nigeria sanitation_rate_loo_core: beta=-0.1838 p=0.0348
+Nigeria M1-M4 sanitation_rate_loo_core reproduction: EXACT match to the frozen baseline output.
+  sequential +A_maternal_age: sanitation beta=+0.1830
+  sequential +B_maternal_education: sanitation beta=-0.0299
+  sequential +C_literacy: sanitation beta=-0.0570
+  sequential +D_wealth_quintile: sanitation beta=-0.3885
+  sequential +E_household_size: sanitation beta=-0.3903
+  sequential +F_residence: sanitation beta=-0.4571
+  M3 minus A_maternal_age: sanitation beta=-0.4856
+  M3 minus B_maternal_education: sanitation beta=-0.5009
+  M3 minus C_literacy: sanitation beta=-0.4442
+  M3 minus D_wealth_quintile: sanitation beta=-0.1963
+  M3 minus E_household_size: sanitation beta=-0.4569
+  M3 minus F_residence: sanitation beta=-0.3903
+Written: 11_nigeria_sign_reversal.csv
+Written: 12_nigeria_sign_reversal_covariate_diagnostics.csv
+
+==========================================================================================
+PART 9: ANTHROPOMETRIC AVAILABILITY / SELECTION DIAGNOSTIC
+==========================================================================================
+Written: 13_anthro_availability_diagnostic.csv
+Raw KR metadata check (Ethiopia, read-only, COLUMN NAMES ONLY - no observation data read): 'b5' (child survival status) present = True. NOT extracted into any processed file by this development script. Exact reasons for anthropometry non-completion (death vs non-residence vs absence vs refusal) CANNOT be established from currently-processed data and are not inferred here.
+
+==========================================================================================
+PART 10: COUNTRY-SPECIFIC HOUSEHOLD MODELS
+==========================================================================================
+  [ethiopia/haz] region-FE N=5723; cluster-FE N=5723 (786 PSUs, water-var 273, sani-var 423) OK
+  [ghana/haz] region-FE N=4287; cluster-FE N=4287 (613 PSUs, water-var 127, sani-var 294) OK
+  [kenya/haz] region-FE N=16715; cluster-FE N=16715 (1685 PSUs, water-var 702, sani-var 990) OK
+  [nigeria/haz] region-FE N=9315; cluster-FE N=9315 (1342 PSUs, water-var 297, sani-var 531) OK
+  [ethiopia/waz] region-FE N=5832; cluster-FE N=5832 (786 PSUs, water-var 274, sani-var 429) OK
+  [ghana/waz] region-FE N=4293; cluster-FE N=4293 (613 PSUs, water-var 128, sani-var 294) OK
+  [kenya/waz] region-FE N=16765; cluster-FE N=16765 (1685 PSUs, water-var 702, sani-var 993) OK
+  [nigeria/waz] region-FE N=9418; cluster-FE N=9418 (1342 PSUs, water-var 297, sani-var 533) OK
+  [ethiopia/whz] region-FE N=5763; cluster-FE N=5763 (786 PSUs, water-var 273, sani-var 424) OK
+  [ghana/whz] region-FE N=4292; cluster-FE N=4292 (613 PSUs, water-var 126, sani-var 293) OK
+  [kenya/whz] region-FE N=16721; cluster-FE N=16721 (1685 PSUs, water-var 702, sani-var 990) OK
+  [nigeria/whz] region-FE N=9369; cluster-FE N=9369 (1342 PSUs, water-var 297, sani-var 532) OK
+Written: 14_country_household_region_fe.csv, 15_country_household_cluster_fe.csv, 15b_country_cluster_fe_support.csv
+
+==========================================================================================
+PART 12: FINAL VALIDATION
+==========================================================================================
+Baseline file hashes RE-VERIFIED IDENTICAL before and after the full development run (all 4 files).
+Written: baseline_file_hashes.csv
+Written: 16_development_model_summary.csv
+
+==========================================================================================
+DEVELOPMENT RUN COMPLETE - ALL PARTS 0-10 AND 12 EXECUTED SUCCESSFULLY
+==========================================================================================

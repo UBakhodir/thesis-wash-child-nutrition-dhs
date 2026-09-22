@@ -103,6 +103,39 @@ live under:
 - `outputs/final_audit/` — the Step 11 bug-provenance note and the Step 13
   final-audit checksum/integrity record.
 
+## Post-Supervisor Methodological Development (Step 14)
+
+Following supervisor feedback, `scripts/dhs_harmonization/14_supervisor_development.py` adds a further
+round of methodological diagnostics on top of the frozen Steps 00–13 results, without altering any of
+them (see `outputs/supervisor_development/baseline_file_hashes.csv` and `_run_log.txt` for the
+before/after source-integrity check). Its outputs live under `outputs/supervisor_development/`, and the
+resulting revised empirical-strategy write-up is
+`outputs/supervisor_development/Thesis_Empirical_Strategy.md` (full development narrative:
+`development_report.md`).
+
+The development explicitly separates two WASH exposures that the original Model 4 specification did not
+distinguish in its identification strategy:
+
+- **Own-household WASH** — examined with **DHS-cluster fixed effects**, comparing households with
+  different WASH status within the same DHS cluster.
+- **Surrounding-community WASH** (the existing leave-one-out cluster coverage measure) — examined
+  primarily with **administrative-region fixed effects**, because the leave-one-out measure has
+  negligible substantive variation *within* a cluster (it is essentially a cluster-level quantity), so a
+  cluster fixed effect would absorb nearly all of the variation the community estimate is meant to
+  capture.
+
+Additional diagnostics cover current-age heterogeneity in the household-WASH association and
+specification-sensitivity checks (including a Nigeria community-sanitation coefficient that reverses
+sign depending on the control set).
+
+As with the original pipeline, every reported coefficient from this development stage remains an
+**observational association, not a causal effect**. This stage also does not resolve a distinct
+limitation it identifies: household and community WASH are each measured once, at each survey's
+interview date, rather than during a common developmental period for every child. A possible
+historical/time-varying WASH extension to address this has been scoped conceptually
+(`outputs/supervisor_development/Thesis_Empirical_Strategy.md`, §6) but has **not been implemented** — no
+historical WASH dataset has been identified, downloaded, or estimated.
+
 ## Important Methodological Notes
 
 (Full detail lives in `docs/code_guide.md`, `docs/thesis_design.md`, each

@@ -1,0 +1,22 @@
+covariate,level,mean_sanitation_rate_loo_core,sd,n,section,spec,term,coefficient,se,p_value,N
+wealth_quintile,Middle,0.5874083872671059,0.34807084051815573,1847.0,covariate_group_means,,,,,,
+wealth_quintile,Poorer,0.3844725977431775,0.31880060542380906,1709.0,covariate_group_means,,,,,,
+wealth_quintile,Poorest,0.2660352444941139,0.28243228226295286,2033.0,covariate_group_means,,,,,,
+wealth_quintile,Richer,0.7969271997423075,0.2714130014579107,2078.0,covariate_group_means,,,,,,
+wealth_quintile,Richest,0.9309431925778744,0.14411489714945927,1743.0,covariate_group_means,,,,,,
+residence,Rural,0.4180272916561587,0.34619683409608554,5403.0,covariate_group_means,,,,,,
+residence,Urban,0.8242834693764645,0.27297033494604916,4007.0,covariate_group_means,,,,,,
+maternal_education,Higher,0.8823774929868196,0.2206299753950151,1200.0,covariate_group_means,,,,,,
+maternal_education,No education,0.4308554453708135,0.3431125588298853,3458.0,covariate_group_means,,,,,,
+maternal_education,Primary,0.4971540031868664,0.3838836886715324,1145.0,covariate_group_means,,,,,,
+maternal_education,Secondary,0.6774363358148877,0.3587628087699988,3607.0,covariate_group_means,,,,,,
+literacy,Able to read only parts of sentence,0.6566735484730084,0.3604290015562104,1585.0,covariate_group_means,,,,,,
+literacy,Able to read whole sentence,0.7821761561938205,0.3077082963675298,3236.0,covariate_group_means,,,,,,
+literacy,Blind/visually impaired,0.4807692307692308,0.5551444896054094,4.0,covariate_group_means,,,,,,
+literacy,Cannot read at all,0.43353768493465394,0.3539439137442045,4581.0,covariate_group_means,,,,,,
+literacy,No card with required language,0.3991228070175438,0.04385964912280701,4.0,covariate_group_means,,,,,,
+,,,,,four_way_comparison,1_community_region_fe,sanitation_rate_loo_core,-0.18383003103784987,0.08711854859687425,0.03484857526274489,9410.0
+,,,,,four_way_comparison,2_household_region_fe,_sani_hh_binary,-0.10647373795755456,0.05495518364400449,0.05268854313299155,9315.0
+,,,,,four_way_comparison,3_household_cluster_fe,_sani_hh_binary,-0.006596391402084568,0.06510776042174166,0.9193004255848537,9315.0
+,,,,,four_way_comparison,4_joint_household_community_region_fe,_sani_hh_binary(joint),-0.07681375958311991,0.05623541210928518,0.1719602482449195,9315.0
+,,,,,four_way_comparison,4_joint_household_community_region_fe,sanitation_rate_loo_core(joint),-0.1379576632188545,0.08889800266808924,0.1206946251523674,9315.0

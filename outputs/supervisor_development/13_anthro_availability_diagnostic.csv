@@ -1,0 +1,151 @@
+country,breakdown,level,n_total,haz_available_n,haz_available_pct,waz_available_n,waz_available_pct,whz_available_n,whz_available_pct
+ethiopia,OVERALL,ALL,13565,5843,43.07,5955,43.9,5884,43.38
+ethiopia,age_band,0-5,1416,648,45.76,658,46.47,655,46.26
+ethiopia,age_band,6-11,1319,603,45.72,617,46.78,610,46.25
+ethiopia,age_band,12-23,2473,1095,44.28,1114,45.05,1101,44.52
+ethiopia,age_band,24-35,2601,1135,43.64,1172,45.06,1143,43.94
+ethiopia,age_band,36-47,2957,1262,42.68,1288,43.56,1273,43.05
+ethiopia,age_band,48-59,2799,1100,39.3,1106,39.51,1102,39.37
+ethiopia,household_water_status,Improved,8583,3683,42.91,3743,43.61,3700,43.11
+ethiopia,household_water_status,StructuralNotApplicable,227,72,31.72,74,32.6,72,31.72
+ethiopia,household_water_status,SurfaceWater,1789,803,44.89,830,46.39,815,45.56
+ethiopia,household_water_status,Unimproved,2887,1256,43.51,1278,44.27,1267,43.89
+ethiopia,household_water_status,Unknown,79,29,36.71,30,37.97,30,37.97
+ethiopia,household_sanitation_status,Improved,5335,2296,43.04,2330,43.67,2302,43.15
+ethiopia,household_sanitation_status,NonImproved,7950,3456,43.47,3532,44.43,3491,43.91
+ethiopia,household_sanitation_status,StructuralNotApplicable,227,72,31.72,74,32.6,72,31.72
+ethiopia,household_sanitation_status,Unknown,53,19,35.85,19,35.85,19,35.85
+ethiopia,community_water_loo_quartile,"(-0.001, 0.308]",3413,1514,44.36,1556,45.59,1535,44.98
+ethiopia,community_water_loo_quartile,"(0.308, 0.778]",3431,1506,43.89,1527,44.51,1512,44.07
+ethiopia,community_water_loo_quartile,"(0.778, 1.0]",6721,2823,42.0,2872,42.73,2837,42.21
+ethiopia,community_sanitation_loo_quartile,"(-0.001, 0.0741]",3519,1558,44.27,1595,45.33,1582,44.96
+ethiopia,community_sanitation_loo_quartile,"(0.0741, 0.37]",3283,1402,42.7,1423,43.34,1409,42.92
+ethiopia,community_sanitation_loo_quartile,"(0.37, 0.667]",3406,1425,41.84,1463,42.95,1435,42.13
+ethiopia,community_sanitation_loo_quartile,"(0.667, 1.0]",3357,1458,43.43,1474,43.91,1458,43.43
+ethiopia,wealth_quintile,Middle,1859,844,45.4,858,46.15,850,45.72
+ethiopia,wealth_quintile,Poorer,2492,1092,43.82,1112,44.62,1097,44.02
+ethiopia,wealth_quintile,Poorest,5066,2149,42.42,2200,43.43,2183,43.09
+ethiopia,wealth_quintile,Richer,1772,731,41.25,742,41.87,732,41.31
+ethiopia,wealth_quintile,Richest,2376,1027,43.22,1043,43.9,1022,43.01
+ethiopia,residence,Rural,9749,4237,43.46,4320,44.31,4280,43.9
+ethiopia,residence,Urban,3816,1606,42.09,1635,42.85,1604,42.03
+ghana,OVERALL,ALL,9353,4405,47.1,4411,47.16,4408,47.13
+ghana,age_band,0-5,1004,501,49.9,503,50.1,498,49.6
+ghana,age_band,6-11,977,484,49.54,484,49.54,485,49.64
+ghana,age_band,12-23,2030,1015,50.0,1016,50.05,1016,50.05
+ghana,age_band,24-35,1757,833,47.41,834,47.47,835,47.52
+ghana,age_band,36-47,1818,836,45.98,837,46.04,837,46.04
+ghana,age_band,48-59,1767,736,41.65,737,41.71,737,41.71
+ghana,household_water_status,Improved,7379,3471,47.04,3476,47.11,3474,47.08
+ghana,household_water_status,StructuralNotApplicable,136,56,41.18,56,41.18,55,40.44
+ghana,household_water_status,SurfaceWater,1385,657,47.44,657,47.44,659,47.58
+ghana,household_water_status,Unimproved,453,221,48.79,222,49.01,220,48.57
+ghana,household_sanitation_status,Improved,4203,1907,45.37,1909,45.42,1909,45.42
+ghana,household_sanitation_status,NonImproved,4862,2380,48.95,2384,49.03,2383,49.01
+ghana,household_sanitation_status,StructuralNotApplicable,136,56,41.18,56,41.18,55,40.44
+ghana,household_sanitation_status,UnclassifiedBioDigester,137,56,40.88,56,40.88,55,40.15
+ghana,household_sanitation_status,Unknown,15,6,40.0,6,40.0,6,40.0
+ghana,community_water_loo_quartile,"(-0.001, 0.724]",2409,1124,46.66,1124,46.66,1125,46.7
+ghana,community_water_loo_quartile,"(0.724, 1.0]",6944,3281,47.25,3287,47.34,3283,47.28
+ghana,community_sanitation_loo_quartile,"(-0.001, 0.143]",2403,1126,46.86,1127,46.9,1130,47.02
+ghana,community_sanitation_loo_quartile,"(0.143, 0.448]",2315,1130,48.81,1132,48.9,1130,48.81
+ghana,community_sanitation_loo_quartile,"(0.448, 0.828]",2322,1076,46.34,1078,46.43,1076,46.34
+ghana,community_sanitation_loo_quartile,"(0.828, 1.0]",2313,1073,46.39,1074,46.43,1072,46.35
+ghana,wealth_quintile,Middle,1681,784,46.64,788,46.88,785,46.7
+ghana,wealth_quintile,Poorer,2252,1072,47.6,1073,47.65,1073,47.65
+ghana,wealth_quintile,Poorest,3056,1405,45.98,1406,46.01,1406,46.01
+ghana,wealth_quintile,Richer,1338,641,47.91,641,47.91,641,47.91
+ghana,wealth_quintile,Richest,1026,503,49.03,503,49.03,503,49.03
+ghana,residence,Rural,5496,2592,47.16,2594,47.2,2596,47.23
+ghana,residence,Urban,3857,1813,47.01,1817,47.11,1812,46.98
+kenya,OVERALL,ALL,19530,17327,88.72,17381,89.0,17332,88.75
+kenya,age_band,0-5,2031,1873,92.22,1894,93.25,1868,91.97
+kenya,age_band,6-11,2109,2005,95.07,2009,95.26,2007,95.16
+kenya,age_band,12-23,3809,3508,92.1,3513,92.23,3507,92.07
+kenya,age_band,24-35,3780,3335,88.23,3348,88.57,3337,88.28
+kenya,age_band,36-47,3973,3428,86.28,3435,86.46,3439,86.56
+kenya,age_band,48-59,3828,3178,83.02,3182,83.12,3174,82.92
+kenya,household_water_status,Improved,13729,12134,88.38,12174,88.67,12139,88.42
+kenya,household_water_status,StructuralNotApplicable,538,406,75.46,407,75.65,405,75.28
+kenya,household_water_status,SurfaceWater,3745,3435,91.72,3445,91.99,3435,91.72
+kenya,household_water_status,Unimproved,1308,1173,89.68,1174,89.76,1174,89.76
+kenya,household_water_status,Unknown,210,179,85.24,181,86.19,179,85.24
+kenya,household_sanitation_status,Improved,11285,9934,88.03,9959,88.25,9928,87.98
+kenya,household_sanitation_status,NonImproved,7672,6960,90.72,6987,91.07,6972,90.88
+kenya,household_sanitation_status,StructuralNotApplicable,538,406,75.46,407,75.65,405,75.28
+kenya,household_sanitation_status,Unknown,35,27,77.14,28,80.0,27,77.14
+kenya,community_water_loo_quartile,"(-0.001, 0.558]",4883,4458,91.3,4472,91.58,4455,91.23
+kenya,community_water_loo_quartile,"(0.558, 0.882]",4885,4400,90.07,4406,90.19,4407,90.21
+kenya,community_water_loo_quartile,"(0.882, 1.0]",9762,8469,86.75,8503,87.1,8470,86.77
+kenya,community_sanitation_loo_quartile,"(-0.001, 0.333]",5054,4578,90.58,4597,90.96,4588,90.78
+kenya,community_sanitation_loo_quartile,"(0.333, 0.652]",4721,4297,91.02,4309,91.27,4297,91.02
+kenya,community_sanitation_loo_quartile,"(0.652, 0.909]",5123,4520,88.23,4529,88.41,4518,88.19
+kenya,community_sanitation_loo_quartile,"(0.909, 1.0]",4632,3932,84.89,3946,85.19,3929,84.82
+kenya,wealth_quintile,Middle,3379,3015,89.23,3024,89.49,3020,89.38
+kenya,wealth_quintile,Poorer,3330,3022,90.75,3026,90.87,3028,90.93
+kenya,wealth_quintile,Poorest,6432,5845,90.87,5871,91.28,5849,90.94
+kenya,wealth_quintile,Richer,3664,3164,86.35,3174,86.63,3155,86.11
+kenya,wealth_quintile,Richest,2725,2281,83.71,2286,83.89,2280,83.67
+kenya,residence,Rural,12844,11658,90.77,11689,91.01,11659,90.77
+kenya,residence,Urban,6686,5669,84.79,5692,85.13,5673,84.85
+nigeria,OVERALL,ALL,27783,9410,33.87,9513,34.24,9464,34.06
+nigeria,age_band,0-5,2838,1015,35.76,1027,36.19,1014,35.73
+nigeria,age_band,6-11,2857,1022,35.77,1033,36.16,1031,36.09
+nigeria,age_band,12-23,5275,1939,36.76,1958,37.12,1951,36.99
+nigeria,age_band,24-35,5023,1771,35.26,1787,35.58,1776,35.36
+nigeria,age_band,36-47,5714,1802,31.54,1827,31.97,1821,31.87
+nigeria,age_band,48-59,6076,1861,30.63,1881,30.96,1871,30.79
+nigeria,household_water_status,Improved,19409,6803,35.05,6873,35.41,6833,35.21
+nigeria,household_water_status,StructuralNotApplicable,184,89,48.37,89,48.37,89,48.37
+nigeria,household_water_status,SurfaceWater,3217,1069,33.23,1080,33.57,1078,33.51
+nigeria,household_water_status,Unimproved,4968,1447,29.13,1469,29.57,1462,29.43
+nigeria,household_water_status,Unknown,5,2,40.0,2,40.0,2,40.0
+nigeria,household_sanitation_status,Improved,15915,5438,34.17,5482,34.45,5460,34.31
+nigeria,household_sanitation_status,NonImproved,11676,3879,33.22,3938,33.73,3911,33.5
+nigeria,household_sanitation_status,StructuralNotApplicable,184,89,48.37,89,48.37,89,48.37
+nigeria,household_sanitation_status,Unknown,8,4,50.0,4,50.0,4,50.0
+nigeria,community_water_loo_quartile,"(-0.001, 0.379]",7039,2149,30.53,2180,30.97,2174,30.89
+nigeria,community_water_loo_quartile,"(0.379, 0.962]",6909,2278,32.97,2316,33.52,2301,33.3
+nigeria,community_water_loo_quartile,"(0.962, 1.0]",13835,4983,36.02,5017,36.26,4989,36.06
+nigeria,community_sanitation_loo_quartile,"(-0.001, 0.207]",7134,2365,33.15,2404,33.7,2386,33.45
+nigeria,community_sanitation_loo_quartile,"(0.207, 0.615]",6764,2003,29.61,2031,30.03,2026,29.95
+nigeria,community_sanitation_loo_quartile,"(0.615, 0.958]",7015,2453,34.97,2474,35.27,2461,35.08
+nigeria,community_sanitation_loo_quartile,"(0.958, 1.0]",6870,2589,37.69,2604,37.9,2591,37.71
+nigeria,wealth_quintile,Middle,5381,1847,34.32,1867,34.7,1860,34.57
+nigeria,wealth_quintile,Poorer,5623,1709,30.39,1734,30.84,1723,30.64
+nigeria,wealth_quintile,Poorest,7249,2033,28.05,2078,28.67,2065,28.49
+nigeria,wealth_quintile,Richer,5129,2078,40.51,2085,40.65,2075,40.46
+nigeria,wealth_quintile,Richest,4401,1743,39.6,1749,39.74,1741,39.56
+nigeria,residence,Rural,17076,5403,31.64,5478,32.08,5455,31.95
+nigeria,residence,Urban,10707,4007,37.42,4035,37.69,4009,37.44
+ALL,OVERALL,ALL,70231,36985,52.66,37260,53.05,37088,52.81
+ALL,age_band,0-5,7289,4037,55.38,4082,56.0,4035,55.36
+ALL,age_band,6-11,7262,4114,56.65,4143,57.05,4133,56.91
+ALL,age_band,12-23,13587,7557,55.62,7601,55.94,7575,55.75
+ALL,age_band,24-35,13161,7074,53.75,7141,54.26,7091,53.88
+ALL,age_band,36-47,14462,7328,50.67,7387,51.08,7370,50.96
+ALL,age_band,48-59,14470,6875,47.51,6906,47.73,6884,47.57
+ALL,household_water_status,Improved,49100,26091,53.14,26266,53.49,26146,53.25
+ALL,household_water_status,StructuralNotApplicable,1085,623,57.42,626,57.7,621,57.24
+ALL,household_water_status,SurfaceWater,10136,5964,58.84,6012,59.31,5987,59.07
+ALL,household_water_status,Unimproved,9616,4097,42.61,4143,43.08,4123,42.88
+ALL,household_water_status,Unknown,294,210,71.43,213,72.45,211,71.77
+ALL,household_sanitation_status,Improved,36738,19575,53.28,19680,53.57,19599,53.35
+ALL,household_sanitation_status,NonImproved,32160,16675,51.85,16841,52.37,16757,52.11
+ALL,household_sanitation_status,StructuralNotApplicable,1085,623,57.42,626,57.7,621,57.24
+ALL,household_sanitation_status,UnclassifiedBioDigester,137,56,40.88,56,40.88,55,40.15
+ALL,household_sanitation_status,Unknown,111,56,50.45,57,51.35,56,50.45
+ALL,community_water_loo_quartile,"(-0.001, 0.458]",17672,8705,49.26,8804,49.82,8749,49.51
+ALL,community_water_loo_quartile,"(0.458, 0.917]",17481,10312,58.99,10373,59.34,10354,59.23
+ALL,community_water_loo_quartile,"(0.917, 1.0]",35078,17968,51.22,18083,51.55,17985,51.27
+ALL,community_sanitation_loo_quartile,"(-0.001, 0.192]",17617,8499,48.24,8595,48.79,8555,48.56
+ALL,community_sanitation_loo_quartile,"(0.192, 0.545]",17592,9351,53.15,9425,53.58,9389,53.37
+ALL,community_sanitation_loo_quartile,"(0.545, 0.893]",17538,9711,55.37,9776,55.74,9726,55.46
+ALL,community_sanitation_loo_quartile,"(0.893, 1.0]",17484,9424,53.9,9464,54.13,9418,53.87
+ALL,wealth_quintile,Middle,12300,6490,52.76,6537,53.15,6515,52.97
+ALL,wealth_quintile,Poorer,13697,6895,50.34,6945,50.7,6921,50.53
+ALL,wealth_quintile,Poorest,21803,11432,52.43,11555,53.0,11503,52.76
+ALL,wealth_quintile,Richer,11903,6614,55.57,6642,55.8,6603,55.47
+ALL,wealth_quintile,Richest,10528,5554,52.75,5581,53.01,5546,52.68
+ALL,residence,Rural,45165,23890,52.89,24081,53.32,23990,53.12
+ALL,residence,Urban,25066,13095,52.24,13179,52.58,13098,52.25

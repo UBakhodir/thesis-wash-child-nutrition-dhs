@@ -1,0 +1,4 @@
+outcome,common_sample_n,unique_households,unique_psu,unique_admin_region,n_ethiopia,n_ghana,n_kenya,n_nigeria,original_model4_n,difference_from_model4_n,pct_of_model4_n_retained
+haz,36040,25627,4426,114,5723,4287,16715,9315,36985,-945,97.445
+waz,36308,25759,4426,114,5832,4293,16765,9418,37260,-952,97.445
+whz,36145,25665,4426,114,5763,4292,16721,9369,37088,-943,97.457

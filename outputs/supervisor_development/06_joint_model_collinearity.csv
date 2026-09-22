@@ -1,0 +1,58 @@
+outcome,diagnostic,term_a,term_b,value,note
+haz,pairwise_correlation,_water_hh_binary,_sani_hh_binary,0.3118256269777192,
+haz,pairwise_correlation,_water_hh_binary,water_rate_loo,0.7448694965277248,
+haz,pairwise_correlation,_water_hh_binary,sanitation_rate_loo_core,0.39839592757615094,
+haz,pairwise_correlation,_sani_hh_binary,water_rate_loo,0.36727093888114715,
+haz,pairwise_correlation,_sani_hh_binary,sanitation_rate_loo_core,0.6747214422171103,
+haz,pairwise_correlation,water_rate_loo,sanitation_rate_loo_core,0.5234022475148191,
+haz,VIF_exposures_only,_water_hh_binary,,2.2567315729453172,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+haz,VIF_exposures_only,_sani_hh_binary,,1.8447114411823609,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+haz,VIF_exposures_only,water_rate_loo,,2.6056489379238554,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+haz,VIF_exposures_only,sanitation_rate_loo_core,,2.190172895218142,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+haz,VIF_exposures_plus_controls,_water_hh_binary,,2.288850388585844,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+haz,VIF_exposures_plus_controls,_sani_hh_binary,,1.9897332460276431,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+haz,VIF_exposures_plus_controls,water_rate_loo,,2.692519072230665,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+haz,VIF_exposures_plus_controls,sanitation_rate_loo_core,,2.6462929795899335,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+haz,condition_number_exposures_plus_controls,,,1878.5163071106404,"np.linalg.cond(), unweighted design matrix, exposures+controls+constant, excl. FE dummies"
+haz,joint_model_coefficient,_water_hh_binary,,-0.08493288772688233,"se=0.04206 p=0.0434 (Model C, common sample)"
+haz,joint_model_coefficient,_sani_hh_binary,,0.024184968942193876,"se=0.03649 p=0.5075 (Model C, common sample)"
+haz,joint_model_coefficient,water_rate_loo,,0.120103717122616,"se=0.06538 p=0.0662 (Model C, common sample)"
+haz,joint_model_coefficient,sanitation_rate_loo_core,,-0.018203423867853667,"se=0.06639 p=0.7839 (Model C, common sample)"
+waz,pairwise_correlation,_water_hh_binary,_sani_hh_binary,0.31139204599901044,
+waz,pairwise_correlation,_water_hh_binary,water_rate_loo,0.745341630576215,
+waz,pairwise_correlation,_water_hh_binary,sanitation_rate_loo_core,0.39881722092559513,
+waz,pairwise_correlation,_sani_hh_binary,water_rate_loo,0.3670133905715282,
+waz,pairwise_correlation,_sani_hh_binary,sanitation_rate_loo_core,0.6746929190625384,
+waz,pairwise_correlation,water_rate_loo,sanitation_rate_loo_core,0.5237581208188941,
+waz,VIF_exposures_only,_water_hh_binary,,2.2600916786294087,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+waz,VIF_exposures_only,_sani_hh_binary,,1.8443537371319383,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+waz,VIF_exposures_only,water_rate_loo,,2.610079701241631,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+waz,VIF_exposures_only,sanitation_rate_loo_core,,2.1915113942066924,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+waz,VIF_exposures_plus_controls,_water_hh_binary,,2.292382448719813,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+waz,VIF_exposures_plus_controls,_sani_hh_binary,,1.989201791548049,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+waz,VIF_exposures_plus_controls,water_rate_loo,,2.6972831336327636,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+waz,VIF_exposures_plus_controls,sanitation_rate_loo_core,,2.6468411292687164,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+waz,condition_number_exposures_plus_controls,,,1885.0117238165692,"np.linalg.cond(), unweighted design matrix, exposures+controls+constant, excl. FE dummies"
+waz,joint_model_coefficient,_water_hh_binary,,-0.014739127583794196,"se=0.03540 p=0.6772 (Model C, common sample)"
+waz,joint_model_coefficient,_sani_hh_binary,,0.03918431513372048,"se=0.02998 p=0.1912 (Model C, common sample)"
+waz,joint_model_coefficient,water_rate_loo,,0.08143972798857783,"se=0.05249 p=0.1208 (Model C, common sample)"
+waz,joint_model_coefficient,sanitation_rate_loo_core,,0.021956002413632922,"se=0.05829 p=0.7064 (Model C, common sample)"
+whz,pairwise_correlation,_water_hh_binary,_sani_hh_binary,0.3112573714484455,
+whz,pairwise_correlation,_water_hh_binary,water_rate_loo,0.7451957380958404,
+whz,pairwise_correlation,_water_hh_binary,sanitation_rate_loo_core,0.3981427334681972,
+whz,pairwise_correlation,_sani_hh_binary,water_rate_loo,0.366822000944938,
+whz,pairwise_correlation,_sani_hh_binary,sanitation_rate_loo_core,0.6745577836863651,
+whz,pairwise_correlation,water_rate_loo,sanitation_rate_loo_core,0.5232589010493292,
+whz,VIF_exposures_only,_water_hh_binary,,2.259081213118056,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+whz,VIF_exposures_only,_sani_hh_binary,,1.8438627826659946,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+whz,VIF_exposures_only,water_rate_loo,,2.608567604327255,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+whz,VIF_exposures_only,sanitation_rate_loo_core,,2.1896590539870786,VIF among the 4 WASH exposures + constant only (isolates WASH-specific collinearity)
+whz,VIF_exposures_plus_controls,_water_hh_binary,,2.2912698501814175,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+whz,VIF_exposures_plus_controls,_sani_hh_binary,,1.9892955033986917,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+whz,VIF_exposures_plus_controls,water_rate_loo,,2.695493375864993,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+whz,VIF_exposures_plus_controls,sanitation_rate_loo_core,,2.6460843799749427,VIF among the 4 exposures + full child/SES controls (excl. FE dummies)
+whz,condition_number_exposures_plus_controls,,,1881.383740365368,"np.linalg.cond(), unweighted design matrix, exposures+controls+constant, excl. FE dummies"
+whz,joint_model_coefficient,_water_hh_binary,,0.03938367489762138,"se=0.03942 p=0.3178 (Model C, common sample)"
+whz,joint_model_coefficient,_sani_hh_binary,,0.03583691348802128,"se=0.03079 p=0.2444 (Model C, common sample)"
+whz,joint_model_coefficient,water_rate_loo,,0.019169603703516176,"se=0.06017 p=0.7500 (Model C, common sample)"
+whz,joint_model_coefficient,sanitation_rate_loo_core,,0.04480902156845916,"se=0.05878 p=0.4459 (Model C, common sample)"

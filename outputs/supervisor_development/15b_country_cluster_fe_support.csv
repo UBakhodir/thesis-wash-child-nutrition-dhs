@@ -1,0 +1,13 @@
+country,outcome,n_psu_total,n_psu_water_variation,pct_water_variation,n_psu_sanitation_variation,pct_sanitation_variation
+ethiopia,haz,786,273,34.73,423,53.82
+ghana,haz,613,127,20.72,294,47.96
+kenya,haz,1685,702,41.66,990,58.75
+nigeria,haz,1342,297,22.13,531,39.57
+ethiopia,waz,786,274,34.86,429,54.58
+ghana,waz,613,128,20.88,294,47.96
+kenya,waz,1685,702,41.66,993,58.93
+nigeria,waz,1342,297,22.13,533,39.72
+ethiopia,whz,786,273,34.73,424,53.94
+ghana,whz,613,126,20.55,293,47.8
+kenya,whz,1685,702,41.66,990,58.75
+nigeria,whz,1342,297,22.13,532,39.64

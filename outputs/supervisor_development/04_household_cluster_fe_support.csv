@@ -1,0 +1,4 @@
+outcome,n_psu_total,n_psu_with_water_variation,pct_psu_water_variation,n_psu_with_sanitation_variation,pct_psu_sanitation_variation,n_psu_with_both_variation,pct_psu_both_variation,children_in_water_informative_clusters,children_in_sanitation_informative_clusters,households_in_water_informative_clusters,households_in_sanitation_informative_clusters,total_children_in_sample,total_households_in_sample
+haz,4426,1399,31.61,2238,50.56,995,22.48,14666,20908,10188,14860,36040,25627
+waz,4426,1401,31.65,2249,50.81,998,22.55,14787,21151,10246,14998,36308,25759
+whz,4426,1398,31.59,2239,50.59,995,22.48,14716,20991,10201,14891,36145,25665
