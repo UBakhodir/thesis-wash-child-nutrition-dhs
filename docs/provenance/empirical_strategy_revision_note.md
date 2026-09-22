@@ -1,15 +1,16 @@
-# Validation Note — `26_empirical_strategy_final_candidate.md`
+# Empirical Strategy Document — Revision Note
 
-Version 26 is a surgical wording revision of `25_empirical_strategy_final_revision.md`. It inherits all
-empirical numbers, sample sizes, geographic-hierarchy counts, and equations unchanged from the already
--validated Version 25 (`25_empirical_strategy_validation_report.md`). No new verification of numbers was
-required or performed in this pass, since no number was touched.
+This note records the final wording revisions applied to `docs/empirical_strategy.md` during drafting,
+relative to its immediate predecessor draft. The revision was a surgical wording pass only: it inherits
+all empirical numbers, sample sizes, geographic-hierarchy counts, and equations unchanged from the
+preceding, separately validated draft. No new verification of numbers was required or performed in this
+pass, since no number was touched.
 
-## 1. Version 26 inherits all empirical numbers unchanged from Version 25
+## 1. All empirical numbers inherited unchanged from the preceding draft
 
-Confirmed programmatically: every numeric token in the two files is identical, in the same order (see
+Confirmed programmatically: every numeric token in the two drafts is identical, in the same order (see
 diff below). No coefficient, confidence interval, p-value, sample size, cluster count, region count, or
-percentage differs between Version 25 and Version 26.
+percentage differs between the preceding draft and the final wording.
 
 ## 2. The four textual changes made
 

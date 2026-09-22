@@ -1,15 +1,15 @@
 ==========================================================================================
 BASELINE FILE SHA-256 HASHES (recorded before development estimation)
 ==========================================================================================
-  step11_main_regressions_script: ab2df40edfce5cf70d2a55ea52f085510f164b21c92a8c0f9e013e561a24d1ea  (C:\Users\user\Documents\Graduation_Thesis\scripts\dhs_harmonization\11_main_regressions.py)
-  step12_robustness_script: 136a375de86ba2c4fcaa09b0b5e3d974fd0e0c69b5632884d8265681946a8aee  (C:\Users\user\Documents\Graduation_Thesis\scripts\dhs_harmonization\12_robustness.py)
-  main_continuous_models_output: de6d905e92623d1e16d8ec42130f0db42ba3924bf3d5414d6efc3ff7c203026f  (c:\Users\user\Documents\Graduation_Thesis\outputs\regressions\main_continuous_models.csv)
-  robustness_household_wash_output: 945d326eebf6a244a3b3ffb0341c4f9ce2b5be56eaa57c3a65299994f054fd09  (c:\Users\user\Documents\Graduation_Thesis\outputs\regressions\robustness_household_wash.csv)
+  step11_main_regressions_script: ab2df40edfce5cf70d2a55ea52f085510f164b21c92a8c0f9e013e561a24d1ea  (<PROJECT_ROOT>\scripts\dhs_harmonization\11_main_regressions.py)
+  step12_robustness_script: 136a375de86ba2c4fcaa09b0b5e3d974fd0e0c69b5632884d8265681946a8aee  (<PROJECT_ROOT>\scripts\dhs_harmonization\12_robustness.py)
+  main_continuous_models_output: de6d905e92623d1e16d8ec42130f0db42ba3924bf3d5414d6efc3ff7c203026f  (<PROJECT_ROOT>\outputs\regressions\main_continuous_models.csv)
+  robustness_household_wash_output: 945d326eebf6a244a3b3ffb0341c4f9ce2b5be56eaa57c3a65299994f054fd09  (<PROJECT_ROOT>\outputs\regressions\robustness_household_wash.csv)
 
 ==========================================================================================
 PART 0: LOAD + PRE-RUN VALIDATION
 ==========================================================================================
-Loaded: c:\Users\user\Documents\Graduation_Thesis\data\processed\pooled_kr_four_country_birth_order.parquet  shape=(70231, 90)
+Loaded: <PROJECT_ROOT>\data\processed\pooled_kr_four_country_birth_order.parquet  shape=(70231, 90)
 Shape and per-country row counts match the frozen Step-10 baseline exactly.
 Reconstructed Model-4 masks via reg.build_estimation_sample(): haz N=36985, waz N=37260, whz N=37088
 Model-4 N's match the prior audit exactly (haz=36985, waz=37260, whz=37088). No discrepancy.

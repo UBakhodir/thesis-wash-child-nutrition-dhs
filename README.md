@@ -1,11 +1,12 @@
 # The Impact of Improved Water and Sanitation on Child Nutritional Outcomes in Sub-Saharan Africa: Evidence from DHS and Geospatial Data
 
-Master's thesis project (Economics) by Bakhodir Izzatulloev. This repository
-holds the data-harmonization pipeline, regression analysis, and final results
-for a study of how access to improved water and sanitation is associated with
-child nutritional outcomes (HAZ, WAZ, WHZ; stunting, underweight, wasting as
-robustness outcomes) in Ethiopia, Ghana, Kenya, and Nigeria, using pooled DHS
-survey microdata linked to DHS geographic (GE) cluster data.
+Master's thesis project (Economics) by Bakhodir Izzatulloev. This repository holds the data-harmonization
+pipeline, regression analysis, and results for a study of how household-level and surrounding-community
+water and sanitation conditions are associated with child nutritional outcomes (HAZ, WAZ, WHZ; stunting,
+underweight, wasting as robustness outcomes) in Ethiopia (2024–25), Ghana (2022), Kenya (2022), and
+Nigeria (2024), using pooled DHS survey microdata linked to DHS geographic (GE) cluster data. The unit of
+analysis is the child, nested in a household, a DHS survey cluster, an administrative region, and a
+country. All reported coefficients are observational associations, not causal effects.
 
 For a guided walkthrough of where each part of the analysis lives in the
 code — anthropometric outcome construction, WASH classification, the
@@ -103,17 +104,23 @@ live under:
 - `outputs/final_audit/` — the Step 11 bug-provenance note and the Step 13
   final-audit checksum/integrity record.
 
-## Post-Supervisor Methodological Development (Step 14)
+These Step 13 outputs reflect the community-WASH, administrative-region-fixed-effects specification
+(Models 1–4) built during the original pipeline construction. Descriptive Tables 1–3 and the
+descriptive/coverage figures remain current. The household-cluster-fixed-effects specification and
+related extended diagnostics described in "Household and Community WASH Specifications" below are not
+yet integrated into these tables and figures; that integration is planned once the final specification
+set is fixed.
 
-Following supervisor feedback, `scripts/dhs_harmonization/14_supervisor_development.py` adds a further
-round of methodological diagnostics on top of the frozen Steps 00–13 results, without altering any of
-them (see `outputs/supervisor_development/baseline_file_hashes.csv` and `_run_log.txt` for the
-before/after source-integrity check). Its outputs live under `outputs/supervisor_development/`, and the
-resulting revised empirical-strategy write-up is
-`outputs/supervisor_development/Thesis_Empirical_Strategy.md` (full development narrative:
-`development_report.md`).
+## Household and Community WASH Specifications
 
-The development explicitly separates two WASH exposures that the original Model 4 specification did not
+`scripts/dhs_harmonization/14_household_community_wash_models.py` extends the frozen Steps 00–13 pipeline
+with a further round of household- and community-WASH specifications and diagnostics, without altering
+any Step 00–13 script or output (see `outputs/household_community_wash/baseline_file_hashes.csv` and
+`run_log.txt` for the before/after source-integrity check). Its outputs live under
+`outputs/household_community_wash/`, and the canonical empirical-strategy write-up is
+`docs/empirical_strategy.md` (full analysis narrative: `outputs/household_community_wash/analysis_report.md`).
+
+This specification set explicitly separates two WASH exposures that the original Model 4 specification did not
 distinguish in its identification strategy:
 
 - **Own-household WASH** — examined with **DHS-cluster fixed effects**, comparing households with
@@ -128,13 +135,13 @@ Additional diagnostics cover current-age heterogeneity in the household-WASH ass
 specification-sensitivity checks (including a Nigeria community-sanitation coefficient that reverses
 sign depending on the control set).
 
-As with the original pipeline, every reported coefficient from this development stage remains an
-**observational association, not a causal effect**. This stage also does not resolve a distinct
-limitation it identifies: household and community WASH are each measured once, at each survey's
+As with the original pipeline, every reported coefficient from this specification set remains an
+**observational association, not a causal effect**. This specification set also does not resolve a
+distinct limitation it identifies: household and community WASH are each measured once, at each survey's
 interview date, rather than during a common developmental period for every child. A possible
 historical/time-varying WASH extension to address this has been scoped conceptually
-(`outputs/supervisor_development/Thesis_Empirical_Strategy.md`, §6) but has **not been implemented** — no
-historical WASH dataset has been identified, downloaded, or estimated.
+(`docs/empirical_strategy.md`, §6) but has **not been implemented** — no historical WASH dataset has been
+identified, downloaded, or estimated.
 
 ## Important Methodological Notes
 

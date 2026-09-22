@@ -1,8 +1,10 @@
-# Supervisor-Driven Development Report
+# Household and Community WASH Analysis Report
 
-**Status:** DEVELOPMENT results only. Not added to `outputs/final_tables/`. Not committed. Not pushed.
-Script: `scripts/dhs_harmonization/14_supervisor_development.py` (new file — no existing script/path was
-overwritten). Output directory: `outputs/supervisor_development/` (new directory — did not previously exist).
+**Status:** These analyses are maintained separately from the pre-existing Step 13 thesis-facing
+regression outputs pending final integration of the empirical specification set.
+Script: `scripts/dhs_harmonization/14_household_community_wash_models.py` (new file — no existing
+script/path was overwritten). Output directory: `outputs/household_community_wash/` (new directory — did
+not previously exist).
 
 ---
 

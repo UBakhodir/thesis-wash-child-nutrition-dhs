@@ -2,7 +2,7 @@
 13_final_outputs.py
 =====================
 Final results production: reformats already-validated Step 07/11/12 result
-files into supervisor/thesis-ready tables, figures, a descriptive survey-
+files into thesis-ready tables, figures, a descriptive survey-
 coverage map, and a reproducibility audit record. NO new statistic is
 computed anywhere in this script - every number in every final output is
 read directly from an existing, already-validated CSV. This script only

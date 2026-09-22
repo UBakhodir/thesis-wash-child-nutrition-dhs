@@ -1,4 +1,4 @@
-# PDF Rendering Report — Version 26 → Supervisor-Facing PDF
+# Empirical Strategy Document — PDF Rendering and Visual QA Record
 
 ## 1. Source Markdown used
 `outputs\supervisor_development\26_empirical_strategy_final_candidate.md` (content-approved, unchanged in

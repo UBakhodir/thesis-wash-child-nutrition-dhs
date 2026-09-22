@@ -41,6 +41,6 @@ __pycache__/
 Thumbs.db
 desktop.ini
 
-# Post-supervisor development safety exclusions
-outputs/supervisor_development/render_temp/
+# Household/community WASH specification-output safety exclusions
+outputs/household_community_wash/render_temp/
 outputs/data_audit/

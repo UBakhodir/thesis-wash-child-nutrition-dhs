@@ -1,11 +1,11 @@
 """
-14_supervisor_development.py
-==============================
+14_household_community_wash_models.py
+=======================================
 DEVELOPMENT STAGE (post-audit). NOT part of the frozen Steps 00-13
 pipeline. Additive only: reads the same Step-10 analytical dataset Step 11
 reads, and reuses Step 11/12's own design-matrix, weighting, dummy-encoding
-and rank-check machinery (imported, never copied/modified) to estimate a
-set of NEW supervisor-requested specifications:
+and rank-check machinery (imported, never copied/modified) to estimate an
+extended set of household- and community-WASH specifications:
 
   A. Household WASH + country_admin_region FE
   B. Household WASH + country_psu (cluster) FE, via a weighted within
@@ -24,7 +24,7 @@ This script:
   - never imports/executes any script's __main__ block
   - never writes to data/, outputs/final_tables/, outputs/final_figures/,
     outputs/regressions/, outputs/final_appendix/, or any Steps 00-13 file
-  - writes ONLY under outputs/supervisor_development/
+  - writes ONLY under outputs/household_community_wash/
   - does not choose any specification based on significance
 """
 
@@ -57,10 +57,10 @@ reg = _load_module("11_main_regressions.py", "dhs_main_regressions")
 rob = _load_module("12_robustness.py", "dhs_robustness")
 config = reg.config
 
-OUT_DIR = config.PROJECT_ROOT / "outputs" / "supervisor_development"
+OUT_DIR = config.PROJECT_ROOT / "outputs" / "household_community_wash"
 OUT_DIR.mkdir(parents=True, exist_ok=False)  # hard-fail if it already exists - never silently reuse/overwrite
 
-LOG_PATH = OUT_DIR / "_run_log.txt"
+LOG_PATH = OUT_DIR / "run_log.txt"
 _log_f = io.open(LOG_PATH, "w", encoding="utf-8")
 
 

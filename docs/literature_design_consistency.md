@@ -1,9 +1,10 @@
 # Literature-to-Empirical-Design Gap Audit
 
-**Read-only.** No bibliography/inventory/matrix/PDF file was altered. No internet search or download was
-performed. All claims below are drawn directly from `sources/bibliography/` and `sources/summaries/`
-(the git-tracked, previously-verified copy — see §1) and, where explicitly noted, the underlying PDFs
-already deep-read and quoted in that matrix. Nothing here was inferred from a title alone.
+This document assesses the consistency between the project's literature evidence base and the empirical
+design actually implemented. All claims below are drawn directly from `sources/bibliography/` and
+`sources/summaries/` (the git-tracked, verified copy — see §1) and, where explicitly noted, the
+underlying source PDFs already deep-read and quoted in that evidence matrix. Nothing here is inferred
+from a title alone.
 
 ---
 
