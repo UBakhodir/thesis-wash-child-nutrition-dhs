@@ -138,10 +138,17 @@ sign depending on the control set).
 As with the original pipeline, every reported coefficient from this specification set remains an
 **observational association, not a causal effect**. This specification set also does not resolve a
 distinct limitation it identifies: household and community WASH are each measured once, at each survey's
-interview date, rather than during a common developmental period for every child. A possible
-historical/time-varying WASH extension to address this has been scoped conceptually
-(`docs/empirical_strategy.md`, §6) but has **not been implemented** — no historical WASH dataset has been
-identified, downloaded, or estimated.
+interview date, rather than during a common developmental period for every child. A historical/time-varying WASH extension to address this is
+**under active feasibility assessment**, per the supervisor's methodological recommendation
+(`docs/empirical_strategy.md`, §6). A candidate historical WASH source (IHME gridded improved-water/
+improved-sanitation estimates, 2000–2017) and a candidate geocoded child data source (IPUMS DHS) have
+been identified and independently verified against their own documentation, and the required historical
+WASH raster files have been obtained. A preliminary IPUMS DHS extract for four older, geocoded survey
+rounds has also been built, but its contents are not yet verified. **No exposure matching, extraction, or
+regression has been carried out, and no historical-WASH result exists.** The four older rounds used for
+this feasibility work (Ethiopia 2016, Ghana 2014, Kenya 2014, and a Nigeria round still to be finalized)
+are a separate, older sample used only because the historical WASH source ends in 2017 — they are **not**
+a substitute for this thesis's own four current survey rounds listed at the top of this document.
 
 ## Important Methodological Notes
 
