@@ -23,7 +23,7 @@ original Steps 00–13 pipeline and its frozen results are unchanged from the 20
 Following methodological feedback on the frozen Steps 00–13 results, `scripts/dhs_harmonization/14_household_community_wash_models.py`
 was added, together with its outputs under `outputs/household_community_wash/`. This is additive: it reads
 the already-frozen Step 00–13 outputs read-only (see `outputs/household_community_wash/baseline_file_hashes.csv`
-and `run_log.txt`) and does not change any Step 00–13 script, script output, or committed result.
+and `run_log.txt`) and does not alter Step 00–13 analytical logic or generated results.
 
 Included from this specification-outputs directory:
 
@@ -42,6 +42,8 @@ Tracked separately, alongside the project's other design documents rather than u
 - Its drafting provenance — a wording-revision note and a PDF-rendering/QA record — under
   `docs/provenance/empirical_strategy_revision_note.md` and
   `docs/provenance/empirical_strategy_render_qa.md`.
+- A methodological adjudication note for the household cluster-FE standard-error convention, under
+  `docs/provenance/cluster_fe_inference_adjudication.md`.
 
 These extended specification outputs are not yet integrated into `outputs/final_tables/`,
 `outputs/final_appendix/`, or `outputs/final_figures/`; that integration is planned once the final

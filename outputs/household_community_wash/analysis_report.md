@@ -96,26 +96,33 @@ exceptions** — a structural property of the DHS cluster/EA sampling frame, not
 cluster-FE models, and the cluster-FE arm of Part 6); it is retained unchanged in every region-FE
 model. This is disclosed here and in the script's own log/comments, not silently done.
 
-**SE transparency (Part 3C):** `res.cov_kwds` confirms statsmodels applies `use_correction=True,
-adjust_df=True` by default for `cov_type='cluster'` — but its small-sample multiplier is computed from
-`k_params` = the *demeaned* design's column count, which does not know that ~4,426 cluster dummies were
-implicitly absorbed. A manual correction (`se_scale`) was computed from the true parameter count
-(`k_true = k_reported + n_clusters`) and applied as a documented sensitivity. `se_scale ≈ 1.067–1.068`
-pooled (≈6.7% SE inflation) — modest given thousands of clusters, as expected; both the uncorrected and
-corrected rows are written to `03_household_cluster_fe.csv`.
+**Inference convention (Part 3C; adjudicated — see
+`docs/provenance/cluster_fe_inference_adjudication.md`):** `res.cov_kwds` confirms statsmodels applies
+`use_correction=True` by default for `cov_type='cluster'` on the demeaned fit. The fixed-effect grouping
+absorbed by demeaning and the clustering grouping used for this cluster-robust covariance are the *same*
+PSU variable, so statsmodels' native cluster-robust SE/CI/p (`res.bse`, `res.conf_int()`, `res.pvalues`)
+are used directly as the **primary** inference, with no additional degrees-of-freedom penalty for the
+absorbed PSU effects. This was cross-validated against `linearmodels.PanelOLS(entity_effects=True)
+.fit(cov_type="clustered", cluster_entity=True, auto_df=True)` on this project's own data, which matches
+the native statsmodels values to 4–5 decimal places and documents (in its own `auto_df` parameter) that
+clustered SEs sharing their grouping variable with an absorbed effect do not require an extra
+degrees-of-freedom correction. A full-dummy-style scale (treating every absorbed PSU dummy as an
+explicitly estimated parameter, `k_full_dummy = k_reported + n_clusters`, ≈1.067–1.068 pooled) remains
+available in `03_household_cluster_fe.csv` as a clearly labelled `FULL_DUMMY_DF_SENSITIVITY` row-set, for
+transparency only — it is not the primary convention.
 
-**Headline (DF-corrected), pooled, natural sample:**
+**Headline (primary, native same-cluster CRV1), pooled, natural sample:**
 
 | Outcome | Water β (SE, p) | Sanitation β (SE, p) |
 |---|---|---|
-| HAZ | −0.085 (0.049, p=.080) | +0.026 (0.046, p=.574) |
-| WAZ | −0.029 (0.039, p=.465) | +0.052 (0.037, p=.156) |
-| WHZ | +0.012 (0.040, p=.773) | +0.053 (0.036, p=.148) |
+| HAZ | −0.085 (0.046, p=.062) | +0.026 (0.043, p=.548) |
+| WAZ | −0.029 (0.037, p=.435) | +0.052 (0.035, p=.130) |
+| WHZ | +0.012 (0.038, p=.758) | +0.053 (0.034, p=.122) |
 
 **Comparison to region-FE (Model A):** the HAZ-water coefficient moves from −0.035 (region FE, n.s.)
-to −0.085 (cluster FE, p=.08 — marginal, not significant at 5%) — a larger magnitude once local
-cluster-level confounding is removed, but still not conventionally significant. Sanitation coefficients
-are similar in both specifications (small, positive, insignificant).
+to −0.085 (cluster FE, p=.062, not statistically significant at the 5% level) — a larger magnitude once
+local cluster-level confounding is removed, but still not conventionally significant. Sanitation
+coefficients are similar in both specifications (small, positive, insignificant).
 
 **What identifies β:** comparisons between households that differ in own WASH status *within the same
 DHS cluster* (31.6–50.8% of clusters have such variation, §above), after also holding demographic/SES
@@ -178,29 +185,35 @@ Linear `b19_raw` vs. full age-in-month (59-dummy) FE, for Models A, B, D, all th
 comparisons total): **zero sign changes, zero significance-threshold crossings**, coefficient
 magnitudes shifted by no more than ~0.006 in any case (see `08_flexible_age_sensitivity.csv`).
 **Conclusion: the linear-age functional form used in the frozen Models 1–4 is not driving any of the
-existing null/marginal results — a materially more flexible age control changes nothing substantive.**
+existing null/non-significant results — a materially more flexible age control changes nothing
+substantive.**
 
 ---
 
 ## 8. Age heterogeneity
 
 Reference band: 12–23 months (largest, most central band — fixed before any result was seen).
-Household water/sanitation × age-band interactions, region-FE (H1) and cluster-FE (H2, DF-corrected).
+Household water/sanitation × age-band interactions, region-FE (H1) and cluster-FE (H2). H2 uses the
+same primary native same-cluster CRV1 inference convention as Model B (see §4 and
+`docs/provenance/cluster_fe_inference_adjudication.md`) — no additional absorbed-PSU-FE
+degrees-of-freedom penalty.
 
 **Joint Wald tests** (all 5 interaction terms jointly zero) — `10_age_heterogeneity_joint_tests.csv`:
 
 | Outcome | Exposure | H1 (region FE) p | H2 (cluster FE) p |
 |---|---|---|---|
-| HAZ | water | .0005 | .0100 |
-| HAZ | sanitation | <.0001 | .0060 |
-| WAZ | water | .0074 | .0268 |
-| WAZ | sanitation | .0055 | .0082 |
-| WHZ | water | .300 (n.s.) | .082 (n.s.) |
-| WHZ | sanitation | .0421 | .0052 |
+| HAZ | water | .0005 | .0042 |
+| HAZ | sanitation | <.0001 | .0023 |
+| WAZ | water | .0074 | .0131 |
+| WAZ | sanitation | .0055 | .0033 |
+| WHZ | water | .300 (n.s.) | .0485 |
+| WHZ | sanitation | .0421 | .0020 |
 
-10 of 12 joint tests reject "no heterogeneity" at 5% in **both** specifications (only water×WHZ does
-not). This is a genuine, pre-specified joint test — not a single cherry-picked band — so **there is
-real evidence that the household-WASH/HAZ-WAZ association differs by child age.** The pattern is not
+11 of 12 joint tests reject "no heterogeneity" at 5%; the sole non-rejection is water×WHZ under the
+region-FE (H1) specification (p=.300) — the cluster-FE (H2) counterpart for the same outcome/exposure
+now also rejects (p=.0485). This is a genuine, pre-specified joint test — not a single cherry-picked
+band — so **there is real evidence that the household-WASH/HAZ-WAZ association differs by child age.**
+The pattern is not
 uniform across outcomes, though: for HAZ, the youngest band (0–5 months) shows the most negative
 implied water association (H1: −0.231, H2: −0.279) and the association becomes positive by 36+ months;
 for WHZ the youngest-band water association is instead *positive* (+0.12 to +0.21). Sample sizes per
@@ -225,16 +238,22 @@ move of the six blocks — then changes little through `+household_size` (−0.3
 **Leave-one-block-out** (from full M3): removing **wealth_quintile** pulls the coefficient furthest back
 toward zero (−0.457 → **−0.196**), a far larger swing than removing any other block (maternal_age:
 −0.486; maternal_education: −0.501; literacy: −0.444; household_size: −0.457; residence: −0.390). Both
-designs agree: **wealth_quintile is the dominant driver of the sign reversal.**
+designs agree on a purely descriptive fact: **the wealth-quintile block produces the largest observed
+coefficient movement among the six tested blocks.** This demonstrates that the estimate is sensitive to
+specification; a sequential-addition and leave-one-block-out diagnostic of this kind cannot, on its own,
+establish *why* the coefficient moves — only that it does, and by how much, when each block is added or
+removed.
 
 **Why wealth plausibly matters:** community sanitation coverage in Nigeria is strongly stratified by
 wealth (mean sanitation LOO 0.27 in the poorest quintile vs. 0.93 in the richest) and by residence
 (0.42 rural vs. 0.82 urban) and maternal education (0.43 no-education vs. 0.88 higher-education) —
 `12_nigeria_sign_reversal_covariate_diagnostics.csv`. This is a strong, monotonic descriptive
-association, consistent with (but not proof of) a wealth-confounding story: once wealth is held fixed,
-what's "left" of the sanitation-coverage variation may pick up something that correlates negatively
-with HAZ (e.g., historically under-resourced or targeted areas). **Reverse causality / targeted
-investment is a hypothesis, not something this data can confirm.**
+association, consistent with — but not proof of — wealth or a correlated measured/unmeasured
+characteristic accounting for part of the coefficient's movement: once wealth is held fixed, what's
+"left" of the sanitation-coverage variation may pick up something that correlates negatively with HAZ
+(e.g., historically under-resourced or targeted areas). **This diagnostic does not establish that wealth
+causally explains the reversal. Reverse causality / targeted investment remains only a hypothesis, not
+something this data can confirm.**
 
 **Four-way comparison, Nigeria HAZ, sanitation:**
 
@@ -285,10 +304,13 @@ of all four countries equally.
 **Household + cluster FE**, HAZ: Ethiopia −0.174 (p=.140) / +0.044 (p=.691); Ghana −0.002 (p=.985) /
 +0.059 (p=.514); **Kenya −0.083 (p=.032)** / +0.043 (p=.223); Nigeria −0.064 (p=.397) / −0.007 (p=.919).
 
-Kenya's household-water/cluster-FE coefficient is the only country-specific result to cross p<.05
-(negative). Cluster-FE support (% of PSUs with within-cluster variation) ranges 20.7–41.7% for water
-and 40.0–58.8% for sanitation across the four countries (`15b_country_cluster_fe_support.csv`) — Ghana
-has the least support (20.7% water), Kenya the most (41.7% water). These are exploratory,
+Among the country-specific HAZ cluster-FE household-WASH coefficients above, Kenya's household-water
+term is the only one to cross p<.05 (negative). This is not true across all outcomes: the full
+country-specific results (`15_country_household_cluster_fe.csv`) also include Kenya WAZ household
+sanitation (p=.043) and Ethiopia WHZ household sanitation (p=.014) crossing p<.05 — cells not narrated
+in this section. Cluster-FE support (% of PSUs with within-cluster variation) ranges 20.7–41.7% for
+water and 40.0–58.8% for sanitation across the four countries (`15b_country_cluster_fe_support.csv`) —
+Ghana has the least support (20.7% water), Kenya the most (41.7% water). These are exploratory,
 development-stage country splits with smaller N per cell; no single country-specific p<.05 result
 should be read as a headline finding at this stage.
 
@@ -300,17 +322,21 @@ should be read as a headline finding at this stage.
   figures are 31.6%/50.6%, slightly lower only because of the additional Model-4-control requirement).
 - **New, not previously known:** DHS clusters here are perfectly urban/rural-homogeneous (0 exceptions
   across 4,481 PSUs) — `residence` cannot enter any cluster-FE model.
-- **New:** the Nigeria sign reversal is now substantially explained (wealth_quintile is the dominant
-  driver in both sequential and leave-one-out designs) and its cluster-FE analogue is essentially zero
-  — strengthening the case that it is confounding-driven rather than a robust exposure effect.
+- **New:** the Nigeria sign reversal shows clear specification sensitivity — the wealth-quintile block
+  produces by far the largest coefficient movement in both the sequential and leave-one-out diagnostics,
+  and the cluster-FE analogue of the same coefficient is essentially zero. This demonstrates the
+  unadjusted association is not robust to specification; it does not, on its own, establish that wealth
+  causally explains the reversal (see §9).
 - **New:** genuine (joint-test-confirmed) age heterogeneity exists in the household-WASH/HAZ and
   WAZ associations, not previously tested.
 - **New:** anthropometric availability is overwhelmingly a country-level phenomenon (34–89% range), not
   a uniform "~47% missing" story, and not strongly driven by WASH status.
-- **New:** the one specification in this whole development pass that crosses p<.05 is household water
-  in the joint model (Model C, HAZ, β=−0.085, p=.043) — a genuinely new result, not previously
-  estimated, and one that should not be over-weighted given it sits inside a moderately collinear joint
-  specification.
+- **New:** among the pooled, whole-sample primary WASH-exposure coefficients across the region-FE,
+  cluster-FE, and joint comparisons (Models A/B/C/D), the one specification that crosses p<.05 is
+  household water in the joint model (Model C, HAZ, β=−0.085, p=.043) — a genuinely new result, not
+  previously estimated, and one that should not be over-weighted given it sits inside a moderately
+  collinear joint specification. (This does not describe country-specific splits or the age-interaction
+  joint tests, which are separate analyses with their own p<.05 cells reported in §8 and §11.)
 
 ---
 
@@ -347,8 +373,8 @@ re-defining the exposure window for the cluster-FE model rather than requiring a
 
 **NOT YET — but close.** The core household-vs-community empirical picture the supervisor asked for is
 now built, validated, and internally consistent (Model A/B/C all estimated, cluster-FE estimator
-mathematically validated to 1e-15, age-flexibility and age-heterogeneity tested, the Nigeria puzzle
-substantially explained). What's still missing before drafting:
+mathematically validated to 1e-15, age-flexibility and age-heterogeneity tested, the Nigeria
+specification-sensitivity diagnostic completed). What's still missing before drafting:
 
 1. A decision from you on which of Models A/B/C is the "provisional main" household specification (§13
    gives a recommendation, not a decision).
@@ -374,9 +400,13 @@ substantially explained). What's still missing before drafting:
 - **Weak support in places:** Ghana's cluster-FE water support is the lowest of the four countries
   (20.7% of PSUs) — country-specific Ghana cluster-FE water coefficients should be read with that in
   mind.
-- **Estimator/SE issue, documented and corrected:** statsmodels' automatic cluster-robust small-sample
-  correction understates the true degrees of freedom used by the demeaning transformation; a manual
-  ~6.7% SE inflation was computed and applied transparently (both versions retained in the output file).
+- **Inference convention, reviewed and adjudicated:** for the demeaned cluster-FE fit, the fixed-effect
+  grouping and the clustering grouping are the same DHS PSU variable; the primary reported inference is
+  therefore statsmodels' native PSU-cluster CRV1 output, with no additional absorbed-PSU/full-dummy
+  degrees-of-freedom penalty (see §4 and `docs/provenance/cluster_fe_inference_adjudication.md`). A
+  full-dummy-style degrees-of-freedom scaling is retained in the output file only as a labelled
+  sensitivity (`FULL_DUMMY_DF_SENSITIVITY`), not as the primary convention. Point estimates are
+  unaffected by this inference-convention choice.
 - **Sample-size note:** all Part 8 Nigeria diagnostics and the country-specific splits in Part 10/11 use
   smaller N than the pooled models — treat any single p<.05 country-specific cell as exploratory.
 - **Nothing here required your decision to proceed** — every adjustment above was resolved within the

@@ -32,6 +32,7 @@ import hashlib
 import importlib.util
 import io
 import itertools
+import os
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -57,7 +58,14 @@ reg = _load_module("11_main_regressions.py", "dhs_main_regressions")
 rob = _load_module("12_robustness.py", "dhs_robustness")
 config = reg.config
 
-OUT_DIR = config.PROJECT_ROOT / "outputs" / "household_community_wash"
+# Canonical output directory, unless overridden for validation-only scratch
+# runs via THESIS_STEP14_OUT_DIR (e.g. a temp directory outside the repo).
+# When the environment variable is unset, behavior is byte-identical to the
+# original hard-coded path - this override exists solely so a corrected
+# version of this script can be validated against a scratch location before
+# any canonical output is replaced.
+_out_dir_override = os.environ.get("THESIS_STEP14_OUT_DIR")
+OUT_DIR = Path(_out_dir_override) if _out_dir_override else (config.PROJECT_ROOT / "outputs" / "household_community_wash")
 OUT_DIR.mkdir(parents=True, exist_ok=False)  # hard-fail if it already exists - never silently reuse/overwrite
 
 LOG_PATH = OUT_DIR / "run_log.txt"
@@ -316,10 +324,28 @@ def weighted_demean(sample_df, cluster_col, weight_col, value_cols):
 def run_cluster_fe_demeaned(label, sample_df, outcome, continuous_vars, categorical_vars_with_ref,
                              weight_series, cluster_col):
     """Cluster-FE model via weighted demeaning. Returns (res, ref_metadata,
-    k_reported, k_true, n_clusters, se_scale) where se_scale is the manual
-    finite-cluster df-correction factor (see Part 3C) that accounts for the
-    cluster dummies absorbed by demeaning but invisible to statsmodels'
-    automatic small-sample correction."""
+    k_reported, n_clusters).
+
+    PRIMARY INFERENCE CONVENTION (adjudicated - see
+    docs/provenance/cluster_fe_inference_adjudication.md): the fixed-effect
+    grouping absorbed by the demeaning transform and the clustering
+    grouping used for the cluster-robust covariance are the SAME PSU
+    variable here. For that same-effect/same-cluster case, `res.bse`,
+    `res.pvalues`, and `res.conf_int()` (statsmodels' native
+    `cov_type="cluster"` output, `use_correction=True`) are the primary,
+    reported inference - with NO additional penalty for the PSU effects
+    absorbed by demeaning. This was cross-validated against
+    `linearmodels.PanelOLS(entity_effects=True).fit(cov_type="clustered",
+    cluster_entity=True, auto_df=True)` on this project's own data, which
+    agrees with the native statsmodels values to 4-5 decimal places and
+    explicitly documents (in its own `auto_df` docstring) that clustered
+    SEs sharing their grouping variable with an absorbed effect do not
+    require an extra degrees-of-freedom correction. A full-dummy-style
+    sensitivity scale (treating every absorbed PSU dummy as an explicitly
+    estimated parameter) remains available via
+    `full_dummy_df_sensitivity_scale()` / `apply_full_dummy_df_sensitivity()`
+    below, retained only as a labelled secondary sensitivity, not as the
+    thesis's primary convention."""
     X_raw, ref_metadata = build_raw_design(sample_df, continuous_vars, categorical_vars_with_ref)
     work = sample_df.copy()
     work["_w"] = weight_series.values
@@ -347,27 +373,43 @@ def run_cluster_fe_demeaned(label, sample_df, outcome, continuous_vars, categori
         raise RuntimeError(f"[{label}] Non-finite coefficient/SE (demeaned fit). STOP.")
 
     n_clusters = int(sample_df[cluster_col].nunique())
-    N = int(res.nobs)
-    k_reported = X_t.shape[1]                    # what statsmodels sees (covariates only, no constant)
-    k_true = k_reported + n_clusters              # equivalent explicit-dummy model: covariates + 1 intercept + (n_clusters-1) dummies
+    k_reported = X_t.shape[1]  # design columns statsmodels actually sees (covariates only, no constant)
+
+    return res, ref_metadata, k_reported, n_clusters
+
+
+def full_dummy_df_sensitivity_scale(k_reported, n_clusters, N):
+    """SENSITIVITY ONLY - not the thesis's primary inference convention.
+
+    Computes the SE-scale factor that would result from treating every
+    absorbed PSU dummy as an explicitly estimated parameter
+    (k_full_dummy = k_reported + n_clusters), i.e. the finite-sample
+    correction a full-explicit-dummy WLS fit's naive parameter count would
+    imply. This double-counts degrees of freedom already accounted for by
+    clustering on the same PSU variable that defines the fixed effect (see
+    docs/provenance/cluster_fe_inference_adjudication.md) and is retained
+    here only as a transparency/sensitivity check, never as the reported
+    headline inference."""
+    k_full_dummy = k_reported + n_clusters
     factor_reported = (n_clusters / (n_clusters - 1)) * ((N - 1) / (N - k_reported))
-    factor_true = (n_clusters / (n_clusters - 1)) * ((N - 1) / (N - k_true))
-    se_scale = float(np.sqrt(factor_true / factor_reported))
+    factor_full_dummy = (n_clusters / (n_clusters - 1)) * ((N - 1) / (N - k_full_dummy))
+    scale = float(np.sqrt(factor_full_dummy / factor_reported))
+    return scale, k_full_dummy
 
-    return res, ref_metadata, k_reported, k_true, n_clusters, se_scale
 
-
-def apply_se_scale(res, se_scale):
-    """Returns a (coef, se_corrected, ci_lo, ci_hi, p_corrected) tuple per
-    term, rescaling SE/CI by se_scale and recomputing p from a normal
-    approximation (consistent with statsmodels' own cluster-robust p-values,
-    which already use a normal/t reference distribution)."""
+def apply_full_dummy_df_sensitivity(res, scale):
+    """SENSITIVITY ONLY - see full_dummy_df_sensitivity_scale(). Returns a
+    (coef, se_sensitivity, ci_lo, ci_hi, p_sensitivity) tuple per term,
+    rescaling SE/CI by `scale` and recomputing p from a normal
+    approximation (consistent with statsmodels' own cluster-robust
+    p-values, which already use a normal/t reference distribution here).
+    Not the thesis's primary reported inference."""
     from scipy import stats as _stats
     out = {}
     for term in res.params.index:
         b = res.params[term]
         se0 = res.bse[term]
-        se1 = se0 * se_scale
+        se1 = se0 * scale
         z = b / se1 if se1 > 0 else np.nan
         p1 = 2 * (1 - _stats.norm.cdf(abs(z))) if np.isfinite(z) else np.nan
         ci_lo = b - 1.959963984540054 * se1
@@ -511,34 +553,49 @@ for outcome in PRIMARY_OUTCOMES:
         f"({100 * n_sani_var / n_psu_total:.1f}%); both {n_both_var}")
 
     weight_b, _ = reg.build_temporary_pooled_weight(sample_b)
-    res_b, ref_b, k_rep, k_true, n_clusters, se_scale = run_cluster_fe_demeaned(
+    res_b, ref_b, k_rep, n_clusters = run_cluster_fe_demeaned(
         f"B-{outcome}", sample_b, outcome, B_CONTINUOUS, B_CATEGORICAL, weight_b, "country_psu"
     )
     log(f"    statsmodels res.cov_kwds for [{outcome}] Model B fit: {res_b.cov_kwds}")
-    scaled = apply_se_scale(res_b, se_scale)
+    N_b = int(res_b.nobs)
+    fd_scale, k_full_dummy = full_dummy_df_sensitivity_scale(k_rep, n_clusters, N_b)
+    fd_scaled = apply_full_dummy_df_sensitivity(res_b, fd_scale)
 
+    # PRIMARY: native statsmodels cluster-robust inference (cov_type="cluster",
+    # use_correction=True) on the demeaned fit. The absorbed PSU fixed effect
+    # and the clustering variable are the same PSU grouping, so no additional
+    # degrees-of-freedom penalty is applied - see the adjudication note in
+    # run_cluster_fe_demeaned()'s docstring and
+    # docs/provenance/cluster_fe_inference_adjudication.md.
     model_b_rows += rows_from_fit(
-        res_b, outcome, "model_B_household_cluster_fe", "natural_sample_UNCORRECTED_SE",
+        res_b, outcome, "model_B_household_cluster_fe", "natural_sample_PRIMARY_SAME_CLUSTER_CRV1",
         "natural_sample", "model_specific_equal_total_country_weight",
         "cluster_robust_country_psu_demeaned", n_clusters, 0,
-        se_note=(f"UNCORRECTED: statsmodels cluster-robust SE on demeaned data, use_correction=True "
-                 f"(confirmed default; see res.cov_kwds in run log). k_reported={k_rep} understates true "
-                 f"absorbed df (k_true~{k_true} incl. {n_clusters} absorbed cluster dummies). "
-                 f"Use the DF_CORRECTED row-set below for the transparency-adjusted version.")
+        se_note=(f"PRIMARY: statsmodels native cluster-robust SE on demeaned data, use_correction=True "
+                 f"(confirmed default; see res.cov_kwds in run log). k_reported={k_rep}. No additional "
+                 f"absorbed-PSU-FE degrees-of-freedom penalty is applied, because the fixed-effect grouping "
+                 f"and the clustering grouping are the same PSU variable (adjudicated convention; "
+                 f"cross-validated against linearmodels.PanelOLS(auto_df=True) - see "
+                 f"docs/provenance/cluster_fe_inference_adjudication.md). See the "
+                 f"FULL_DUMMY_DF_SENSITIVITY row-set below for a labelled sensitivity check only.")
     )
-    for term, (b, se1, lo, hi, p1) in scaled.items():
+    for term, (b, se1, lo, hi, p1) in fd_scaled.items():
         model_b_rows.append({
-            "development_family": "model_B_household_cluster_fe", "model_label": "natural_sample_DF_CORRECTED_SE",
+            "development_family": "model_B_household_cluster_fe", "model_label": "natural_sample_FULL_DUMMY_DF_SENSITIVITY",
             "outcome": outcome, "sample_variant": "natural_sample", "term": term,
             "coefficient": b, "standard_error": se1, "ci_lower": lo, "ci_upper": hi, "p_value": p1,
-            "estimation_n": int(res_b.nobs), "psu_count": n_clusters, "fe_region_count": 0,
+            "estimation_n": N_b, "psu_count": n_clusters, "fe_region_count": 0,
             "weight_method": "model_specific_equal_total_country_weight",
             "clustering_method": "cluster_robust_country_psu_demeaned",
-            "se_note": (f"DF-CORRECTED: se_scale={se_scale:.4f} applied to account for {n_clusters} absorbed "
-                        f"cluster dummies (k_true={k_true} vs k_reported={k_rep}); p/CI recomputed from a "
-                        f"normal reference distribution, consistent with statsmodels' own cluster-robust inference."),
+            "se_note": (f"SENSITIVITY ONLY, NOT THE PRIMARY CONVENTION: scale={fd_scale:.4f} applied as if "
+                        f"every one of the {n_clusters} absorbed PSU dummies were an explicitly estimated "
+                        f"parameter (k_full_dummy={k_full_dummy} vs k_reported={k_rep}); p/CI recomputed from "
+                        f"a normal reference distribution. Retained only for transparency - see "
+                        f"docs/provenance/cluster_fe_inference_adjudication.md for why this is not used as "
+                        f"the primary inference convention when FE and clustering share the same grouping."),
         })
-    log(f"  B [{outcome}] N={int(res_b.nobs)} clusters={n_clusters} se_scale={se_scale:.4f} OK")
+    log(f"  B [{outcome}] N={N_b} clusters={n_clusters} k_reported={k_rep} "
+        f"(full_dummy_sensitivity_scale={fd_scale:.4f}, sensitivity only) OK")
 
 support_df = pd.DataFrame(support_rows)
 support_df.to_csv(OUT_DIR / "04_household_cluster_fe_support.csv", index=False)
@@ -569,7 +626,7 @@ res_explicit, ref_explicit = run_explicit_wls(
     "VALIDATION-explicit-dummy", sample_val, val_outcome, B_CONTINUOUS, B_CATEGORICAL,
     weight_val, sample_val["psu"], include_fe=True, fe_col="psu"
 )
-res_demeaned, ref_demeaned, k_rep_v, k_true_v, n_clusters_v, se_scale_v = run_cluster_fe_demeaned(
+res_demeaned, ref_demeaned, k_rep_v, n_clusters_v = run_cluster_fe_demeaned(
     "VALIDATION-demeaned", sample_val, val_outcome, B_CONTINUOUS, B_CATEGORICAL, weight_val, "psu"
 )
 
@@ -808,9 +865,11 @@ for outcome in PRIMARY_OUTCOMES:
             "sign_change": bool(np.sign(res_lin.params[term]) != np.sign(res_flex.params[term])),
             "significance_change_at_5pct": bool((res_lin.pvalues[term] < 0.05) != (res_flex.pvalues[term] < 0.05)),
             "N": int(res_flex.nobs),
-            "se_caveat": "SE/p shown are statsmodels-reported (uncorrected for absorbed cluster-FE df) - "
-                         "see Part 3C/file 03 for the manual df correction magnitude (~1.06-1.07x); direction "
-                         "of sign/significance change is unaffected by this scale factor.",
+            "se_caveat": "SE/p shown are statsmodels' native cluster-robust values on the demeaned fit "
+                         "(cov_type='cluster', use_correction=True) - the thesis's primary same-PSU-FE/"
+                         "same-PSU-cluster inference convention (see docs/provenance/"
+                         "cluster_fe_inference_adjudication.md); no additional absorbed-FE degrees-of-freedom "
+                         "penalty is applied.",
         })
     log(f"  B [{outcome}] linear-age vs age-month-FE (demeaned): OK (N={int(res_flex.nobs)})")
 
@@ -913,18 +972,22 @@ for outcome in PRIMARY_OUTCOMES:
     cont = HOUSEHOLD_EXPOSURES + [v for v in HOUSEHOLD_BASELINE_CONTROLS_CONTINUOUS if v != "b19_raw"] + inter_cols
     cat = {**CLUSTER_FE_CATEGORICAL, "_age_band": AGE_BAND_REF}
     weight, _ = reg.build_temporary_pooled_weight(sample)
-    res_h2, ref_h2, k_rep2, k_true2, nclu2, sescale2 = run_cluster_fe_demeaned(
+    # PRIMARY inference: native statsmodels cluster-robust covariance on the
+    # demeaned fit, directly from res_h2 - no additional absorbed-PSU-FE
+    # degrees-of-freedom scaling. Same adjudicated same-effect/same-cluster
+    # convention as Model B; see docs/provenance/cluster_fe_inference_adjudication.md.
+    res_h2, ref_h2, k_rep2, nclu2 = run_cluster_fe_demeaned(
         f"H2-{outcome}", sample, outcome, cont, cat, weight, "country_psu"
     )
-    scaled2 = apply_se_scale(res_h2, sescale2)
+    ci_h2 = res_h2.conf_int()
     for term in HOUSEHOLD_EXPOSURES + inter_cols:
-        b, se1, lo, hi, p1 = scaled2[term]
         age_het_rows.append({
-            "spec": "H2_household_cluster_fe_DF_CORRECTED", "outcome": outcome, "term": term,
-            "coefficient": b, "se": se1, "ci_lower": lo, "ci_upper": hi, "p_value": p1,
+            "spec": "H2_household_cluster_fe", "outcome": outcome, "term": term,
+            "coefficient": res_h2.params[term], "se": res_h2.bse[term],
+            "ci_lower": ci_h2.loc[term, 0], "ci_upper": ci_h2.loc[term, 1], "p_value": res_h2.pvalues[term],
             "N": int(res_h2.nobs), "reference_age_band": AGE_BAND_REF,
         })
-    cov2 = res_h2.cov_params() * (sescale2 ** 2)
+    cov2 = res_h2.cov_params()
     for exp in HOUSEHOLD_EXPOSURES:
         for band in [b[2] for b in AGE_BANDS]:
             if band == AGE_BAND_REF:
@@ -935,7 +998,7 @@ for outcome in PRIMARY_OUTCOMES:
                 var_sum = cov2.loc[exp, exp] + cov2.loc[inter_term, inter_term] + 2 * cov2.loc[exp, inter_term]
                 implied_se = float(np.sqrt(var_sum))
             age_het_rows.append({
-                "spec": "H2_implied_total_by_band_DF_CORRECTED", "outcome": outcome, "term": f"{exp}__band_{band}",
+                "spec": "H2_implied_total_by_band", "outcome": outcome, "term": f"{exp}__band_{band}",
                 "coefficient": implied, "se": implied_se, "ci_lower": implied - 1.959963984540054 * implied_se,
                 "ci_upper": implied + 1.959963984540054 * implied_se, "p_value": np.nan, "N": int(res_h2.nobs),
                 "reference_age_band": AGE_BAND_REF,
@@ -959,9 +1022,9 @@ for outcome in PRIMARY_OUTCOMES:
                           ("sanitation_interactions_jointly_zero", sani_inter),
                           ("all_interactions_jointly_zero", water_inter + sani_inter)]:
         stat, pval, dfree = wald_joint2(res_h2, terms, param_names2, cov2)
-        joint_test_rows.append({"spec": "H2_household_cluster_fe_DF_CORRECTED", "outcome": outcome, "hypothesis": label,
+        joint_test_rows.append({"spec": "H2_household_cluster_fe", "outcome": outcome, "hypothesis": label,
                                  "chi2_or_wald_stat": stat, "p_value": pval, "df": dfree})
-    log(f"  H2 [{outcome}] N={int(res_h2.nobs)} se_scale={sescale2:.4f} OK")
+    log(f"  H2 [{outcome}] N={int(res_h2.nobs)} clusters={nclu2} k_reported={k_rep2} OK (native same-cluster CRV1)")
 
 age_het_df = pd.DataFrame(age_het_rows)
 age_het_df.to_csv(OUT_DIR / "09_age_heterogeneity.csv", index=False)
@@ -1269,8 +1332,8 @@ summary_rows = []
 for _, r in model_a_df[(model_a_df["sample_variant"] == "A2_common_sample") & (model_a_df["term"].isin(HOUSEHOLD_EXPOSURES))].iterrows():
     summary_rows.append({"family": "A_household_region_fe", "outcome": r["outcome"], "term": r["term"],
                           "coefficient": r["coefficient"], "se": r["standard_error"], "p_value": r["p_value"], "N": r["estimation_n"]})
-for _, r in model_b_df[(model_b_df["model_label"] == "natural_sample_DF_CORRECTED_SE") & (model_b_df["term"].isin(HOUSEHOLD_EXPOSURES))].iterrows():
-    summary_rows.append({"family": "B_household_cluster_fe_df_corrected", "outcome": r["outcome"], "term": r["term"],
+for _, r in model_b_df[(model_b_df["model_label"] == "natural_sample_PRIMARY_SAME_CLUSTER_CRV1") & (model_b_df["term"].isin(HOUSEHOLD_EXPOSURES))].iterrows():
+    summary_rows.append({"family": "B_household_cluster_fe", "outcome": r["outcome"], "term": r["term"],
                           "coefficient": r["coefficient"], "se": r["standard_error"], "p_value": r["p_value"], "N": r["estimation_n"]})
 for _, r in model_c_df[model_c_df["term"].isin(HOUSEHOLD_EXPOSURES + EXPOSURES)].iterrows():
     summary_rows.append({"family": "C_joint_household_community", "outcome": r["outcome"], "term": r["term"],

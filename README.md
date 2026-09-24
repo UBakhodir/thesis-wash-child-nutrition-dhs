@@ -115,7 +115,7 @@ set is fixed.
 
 `scripts/dhs_harmonization/14_household_community_wash_models.py` extends the frozen Steps 00–13 pipeline
 with a further round of household- and community-WASH specifications and diagnostics, without altering
-any Step 00–13 script or output (see `outputs/household_community_wash/baseline_file_hashes.csv` and
+Step 00–13 analytical logic or generated results (see `outputs/household_community_wash/baseline_file_hashes.csv` and
 `run_log.txt` for the before/after source-integrity check). Its outputs live under
 `outputs/household_community_wash/`, and the canonical empirical-strategy write-up is
 `docs/empirical_strategy.md` (full analysis narrative: `outputs/household_community_wash/analysis_report.md`).

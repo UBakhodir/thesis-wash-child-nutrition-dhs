@@ -1,8 +1,8 @@
 ==========================================================================================
 BASELINE FILE SHA-256 HASHES (recorded before development estimation)
 ==========================================================================================
-  step11_main_regressions_script: ab2df40edfce5cf70d2a55ea52f085510f164b21c92a8c0f9e013e561a24d1ea  (<PROJECT_ROOT>\scripts\dhs_harmonization\11_main_regressions.py)
-  step12_robustness_script: 136a375de86ba2c4fcaa09b0b5e3d974fd0e0c69b5632884d8265681946a8aee  (<PROJECT_ROOT>\scripts\dhs_harmonization\12_robustness.py)
+  step11_main_regressions_script: 5dff4de1fd9216e9dd9562ad950a7c187525814ec898a45b1100969c89dc326f  (<PROJECT_ROOT>\thesis-wash-child-nutrition-dhs\scripts\dhs_harmonization\11_main_regressions.py)
+  step12_robustness_script: 136a375de86ba2c4fcaa09b0b5e3d974fd0e0c69b5632884d8265681946a8aee  (<PROJECT_ROOT>\thesis-wash-child-nutrition-dhs\scripts\dhs_harmonization\12_robustness.py)
   main_continuous_models_output: de6d905e92623d1e16d8ec42130f0db42ba3924bf3d5414d6efc3ff7c203026f  (<PROJECT_ROOT>\outputs\regressions\main_continuous_models.csv)
   robustness_household_wash_output: 945d326eebf6a244a3b3ffb0341c4f9ce2b5be56eaa57c3a65299994f054fd09  (<PROJECT_ROOT>\outputs\regressions\robustness_household_wash.csv)
 
@@ -66,7 +66,7 @@ PART 3: MODEL B - HOUSEHOLD WASH + CLUSTER (PSU) FE
 70219    nigeria_1399
 70225    nigeria_1400
 Name: country_psu, Length: 36040, dtype: str, 'use_correction': True, 'description': 'Standard Errors are robust to cluster correlation (cluster)'}
-  B [haz] N=36040 clusters=4426 se_scale=1.0677 OK
+  B [haz] N=36040 clusters=4426 k_reported=18 (full_dummy_sensitivity_scale=1.0677, sensitivity only) OK
   [waz] support: 4426 PSUs total; water-informative 1401 (31.7%); sanitation-informative 2249 (50.8%); both 998
     statsmodels res.cov_kwds for [waz] Model B fit: {'use_t': False, 'adjust_df': True, 'groups': 4          ethiopia_1
 5          ethiopia_1
@@ -80,7 +80,7 @@ Name: country_psu, Length: 36040, dtype: str, 'use_correction': True, 'descripti
 70219    nigeria_1399
 70225    nigeria_1400
 Name: country_psu, Length: 36308, dtype: str, 'use_correction': True, 'description': 'Standard Errors are robust to cluster correlation (cluster)'}
-  B [waz] N=36308 clusters=4426 se_scale=1.0672 OK
+  B [waz] N=36308 clusters=4426 k_reported=18 (full_dummy_sensitivity_scale=1.0672, sensitivity only) OK
   [whz] support: 4426 PSUs total; water-informative 1398 (31.6%); sanitation-informative 2239 (50.6%); both 995
     statsmodels res.cov_kwds for [whz] Model B fit: {'use_t': False, 'adjust_df': True, 'groups': 4          ethiopia_1
 5          ethiopia_1
@@ -94,7 +94,7 @@ Name: country_psu, Length: 36308, dtype: str, 'use_correction': True, 'descripti
 70219    nigeria_1399
 70225    nigeria_1400
 Name: country_psu, Length: 36145, dtype: str, 'use_correction': True, 'description': 'Standard Errors are robust to cluster correlation (cluster)'}
-  B [whz] N=36145 clusters=4426 se_scale=1.0675 OK
+  B [whz] N=36145 clusters=4426 k_reported=18 (full_dummy_sensitivity_scale=1.0675, sensitivity only) OK
 Written: 04_household_cluster_fe_support.csv
 
 ==========================================================================================
@@ -151,9 +151,9 @@ PART 7: AGE HETEROGENEITY (household WASH x age-band)
   H1 [haz] N=36040 OK
   H1 [waz] N=36308 OK
   H1 [whz] N=36145 OK
-  H2 [haz] N=36040 se_scale=1.0678 OK
-  H2 [waz] N=36308 se_scale=1.0672 OK
-  H2 [whz] N=36145 se_scale=1.0676 OK
+  H2 [haz] N=36040 clusters=4426 k_reported=32 OK (native same-cluster CRV1)
+  H2 [waz] N=36308 clusters=4426 k_reported=32 OK (native same-cluster CRV1)
+  H2 [whz] N=36145 clusters=4426 k_reported=32 OK (native same-cluster CRV1)
 Written: 09_age_heterogeneity.csv, 09b_age_heterogeneity_descriptive_bands.csv (supplementary)
 Written: 10_age_heterogeneity_joint_tests.csv
 
