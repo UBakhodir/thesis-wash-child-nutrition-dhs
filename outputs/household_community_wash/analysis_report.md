@@ -12,14 +12,18 @@ not previously exist).
 
 - Git branch: `main` (repo = `thesis-wash-child-nutrition-dhs/`, the packaged subfolder; the working
   directory that actually holds `data/` and `scripts/dhs_harmonization/` is not itself git-tracked).
-- Starting commit: `3d8a370cbd32bf0fd62182862535ea4bdbbf2cb7`.
+- Starting commit for the original development run described in this report: `3d8a370cbd32bf0fd62182862535ea4bdbbf2cb7`
+  (historical reference — the repository has since advanced through published commits `e2f47de`, `9f1f53c`,
+  and `56547be`, including a subsequent cluster-FE inference correction covered in §4 and §16 below).
 - Git status before and after: unchanged — only the pre-existing, unrelated untracked
   `?? outputs/supervisor_meeting/` folder (from an earlier session) appears; nothing from this
   development run touches the git-tracked repo at all, since it was written entirely under the
   non-git-tracked master working directory.
-- New files created: `scripts/dhs_harmonization/14_supervisor_development.py`;
-  `outputs/supervisor_development/` (20 files: 18 CSVs incl. two supplementary, `_run_log.txt`,
-  this report).
+- New files created (historical reference — the script was later renamed to
+  `scripts/dhs_harmonization/14_household_community_wash_models.py` and its output directory to
+  `outputs/household_community_wash/`, both current as of this document's header above): originally
+  `scripts/dhs_harmonization/14_supervisor_development.py`; `outputs/supervisor_development/` (20 files:
+  18 CSVs incl. two supplementary, `_run_log.txt`, this report).
 - Baseline hash verification: SHA-256 of the four files this development reads
   (`11_main_regressions.py`, `12_robustness.py`, `main_continuous_models.csv`,
   `robustness_household_wash.csv`) was computed **before** any estimation ran and **re-verified
@@ -361,11 +365,15 @@ Based on identifying variation and research-question alignment, **not** on signi
 
 ## 14. Historical WASH
 
-Not currently available (confirmed again by this development pass finding nothing new). The exact
-supervisor-referenced dataset still needs identification — a direct clarifying question to the
-supervisor remains the recommended next step (per the prior audit, §L). If later obtained, it would
-extend rather than replace the household/cluster-FE architecture above, most naturally by
-re-defining the exposure window for the cluster-FE model rather than requiring a new estimator.
+**Updated since the original development pass described above** (see `docs/empirical_strategy.md` §6
+and `docs/provenance/historical_wash_feasibility_audit.md` for the current, authoritative status): a
+candidate historical WASH source (IHME gridded improved-water/improved-sanitation estimates, 2000–2017)
+and a candidate geocoded child data source (IPUMS DHS) have since been identified and independently
+verified against their own documentation, and the corresponding raster files have been obtained.
+Exposure matching, extraction, and estimation have **not** been carried out, and no historical-WASH
+result exists in this repository. If later completed, it would extend rather than replace the
+household/cluster-FE architecture above, most naturally by re-defining the exposure window for the
+cluster-FE model rather than requiring a new estimator.
 
 ---
 
