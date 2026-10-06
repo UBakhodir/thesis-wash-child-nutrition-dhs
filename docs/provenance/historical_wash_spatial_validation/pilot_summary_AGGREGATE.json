@@ -1,0 +1,7 @@
+{
+ "clusters": 20,
+ "max_abs_mean_diff_vs_MC": 0.12487877043172091,
+ "median_abs_mean_diff_vs_MC": 0.009559697536751344,
+ "max_abs_valid_fraction_diff_vs_MC": 0.0007965031426110936,
+ "note": "aggregate only; cluster coordinates not printed"
+}

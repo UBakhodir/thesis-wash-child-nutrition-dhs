@@ -1,0 +1,56 @@
+{
+ "rows_total": 1126440,
+ "by_method_rows": {
+  "primary_area_buffer": 433188,
+  "sensitivity_containing_pixel": 433188,
+  "sensitivity_rural_10km_buffer": 260064
+ },
+ "clusters_primary": 4011,
+ "clusters_rural_sensitivity": 2408,
+ "clusters_point": 4011,
+ "reconciles_expected_4011": true,
+ "reconciles_rural_2408": true,
+ "years_present": [
+  2000,
+  2001,
+  2002,
+  2003,
+  2004,
+  2005,
+  2006,
+  2007,
+  2008,
+  2009,
+  2010,
+  2011,
+  2012,
+  2013,
+  2014,
+  2015,
+  2016,
+  2017
+ ],
+ "years_complete_2000_2017": true,
+ "products": [
+  "S_IMP",
+  "W_IMP"
+ ],
+ "estimates": [
+  "LOWER",
+  "MEAN",
+  "UPPER"
+ ],
+ "duplicate_keys": 0,
+ "cluster_method_with_expected_108_rows": 10430,
+ "cluster_method_total": 10430,
+ "covered_rows": 1122120,
+ "covered_values_nonfinite": 0,
+ "covered_values_outside_0_100": 0,
+ "missing_rows": 4320,
+ "missing_rows_with_nonnan_value": 0,
+ "bound_triples_compared": 374040,
+ "violations_LOWER_gt_MEAN": 0,
+ "violations_MEAN_gt_UPPER": 0,
+ "violation_share": 0.0,
+ "buffer_point_pairs_both_defined": 143208
+}

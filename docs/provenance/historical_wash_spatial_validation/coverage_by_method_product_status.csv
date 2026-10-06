@@ -1,0 +1,7 @@
+method,product,full,missing,partial
+primary_area_buffer,S_IMP,209520,270,6804
+primary_area_buffer,W_IMP,209520,270,6804
+sensitivity_containing_pixel,S_IMP,214812,1782,0
+sensitivity_containing_pixel,W_IMP,214812,1782,0
+sensitivity_rural_10km_buffer,S_IMP,121500,108,8424
+sensitivity_rural_10km_buffer,W_IMP,121500,108,8424
