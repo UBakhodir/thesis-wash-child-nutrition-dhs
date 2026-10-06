@@ -1,0 +1,25 @@
+model_id,label,family,product,outcome,samples,window,method,N_dataset,N_reported,N_match,G_clusters,G_reported,G_match,record_key_duplicates,psu_mapping_to_multiple_surveys,singleton_clusters_in_dataset,country_weight_totals_equal_N_over_K,K_regressors,rank,rank_full,absorbed_terms,clusters_with_exposure_variation
+m0001,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,HAZ,GH2014,post_12m,primary,1940,1940,True,353,353,True,0,0,0,True,16,16,True,[],353
+m0002,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,HAZ,KE2014,post_12m,primary,14166,14166,True,1498,1498,True,0,0,0,True,16,16,True,[],1497
+m0003,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,HAZ,NG2018,post_12m,primary,6912,6912,True,1263,1263,True,0,0,0,True,16,16,True,[],1259
+m0004,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,HAZ,GH2014+KE2014+NG2018,post_12m,primary,23018,23018,True,3114,3114,True,0,0,0,True,24,24,True,[],3109
+m0048,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,WAZ,GH2014,post_12m,primary,1940,1940,True,353,353,True,0,0,0,True,16,16,True,[],353
+m0049,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,WAZ,KE2014,post_12m,primary,14166,14166,True,1498,1498,True,0,0,0,True,16,16,True,[],1497
+m0050,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,WAZ,NG2018,post_12m,primary,6951,6951,True,1264,1264,True,0,0,0,True,16,16,True,[],1260
+m0051,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,WAZ,GH2014+KE2014+NG2018,post_12m,primary,23057,23057,True,3115,3115,True,0,0,0,True,24,24,True,[],3110
+m0095,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,WHZ,GH2014,post_12m,primary,1940,1940,True,353,353,True,0,0,0,True,16,16,True,[],353
+m0096,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,WHZ,KE2014,post_12m,primary,14166,14166,True,1498,1498,True,0,0,0,True,16,16,True,[],1497
+m0097,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,WHZ,NG2018,post_12m,primary,6942,6942,True,1264,1264,True,0,0,0,True,16,16,True,[],1260
+m0098,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,W_IMP,WHZ,GH2014+KE2014+NG2018,post_12m,primary,23048,23048,True,3115,3115,True,0,0,0,True,24,24,True,[],3110
+m0142,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,HAZ,GH2014,post_12m,primary,1940,1940,True,353,353,True,0,0,0,True,16,16,True,[],353
+m0143,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,HAZ,KE2014,post_12m,primary,14166,14166,True,1498,1498,True,0,0,0,True,16,16,True,[],1497
+m0144,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,HAZ,NG2018,post_12m,primary,6912,6912,True,1263,1263,True,0,0,0,True,16,16,True,[],1259
+m0145,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,HAZ,GH2014+KE2014+NG2018,post_12m,primary,23018,23018,True,3114,3114,True,0,0,0,True,24,24,True,[],3109
+m0189,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,WAZ,GH2014,post_12m,primary,1940,1940,True,353,353,True,0,0,0,True,16,16,True,[],353
+m0190,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,WAZ,KE2014,post_12m,primary,14166,14166,True,1498,1498,True,0,0,0,True,16,16,True,[],1497
+m0191,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,WAZ,NG2018,post_12m,primary,6951,6951,True,1264,1264,True,0,0,0,True,16,16,True,[],1260
+m0192,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,WAZ,GH2014+KE2014+NG2018,post_12m,primary,23057,23057,True,3115,3115,True,0,0,0,True,24,24,True,[],3110
+m0236,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,WHZ,GH2014,post_12m,primary,1940,1940,True,353,353,True,0,0,0,True,16,16,True,[],353
+m0237,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,WHZ,KE2014,post_12m,primary,14166,14166,True,1498,1498,True,0,0,0,True,16,16,True,[],1497
+m0238,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,WHZ,NG2018,post_12m,primary,6942,6942,True,1264,1264,True,0,0,0,True,16,16,True,[],1260
+m0239,PRELIMINARY - measurement-weight documentation and final design review pending.,primary,S_IMP,WHZ,GH2014+KE2014+NG2018,post_12m,primary,23048,23048,True,3115,3115,True,0,0,0,True,24,24,True,[],3110

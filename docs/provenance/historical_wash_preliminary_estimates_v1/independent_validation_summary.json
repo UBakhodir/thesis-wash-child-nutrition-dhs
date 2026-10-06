@@ -1,0 +1,10 @@
+{
+ "label": "PRELIMINARY - measurement-weight documentation and final design review pending.",
+ "checks": 4,
+ "max_beta_abs_diff": 2.9639485310539726e-14,
+ "max_se_rel_diff": 7.516501865367786e-10,
+ "all_N_match": true,
+ "all_G_match": true,
+ "inputs_unchanged": true,
+ "passed": true
+}
