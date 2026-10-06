@@ -1,0 +1,9 @@
+{
+ "records_differing": 275,
+ "birth_after_interview_by_candidate": {
+  "ET_C1_triple_provisional": 0,
+  "ET_C2_century_1907_provisional": 0,
+  "ET_C3_century_2015_provisional": 0
+ },
+ "dates_missing_C1_only": 275
+}

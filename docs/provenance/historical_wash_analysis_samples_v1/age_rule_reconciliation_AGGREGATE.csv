@@ -1,0 +1,5 @@
+sample,records,reported_available,reported_absent,derived_minus_reported_0,derived_minus_reported_1,outside_0_1_negative,outside_0_1_ge2,derived_negative,derived_calendar_60,under5_by_reported,under5_by_derived,under5_total
+ET2016,10641,10641,0,5792,4847,2,0,0,70,10641,0,10641
+GH2014,5884,0,5884,0,0,0,0,0,0,0,5884,5884
+KE2014,20964,0,20964,0,0,0,0,0,0,0,20964,20964
+NG2018,33924,33924,0,18680,15233,9,2,0,183,33924,0,33924
