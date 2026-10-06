@@ -1,0 +1,30 @@
+{
+ "child_records_typed": 71413,
+ "typed_record_number_unique": true,
+ "candidate_rows_by_candidate": {
+  "ET_C1_triple_provisional": 10641,
+  "ET_C2_century_1907_provisional": 10641,
+  "ET_C3_century_2015_provisional": 10641,
+  "GREGORIAN_ESTABLISHED": 60772
+ },
+ "child_candidate_pairs_unique": true,
+ "rows_before_merge_equals_after": true,
+ "annual_extraction_key_duplicates_MEAN": 0,
+ "annual_rows_MEAN": 375480,
+ "unmatched_child_records_typed_level": 765,
+ "unmatched_reason_counts": {
+  "ET2016|no_usable_coordinates": 420,
+  "GH2014|no_usable_coordinates": 83,
+  "KE2014|no_usable_coordinates": 113,
+  "NG2018|no_usable_coordinates": 149
+ },
+ "coverage_rows_equal_clusters_x18": true,
+ "exclusion_categories_sum_to_records": true,
+ "final_category_equals_final_intersection": true,
+ "exclusion_categories_sum_to_applicable": true,
+ "readiness_rows": 576,
+ "cross_check_rows": 2400,
+ "cross_check_max_abs_diff": 1.4210854715202004e-14,
+ "cross_check_weights_sum_to_one_all": true,
+ "sources_unchanged": true
+}

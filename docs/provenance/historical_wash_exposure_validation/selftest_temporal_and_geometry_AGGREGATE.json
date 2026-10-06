@@ -1,0 +1,69 @@
+{
+ "temporal": {
+  "temporal_tests": [
+   {
+    "test": "within_one_year_birth_year_Jun2010",
+    "expected": 2010.0,
+    "got": 2010.0,
+    "pass": true
+   },
+   {
+    "test": "prenatal_within_one_year_Dec2010",
+    "expected": 2010.0,
+    "got": 2010.0,
+    "pass": true
+   },
+   {
+    "test": "span_post12_Jul2010",
+    "expected": 2010.5,
+    "got": 2010.5,
+    "pass": true
+   },
+   {
+    "test": "january_birth_post12_Jan2010",
+    "expected": 2010.0,
+    "got": 2010.0,
+    "pass": true
+   },
+   {
+    "test": "prenatal_span_Feb2010",
+    "expected": 2009.1111111111109,
+    "got": 2009.1111111111109,
+    "pass": true
+   },
+   {
+    "test": "post24_span_three_years_Mar2010",
+    "expected": 2010.6666666666667,
+    "got": 2010.6666666666667,
+    "pass": true
+   },
+   {
+    "test": "birth_near_end_post12_Dec2017_out_of_range",
+    "pass": true
+   },
+   {
+    "test": "incomplete_postnatal_flagged",
+    "pass": true
+   },
+   {
+    "test": "missing_annual_value_no_fill",
+    "pass": true
+   }
+  ],
+  "temporal_all_pass": true
+ },
+ "geometry": {
+  "geometry_clusters_tested": 150,
+  "note_total_area_is_tautological": "adjacent pixels share corners, so totals tile the disk for either edge model",
+  "straight_vs_densified_pixel_area_rel_err_median": 1.5609207482114584e-08,
+  "straight_vs_densified_pixel_area_rel_err_p99": 2.0720153282027808e-08,
+  "straight_vs_densified_pixel_area_rel_err_max": 2.0838427650105018e-08,
+  "straight_vs_densified_total_area_rel_err_max": 2.5646151868841116e-13,
+  "straight_vs_densified_mean_abs_diff_max": 0.0010034322046905686,
+  "straight_vs_densified_mean_abs_diff_median": 1.8302838554973277e-05,
+  "straight_vs_densified_valid_fraction_diff_max": 6.552584743482748e-07,
+  "partial_buffers_in_test": 5,
+  "mean_formula_vs_total_area_denominator_diff_max": 72.97004117086874,
+  "mean_formula_vs_total_area_denominator_diff_median": 0.9133585202892602
+ }
+}
