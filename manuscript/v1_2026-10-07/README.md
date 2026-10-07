@@ -1,5 +1,7 @@
 # Manuscript source package v1 (2026-10-07)
 
+> **Superseded (2026-10-07, correction pass).** See `POINTER_TO_V2.md` and `../v2_2026-10-07/`, the current canonical manuscript source. No empirical number changed; the literature review and discussion chapters received substantive corrections.
+
 Developed chapter sources for the thesis *"The Impact of Improved Water and Sanitation on Child Nutritional Outcomes in Sub-Saharan Africa: Evidence from DHS and Geospatial Data"* (registered title, unchanged — see `01_introduction.md` §1.8 for a suggested, not adopted, alternative). This package is the **canonical, current manuscript source**. It does not replace or overwrite any earlier manuscript material (Section "Superseded files" below); it is a new version.
 
 ## What this is

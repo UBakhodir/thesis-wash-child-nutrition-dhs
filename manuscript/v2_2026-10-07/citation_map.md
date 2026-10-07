@@ -1,0 +1,36 @@
+# Citation map (2026-10-07)
+
+Every in-text citation in the v2 chapter files, its bibliography key, the version of the source actually used, and the location supporting the specific claim made at that citation. "Version used" distinguishes the working-paper from the published-article version where both exist (Geruso and Spears). "Supporting location" gives the page/section where available from this pass's direct reading, or states that the claim is a general, non-page-specific characterisation drawn from the abstract/audit record.
+
+| Original citation wording (as rendered) | Bibliography key | Version used | Supporting location |
+|---|---|---|---|
+| Victora, de Onis, Hallal, Blossner, and Shrimpton (2010) | `Victora2010` | Published article, *Pediatrics* | Abstract-level claim (growth faltering timing); full text previously read per source audit, not re-read this pass |
+| Black, Victora, Walker, Bhutta, Christian, de Onis, et al. (2013) | `Black2013` | Published article, *The Lancet* | Abstract-level claim (proximate determinants framework); full text previously read per source audit, not re-read this pass |
+| Victora, Adair, Fall, Hallal, Martorell, Richter, and Sachdev (2008) | `Victora2008` | Published article, *The Lancet* | General claim (long-run consequences); full text previously read per source audit, not re-read this pass |
+| Cumming and Cairncross (2016) | `CummingCairncross2016` | Published article, *Maternal & Child Nutrition* | General claim (comprehensive-package argument); full text previously read per source audit, not re-read this pass |
+| Cumming et al. (2019) | `Cumming2019` | Published article, *BMC Medicine*, open access | **Read in full this pass** (pp. 1–9). Supports: trial design and enrolment (p. 2), "no effect on linear growth" finding (pp. 2, 5, Fig. 2), mixed diarrhoea results (pp. 2–3), biological plausibility not challenged (p. 3, consensus message 2 heading), basic-vs-comprehensive/"transformative WASH" distinction (pp. 5–7) |
+| Local Burden of Disease WaSH Collaborators (2020) | `LBDWaSH2020` | Published article, *Lancet Global Health* | W_IMP/S_IMP product definitions verified via PMC7443708 in a prior session (`docs/provenance/historical_wash_ihme_product_definitions_v1_2026-10-07.md`); not re-read this pass |
+| Donohue, Church, Assaf, and Mayala (2023) | `Donohue2023` | Published report, DHS Spatial Analysis Report 23 | Title-page and general finding (community sanitation coverage associated with stunting) per source audit's full-text verification; not re-read this pass |
+| Skoufias and Vinha (2026) | `SkoufiasVinha2026` | Published article, *PLOS One* | General framework claim per source audit's full-text verification; not re-read this pass |
+| Rakotomanana, Komakech, Walters, and Stoecker (2020) | `Rakotomanana2020` | Published article, *IJERPH* | General claim (JMP indicators and linear growth) per source audit's full-text verification; not re-read this pass |
+| Addae, Sulemana, Yakubu, Atosona, Tahiru, and Azupogo (2024) | `Addae2024` | Published article, *PLOS ONE* | General claim (Ghana stunting/wasting/WASH) per source audit's full-text verification; not re-read this pass |
+| Günther and Fink (2010) | `Gunther2010` | World Bank Policy Research Working Paper 5275 | General claim per source audit's full-text verification; not re-read this pass |
+| Spears (2013) | `Spears2013` | World Bank Policy Research Working Paper 6351 | General claim per source audit's full-text verification; not re-read this pass |
+| Headey and Palloni (2019) | `HeadeyPalloni2019` | Published article, *Demography* | **Read this pass** (pp. 729–731: abstract, introduction, first page of results). Supports: subnational panel/DID design description (p. 731), the specific mixed finding — water insignificant for most outcomes except piped water and stunting; sanitation reduces mortality/diarrhoea but not stunting/wasting (abstract, p. 729) |
+| Geruso and Spears (2015, rev. 2017) | `GerusoSpears2015` | NBER Working Paper 21184 (not the 2018 published version) | **Read this pass** (pp. 1–3: title page, abstract, introduction). Supports: the Muslim–Hindu infant mortality puzzle, the "important exception" of sanitation among otherwise-worse neighbourhood characteristics, and the identification logic exploiting this divergence (p. 1) |
+| Balk, Pullum, Storeygard, Greenwell, and Neuman (2004) | `Balk2004` | Published article, *Population, Space and Place* | General claim (spatial unit of analysis) per source audit's full-text verification; not re-read this pass |
+| Burgert, Colston, Roy, and Zachary (2013) | `Burgert2013` | DHS Spatial Analysis Report 7 | Displacement distances (2 km urban; 5/10 km rural) per source audit's full-text verification; not re-read this pass |
+| Pérez-Heydrich, Warren, Burgert, and Emch (2013) | `PerezHeydrich2013` | DHS Spatial Analysis Report 8 | General claim per source audit's full-text verification; not re-read this pass |
+| Johnson, Jacob, and Brown (2013) | `JohnsonJacobBrown2013` | Published article, *Global Health: Science and Practice* | General claim (satellite-DHS linkage precedent) per source audit's full-text verification; not re-read this pass |
+| Blom, Ortiz-Bobea, and Hoddinott (2022) | `Blom2022` | Published article, *JEEM* | Abstract/design-level claim only (matching-method structure); **not independently re-read this pass**, relying on the source audit's prior full-text verification |
+| de Onis et al. (2006) | `deOnis2006` | Published article, *Acta Paediatrica* | Standard citation for the WHO Child Growth Standards reference population; per source audit's full-text verification, not re-read this pass |
+
+## Validation performed on this map
+
+- Every key above resolves to exactly one entry in `bibliography.bib` (programmatic check, this pass: 20 keys used, 0 missing, 0 duplicates).
+- 6 further entries in `bibliography.bib` (`Croft2023`, `Gebru2019`, `ICF2012`, `JMP2025`, `Momberg2021`, `UNICEF2025`) are not cited in any v2 chapter and are therefore excluded from the rendered reference list by default under the rendering workflow in `MASTER_ASSEMBLY.md` (pandoc-citeproc's default behaviour: only cited keys are rendered unless a `nocite` directive is added, which this package does not use).
+- Years and author spellings in the table above were checked against `bibliography.bib` directly; no mismatch found.
+
+## Depth of verification, stated precisely
+
+Three sources were read in full or substantial part **in this correction pass** specifically to verify the claims this manuscript makes about them: Cumming et al. (2019), Headey and Palloni (2019), and Geruso and Spears (2015). This was done because these three are the sources whose findings this manuscript's argument most depends on getting precisely right (Section 2.2–2.3; Section 6.1). The remaining 17 cited sources rely on the verification already performed and recorded in `sources/bibliography/bibliography_source_audit.csv` (bibliographic identity, author/title/DOI) during an earlier phase of this project; their specific substantive claims as used in this manuscript were not re-verified against the full source text in this pass, and this is stated above for each, not implied as equivalent to the three sources that were.
