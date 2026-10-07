@@ -1,8 +1,8 @@
-# Manuscript source package v3 (2026-10-07) — final targeted corrections + university-compliant build
+# Manuscript source package v4 (2026-10-07) — material verification gaps closed
 
-> **Superseded (2026-10-07, later the same day).** See `POINTER_TO_V4.md` and `../v4_2026-10-07/`, the current canonical manuscript source. All 24 primary historical models are now independently reproduced, the spatial data layer is independently verified, and one literature overclaim (Donohue et al. 2023) is corrected. No empirical estimate changed.
+Supersedes `manuscript/v3_2026-10-07/` as the canonical manuscript source. v1, v2, and v3 are preserved unchanged; see each version's own pointer file (`v1_2026-10-07/POINTER_TO_V2.md`, `v2_2026-10-07/POINTER_TO_V3.md`, `v3_2026-10-07/POINTER_TO_V4.md`). This is the **single current entry point**. **No empirical estimate changed.**
 
-Supersedes `manuscript/v2_2026-10-07/` as the canonical manuscript source. v1 and v2 are preserved unchanged; see `../v2_2026-10-07/POINTER_TO_V3.md` and `../v1_2026-10-07/POINTER_TO_V2.md`. This is the **single current entry point** — do not treat v1 or v2 as an alternative authority for anything corrected here (full list: `CORRECTION_LOG.md`). **No empirical estimate changed.**
+This pass responds to `docs/provenance/independent_audit_v1_2026-10-07/`: all 24 primary historical model cells are now independently reproduced (previously 4 of 24); the spatial-extraction raw data layer is independently verified against 48 test cases; IPUMS/IHME primary metadata re-checked directly from the raw files; nine literature sources read directly against their specific claims (previously three), finding and correcting one real overclaim (Donohue et al. 2023). Full detail: `CORRECTION_LOG.md`.
 
 ## What this pass did
 

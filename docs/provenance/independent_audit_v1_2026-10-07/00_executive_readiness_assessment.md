@@ -1,5 +1,7 @@
 # Executive readiness assessment (2026-10-07)
 
+> **Partially superseded (2026-10-07, later the same day).** §2 and §5's independent-reproduction count ("exactly two things") is out of date. See `07_update_2026-10-07_pass2.md`: all 24 primary historical model cells are now independently reproduced, the spatial-extraction data layer is independently verified, and one literature overclaim (Donohue et al. 2023) is corrected in `manuscript/v4_2026-10-07/`. Everything else in this file is unaffected.
+
 Independent audit of commit `5da82cf` (branch `main`, confirmed equal to `origin/main`). Full evidence in `02_audit_checklist_and_evidence_log.md`; full issue list in `03_issue_register.md`; authority map in `01_repository_authority_map.md`.
 
 ## 1. What was actually inspected

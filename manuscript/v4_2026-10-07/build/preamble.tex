@@ -1,0 +1,84 @@
+% Preamble implementing the University of Bonn Economics Department thesis
+% formatting specification (merkblatt-abschlussarbeiten-ba-ma, last updated
+% 23.07.2026), "default layout" alternative (the university's own LaTeX/Word
+% template by Dr. Holger Gerhardt was not available locally; this preamble was
+% built directly from the published specification instead, since the
+% guidelines explicitly permit a different program as long as these exact
+% specifications are matched and the amount of text per page is not
+% increased).
+\documentclass[11pt,a4paper]{article}
+
+% --- Fonts: Times New Roman via XeLaTeX/fontspec (the spec's primary choice;
+% Palatino Linotype is the only stated alternative and is not used here).
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage[a4paper,
+  left=2.5cm, right=4.0cm,   % combined 6.5cm, as the guidelines' own example
+  top=2.8cm, bottom=2.8cm,   % combined 5.6cm, as the guidelines' own example
+  includefoot]{geometry}
+
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{amsmath,amssymb}
+\usepackage[american]{babel} % en dash / punctuation conventions
+
+% --- Main text: 11pt / 19.5pt leading (-> 35 lines/page with the margins above)
+\renewcommand{\normalsize}{\fontsize{11}{19.5}\selectfont}
+\normalsize
+
+% --- Table of contents and block quotations: 15pt leading
+\renewcommand{\quote}{\begin{list}{}{\setlength{\leftmargin}{1cm}}\item\relax}
+\AtBeginEnvironment{quote}{\fontsize{11}{15}\selectfont}
+
+% --- Tables, figure/table captions, references: 15pt leading, 10pt font
+\captionsetup{font={footnotesize}}  % approximates the 10pt/15pt spec for any captions used
+\renewcommand{\thetable}{\arabic{table}}
+\usepackage{csquotes}
+
+% --- Footnotes: 13.5pt leading, 9pt font
+\renewcommand\footnotesize{\fontsize{9}{13.5}\selectfont}
+
+% --- Heading styles (manual numbering is baked into each heading's text,
+% consistent with manuscript/v3_2026-10-07/CROSS_REFERENCE_MAP.md, so
+% unnumbered \section*/\subsection*/\subsubsection* commands are used
+% throughout and styled here to match the four specified heading levels).
+\titleformat{name=\section}[block]
+  {\fontsize{14}{19.5}\bfseries\selectfont}{}{0pt}{}
+\titlespacing*{\section}{0pt}{39pt}{19.5pt}
+
+\titleformat{name=\subsection}[block]
+  {\fontsize{12}{19.5}\bfseries\selectfont}{}{0pt}{}
+\titlespacing*{\subsection}{0pt}{19.5pt}{19.5pt}
+
+\titleformat{name=\subsubsection}[block]
+  {\fontsize{11}{19.5}\bfseries\selectfont}{}{0pt}{}
+\titlespacing*{\subsubsection}{0pt}{9.75pt}{9.75pt}
+
+\titleformat{name=\paragraph}[block]
+  {\fontsize{11}{19.5}\selectfont}{}{0pt}{}  % Level 4, not bold; avoided where possible
+\titlespacing*{\paragraph}{0pt}{9.75pt}{0pt}
+
+\setcounter{secnumdepth}{0} % headings are manually numbered in their own text
+\setcounter{tocdepth}{3}    % include subsections and subsubsections in the TOC
+
+% --- Bibliography: biblatex + biber, Chicago author-date (the style the
+% guidelines name explicitly and state is available via BibLaTeX).
+\usepackage[style=chicago-authordate, backend=biber]{biblatex}
+\addbibresource{../bibliography.bib}
+
+% --- Page numbering: Arabic, starting at 1 on the first page of the main
+% text after the table of contents (guidelines, "Title page" / numbering
+% section). Title page and TOC are not counted; the thesis.tex driver below
+% resets the page counter after the TOC.
+\pagenumbering{arabic}
+
+\title{}
+\date{}
+\author{}
