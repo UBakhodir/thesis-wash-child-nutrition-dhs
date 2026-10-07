@@ -1,5 +1,7 @@
 # Final reporting map (2026-10-07)
 
+> **Superseded (2026-10-07, later the same day).** The baseline "minimal model is confounded" line and the historical extension's two-tier status scheme (which placed the pooled water–HAZ model in "Validated for main reporting," above its sibling models) are both corrected. See `final_empirical_package_v3_2026-10-07/01_final_reporting_map.md` for the current version and `historical_wash_reporting_corrections_v1_2026-10-07.md` for why.
+
 Every analysis family, assigned one of: **Validated for main reporting**, **Validated sensitivity**, **Exploratory with specified limitations**, **Invalid/superseded**, **Not estimable**.
 
 ## Baseline (current four-round, cross-sectional)

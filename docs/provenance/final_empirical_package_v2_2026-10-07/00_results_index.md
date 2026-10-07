@@ -1,5 +1,7 @@
 # Final empirical package v2 — results index (2026-10-07, closure milestone)
 
+> **Partially superseded (2026-10-07, later the same day).** §C's language on measurement-sample representativeness and the pooled estimand ("weighted equally" read as an average) has been corrected — see `final_empirical_package_v3_2026-10-07/00_results_index.md`. §A (baseline), §B's factual content (candidate status, independent verification numbers), and §D/§E are unchanged and still current.
+
 Supersedes `final_empirical_package_v1_2026-10-07/00_results_index.md` (same day, earlier). v1 is preserved unchanged with a pointer banner added at its top; this file is the current authority. Changes from v1: the pooled headline historical estimate is now independently verified (new); Ethiopia candidate C1 is reclassified invalid; the IHME water/sanitation product definitions are resolved; a reporting error about wealth and cluster FE is corrected; the unresolved-issues list is reconciled into one register.
 
 ## A. Baseline (current four-round, cross-sectional WASH) — unchanged from v1

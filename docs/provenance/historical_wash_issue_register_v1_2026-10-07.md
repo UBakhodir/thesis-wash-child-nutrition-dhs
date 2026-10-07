@@ -1,5 +1,7 @@
 # Historical WASH extension: issue register, v1 (2026-10-07)
 
+> **Phrasing correction (2026-10-07, later the same day), rows unchanged otherwise.** Item #1's "reporting consequence" cell ("report as population-representative...") and item #8's ("targets 'the average country-level association... weighted equally'") used language later found to overstate or mislead. See `historical_wash_reporting_corrections_v1_2026-10-07.md` §1–2 for the corrected phrasing to use when citing these two items; the row content below (evidence, status, affected analyses) is otherwise still accurate and unchanged.
+
 This register supersedes two partial lists that disagreed in scope: the 10-item "unresolved issues" list in `historical_wash_preliminary_estimation_methods_2026-10-06.md` §9, and the 7-item summary in `final_empirical_package_v1_2026-10-07/02_status_and_limitations.md` (which had merged two items and dropped two others). Every item from both lists is accounted for below, plus items found in this session's work. Items are typed as: **(E)** correctable implementation/reporting error, **(D)** missing essential documentation, **(C)** author-authorized design choice, **(L)** inherent limitation requiring disclosure.
 
 | # | Issue | Type | Evidence | Resolution/status | Affected analyses | Reporting consequence | Required action |
