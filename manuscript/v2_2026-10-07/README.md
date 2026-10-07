@@ -1,5 +1,7 @@
 # Manuscript source package v2 (2026-10-07) — correction pass
 
+> **Superseded (2026-10-07, later the same day).** See `POINTER_TO_V3.md` and `../v3_2026-10-07/`, the current canonical manuscript source and now also a verified, compiling diagnostic PDF build. No empirical number changed.
+
 Supersedes `manuscript/v1_2026-10-07/` as the canonical manuscript source. v1 is preserved unchanged; see `../v1_2026-10-07/POINTER_TO_V2.md`. This package applies a focused scholarly correction to v1: fixing an overstated exposure-timing comparison, several overgeneralized literature claims, converting to machine-readable citations, and moving administrative/title discussion out of chapter prose. **No empirical estimate changed.** See `CORRECTION_LOG.md` for the full, itemised list.
 
 ## What this is

@@ -1,0 +1,52 @@
+% Diagnostic build driver. NOT the final submission PDF (see
+% manuscript/v3_2026-10-07/MASTER_ASSEMBLY.md and the completion report for
+% what this is and is not). Produces a single PDF from the title page, table
+% of contents, the eight chapters and three appendices, and the reference
+% list, using the formatting specification in preamble.tex.
+\input{preamble.tex}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\input{titlepage.tex}
+
+\setstretch{1}
+{\fontsize{11}{15}\selectfont\tableofcontents}
+\clearpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{chapters/08_abstract.tex}
+\clearpage
+\input{chapters/01_introduction.tex}
+\clearpage
+\input{chapters/02_literature_review.tex}
+\clearpage
+\input{chapters/03_data_and_variables.tex}
+\clearpage
+\input{chapters/04_empirical_strategy.tex}
+\clearpage
+\input{chapters/05_results.tex}
+\clearpage
+\input{chapters/06_discussion_and_limitations.tex}
+\clearpage
+\input{chapters/07_conclusion.tex}
+
+\clearpage
+\section*{References}
+\addcontentsline{toc}{section}{References}
+\printbibliography[heading=none]
+
+\clearpage
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+\input{appendices/A_variable_definitions_and_sample_flow.tex}
+\clearpage
+\input{appendices/B_model_specifications_and_independent_verification.tex}
+\clearpage
+\input{appendices/C_historical_diagnostics_and_ethiopia.tex}
+
+\input{declaration.tex}
+
+\end{document}

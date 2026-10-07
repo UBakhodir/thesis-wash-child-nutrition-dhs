@@ -1,0 +1,516 @@
+xelatex: security risk: running with elevated privileges
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(main.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(preamble.tex (C:\Program Files\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Program Files\MiKTeX\tex/latex/base\size11.clo))
+(C:\Program Files\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\Program Files\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
+(C:\Program Files\MiKTeX\tex/latex/l3kernel\expl3.sty
+(C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-xetex.def)))
+(C:\Program Files\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+(C:\Program Files\MiKTeX\tex/latex/base\fontenc.sty)
+(C:\Program Files\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Program Files\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Program Files\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Program Files\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/setspace\setspace.sty)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/titlesec\titlesec.sty)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/titlesec\titletoc.sty)
+(C:\Program Files\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
+) (C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(C:\Program Files\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/infwarerr\infwarerr.sty)))
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Program Files\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/gettitlestring\gettitlestring
+.sty (C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/kvoptions\kvoptions.sty)))
+ (C:\Program Files\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/stringenc\stringenc.sty)
+(C:\Program Files\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(C:\Program Files\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Program Files\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty)))
+(C:\Program Files\MiKTeX\tex/latex/hyperref\hxetex.def
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.s
+ty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/generic/uniquecounter\uniquecounter.s
+ty))) (C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(C:\Program Files\MiKTeX\tex/latex/tools\longtable.sty)
+(C:\Program Files\MiKTeX\tex/latex/tools\array.sty)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/caption\caption.sty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/caption\caption3.sty)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/caption\ltcaption.sty))
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+(C:\Program Files\MiKTeX\tex/generic/babel\babel.sty
+(C:\Program Files\MiKTeX\tex/generic/babel\xebabel.def)
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Program Files\MiKTeX\tex/latex/arabi\bblopts.cfg)
+(C:\Program Files\MiKTeX\tex/generic/babel/locale/en\babel-american.tex)
+(C:\Program Files\MiKTeX\tex/latex/babel-english\american.ldf
+(C:\Program Files\MiKTeX\tex/latex/babel-english\english.ldf)))
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/csquotes\csquotes.sty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/csquotes\csquotes.def)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/csquotes\csquotes.cfg))
+(C:\Program Files\MiKTeX\tex/latex/biblatex\biblatex.sty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/logreq\logreq.sty
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/logreq\logreq.def))
+(C:\Program Files\MiKTeX\tex/latex/base\ifthen.sty)
+(C:\Program Files\MiKTeX\tex/latex/biblatex\blx-dm.def)
+(C:\Program Files\MiKTeX\tex/latex/biblatex\blx-unicode.def)
+(C:\Program Files\MiKTeX\tex/latex/biblatex\blx-compat.def)
+(C:\Program Files\MiKTeX\tex/latex/biblatex\biblatex.def)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/biblatex-chicago\chicago-author
+date.bbx)
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/biblatex-chicago\chicago-author
+date.cbx
+(C:\Users\user\AppData\Roaming\MiKTeX\tex/latex/biblatex-chicago\chicago-dates-
+common.cbx)) (C:\Program Files\MiKTeX\tex/latex/biblatex\biblatex.cfg)
+(C:\Program Files\MiKTeX\tex/latex/biblatex\blx-case-expl3.sty)))
+No file main.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+(C:\Program Files\MiKTeX\tex/latex/biblatex/lbx\american.lbx
+(C:\Program Files\MiKTeX\tex/latex/biblatex/lbx\english.lbx)
+(C:\Program Files\MiKTeX\tex/latex/biblatex/lbx\english.lbx))
+No file main.bbl.
+(titlepage.tex [1])
+No file main.toc.
+[1] (chapters/08_abstract.tex) [1miktex-dvipdfmx: security risk: running with elevated privileges
+] (chapters/01_introduction.tex
+
+LaTeX Warning: Citation 'Victora2008' on page 2 undefined on input line 4.
+
+
+LaTeX Warning: Citation 'Victora2010' on page 2 undefined on input line 4.
+
+
+LaTeX Warning: Citation 'Black2013' on page 2 undefined on input line 4.
+
+
+LaTeX Warning: Citation 'CummingCairncross2016' on page 2 undefined on input li
+ne 4.
+
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 7.
+
+
+LaTeX Warning: Citation 'Donohue2023' on page 2 undefined on input line 9.
+
+
+LaTeX Warning: Citation 'SkoufiasVinha2026' on page 2 undefined on input line 9
+.
+
+
+LaTeX Warning: Citation 'Rakotomanana2020' on page 2 undefined on input line 14
+.
+
+
+LaTeX Warning: Citation 'Addae2024' on page 2 undefined on input line 14.
+
+[2]
+
+LaTeX Warning: Citation 'LBDWaSH2020' on page 3 undefined on input line 16.
+
+[3] [4]) [5] (chapters/02_literature_review.tex
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 5.
+
+
+LaTeX Warning: Citation 'CummingCairncross2016' on page 6 undefined on input li
+ne 7.
+
+
+LaTeX Warning: Citation 'Cumming2019' on page 6 undefined on input line 7.
+
+
+LaTeX Warning: Citation 'Black2013' on page 6 undefined on input line 7.
+
+
+LaTeX Warning: Citation 'Victora2010' on page 6 undefined on input line 7.
+
+
+LaTeX Warning: Citation 'Rakotomanana2020' on page 6 undefined on input line 12
+.
+
+
+LaTeX Warning: Citation 'Addae2024' on page 6 undefined on input line 12.
+
+
+LaTeX Warning: Citation 'Gunther2010' on page 6 undefined on input line 12.
+
+
+LaTeX Warning: Citation 'Spears2013' on page 6 undefined on input line 12.
+
+
+LaTeX Warning: Citation 'HeadeyPalloni2019' on page 6 undefined on input line 1
+4.
+
+[6]
+Overfull \hbox (7.45686pt too wide) in paragraph at lines 19--20
+\TU/TimesNewRoman(0)/m/n/10.95 Randomised evidence on WASH and child growth com
+es primarily from three cluster-randomised
+
+LaTeX Warning: Citation 'Cumming2019' on page 7 undefined on input line 21.
+
+
+LaTeX Warning: Citation 'Cumming2019' on page 7 undefined on input line 21.
+
+
+LaTeX Warning: Citation 'Cumming2019' on page 7 undefined on input line 21.
+
+
+LaTeX Warning: Citation 'Cumming2019' on page 7 undefined on input line 21.
+
+[7]
+
+LaTeX Warning: Citation 'Cumming2019' on page 8 undefined on input line 25.
+
+
+LaTeX Warning: Citation 'GerusoSpears2015' on page 8 undefined on input line 27
+.
+
+
+LaTeX Warning: Citation 'Donohue2023' on page 8 undefined on input line 32.
+
+
+LaTeX Warning: Citation 'SkoufiasVinha2026' on page 8 undefined on input line 3
+2.
+
+
+LaTeX Warning: Citation 'Balk2004' on page 8 undefined on input line 32.
+
+[8]
+
+LaTeX Warning: Citation 'Rakotomanana2020' on page 9 undefined on input line 39
+.
+
+
+LaTeX Warning: Citation 'Addae2024' on page 9 undefined on input line 39.
+
+
+LaTeX Warning: Citation 'Gunther2010' on page 9 undefined on input line 39.
+
+
+LaTeX Warning: Citation 'Spears2013' on page 9 undefined on input line 39.
+
+
+LaTeX Warning: Citation 'HeadeyPalloni2019' on page 9 undefined on input line 3
+9.
+
+
+LaTeX Warning: Citation 'Burgert2013' on page 9 undefined on input line 44.
+
+
+LaTeX Warning: Citation 'PerezHeydrich2013' on page 9 undefined on input line 4
+4.
+
+
+LaTeX Warning: Citation 'JohnsonJacobBrown2013' on page 9 undefined on input li
+ne 44.
+
+
+LaTeX Warning: Citation 'Blom2022' on page 9 undefined on input line 44.
+
+
+Overfull \hbox (28.25644pt too wide) in paragraph at lines 44--45
+\TU/TimesNewRoman(0)/m/n/10.95 confidentiality ([]; []), which affects any extr
+action method: whichever
+[9]
+
+LaTeX Warning: Citation 'Donohue2023' on page 10 undefined on input line 49.
+
+
+LaTeX Warning: Citation 'SkoufiasVinha2026' on page 10 undefined on input line 
+49.
+
+
+LaTeX Warning: Citation 'HeadeyPalloni2019' on page 10 undefined on input line 
+49.
+
+
+LaTeX Warning: Citation 'Cumming2019' on page 10 undefined on input line 49.
+
+) [10] [11] (chapters/03_data_and_variables.tex
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 7.
+
+
+LaTeX Warning: Citation 'deOnis2006' on page 12 undefined on input line 14.
+
+
+Overfull \hbox (2.93532pt too wide) in paragraph at lines 14--15
+\TU/TimesNewRoman(0)/m/n/10.95 Three outcomes are constructed following standar
+d DHS/WHO anthropometric practice: height-
+
+Overfull \hbox (0.5623pt too wide) in paragraph at lines 14--15
+\TU/TimesNewRoman(0)/m/n/10.95 for-age (HAZ), weight-for-age (WAZ), and weight-
+for-height (WHZ), each a standard-deviation
+
+Overfull \hbox (4.18733pt too wide) in paragraph at lines 19--20
+\TU/TimesNewRoman(0)/m/n/10.95 Four exposures are constructed for the baseline 
+sample: own-household improved/non-improved
+
+Overfull \hbox (6.98257pt too wide) in paragraph at lines 19--20
+\TU/TimesNewRoman(0)/m/n/10.95 counterparts, each following the WHO/UNICEF Join
+t Monitoring Programme (JMP) ”improved”
+[12]
+
+LaTeX Warning: Citation 'Burgert2013' on page 13 undefined on input line 24.
+
+
+LaTeX Warning: Citation 'LBDWaSH2020' on page 13 undefined on input line 29.
+
+[13] [14]) [15] (chapters/04_empirical_strategy.tex
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd)
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 7.
+
+[16] [17] [18]) [19] [20] (chapters/05_results.tex
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 7.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 1 on input line 24.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 2 on input line 43.
+
+[21]
+Overfull \hbox (139.83745pt too wide) in alignment at lines 56--61
+ [] [] [] [] [] 
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 3 on input line 61.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4 on input line 81.
+
+[22]
+Overfull \hbox (329.10014pt too wide) in alignment at lines 103--108
+ [] [] [] [] [] 
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5 on input line 108.
+
+
+Overfull \hbox (91.48784pt too wide) in alignment at lines 118--123
+ [] [] [] [] [] 
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 6 on input line 123.
+
+[23]
+Overfull \hbox (80.48097pt too wide) in alignment at lines 142--149
+ [] [] [] 
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 7 on input line 149.
+
+
+Overfull \hbox (2.23767pt too wide) in paragraph at lines 152--153
+\TU/TimesNewRoman(0)/m/n/10.95 stricted to the smaller common sample eligible u
+nder all four windows — a \TU/TimesNewRoman(0)/b/n/10.95 sample-composition
+[24]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 8 on input line 170.
+
+) [25] (chapters/06_discussion_and_limitations.tex
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 5.
+
+
+LaTeX Warning: Citation 'HeadeyPalloni2019' on page 26 undefined on input line 
+7.
+
+
+LaTeX Warning: Citation 'Cumming2019' on page 26 undefined on input line 9.
+
+[26] [27]
+
+LaTeX Warning: Citation 'CummingCairncross2016' on page 28 undefined on input l
+ine 37.
+
+[28]) [29] (chapters/07_conclusion.tex
+
+LaTeX Warning: Citation 'Cumming2019' on page 30 undefined on input line 6.
+
+) [30] [31]
+
+LaTeX Warning: Empty bibliography on input line 39.
+
+[32] (appendices/A_variable_definitions_and_sample_flow.tex
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 5.
+
+
+LaTeX Warning: Citation 'deOnis2006' on page 33 undefined on input line 13.
+
+
+Overfull \hbox (1272.20363pt too wide) in alignment at lines 12--24
+ [] [] [] 
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 9 on input line 24.
+
+
+Overfull \hbox (102.62413pt too wide) in paragraph at lines 30--31
+\TU/TimesNewRoman(0)/m/n/10.95 36,145, 4,426 clusters). Full flow: \TU/lmtt/m/n
+/10.95 outputs/household_community_wash/01_development_sample_flow.csv\TU/Times
+NewRoman(0)/m/n/10.95 . 
+
+Overfull \hbox (42.47562pt too wide) in paragraph at lines 35--36
+\TU/TimesNewRoman(0)/m/n/10.95 Raw analysis candidates, established countries (
+60,772) → candidate == GREGORIAN_ESTABLISHED
+
+Overfull \hbox (501.31674pt too wide) in paragraph at lines 35--36
+\TU/TimesNewRoman(0)/m/n/10.95 in \TU/lmtt/m/n/10.95 scripts/historical_wash/20
+_validate_pooled_estimate.py\TU/TimesNewRoman(0)/m/n/10.95 ’s execution log (\T
+U/lmtt/m/n/10.95 data/processed/estimation/pooled_independent_validation_202610
+07T090003Z/execution_log.txt\TU/TimesNewRoman(0)/m/n/10.95 ,
+
+Overfull \hbox (468.20752pt too wide) in alignment at lines 45--52
+ [] [] 
+[33]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 10 on input line 52.
+
+)
+Overfull \hbox (24.7288pt too wide) in paragraph at lines 60--45
+\TU/TimesNewRoman(0)/m/n/10.95 See \TU/lmtt/m/n/10.95 docs/provenance/final_emp
+irical_package_v3_2026-10-07/00_results_index.md
+[34] (appendices/B_model_specifications_and_independent_verification.tex
+Overfull \hbox (2.29225pt too wide) in paragraph at lines 4--4
+|\TU/TimesNewRoman(0)/b/n/12 B.1 Inference-convention comparison (baseline hous
+ehold cluster-FE model, HAZ)| 
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 5.
+
+
+Overfull \hbox (80.53181pt too wide) in alignment at lines 12--16
+ [] [] [] [] [] [] [] 
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 11 on input line 16.
+
+
+Overfull \hbox (164.72772pt too wide) in paragraph at lines 19--20
+\TU/TimesNewRoman(0)/m/n/10.95 does; PRIMARY does not, following the project’s 
+cross-validated adjudication against \TU/lmtt/m/n/10.95 linearmodels.PanelOLS(a
+uto_df=True)\TU/TimesNewRoman(0)/m/n/10.95 ;
+
+Overfull \hbox (23.30992pt too wide) in paragraph at lines 24--25
+\TU/TimesNewRoman(0)/m/n/10.95 timator. A prior independent check (\TU/lmtt/m/n
+/10.95 scripts/historical_wash/17_validate_estimates.py\TU/TimesNewRoman(0)/m/n
+/10.95 )
+
+Overfull \hbox (1.7405pt too wide) in paragraph at lines 26--27
+\TU/TimesNewRoman(0)/m/n/10.95 torical extension. \TU/lmtt/m/n/10.95 scripts/hi
+storical_wash/20_validate_pooled_estimate.py\TU/TimesNewRoman(0)/m/n/10.95 , wr
+it-
+
+Overfull \hbox (17.9595pt too wide) in alignment at lines 40--49
+ [] [] [] [] 
+[35]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 12 on input line 49.
+
+
+Overfull \hbox (205.35684pt too wide) in paragraph at lines 52--53
+[]\TU/TimesNewRoman(0)/m/n/10.95 Full execution log and comparison JSON: \TU/lm
+tt/m/n/10.95 data/processed/estimation/pooled_independent_validation_20261007T0
+90003Z/
+
+Overfull \hbox (25.63538pt too wide) in paragraph at lines 54--55
+\TU/TimesNewRoman(0)/m/n/10.95 sues (Section 6; \TU/lmtt/m/n/10.95 docs/provena
+nce/historical_wash_issue_register_v1_2026-10-07.md\TU/TimesNewRoman(0)/m/n/10.
+95 ). 
+)
+Overfull \hbox (211.6451pt too wide) in paragraph at lines 59--47
+\TU/TimesNewRoman(0)/m/n/10.95 pass, \TU/lmtt/m/n/10.95 data/processed/estimati
+on/run_20261006T185646Z/design_checks_20261006T190020Z/design_checks_summary.js
+on\TU/TimesNewRoman(0)/m/n/10.95 ,
+[36] (appendices/C_historical_diagnostics_and_ethiopia.tex
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 7.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 13 on input line 29.
+
+[37]
+Overfull \hbox (85.82307pt too wide) in alignment at lines 59--67
+ [] [] 
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 15 on input line 67.
+
+)
+Overfull \hbox (211.02995pt too wide) in paragraph at lines 70--49
+\TU/TimesNewRoman(0)/m/n/10.95 gether as a pre-specified sensitivity family (\T
+U/lmtt/m/n/10.95 docs/provenance/historical_wash_preliminary_estimation_methods
+_2026-10-06.md
+(declaration.tex [38])
+
+Package longtable Warning: Table widths have changed. Rerun LaTeX.
+
+[39] (main.aux)miktex-dvipdfmx: major issue: So far, no MiKTeX administrator has checked for updates.
+
+
+LaTeX Warning: There were undefined references.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+ )
+(see the transcript file for additional information)
+Output written on main.pdf (41 pages).
+Transcript written on main.log.
+xelatex: major issue: So far, no MiKTeX administrator has checked for updates.
