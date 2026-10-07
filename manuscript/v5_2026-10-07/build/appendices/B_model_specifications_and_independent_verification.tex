@@ -1,0 +1,59 @@
+\section*{Appendix B --- Model specifications, inference conventions, and independent verification}
+\addcontentsline{toc}{section}{Appendix B --- Model specifications, inference conventions, and independent verification}
+
+\subsection*{B.1 Inference-convention comparison (baseline household cluster-FE model, HAZ)}
+\addcontentsline{toc}{subsection}{B.1 Inference-convention comparison (baseline household cluster-FE model, HAZ)}
+
+\begingroup\fontsize{10}{15}\selectfont
+\begin{longtable}{lllllll}
+\toprule
+Convention & Water β & SE & p & Sanitation β & SE & p \\
+\midrule
+\endhead
+PRIMARY (same-group CRV1; this thesis's main convention) & −0.085 & 0.046 & .062 & 0.026 & 0.043 & .548 \\
+FULL\textbackslash\{\}\_DUMMY\textbackslash\{\}\_DF sensitivity & −0.085 & 0.049 & .080 & 0.026 & 0.046 & .574 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+The two conventions differ only in whether the small-sample CRV1 correction additionally penalises degrees of freedom for the absorbed cluster dummies (FULL\textbackslash\{\}\_DUMMY\textbackslash\{\}\_DF does; PRIMARY does not, following the project's cross-validated adjudication against \texttt{linearmodels.PanelOLS(auto\_df=True)}; see \texttt{docs/provenance/cluster\_fe\_inference\_adjudication.md}). Point estimates are identical by construction; only standard errors and p-values differ. Both are reported wherever this coefficient is cited in the main text, with the convention always named.
+
+\subsection*{B.2 Independent verification of the pooled historical model (Section 4.6, Section 5.6)}
+\addcontentsline{toc}{subsection}{B.2 Independent verification of the pooled historical model (Section 4.6, Section 5.6)}
+
+This thesis's own pipeline (\texttt{scripts/historical\_wash/16\_estimate\_preliminary.py}) estimates all 291 historical models using a hand-written weighted within-cluster demeaning estimator. A prior independent check (\texttt{scripts/historical\_wash/17\_validate\_estimates.py}) re-estimated four representative \textit{country-specific} cells (Ghana water HAZ weighted and unweighted; Ghana sanitation WAZ; Nigeria sanitation HAZ) with an explicit-dummy-variable statsmodels implementation, matching to 3×10⁻¹⁴.
+
+This did not cover the pooled, multi-country model, which is the headline result of the historical extension. \texttt{scripts/historical\_wash/20\_validate\_pooled\_estimate.py}, written for this manuscript-preparation phase of the project, independently:
+
+1. Rebuilds the estimation sample from the analysis-candidates stage directly (not from the stored, already-estimated model dataset), applying every filtering step explicitly and logging row counts (reproduced in Appendix A.3).
+2. Estimates with \texttt{linearmodels.PanelOLS} --- a different software library from the project's own hand-written estimator --- using entity (cluster) fixed effects and clustered CRV1 standard errors.
+3. Reports both the PRIMARY (\texttt{auto\_df=True}) and FULL\textbackslash\{\}\_DUMMY\textbackslash\{\}\_DF (\texttt{auto\_df=False}) conventions.
+4. Estimates the unweighted counterpart on exactly the same final observations.
+
+\textbf{First attempt and its correction, reported for transparency.} An initial run of this independent script used a single pooled reference birth-year cell (rather than a separate reference year per country) and omitted the child's own age-in-months as a linear control. This produced β per 10 points = 1.385 against the stored 1.026 --- a roughly 35\% discrepancy --- despite the sample size (N=23,018), cluster count (G=3,114), and exposure mean/SD matching the stored values exactly, which is what indicated a specification difference rather than a sample-construction error. After matching the documented design exactly (country-local-reference birth-year dummies; child age-in-months included), the independent estimate converged to:
+
+\begingroup\fontsize{10}{15}\selectfont
+\begin{longtable}{llll}
+\toprule
+Quantity & Independent (corrected) & Stored & Absolute difference \\
+\midrule
+\endhead
+β per 10 points & 1.0255531 & 1.025553 & 6.7×10⁻⁸ \\
+SE per 10 points & 0.260694 & 0.260730 & 3.6×10⁻⁵ \\
+N & 23,018 & 23,018 & 0 \\
+G (clusters) & 3,114 & 3,114 & 0 \\
+K (regressors) / rank & 24 / 24 & 24 / 24 & 0 \\
+Residual exposure SD (points) & 0.428348 & 0.428348 & \textasciitilde{}0 \\
+Unweighted counterpart β per 10 & 0.4147 & 0.41 (documented) & consistent \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+Full execution log and comparison JSON: \texttt{data/processed/estimation/pooled\_independent\_validation\_20261007T090003Z/} (RESTRICTED; aggregate figures only, reproduced above).
+
+\textbf{What this verification establishes, and what it does not.} It establishes that the reported pooled coefficient is computationally correct --- the number the documented specification, correctly implemented in a second, independent library, actually produces. It does not establish that the specification identifies a causal effect, and it does not place this one cell in a higher \textit{reporting} tier than its sibling historical models, all of which share the same unresolved documentation issues (Section 6; \texttt{docs/provenance/historical\_wash\_issue\_register\_v1\_2026-10-07.md}).
+
+\subsection*{B.3 Design checks applied to all 24 primary historical models}
+\addcontentsline{toc}{subsection}{B.3 Design checks applied to all 24 primary historical models}
+
+Record-key uniqueness, cluster-to-survey mapping (one survey per cluster), country weight totals equal to N/K within each model's own estimation sample, full design-matrix rank, and absence of singleton clusters in the final estimation data were checked programmatically for all 24 primary models (\texttt{scripts/historical\_wash/19\_check\_model\_design.py}; all checks pass, \texttt{data/processed/estimation/run\_20261006T185646Z/design\_checks\_20261006T190020Z/design\_checks\_summary.json}, RESTRICTED).

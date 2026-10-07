@@ -15,7 +15,8 @@ Full-chain audit of the thesis repository: raw sources → harmonisation → con
 | `04_numerical_claim_reconciliation.md` | This audit's own fresh numerical spot-checks, with results |
 | `05_correction_change_impact_report.md` | Confirms no empirical result changed; explains why no new manuscript version was needed |
 | `06_remaining_actions.md` | Concrete next actions, split by who can take them |
-| `07_update_2026-10-07_pass2.md` | **Read this too.** Closes the material-verification gaps named above: all 24 primary historical cells now independently reproduced (was 4 of 24); spatial-extraction data layer independently verified; IPUMS/IHME metadata re-checked from raw files; one literature overclaim found and corrected. Supersedes specific claims in `00`, `02`, `03` (each marked with its own banner); those files are otherwise unchanged. |
+| `07_update_2026-10-07_pass2.md` | Closes the material-verification gaps named above: all 24 primary historical cells now independently reproduced (was 4 of 24); spatial-extraction data layer independently verified; IPUMS/IHME metadata re-checked from raw files; one literature overclaim found and corrected. Supersedes specific claims in `00`, `02`, `03` (each marked with its own banner); those files are otherwise unchanged. |
+| `08_update_2026-10-07_pass3.md` | **Read this too.** Full SE/CI/p-value/rank comparison for all 24 historical cells (not just coefficients), with the small residual differences explained; leave-one-out community exposure independently rebuilt from raw DHS records (a real bug was found and fixed in the new validation script itself, not the pipeline — documented in full); region-FE/joint-model baseline check, buffer-averaging Monte Carlo validation, and the remaining 11 literature sources dispatched as background passes (see that file for whether companion results existed at time of writing). |
 
 ## Headline conclusion
 
