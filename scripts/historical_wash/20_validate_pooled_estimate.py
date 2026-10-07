@@ -35,6 +35,14 @@ part of what this script verifies.
 PRELIMINARY - measurement-weight documentation and final design review still pending
 for the extension as a whole; this script validates implementation, not that pending
 documentation.
+
+ADDENDUM (2026-10-07, pass 4): the 3.6e-05 SE gap noted above is now fully explained,
+not residual noise -- this script's .fit() call omits linearmodels' separate, opt-in
+`group_debias=True` flag, which supplies part of the small-sample cluster correction
+16_estimate_preliminary.py's hand-written formula applies. Adding that flag closes the
+gap to 0.0 at 8 decimal places for this cell (and all 23 others). See
+scripts/historical_wash/24_reconcile_inference_corrections.py and
+docs/provenance/independent_audit_v1_2026-10-07/09_update_2026-10-07_pass4.md.
 """
 import json
 import os

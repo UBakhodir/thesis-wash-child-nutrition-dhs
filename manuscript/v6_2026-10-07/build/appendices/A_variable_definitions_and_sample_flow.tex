@@ -1,0 +1,60 @@
+\section*{Appendix A --- Variable definitions, sample flow, and authoritative sources}
+\addcontentsline{toc}{section}{Appendix A --- Variable definitions, sample flow, and authoritative sources}
+
+\subsection*{A.1 Variable definitions}
+\addcontentsline{toc}{subsection}{A.1 Variable definitions}
+
+\begingroup\fontsize{10}{15}\selectfont\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.65cm}>{\raggedright\arraybackslash}p{6.27cm}>{\raggedright\arraybackslash}p{4.92cm}}
+\toprule
+Variable & Definition & Source file (authoritative) \\
+\midrule
+\endhead
+HAZ, WAZ, WHZ & Height-for-age, weight-for-age, weight-for-height z-scores, WHO Child Growth Standards reference \parencite{deOnis2006} & DHS recode, flagged valid per DHS convention \\
+Household water (binary) & JMP-improved household water source & \texttt{docs/\allowbreak{}empirical\_\allowbreak{}strategy.\allowbreak{}md} §2 \\
+Household sanitation (binary) & JMP-improved household sanitation facility & \texttt{docs/\allowbreak{}empirical\_\allowbreak{}strategy.\allowbreak{}md} §2 \\
+Community water/sanitation (\texttt{water\_\allowbreak{}rate\_\allowbreak{}loo}, \texttt{sanitation\_\allowbreak{}rate\_\allowbreak{}loo\_\allowbreak{}core}) & Leave-one-out share of other households in the same cluster with the improved facility & \texttt{docs/\allowbreak{}empirical\_\allowbreak{}strategy.\allowbreak{}md} §2 \\
+IDHSPSU & Sample-qualified DHS cluster code (unique across survey rounds) & IPUMS-DHS / DHS recode \\
+PERWEIGHT & DHS/IPUMS standard child-level sampling weight & IPUMS-DHS documentation \\
+W\_IMP, S\_IMP & IHME modelled annual local coverage of JMP-improved water/sanitation, 0--100, \textasciitilde{}5×5 km, 2000--2017 & \texttt{docs/\allowbreak{}provenance/\allowbreak{}historical\_\allowbreak{}wash\_\allowbreak{}ihme\_\allowbreak{}product\_\allowbreak{}definitions\_\allowbreak{}v1\_\allowbreak{}2026-\allowbreak{}10-\allowbreak{}07.\allowbreak{}md} \\
+\texttt{age\_\allowbreak{}m} (child's own age in months) & Reported completed months where delivered (Ethiopia, Nigeria baseline; Ethiopia, Nigeria historical); documented calendar-month difference otherwise (Ghana, Kenya) & \texttt{docs/\allowbreak{}empirical\_\allowbreak{}strategy.\allowbreak{}md}; \texttt{scripts/\allowbreak{}historical\_\allowbreak{}wash/\allowbreak{}16\_\allowbreak{}estimate\_\allowbreak{}preliminary.\allowbreak{}py} \\
+\texttt{b\_\allowbreak{}year} (birth year) & Child's birth year, used for survey-qualified country-by-birth-year fixed effects in the historical models & Derived in the analysis-sample construction stage; confirmed independent of the Ethiopia interview-date candidate (Appendix C) \\
+\texttt{cluster\_\allowbreak{}key} & Composite key encoding survey + cluster, sample-qualified by construction & \texttt{data/\allowbreak{}processed/\allowbreak{}analysis\_\allowbreak{}samples/\allowbreak{}run\_\allowbreak{}20261006T184744Z/\allowbreak{}analysis\_\allowbreak{}candidates\_\allowbreak{}RESTRICTED.\allowbreak{}parquet} (RESTRICTED; schema only cited here) \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\subsection*{A.2 Baseline sample flow}
+\addcontentsline{toc}{subsection}{A.2 Baseline sample flow}
+
+Pooled harmonised child file (70,231 children, 4,481 clusters, 114 regions) → outcome-valid, measurement-universe-restricted samples (36,985 HAZ / 37,260 WAZ / 37,088 WHZ) → common samples requiring both household and community exposures classifiable (36,040 / 36,308 / 36,145, 4,426 clusters). Full flow: \texttt{outputs/\allowbreak{}household\_\allowbreak{}community\_\allowbreak{}wash/\allowbreak{}01\_\allowbreak{}development\_\allowbreak{}sample\_\allowbreak{}flow.\allowbreak{}csv}.
+
+\subsection*{A.3 Historical sample flow (established-date, post-12-month window, water, HAZ, as a worked example)}
+\addcontentsline{toc}{subsection}{A.3 Historical sample flow (established-date, post-12-month window, water, HAZ, as a worked example)}
+
+Raw analysis candidates, established countries (60,772) → candidate == GREGORIAN\_ESTABLISHED (60,772; no further loss for the three established countries) → complete postnatal window + complete spatial coverage (42,052) → HAZ valid and within measured universe (23,135) → complete-case on covariates (23,135; no further loss) → singleton-cluster exclusion (−117 clusters, −117 observations) → \textbf{final: 23,018 children, 3,114 clusters}. Reproduced independently in \texttt{scripts/\allowbreak{}historical\_\allowbreak{}wash/\allowbreak{}20\_\allowbreak{}validate\_\allowbreak{}pooled\_\allowbreak{}estimate.\allowbreak{}py}'s execution log (\texttt{data/\allowbreak{}processed/\allowbreak{}estimation/\allowbreak{}pooled\_\allowbreak{}independent\_\allowbreak{}validation\_\allowbreak{}20261007T090003Z/\allowbreak{}execution\_\allowbreak{}log.\allowbreak{}txt}, RESTRICTED).
+
+\subsection*{A.4 DHS/IPUMS official documentation sources attempted for the measurement-subsample weight (Section 3.8, Section 6.3)}
+\addcontentsline{toc}{subsection}{A.4 DHS/IPUMS official documentation sources attempted for the measurement-subsample weight (Section 3.8, Section 6.3)}
+
+\begingroup\fontsize{10}{15}\selectfont\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{4.41cm}>{\raggedright\arraybackslash}p{9.65cm}}
+\toprule
+Source tried & Result \\
+\midrule
+\endhead
+DHS-8 Biomarker Manual (dhsprogram.com PDF) & HTTP 403, tried twice across two sessions \\
+Guide to DHS Statistics (dhsprogram.com) & HTTP 403 \\
+World Bank microdata catalogue, child anthropometry variable page & Accessible; no weighting guidance found \\
+Nigeria 2018 NDHS final report & Accessible; describes sampling weights by stage/cluster and a domestic-violence special weight, but no anthropometry/biomarker-specific weight \\
+IPUMS-DHS PERWEIGHT and KIDWT documentation pages & Accessible; confirms PERWEIGHT as the documented child-level tabulation weight; KIDWT is a population factor, not used \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+No source documents a measurement-subsample-specific weight. This is recorded as an unresolved documentation gap (issue register item \#1), not inferred or substituted with an invented correction.
+
+\subsection*{A.5 Full authoritative-file index}
+\addcontentsline{toc}{subsection}{A.5 Full authoritative-file index}
+
+See \texttt{docs/\allowbreak{}provenance/\allowbreak{}final\_\allowbreak{}empirical\_\allowbreak{}package\_\allowbreak{}v3\_\allowbreak{}2026-\allowbreak{}10-\allowbreak{}07/\allowbreak{}00\_\allowbreak{}results\_\allowbreak{}index.\allowbreak{}md} and \texttt{02\_\allowbreak{}core\_\allowbreak{}reporting\_\allowbreak{}table.\allowbreak{}md} for the complete, current index of every baseline and historical output file this manuscript cites, with status labels (validated for main reporting / validated sensitivity / exploratory / invalid-superseded / not estimable).

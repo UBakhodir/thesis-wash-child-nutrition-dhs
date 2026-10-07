@@ -1,0 +1,61 @@
+\section*{Appendix B --- Model specifications, inference conventions, and independent verification}
+\addcontentsline{toc}{section}{Appendix B --- Model specifications, inference conventions, and independent verification}
+
+\subsection*{B.1 Inference-convention comparison (baseline household cluster-FE model, HAZ)}
+\addcontentsline{toc}{subsection}{B.1 Inference-convention comparison (baseline household cluster-FE model, HAZ)}
+
+\begingroup\fontsize{10}{15}\selectfont\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.79cm}>{\raggedright\arraybackslash}p{1.19cm}>{\raggedright\arraybackslash}p{1.19cm}>{\raggedright\arraybackslash}p{1.19cm}>{\raggedright\arraybackslash}p{1.24cm}>{\raggedright\arraybackslash}p{1.19cm}>{\raggedright\arraybackslash}p{1.19cm}}
+\toprule
+Convention & Water β & SE & p & Sanitation β & SE & p \\
+\midrule
+\endhead
+PRIMARY (same-group CRV1; this thesis's main convention) & −0.085 & 0.046 & .062 & 0.026 & 0.043 & .548 \\
+FULL\_DUMMY\_DF sensitivity & −0.085 & 0.049 & .080 & 0.026 & 0.046 & .574 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+The two conventions differ only in whether the small-sample CRV1 correction additionally penalises degrees of freedom for the absorbed cluster dummies (FULL\_DUMMY\_DF does; PRIMARY does not, following the project's cross-validated adjudication against \texttt{linearmodels.\allowbreak{}PanelOLS(auto\_\allowbreak{}df=True)}; see \texttt{docs/\allowbreak{}provenance/\allowbreak{}cluster\_\allowbreak{}fe\_\allowbreak{}inference\_\allowbreak{}adjudication.\allowbreak{}md}). Point estimates are identical by construction; only standard errors and p-values differ. Both are reported wherever this coefficient is cited in the main text, with the convention always named.
+
+\subsection*{B.2 Independent verification of the pooled historical model (Section 4.6, Section 5.6)}
+\addcontentsline{toc}{subsection}{B.2 Independent verification of the pooled historical model (Section 4.6, Section 5.6)}
+
+This thesis's own pipeline (\texttt{scripts/\allowbreak{}historical\_\allowbreak{}wash/\allowbreak{}16\_\allowbreak{}estimate\_\allowbreak{}preliminary.\allowbreak{}py}) estimates all 291 historical models using a hand-written weighted within-cluster demeaning estimator. A prior independent check (\texttt{scripts/\allowbreak{}historical\_\allowbreak{}wash/\allowbreak{}17\_\allowbreak{}validate\_\allowbreak{}estimates.\allowbreak{}py}) re-estimated four representative \textit{country-specific} cells (Ghana water HAZ weighted and unweighted; Ghana sanitation WAZ; Nigeria sanitation HAZ) with an explicit-dummy-variable statsmodels implementation, matching to 3×10⁻¹⁴.
+
+This did not cover the pooled, multi-country model, which is the headline result of the historical extension. \texttt{scripts/\allowbreak{}historical\_\allowbreak{}wash/\allowbreak{}20\_\allowbreak{}validate\_\allowbreak{}pooled\_\allowbreak{}estimate.\allowbreak{}py}, written for this manuscript-preparation phase of the project, independently:
+
+1. Rebuilds the estimation sample from the analysis-candidates stage directly (not from the stored, already-estimated model dataset), applying every filtering step explicitly and logging row counts (reproduced in Appendix A.3).
+2. Estimates with \texttt{linearmodels.\allowbreak{}PanelOLS} --- a different software library from the project's own hand-written estimator --- using entity (cluster) fixed effects and clustered CRV1 standard errors.
+3. Reports both the PRIMARY (\texttt{auto\_\allowbreak{}df=True}) and FULL\_DUMMY\_DF (\texttt{auto\_\allowbreak{}df=False}) conventions.
+4. Estimates the unweighted counterpart on exactly the same final observations.
+
+\textbf{First attempt and its correction, reported for transparency.} An initial run of this independent script used a single pooled reference birth-year cell (rather than a separate reference year per country) and omitted the child's own age-in-months as a linear control. This produced β per 10 points = 1.385 against the stored 1.026 --- a roughly 35\% discrepancy --- despite the sample size (N=23,018), cluster count (G=3,114), and exposure mean/SD matching the stored values exactly, which is what indicated a specification difference rather than a sample-construction error. After matching the documented design exactly (country-local-reference birth-year dummies; child age-in-months included), the independent estimate converged to:
+
+\begingroup\fontsize{10}{15}\selectfont\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.16cm}>{\raggedright\arraybackslash}p{3.30cm}>{\raggedright\arraybackslash}p{2.44cm}>{\raggedright\arraybackslash}p{2.72cm}}
+\toprule
+Quantity & Independent (corrected) & Stored & Absolute difference \\
+\midrule
+\endhead
+β per 10 points & 1.0255531 & 1.025553 & 6.7×10⁻⁸ \\
+SE per 10 points (as originally run) & 0.260694 & 0.260730 & 3.6×10⁻⁵ \\
+N & 23,018 & 23,018 & 0 \\
+G (clusters) & 3,114 & 3,114 & 0 \\
+K (regressors) / rank & 24 / 24 & 24 / 24 & 0 \\
+Residual exposure SD (points) & 0.428348 & 0.428348 & \textasciitilde{}0 \\
+Unweighted counterpart β per 10 & 0.4147 & 0.41 (documented) & consistent \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+Full execution log and comparison JSON: \texttt{data/\allowbreak{}processed/\allowbreak{}estimation/\allowbreak{}pooled\_\allowbreak{}independent\_\allowbreak{}validation\_\allowbreak{}20261007T090003Z/\allowbreak{}} (RESTRICTED; aggregate figures only, reproduced above).
+
+\textbf{The SE difference above is fully explained, not residual numerical noise.} \texttt{16\_\allowbreak{}estimate\_\allowbreak{}preliminary.\allowbreak{}py}'s declared small-sample correction is \texttt{(G/\allowbreak{}(G-\allowbreak{}1)) × ((N-\allowbreak{}1)/\allowbreak{}(N-\allowbreak{}K))} applied to the raw cluster-robust sandwich, with CIs/p-values from a Student's \textit{t} distribution on \textit{G}−1 degrees of freedom (read directly from its source, lines 209--212). \texttt{20\_\allowbreak{}validate\_\allowbreak{}pooled\_\allowbreak{}estimate.\allowbreak{}py}'s and \texttt{21\_\allowbreak{}validate\_\allowbreak{}all\_\allowbreak{}primary\_\allowbreak{}cells.\allowbreak{}py}'s \texttt{PanelOLS.\allowbreak{}fit(cov\_\allowbreak{}type="clustered", cluster\_\allowbreak{}entity=True, auto\_\allowbreak{}df=True)} call applies only part of the equivalent correction: \texttt{auto\_\allowbreak{}df=True} correctly sets the same-group, no-double-penalty degrees-of-freedom convention (confirmed by reading the installed \texttt{linearmodels} 7.0 source, \texttt{panel/\allowbreak{}model.\allowbreak{}py}'s \texttt{\_\allowbreak{}determine\_\allowbreak{}df\_\allowbreak{}adjustment}), and \texttt{debiased=True} (the library's own default) applies a \texttt{N/\allowbreak{}(N-\allowbreak{}K)} scale --- but the \textit{separate}, opt-in \texttt{group\_\allowbreak{}debias=True} flag, which applies linearmodels' own \texttt{(G/\allowbreak{}(G-\allowbreak{}1)) × ((N-\allowbreak{}1)/\allowbreak{}N)} cluster-count adjustment (\texttt{shared/\allowbreak{}covariance.\allowbreak{}py}, \texttt{group\_\allowbreak{}debias\_\allowbreak{}coefficient}), was not passed. Multiplying the two pieces linearmodels \textit{did} apply, \texttt{[N/\allowbreak{}(N-\allowbreak{}K)] × [(G/\allowbreak{}(G-\allowbreak{}1))×(N-\allowbreak{}1)/\allowbreak{}N]}, is algebraically identical to \texttt{16}'s declared \texttt{(G/\allowbreak{}(G-\allowbreak{}1))×(N-\allowbreak{}1)/\allowbreak{}(N-\allowbreak{}K)} --- so the missing flag, not a different formula and not floating-point noise, is the entire explanation. \texttt{scripts/\allowbreak{}historical\_\allowbreak{}wash/\allowbreak{}24\_\allowbreak{}reconcile\_\allowbreak{}inference\_\allowbreak{}corrections.\allowbreak{}py} (new) re-fits all 24 primary cells with \texttt{group\_\allowbreak{}debias=True} added: \textbf{every one of the 24 cells' SE now matches the stored value to the displayed precision (max remaining difference 0.0 at 8 decimal places)}, and a direct algebraic check (uncorrected sandwich SE × the manually computed combined scalar vs. the library's own corrected SE) confirms a zero residual for all 24 cells. Full detail and the per-cell table: \texttt{docs/\allowbreak{}provenance/\allowbreak{}independent\_\allowbreak{}audit\_\allowbreak{}v1\_\allowbreak{}2026-\allowbreak{}10-\allowbreak{}07/\allowbreak{}09\_\allowbreak{}update\_\allowbreak{}2026-\allowbreak{}10-\allowbreak{}07\_\allowbreak{}pass4.\allowbreak{}md}. This does not change the stored, authoritative SE in \texttt{16\_\allowbreak{}estimate\_\allowbreak{}preliminary.\allowbreak{}py}'s own output anywhere --- that estimator's formula was correct throughout; what was corrected is the \textit{validation} scripts' covariance configuration, not the pipeline being validated.
+
+\textbf{What this verification establishes, and what it does not.} It establishes that the reported pooled coefficient and its standard error are computationally correct --- the numbers the documented specification, correctly implemented in a second, independent library with an equivalent covariance configuration, actually produce. It does not establish that the specification identifies a causal effect, and it does not place this one cell in a higher \textit{reporting} tier than its sibling historical models, all of which share the same unresolved documentation issues (Section 6; \texttt{docs/\allowbreak{}provenance/\allowbreak{}historical\_\allowbreak{}wash\_\allowbreak{}issue\_\allowbreak{}register\_\allowbreak{}v1\_\allowbreak{}2026-\allowbreak{}10-\allowbreak{}07.\allowbreak{}md}).
+
+\subsection*{B.3 Design checks applied to all 24 primary historical models}
+\addcontentsline{toc}{subsection}{B.3 Design checks applied to all 24 primary historical models}
+
+Record-key uniqueness, cluster-to-survey mapping (one survey per cluster), country weight totals equal to N/K within each model's own estimation sample, full design-matrix rank, and absence of singleton clusters in the final estimation data were checked programmatically for all 24 primary models (\texttt{scripts/\allowbreak{}historical\_\allowbreak{}wash/\allowbreak{}19\_\allowbreak{}check\_\allowbreak{}model\_\allowbreak{}design.\allowbreak{}py}; all checks pass, \texttt{data/\allowbreak{}processed/\allowbreak{}estimation/\allowbreak{}run\_\allowbreak{}20261006T185646Z/\allowbreak{}design\_\allowbreak{}checks\_\allowbreak{}20261006T190020Z/\allowbreak{}design\_\allowbreak{}checks\_\allowbreak{}summary.\allowbreak{}json}, RESTRICTED).

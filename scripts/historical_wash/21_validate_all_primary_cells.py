@@ -19,6 +19,19 @@ docs/provenance/independent_audit_v1_2026-10-07/03_issue_register.md (B-05).
 PRELIMINARY - measurement-weight documentation and final design review still
 pending for the extension as a whole; this script validates implementation
 correctness, not that pending documentation.
+
+ADDENDUM (2026-10-07, pass 4): the coefficients reported by this script
+(line 124's `.fit(cov_type="clustered", cluster_entity=True, auto_df=True)`)
+match the stored values to ~1e-14 as reported, but the reported SEs are
+missing linearmodels' separate, opt-in `group_debias=True` flag -- without
+it, only part of the small-sample cluster correction the stored estimator
+applies is included, producing a small (~0.01-0.5%) SE understatement. This
+is explained in full, with a corrected re-fit of all 24 cells, in
+scripts/historical_wash/24_reconcile_inference_corrections.py and
+docs/provenance/independent_audit_v1_2026-10-07/09_update_2026-10-07_pass4.md.
+This script's own output file is left unchanged (preserving the historical
+record of what was actually run); do not cite its SE column as the final
+word on the SE comparison -- cite script 24's output instead.
 """
 import json
 import os

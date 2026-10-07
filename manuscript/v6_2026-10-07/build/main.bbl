@@ -1,0 +1,957 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{Addae2024}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=41b3ed1e1d18b28a6eb79b0efc10f681}{%
+           family={Addae},
+           familyi={A\bibinitperiod},
+           given={Hayford\bibnamedelima Yaw},
+           giveni={H\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=8778a63531fc9f04318e9e6521fd7212}{%
+           family={Sulemana},
+           familyi={S\bibinitperiod},
+           given={Mustapha},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e8f98e01a03c3a1855f5a02f8ae2b0c3}{%
+           family={Yakubu},
+           familyi={Y\bibinitperiod},
+           given={Tahiru},
+           giveni={T\bibinitperiod}}}%
+        {{hash=dc3fba5a51f219203a895137a4a3c79d}{%
+           family={Atosona},
+           familyi={A\bibinitperiod},
+           given={Albert},
+           giveni={A\bibinitperiod}}}%
+        {{hash=517677d4f8bb49c063f05c0ad84c3a29}{%
+           family={Tahiru},
+           familyi={T\bibinitperiod},
+           given={Rahinatu},
+           giveni={R\bibinitperiod}}}%
+        {{hash=40f32ad58a30e15a9c6ce3548f1b1578}{%
+           family={Azupogo},
+           familyi={A\bibinitperiod},
+           given={Faith},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{c64da610088873396e80535e56367118}
+      \strng{fullhash}{199372dd95ae7fbe5c3d620b4840c885}
+      \strng{fullhashraw}{199372dd95ae7fbe5c3d620b4840c885}
+      \strng{bibnamehash}{c64da610088873396e80535e56367118}
+      \strng{authorbibnamehash}{c64da610088873396e80535e56367118}
+      \strng{authornamehash}{c64da610088873396e80535e56367118}
+      \strng{authorfullhash}{199372dd95ae7fbe5c3d620b4840c885}
+      \strng{authorfullhashraw}{199372dd95ae7fbe5c3d620b4840c885}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{PLOS ONE}
+      \field{title}{Low birth weight, household socio-economic status, water and sanitation are associated with stunting and wasting among children aged 6--23 months: Results from a national survey in Ghana}
+      \field{year}{2024}
+      \verb{doi}
+      \verb 10.1371/journal.pone.0297698
+      \endverb
+    \endentry
+    \entry{Balk2004}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=e402408fa42d78b5b84878c6bf90d09f}{%
+           family={Balk},
+           familyi={B\bibinitperiod},
+           given={Deborah},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8371e4fbb8efddd40b552c1c4419b76f}{%
+           family={Pullum},
+           familyi={P\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=acda91dac77106c338b7df7f51eebb52}{%
+           family={Storeygard},
+           familyi={S\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e4b829c7baca834d46090c5a40a3121b}{%
+           family={Greenwell},
+           familyi={G\bibinitperiod},
+           given={Fiona},
+           giveni={F\bibinitperiod}}}%
+        {{hash=6a2b931209f316ec6cfa23145d3966f9}{%
+           family={Neuman},
+           familyi={N\bibinitperiod},
+           given={Melissa},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{f857103365da059e1eab140a25909939}
+      \strng{fullhash}{bdf4dc5c484a59f2dc743db4a7cc6e8c}
+      \strng{fullhashraw}{bdf4dc5c484a59f2dc743db4a7cc6e8c}
+      \strng{bibnamehash}{f857103365da059e1eab140a25909939}
+      \strng{authorbibnamehash}{f857103365da059e1eab140a25909939}
+      \strng{authornamehash}{f857103365da059e1eab140a25909939}
+      \strng{authorfullhash}{bdf4dc5c484a59f2dc743db4a7cc6e8c}
+      \strng{authorfullhashraw}{bdf4dc5c484a59f2dc743db4a7cc6e8c}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Population, Space and Place}
+      \field{title}{A Spatial Analysis of Childhood Mortality in West Africa}
+      \field{year}{2004}
+      \verb{doi}
+      \verb 10.1002/psp.328
+      \endverb
+    \endentry
+    \entry{Black2013}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{6}{}{%
+        {{hash=a34e422283fb0a6740f42a6d43d7719c}{%
+           family={Black},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=6fe9f06e84cf100206f0124cff21ca63}{%
+           family={Victora},
+           familyi={V\bibinitperiod},
+           given={Cesar\bibnamedelima G.},
+           giveni={C\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=1326b0ea0cc68ccc228ace5b2e8bdb23}{%
+           family={Walker},
+           familyi={W\bibinitperiod},
+           given={Susan\bibnamedelima P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=03c1e01c5d53d607eded202164e5b39a}{%
+           family={Bhutta},
+           familyi={B\bibinitperiod},
+           given={Zulfiqar\bibnamedelima A.},
+           giveni={Z\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=58594f235ac61e20d29be0012769318c}{%
+           family={Christian},
+           familyi={C\bibinitperiod},
+           given={Parul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=c6c0f3f973ea5aefb8f1d9622387f647}{%
+           family={Onis},
+           familyi={O\bibinitperiod},
+           given={Mercedes},
+           giveni={M\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \strng{namehash}{b421adc938a49e6f075e47af342b3d5f}
+      \strng{fullhash}{585afeebdb51f7e276292dd3d32722d3}
+      \strng{fullhashraw}{585afeebdb51f7e276292dd3d32722d3}
+      \strng{bibnamehash}{b421adc938a49e6f075e47af342b3d5f}
+      \strng{authorbibnamehash}{b421adc938a49e6f075e47af342b3d5f}
+      \strng{authornamehash}{b421adc938a49e6f075e47af342b3d5f}
+      \strng{authorfullhash}{585afeebdb51f7e276292dd3d32722d3}
+      \strng{authorfullhashraw}{585afeebdb51f7e276292dd3d32722d3}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{The Lancet}
+      \field{title}{Maternal and child undernutrition and overweight in low-income and middle-income countries}
+      \field{volume}{382}
+      \field{year}{2013}
+      \field{pages}{427\bibrangedash 451}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.1016/S0140-6736(13)60937-X
+      \endverb
+    \endentry
+    \entry{Blom2022}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=66ed6a65012a454897e07a8b9035b57e}{%
+           family={Blom},
+           familyi={B\bibinitperiod},
+           given={Sylvia},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c8a4fac095922ad5faab520127fb3b81}{%
+           family={Ortiz-Bobea},
+           familyi={O\bibinithyphendelim B\bibinitperiod},
+           given={Ariel},
+           giveni={A\bibinitperiod}}}%
+        {{hash=923d9b95dbc1867d83ff7c2ab1cc0ad9}{%
+           family={Hoddinott},
+           familyi={H\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{d41ba3bf39c4f951eb80fe5c865da911}
+      \strng{fullhash}{d41ba3bf39c4f951eb80fe5c865da911}
+      \strng{fullhashraw}{d41ba3bf39c4f951eb80fe5c865da911}
+      \strng{bibnamehash}{d41ba3bf39c4f951eb80fe5c865da911}
+      \strng{authorbibnamehash}{d41ba3bf39c4f951eb80fe5c865da911}
+      \strng{authornamehash}{d41ba3bf39c4f951eb80fe5c865da911}
+      \strng{authorfullhash}{d41ba3bf39c4f951eb80fe5c865da911}
+      \strng{authorfullhashraw}{d41ba3bf39c4f951eb80fe5c865da911}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Journal of Environmental Economics and Management}
+      \field{note}{Cited in this thesis only as a precedent for matching a time-varying, geocoded exposure to each child's own developmental window; not used as evidence about WASH or nutrition.}
+      \field{title}{Heat exposure and child nutrition: Evidence from West Africa}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.1016/j.jeem.2022.102698
+      \endverb
+    \endentry
+    \entry{Burgert2013}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=a2aaf828038a5a3fb024dfdfd6ce4b43}{%
+           family={Burgert},
+           familyi={B\bibinitperiod},
+           given={Clara\bibnamedelima R.},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=00e1ae5469d151f35621dfe3df9f0ea0}{%
+           family={Colston},
+           familyi={C\bibinitperiod},
+           given={Josh},
+           giveni={J\bibinitperiod}}}%
+        {{hash=798db803488bb349652cad82e224d2da}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={Thea},
+           giveni={T\bibinitperiod}}}%
+        {{hash=35ff456771a2ed38eff37975bd38dff1}{%
+           family={Zachary},
+           familyi={Z\bibinitperiod},
+           given={Blake},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {The DHS Program/ICF}%
+      }
+      \strng{namehash}{e5477ed600b57cbe967b8dc6eaa10992}
+      \strng{fullhash}{9112ef743cdef7146ab245fd4355bbf7}
+      \strng{fullhashraw}{9112ef743cdef7146ab245fd4355bbf7}
+      \strng{bibnamehash}{e5477ed600b57cbe967b8dc6eaa10992}
+      \strng{authorbibnamehash}{e5477ed600b57cbe967b8dc6eaa10992}
+      \strng{authornamehash}{e5477ed600b57cbe967b8dc6eaa10992}
+      \strng{authorfullhash}{9112ef743cdef7146ab245fd4355bbf7}
+      \strng{authorfullhashraw}{9112ef743cdef7146ab245fd4355bbf7}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{7}
+      \field{title}{Geographic Displacement Procedure and Georeferenced Data Release Policy for the Demographic and Health Surveys}
+      \field{type}{DHS Spatial Analysis Reports}
+      \field{year}{2013}
+    \endentry
+    \entry{CummingCairncross2016}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=fa802d7d14cce6326c700ac2259242e3}{%
+           family={Cumming},
+           familyi={C\bibinitperiod},
+           given={Oliver},
+           giveni={O\bibinitperiod}}}%
+        {{hash=598fc1cf5d2a7e881925d09931c448f9}{%
+           family={Cairncross},
+           familyi={C\bibinitperiod},
+           given={Sandy},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{83cfac676977d7a068f84cbf896b04c1}
+      \strng{fullhash}{83cfac676977d7a068f84cbf896b04c1}
+      \strng{fullhashraw}{83cfac676977d7a068f84cbf896b04c1}
+      \strng{bibnamehash}{83cfac676977d7a068f84cbf896b04c1}
+      \strng{authorbibnamehash}{83cfac676977d7a068f84cbf896b04c1}
+      \strng{authornamehash}{83cfac676977d7a068f84cbf896b04c1}
+      \strng{authorfullhash}{83cfac676977d7a068f84cbf896b04c1}
+      \strng{authorfullhashraw}{83cfac676977d7a068f84cbf896b04c1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Maternal \& Child Nutrition}
+      \field{number}{S1}
+      \field{title}{Can water, sanitation and hygiene help eliminate stunting? Current evidence and policy implications}
+      \field{volume}{12}
+      \field{year}{2016}
+      \field{pages}{91\bibrangedash 105}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1111/mcn.12258
+      \endverb
+    \endentry
+    \entry{Cumming2019}{article}{}{}
+      \name{author}{22}{}{%
+        {{hash=fa802d7d14cce6326c700ac2259242e3}{%
+           family={Cumming},
+           familyi={C\bibinitperiod},
+           given={Oliver},
+           giveni={O\bibinitperiod}}}%
+        {{hash=7e312ca8e86cb9387997f8cb7d5287a5}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={Benjamin\bibnamedelima F.},
+           giveni={B\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=36b2e07251f854c47c9100b196d46be1}{%
+           family={Ban},
+           familyi={B\bibinitperiod},
+           given={Radu},
+           giveni={R\bibinitperiod}}}%
+        {{hash=7916c0dc3175f8763e642722f5191e92}{%
+           family={Clasen},
+           familyi={C\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=4a703de882eccf8fa59c8cd730993db5}{%
+           family={Esteves\bibnamedelima Mills},
+           familyi={E\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Joanna},
+           giveni={J\bibinitperiod}}}%
+        {{hash=aed55cf9418b0b56f9bfe919a1825a23}{%
+           family={Freeman},
+           familyi={F\bibinitperiod},
+           given={Matthew\bibnamedelima C.},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=3b19d690c7a0a6ef3455be4b52027fc9}{%
+           family={Gordon},
+           familyi={G\bibinitperiod},
+           given={Bruce},
+           giveni={B\bibinitperiod}}}%
+        {{hash=10af602709318bd1266e02c17ff2e4c2}{%
+           family={Guiteras},
+           familyi={G\bibinitperiod},
+           given={Raymond},
+           giveni={R\bibinitperiod}}}%
+        {{hash=0fba06f977ad55909eef13bb0a9c1c79}{%
+           family={Howard},
+           familyi={H\bibinitperiod},
+           given={Guy},
+           giveni={G\bibinitperiod}}}%
+        {{hash=df5233a7c9e46006eb05e5fb3a697615}{%
+           family={Hunter},
+           familyi={H\bibinitperiod},
+           given={Paul\bibnamedelima R.},
+           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=26ae04f839332268a9ce61c62af09894}{%
+           family={Johnston},
+           familyi={J\bibinitperiod},
+           given={Richard\bibnamedelima B.},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=4658e0d63f55e3a24086e589d998d081}{%
+           family={Pickering},
+           familyi={P\bibinitperiod},
+           given={Amy\bibnamedelima J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=df4eb1ca86f5072f151c8bef164d3d63}{%
+           family={Prendergast},
+           familyi={P\bibinitperiod},
+           given={Andrew\bibnamedelima J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=aa9d59483e116ed809b380e6b08a22d5}{%
+           family={Prüss-Üstün},
+           familyi={P\bibinithyphendelim Ü\bibinitperiod},
+           given={Annette},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6bd1c47547c84824b42c50c876ea8e3d}{%
+           family={Rosenboom},
+           familyi={R\bibinitperiod},
+           given={Jan\bibnamedelima Willem},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=0417f186f7f0d05ce77a250ee8953428}{%
+           family={Spears},
+           familyi={S\bibinitperiod},
+           given={Dean},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b5f361e0bb3170f697b5f3f4c674b4fb}{%
+           family={Sundberg},
+           familyi={S\bibinitperiod},
+           given={Sophie},
+           giveni={S\bibinitperiod}}}%
+        {{hash=19fb900e05fda47ec08587b8393e178c}{%
+           family={Wolf},
+           familyi={W\bibinitperiod},
+           given={Jennyfer},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1852f3cebdf9505ecc10f99ab758b26d}{%
+           family={Null},
+           familyi={N\bibinitperiod},
+           given={Clair},
+           giveni={C\bibinitperiod}}}%
+        {{hash=e94dc6bec9cbb8d6ec715c477a9ddd1e}{%
+           family={Luby},
+           familyi={L\bibinitperiod},
+           given={Stephen\bibnamedelima P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=da4f701b6cc21fae74ea0027f0210eca}{%
+           family={Humphrey},
+           familyi={H\bibinitperiod},
+           given={Jean\bibnamedelima H.},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=eb346bed79659382002d9629d3e30dc7}{%
+           family={Colford},
+           familyi={C\bibinitperiod},
+           given={John\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{e8830b29807b8158c5b7c86ee73038d8}
+      \strng{fullhash}{8ad4c312b8dd80a4926bc2aff0e0d358}
+      \strng{fullhashraw}{8ad4c312b8dd80a4926bc2aff0e0d358}
+      \strng{bibnamehash}{e8830b29807b8158c5b7c86ee73038d8}
+      \strng{authorbibnamehash}{e8830b29807b8158c5b7c86ee73038d8}
+      \strng{authornamehash}{e8830b29807b8158c5b7c86ee73038d8}
+      \strng{authorfullhash}{8ad4c312b8dd80a4926bc2aff0e0d358}
+      \strng{authorfullhashraw}{8ad4c312b8dd80a4926bc2aff0e0d358}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{BMC Medicine}
+      \field{note}{Summarises the WASH Benefits (Kenya, Bangladesh) and SHINE (Zimbabwe) cluster-randomised trials; used in Section 2.3 to distinguish credible causal evidence from this thesis's own observational associations.}
+      \field{title}{The implications of three major new trials for the effect of water, sanitation and hygiene on childhood diarrhea and stunting: a consensus statement}
+      \field{year}{2019}
+      \verb{doi}
+      \verb 10.1186/s12916-019-1410-x
+      \endverb
+    \endentry
+    \entry{Donohue2023}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=034ccf72c9f03f3df0ce80439391280d}{%
+           family={Donohue},
+           familyi={D\bibinitperiod},
+           given={Rose\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=e4c07fc5aebc3d01bde33ceab5ebeae4}{%
+           family={Church},
+           familyi={C\bibinitperiod},
+           given={Rachael},
+           giveni={R\bibinitperiod}}}%
+        {{hash=41b67b4d327c288ead8c3076d5858dc0}{%
+           family={Assaf},
+           familyi={A\bibinitperiod},
+           given={Shireen},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1a517f45d1932601d972c1be6c6bce2e}{%
+           family={Mayala},
+           familyi={M\bibinitperiod},
+           given={Benjamin\bibnamedelima K.},
+           giveni={B\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {The DHS Program/ICF}%
+      }
+      \strng{namehash}{1f67fc8a6243a44ab03d90ddf84cd7c5}
+      \strng{fullhash}{6b8c5266401ad07c1342bc541a1c9aad}
+      \strng{fullhashraw}{6b8c5266401ad07c1342bc541a1c9aad}
+      \strng{bibnamehash}{1f67fc8a6243a44ab03d90ddf84cd7c5}
+      \strng{authorbibnamehash}{1f67fc8a6243a44ab03d90ddf84cd7c5}
+      \strng{authornamehash}{1f67fc8a6243a44ab03d90ddf84cd7c5}
+      \strng{authorfullhash}{6b8c5266401ad07c1342bc541a1c9aad}
+      \strng{authorfullhashraw}{6b8c5266401ad07c1342bc541a1c9aad}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{23}
+      \field{title}{Community Improved Sanitation Coverage and Childhood Stunting}
+      \field{type}{DHS Spatial Analysis Reports}
+      \field{year}{2023}
+    \endentry
+    \entry{GerusoSpears2015}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=7b2da8b20516842e8180831cc96762f2}{%
+           family={Geruso},
+           familyi={G\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0417f186f7f0d05ce77a250ee8953428}{%
+           family={Spears},
+           familyi={S\bibinitperiod},
+           given={Dean},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {National Bureau of Economic Research}%
+      }
+      \strng{namehash}{eef55e52908aeaec934a09ce7588db55}
+      \strng{fullhash}{eef55e52908aeaec934a09ce7588db55}
+      \strng{fullhashraw}{eef55e52908aeaec934a09ce7588db55}
+      \strng{bibnamehash}{eef55e52908aeaec934a09ce7588db55}
+      \strng{authorbibnamehash}{eef55e52908aeaec934a09ce7588db55}
+      \strng{authornamehash}{eef55e52908aeaec934a09ce7588db55}
+      \strng{authorfullhash}{eef55e52908aeaec934a09ce7588db55}
+      \strng{authorfullhashraw}{eef55e52908aeaec934a09ce7588db55}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Revised May 2017. This thesis cites this working-paper version specifically, as only it was read and verified; the final published version (Geruso and Spears 2018, American Economic Journal: Applied Economics, DOI 10.1257/app.20150431) was not independently re-read, and page-specific claims below refer only to the NBER working-paper PDF's own pagination.}
+      \field{number}{21184}
+      \field{title}{Neighborhood Sanitation and Infant Mortality}
+      \field{type}{NBER Working Paper}
+      \field{year}{2015}
+    \endentry
+    \entry{Gunther2010}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=e8e8b43e6892dd26f654fe191b8d4258}{%
+           family={Günther},
+           familyi={G\bibinitperiod},
+           given={Isabel},
+           giveni={I\bibinitperiod}}}%
+        {{hash=f1810c23ba83f53ab99ca7d49503c6db}{%
+           family={Fink},
+           familyi={F\bibinitperiod},
+           given={Günther},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {World Bank}%
+      }
+      \strng{namehash}{33960aaf2bb7314f4fcd23daf1e52372}
+      \strng{fullhash}{33960aaf2bb7314f4fcd23daf1e52372}
+      \strng{fullhashraw}{33960aaf2bb7314f4fcd23daf1e52372}
+      \strng{bibnamehash}{33960aaf2bb7314f4fcd23daf1e52372}
+      \strng{authorbibnamehash}{33960aaf2bb7314f4fcd23daf1e52372}
+      \strng{authornamehash}{33960aaf2bb7314f4fcd23daf1e52372}
+      \strng{authorfullhash}{33960aaf2bb7314f4fcd23daf1e52372}
+      \strng{authorfullhashraw}{33960aaf2bb7314f4fcd23daf1e52372}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{5275}
+      \field{title}{Water, Sanitation and Children's Health: Evidence from 172 DHS Surveys}
+      \field{type}{Policy Research Working Paper}
+      \field{year}{2010}
+      \verb{doi}
+      \verb 10.1596/1813-9450-5275
+      \endverb
+    \endentry
+    \entry{HeadeyPalloni2019}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=692ccdfb2b0a138e4d163f7aba189593}{%
+           family={Headey},
+           familyi={H\bibinitperiod},
+           given={Derek\bibnamedelima D.},
+           giveni={D\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=24b847cff05aa3820889fd0a4b384b14}{%
+           family={Palloni},
+           familyi={P\bibinitperiod},
+           given={Giordano\bibnamedelima E.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{b5a24e10e08979a7e38ebc1244012435}
+      \strng{fullhash}{b5a24e10e08979a7e38ebc1244012435}
+      \strng{fullhashraw}{b5a24e10e08979a7e38ebc1244012435}
+      \strng{bibnamehash}{b5a24e10e08979a7e38ebc1244012435}
+      \strng{authorbibnamehash}{b5a24e10e08979a7e38ebc1244012435}
+      \strng{authornamehash}{b5a24e10e08979a7e38ebc1244012435}
+      \strng{authorfullhash}{b5a24e10e08979a7e38ebc1244012435}
+      \strng{authorfullhashraw}{b5a24e10e08979a7e38ebc1244012435}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Demography}
+      \field{title}{Water, Sanitation, and Child Health: Evidence From Subnational Panel Data in 59 Countries}
+      \field{volume}{56}
+      \field{year}{2019}
+      \field{pages}{729\bibrangedash 752}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1007/s13524-019-00760-y
+      \endverb
+    \endentry
+    \entry{JohnsonJacobBrown2013}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=5fc3708dc17f2865643156d9d1feb225}{%
+           family={Johnson},
+           familyi={J\bibinitperiod},
+           given={Kiersten\bibnamedelima B.},
+           giveni={K\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=224ca21927d951e7e0a340ca8d85fc3b}{%
+           family={Jacob},
+           familyi={J\bibinitperiod},
+           given={Arun},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b05ba7f6394eda0f4cedd7f55639cbdf}{%
+           family={Brown},
+           familyi={B\bibinitperiod},
+           given={Molly\bibnamedelima E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{fdf72e9c8b526453b7d4899a01d9b49f}
+      \strng{fullhash}{fdf72e9c8b526453b7d4899a01d9b49f}
+      \strng{fullhashraw}{fdf72e9c8b526453b7d4899a01d9b49f}
+      \strng{bibnamehash}{fdf72e9c8b526453b7d4899a01d9b49f}
+      \strng{authorbibnamehash}{fdf72e9c8b526453b7d4899a01d9b49f}
+      \strng{authornamehash}{fdf72e9c8b526453b7d4899a01d9b49f}
+      \strng{authorfullhash}{fdf72e9c8b526453b7d4899a01d9b49f}
+      \strng{authorfullhashraw}{fdf72e9c8b526453b7d4899a01d9b49f}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Global Health: Science and Practice}
+      \field{title}{Forest cover associated with improved child health and nutrition: evidence from the Malawi Demographic and Health Survey and satellite data}
+      \field{year}{2013}
+      \verb{doi}
+      \verb 10.9745/GHSP-D-13-00055
+      \endverb
+    \endentry
+    \entry{LBDWaSH2020}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=a12610b5c8eb2409efdd8fcfc9d303c7}{%
+           family={{Local Burden of Disease WaSH Collaborators}},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{a12610b5c8eb2409efdd8fcfc9d303c7}
+      \strng{fullhash}{a12610b5c8eb2409efdd8fcfc9d303c7}
+      \strng{fullhashraw}{a12610b5c8eb2409efdd8fcfc9d303c7}
+      \strng{bibnamehash}{a12610b5c8eb2409efdd8fcfc9d303c7}
+      \strng{authorbibnamehash}{a12610b5c8eb2409efdd8fcfc9d303c7}
+      \strng{authornamehash}{a12610b5c8eb2409efdd8fcfc9d303c7}
+      \strng{authorfullhash}{a12610b5c8eb2409efdd8fcfc9d303c7}
+      \strng{authorfullhashraw}{a12610b5c8eb2409efdd8fcfc9d303c7}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{The Lancet Global Health}
+      \field{note}{Primary source for the W\_IMP/S\_IMP product definitions used in this thesis's historical extension; definitions independently re-verified via PMC7443708 during this project (see docs/provenance/historical\_wash\_ihme\_product\_definitions\_v1\_2026-10-07.md).}
+      \field{title}{Mapping geographical inequalities in access to drinking water and sanitation facilities in low-income and middle-income countries, 2000--17}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1016/S2214-109X(20)30278-3
+      \endverb
+    \endentry
+    \entry{PerezHeydrich2013}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=882fc7c20b1c8e614b181aa697f218ed}{%
+           family={Pérez-Heydrich},
+           familyi={P\bibinithyphendelim H\bibinitperiod},
+           given={Carolina},
+           giveni={C\bibinitperiod}}}%
+        {{hash=b39a3a033898313dffe22f05f7bdcd26}{%
+           family={Warren},
+           familyi={W\bibinitperiod},
+           given={Joshua\bibnamedelima L.},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=a2aaf828038a5a3fb024dfdfd6ce4b43}{%
+           family={Burgert},
+           familyi={B\bibinitperiod},
+           given={Clara\bibnamedelima R.},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=8b61ef1cd169c2b0f270f816501d8093}{%
+           family={Emch},
+           familyi={E\bibinitperiod},
+           given={Michael\bibnamedelima E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {The DHS Program/ICF}%
+      }
+      \strng{namehash}{87bed7ae4afd6bdb54b8d0cac4f50052}
+      \strng{fullhash}{6dcb82cf4852db1a5a0749fdf6d3bc64}
+      \strng{fullhashraw}{6dcb82cf4852db1a5a0749fdf6d3bc64}
+      \strng{bibnamehash}{87bed7ae4afd6bdb54b8d0cac4f50052}
+      \strng{authorbibnamehash}{87bed7ae4afd6bdb54b8d0cac4f50052}
+      \strng{authornamehash}{87bed7ae4afd6bdb54b8d0cac4f50052}
+      \strng{authorfullhash}{6dcb82cf4852db1a5a0749fdf6d3bc64}
+      \strng{authorfullhashraw}{6dcb82cf4852db1a5a0749fdf6d3bc64}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{8}
+      \field{title}{Guidelines on the Use of DHS GPS Data}
+      \field{type}{DHS Spatial Analysis Reports}
+      \field{year}{2013}
+    \endentry
+    \entry{Rakotomanana2020}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=5d4272aa3aa530b7307e6ca10be5f19a}{%
+           family={Rakotomanana},
+           familyi={R\bibinitperiod},
+           given={Hasina},
+           giveni={H\bibinitperiod}}}%
+        {{hash=a0ae882b80439a117b147d6411ca4383}{%
+           family={Komakech},
+           familyi={K\bibinitperiod},
+           given={Jacob\bibnamedelima J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=18b70861efe46b19790829566749896f}{%
+           family={Walters},
+           familyi={W\bibinitperiod},
+           given={Christine\bibnamedelima N.},
+           giveni={C\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=3487075069dd4dd23fd6c3cf14dfcfb8}{%
+           family={Stoecker},
+           familyi={S\bibinitperiod},
+           given={Barbara\bibnamedelima J.},
+           giveni={B\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{064dccea99fecf8efc00470cb099d3b0}
+      \strng{fullhash}{af2abc55bafcb9df54ee86cd10ff17a4}
+      \strng{fullhashraw}{af2abc55bafcb9df54ee86cd10ff17a4}
+      \strng{bibnamehash}{064dccea99fecf8efc00470cb099d3b0}
+      \strng{authorbibnamehash}{064dccea99fecf8efc00470cb099d3b0}
+      \strng{authornamehash}{064dccea99fecf8efc00470cb099d3b0}
+      \strng{authorfullhash}{af2abc55bafcb9df54ee86cd10ff17a4}
+      \strng{authorfullhashraw}{af2abc55bafcb9df54ee86cd10ff17a4}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{International Journal of Environmental Research and Public Health}
+      \field{title}{The WHO and UNICEF Joint Monitoring Programme (JMP) Indicators for Water Supply, Sanitation and Hygiene and Their Association with Linear Growth in Children 6 to 23 Months in East Africa}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.3390/ijerph17176262
+      \endverb
+    \endentry
+    \entry{SkoufiasVinha2026}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=a90f509ffe22d4a46ed000c285fa328d}{%
+           family={Skoufias},
+           familyi={S\bibinitperiod},
+           given={Emmanuel},
+           giveni={E\bibinitperiod}}}%
+        {{hash=6a501c61865d728ab22c2af834b9f48a}{%
+           family={Vinha},
+           familyi={V\bibinitperiod},
+           given={Katja},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{9f8218ea4d22419e999413439d8e3d5c}
+      \strng{fullhash}{9f8218ea4d22419e999413439d8e3d5c}
+      \strng{fullhashraw}{9f8218ea4d22419e999413439d8e3d5c}
+      \strng{bibnamehash}{9f8218ea4d22419e999413439d8e3d5c}
+      \strng{authorbibnamehash}{9f8218ea4d22419e999413439d8e3d5c}
+      \strng{authornamehash}{9f8218ea4d22419e999413439d8e3d5c}
+      \strng{authorfullhash}{9f8218ea4d22419e999413439d8e3d5c}
+      \strng{authorfullhashraw}{9f8218ea4d22419e999413439d8e3d5c}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{PLOS One}
+      \field{number}{1}
+      \field{title}{Community-level externalities in child health: Evidence from Sub-Saharan Africa}
+      \field{volume}{21}
+      \field{year}{2026}
+      \verb{doi}
+      \verb 10.1371/journal.pone.0341218
+      \endverb
+    \endentry
+    \entry{Spears2013}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=0417f186f7f0d05ce77a250ee8953428}{%
+           family={Spears},
+           familyi={S\bibinitperiod},
+           given={Dean},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {World Bank}%
+      }
+      \strng{namehash}{0417f186f7f0d05ce77a250ee8953428}
+      \strng{fullhash}{0417f186f7f0d05ce77a250ee8953428}
+      \strng{fullhashraw}{0417f186f7f0d05ce77a250ee8953428}
+      \strng{bibnamehash}{0417f186f7f0d05ce77a250ee8953428}
+      \strng{authorbibnamehash}{0417f186f7f0d05ce77a250ee8953428}
+      \strng{authornamehash}{0417f186f7f0d05ce77a250ee8953428}
+      \strng{authorfullhash}{0417f186f7f0d05ce77a250ee8953428}
+      \strng{authorfullhashraw}{0417f186f7f0d05ce77a250ee8953428}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{6351}
+      \field{title}{How much international variation in child height can sanitation explain?}
+      \field{type}{Policy Research Working Paper}
+      \field{year}{2013}
+      \verb{doi}
+      \verb 10.1596/1813-9450-6351
+      \endverb
+    \endentry
+    \entry{Victora2008}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=6fe9f06e84cf100206f0124cff21ca63}{%
+           family={Victora},
+           familyi={V\bibinitperiod},
+           given={Cesar\bibnamedelima G.},
+           giveni={C\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=8a5cd89a4c2c9c2d92e15bd91e7bf3fe}{%
+           family={Adair},
+           familyi={A\bibinitperiod},
+           given={Linda},
+           giveni={L\bibinitperiod}}}%
+        {{hash=b34d357098028733d9b4f1fdd12dcb71}{%
+           family={Fall},
+           familyi={F\bibinitperiod},
+           given={Caroline},
+           giveni={C\bibinitperiod}}}%
+        {{hash=d1f7e7a048ae83be166570f35a85830a}{%
+           family={Hallal},
+           familyi={H\bibinitperiod},
+           given={Pedro\bibnamedelima C.},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=a4c2e86269aafac8b99250b510045159}{%
+           family={Martorell},
+           familyi={M\bibinitperiod},
+           given={Reynaldo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=3f90b92145078f22e2d92de14bc63ee3}{%
+           family={Richter},
+           familyi={R\bibinitperiod},
+           given={Linda},
+           giveni={L\bibinitperiod}}}%
+        {{hash=5b451234f43442f27cdbe81e61f43f39}{%
+           family={Sachdev},
+           familyi={S\bibinitperiod},
+           given={Harshpal\bibnamedelima S.},
+           giveni={H\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea81861511371729a42ab073178f1b5a}
+      \strng{fullhash}{ae1814d8e73ac3cb2c5c0f312fdbc648}
+      \strng{fullhashraw}{ae1814d8e73ac3cb2c5c0f312fdbc648}
+      \strng{bibnamehash}{ea81861511371729a42ab073178f1b5a}
+      \strng{authorbibnamehash}{ea81861511371729a42ab073178f1b5a}
+      \strng{authornamehash}{ea81861511371729a42ab073178f1b5a}
+      \strng{authorfullhash}{ae1814d8e73ac3cb2c5c0f312fdbc648}
+      \strng{authorfullhashraw}{ae1814d8e73ac3cb2c5c0f312fdbc648}
+      \field{extraname}{1}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{The Lancet}
+      \field{title}{Maternal and child undernutrition: consequences for adult health and human capital}
+      \field{volume}{371}
+      \field{year}{2008}
+      \field{pages}{340\bibrangedash 357}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1016/S0140-6736(07)61692-4
+      \endverb
+    \endentry
+    \entry{Victora2010}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=6fe9f06e84cf100206f0124cff21ca63}{%
+           family={Victora},
+           familyi={V\bibinitperiod},
+           given={Cesar\bibnamedelima G.},
+           giveni={C\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=c6c0f3f973ea5aefb8f1d9622387f647}{%
+           family={Onis},
+           familyi={O\bibinitperiod},
+           given={Mercedes},
+           giveni={M\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+        {{hash=d1f7e7a048ae83be166570f35a85830a}{%
+           family={Hallal},
+           familyi={H\bibinitperiod},
+           given={Pedro\bibnamedelima C.},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=704d8573036f7c4490b70acacd6fa05e}{%
+           family={Blossner},
+           familyi={B\bibinitperiod},
+           given={Monika},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c58f43f205aee0359c20c3e57df2b7d9}{%
+           family={Shrimpton},
+           familyi={S\bibinitperiod},
+           given={Roger},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea81861511371729a42ab073178f1b5a}
+      \strng{fullhash}{51012cec114e11c0346aded80777e862}
+      \strng{fullhashraw}{51012cec114e11c0346aded80777e862}
+      \strng{bibnamehash}{ea81861511371729a42ab073178f1b5a}
+      \strng{authorbibnamehash}{ea81861511371729a42ab073178f1b5a}
+      \strng{authornamehash}{ea81861511371729a42ab073178f1b5a}
+      \strng{authorfullhash}{51012cec114e11c0346aded80777e862}
+      \strng{authorfullhashraw}{51012cec114e11c0346aded80777e862}
+      \field{extraname}{2}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Pediatrics}
+      \field{number}{3}
+      \field{title}{Worldwide Timing of Growth Faltering: Revisiting Implications for Interventions}
+      \field{volume}{125}
+      \field{year}{2010}
+      \field{pages}{e473\bibrangedash e480}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1542/peds.2009-1519
+      \endverb
+    \endentry
+    \entry{deOnis2006}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=89a8ead4312d77005d0854fd8e4f4e99}{%
+           family={{WHO Multicentre Growth Reference Study Group}},
+           familyi={W\bibinitperiod}}}%
+        {{hash=c6c0f3f973ea5aefb8f1d9622387f647}{%
+           family={Onis},
+           familyi={O\bibinitperiod},
+           given={Mercedes},
+           giveni={M\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+        {{hash=a4c2e86269aafac8b99250b510045159}{%
+           family={Martorell},
+           familyi={M\bibinitperiod},
+           given={Reynaldo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=5cca63e70bba3ddcb13e56972fdfb3b3}{%
+           family={Garza},
+           familyi={G\bibinitperiod},
+           given={Cutberto},
+           giveni={C\bibinitperiod}}}%
+        {{hash=592687e1ce8863cdbca214a3cc9718ea}{%
+           family={Lartey},
+           familyi={L\bibinitperiod},
+           given={Anna},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{98b7de7c04a4279f39374d7dc931dd4e}
+      \strng{fullhash}{7a03d2e2fd474033d1691a2ddfd34b06}
+      \strng{fullhashraw}{7a03d2e2fd474033d1691a2ddfd34b06}
+      \strng{bibnamehash}{98b7de7c04a4279f39374d7dc931dd4e}
+      \strng{authorbibnamehash}{98b7de7c04a4279f39374d7dc931dd4e}
+      \strng{authornamehash}{98b7de7c04a4279f39374d7dc931dd4e}
+      \strng{authorfullhash}{7a03d2e2fd474033d1691a2ddfd34b06}
+      \strng{authorfullhashraw}{7a03d2e2fd474033d1691a2ddfd34b06}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Acta Paediatrica}
+      \field{note}{Filename metadata in the source audit suggested 2007; the article's own stated publication year, 2006, is used here per the audit's resolution.}
+      \field{title}{WHO Child Growth Standards based on length/height, weight and age}
+      \field{year}{2006}
+      \verb{doi}
+      \verb 10.1111/j.1651-2227.2006.tb02378.x
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
