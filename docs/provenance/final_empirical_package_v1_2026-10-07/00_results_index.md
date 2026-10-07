@@ -1,5 +1,7 @@
 # Final empirical package v1 — results index (2026-10-07)
 
+> **Superseded (2026-10-07, later the same day) for §B (historical extension) and the overall status statements.** See `final_empirical_package_v2_2026-10-07/00_results_index.md` for the current authority: the pooled headline estimate is now independently verified, Ethiopia candidate C1 is reclassified invalid, the IHME product definitions are resolved, and the issue list is reconciled. §A (baseline) below is still current and was not changed.
+
 Single entry point to the exact files a thesis chapter should cite. Every path is relative to the repository root `thesis-wash-child-nutrition-dhs/` unless marked RESTRICTED (those live under the master folder's `data/`, are git-ignored, and are not for citation by path in a public manuscript — cite the corresponding public aggregate instead).
 
 ## A. Baseline (current four-round, cross-sectional WASH)

@@ -1,5 +1,7 @@
 # Supervisor advice: implementation matrix (2026-10-07)
 
+> **Correction notice (2026-10-07, later the same day):** row 1's explanation of why wealth is excluded from a model was wrong. See `historical_wash_supervisor_advice_matrix_ADDENDUM_2026-10-07.md` for the correction and the correct row 1. Nothing else below is affected.
+
 Source: meeting transcript provided by the author (2026-09-23), and the roadmap document `Thesis_Empirical_Strategy.pdf` the author sent for that meeting. No earlier transcript existed in the repository; this is the first pass built directly from spoken text. Paraphrase, not verbatim transcription, is marked as such. No quotation here is invented — each row's "Evidence" is either a close paraphrase of a specific transcript passage or marked "Interpretation" when no direct statement supports it.
 
 | # | Suggestion | Evidence (transcript) | Implementation | Validation | Status |

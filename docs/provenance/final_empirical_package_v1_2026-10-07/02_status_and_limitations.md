@@ -1,5 +1,7 @@
 # Status and limitations (2026-10-07)
 
+> **Superseded (2026-10-07, later the same day).** The 7-item unresolved-issues summary below does not match the methods note's own 10-item list (it had merged two items and dropped two others). See `historical_wash_issue_register_v1_2026-10-07.md` for the reconciled, complete register (12 items), and `final_empirical_package_v2_2026-10-07/01_final_reporting_map.md` for the current per-analysis status assignments. This file is kept for the record of what was known at the time; use the register for anything cited going forward.
+
 ## Status labels used across this package
 
 - **Validated for main reporting** — baseline specifications in `00_results_index.md`§A; reproduced directly from stored CSVs in this pass.
