@@ -29,49 +29,81 @@ and, separately and unambiguously (no reconstruction needed), the exact
 standalone effect of including vs. excluding the age-in-months control,
 holding the birth-year coding fixed at the correct, country-local scheme.
 
-RESULT (2026-10-09, run recorded in
-data/processed/estimation/birthyear_coding_diagnostic_20261009T075217Z/):
-on this reconstruction, the birth-year-coding change alone moves the
-fitted E10 coefficient by EXACTLY 0.0000000 (1.0255531 under both schemes,
-holding age_m included) -- "pooled_single_ref" does add one extra column
-relative to "local" (13 vs 12: Nigeria's own observed birth-year range
-does not include the single global reference year, 2009, so no Nigeria
-row is actually dropped under that scheme), but the "local" scheme's
-column span is fully nested inside "pooled_single_ref"'s span, so this
-extra column has no effect on any other fitted coefficient. The age_m
-control alone, holding the birth-year scheme fixed at "local", moves the
-coefficient from 1.0255531 (with age_m) to 1.3852855 (without) -- matching
-the stored authoritative value (1.025553) and the documented early-attempt
-value ("1.385") each to within rounding, under both birth-year schemes.
-This is strong evidence, on this reconstruction, that the historical
-1.385-vs-1.026 discrepancy is attributable to the age_m omission, not the
-birth-year reference-coding change -- stated as this diagnostic's finding
-on a faithful reconstruction, not as proof of what the original,
-unpreserved buggy code specifically did.
+RESULT (2026-10-09, second pass, run recorded in
+data/processed/estimation/birthyear_coding_diagnostic_20261009T080355Z/):
+the two birth-year schemes' RAW surviving column counts differ after
+demeaning (local: 12; pooled_single_ref: 13), but after residualizing each
+scheme's demeaned birth-year block against the demeaned E10/age_m/AGE/
+dummy columns, BOTH residualized subspaces have rank 12, and so does their
+combination -- the transformed, residualized spaces are EQUAL (not merely
+nested). By Frisch-Waugh-Lovell, this is a sufficient condition for E10's
+coefficient to be mathematically identical between the two schemes, and the
+fitted results confirm it at floating-point precision: with age_m,
+1.0255530672006674 (local) vs. 1.0255530672006667 (pooled_single_ref),
+absolute difference 6.661338147750939e-16 -- machine epsilon, not an
+approximation. Without age_m, 1.3852855197991372 vs. 1.3852855197991374,
+absolute difference 2.220446049250313e-16. The age_m control alone, holding
+the birth-year scheme fixed, moves the coefficient from 1.0255530672006674
+(with) to 1.3852855197991372 (without) -- the stored authoritative value
+is 1.025553 and the documented early-attempt value is approximately 1.385;
+this diagnostic's without-age_m result approximately reproduces that
+documented discrepancy on this reconstruction, which is evidence the age_m
+omission explains it, not a claim of exact recovery of the original,
+unpreserved code's output.
 
-Method:
+CORRECTION (2026-10-09, second pass): the first version of this script
+compared the two birth-year schemes' RAW column spaces and found that the
+"local" scheme's raw span nests inside "pooled_single_ref"'s raw span, then
+concluded this alone explains why the fitted E10 coefficient was unchanged
+("it nests, so it does not move beta"). That inference is invalid in
+general: PanelOLS does not fit on the raw design matrix, it fits on the
+WEIGHTED WITHIN-CLUSTER DEMEANED matrix (the entity-effects transformation),
+and raw-space nesting does not imply transformed-space equality -- an
+additional column that survives demeaning and is correlated with E10's own
+within-cluster residual CAN change beta, nesting or not. The first version
+also reported coefficients rounded to 7 decimals and called agreement at
+that precision "bit-for-bit identical," which overstates what was actually
+shown. Both errors are corrected in this version: the comparison is now
+performed on the weighted within-cluster DEMEANED design matrices (the
+actual object the estimator uses), with the demeaning implemented
+independently here (not re-using 16_estimate_preliminary.py's wdemean(),
+though following the identical, standard weighted-within-group-demeaning
+definition), and coefficients are reported and compared at full float64
+precision with explicit absolute differences, not rounded figures.
+
+Method (revised):
   1. Build the pooled established-date water-HAZ sample exactly as
      20/21/24 do (same filters, same input file).
-  2. Construct TWO birth-year dummy schemes on this sample:
-       - "local": each country's own birth-year dummies, dropping that
-         country's own earliest observed year (the scheme this thesis uses,
-         matching 21_validate_all_primary_cells.py exactly).
-       - "pooled_single_ref": one single reference year, chosen as the
-         earliest birth year observed anywhere in the pooled sample, with
-         one country-by-year dummy for every (country, year) cell except
-         rows where country's own year equals that one single global
-         reference year -- the literal, most natural reading of "a single
-         combined reference cell across countries" (Appendix B's own
-         phrase). This is a reconstruction for diagnostic purposes, not a
-         claim that it is byte-identical to the original buggy script.
-  3. Compare the two schemes' design-matrix rank and column count directly
-     (established via QR/SVD rank, not assumed), and check whether the
-     "local" column space is a subset of the "pooled_single_ref" column
-     space (i.e. whether one nests the other) -- this directly answers
-     (a) vs (b) for this specific reconstruction.
-  4. Fit all four combinations (2 birth-year schemes x with/without age_m)
+  2. Construct TWO birth-year dummy schemes (unchanged from the first
+     version): "local" (country-local reference year, matching
+     21_validate_all_primary_cells.py) and "pooled_single_ref" (one single
+     global reference year, the literal reading of Appendix B's "a single
+     combined reference cell across countries").
+  3. Apply the SAME weighted within-cluster-demeaning transformation
+     PanelOLS's entity_effects uses to: the shared non-birth-year columns
+     (E10, age_m, AGE, demographic dummies) once, and each birth-year
+     scheme's raw block separately. Drop demeaned birth-year columns whose
+     post-demeaning norm is numerically zero ("absorbed" by the cluster FE
+     -- the same criterion 16_estimate_preliminary.py itself uses, and the
+     same phenomenon linearmodels' own AbsorbingEffectWarning flags).
+  4. The question that actually determines whether E10's coefficient MUST
+     be identical between schemes (by the Frisch-Waugh-Lovell theorem, not
+     by nesting alone): after demeaning, residualize each scheme's
+     surviving birth-year columns against the shared non-birth-year
+     columns (E10, age_m, AGE, dummies) and compare the RESIDUALIZED
+     subspaces' ranks (own rank, and combined rank with the other scheme).
+     Equal residualized ranks (both nesting directions hold) means the two
+     schemes contribute identical "net new information" to the model after
+     the fixed effect and other controls are accounted for -- this, not
+     raw-space nesting, is what provably forces every other coefficient,
+     including E10, to be identical between schemes. Unequal ranks mean no
+     such guarantee exists, and any observed agreement in the actual fitted
+     coefficients would need to be reported as an empirical finding in this
+     specific sample, not a algebraic certainty.
+  5. Fit all four combinations (2 birth-year schemes x with/without age_m)
      with linearmodels.PanelOLS, same estimator as scripts 20/21/24, and
-     report all four coefficients side by side.
+     report full float64-precision coefficients and explicit absolute
+     differences, not rounded figures.
 
 No authoritative result is touched; this is a new, separate diagnostic run.
 """
@@ -183,43 +215,106 @@ record(f"Global earliest birth year (single pooled reference candidate): {global
 record(f"local scheme: {byear_local.shape[1]} birth-year dummy columns, names: {list(byear_local.columns)}")
 record(f"pooled_single_ref scheme: {byear_pooled.shape[1]} birth-year dummy columns, names: {list(byear_pooled.columns)}")
 
-# --- Rank / column-space comparison (the (a) vs (b) question) ---
-w_arr = panel["w"].astype(float).values
-sw = np.sqrt(w_arr)
-A_local = (byear_local.values * sw[:, None])
-A_pooled = (byear_pooled.values * sw[:, None])
-rank_local = int(np.linalg.matrix_rank(A_local))
-rank_pooled = int(np.linalg.matrix_rank(A_pooled))
-record(f"rank(local byear block) = {rank_local} (of {byear_local.shape[1]} columns)")
-record(f"rank(pooled_single_ref byear block) = {rank_pooled} (of {byear_pooled.shape[1]} columns)")
+# --- Weighted within-cluster demeaning, applied to the design, not the raw blocks ---
+# Same definition 16_estimate_preliminary.py uses (bincount-based weighted
+# group demeaning), implemented independently here for this diagnostic.
+RANK_TOL = 1e-8          # relative singular-value tolerance for np.linalg.matrix_rank
+ABSORB_TOL = 1e-10       # post-demeaning column-norm tolerance for "absorbed"
 
-# Does the local column space lie inside the pooled_single_ref column space?
-# (i.e. is every local-scheme column exactly reproducible as a linear
-# combination of pooled_single_ref columns, country fixed effects implicitly
-# available via the cluster FE at estimation time?) Check via combined-rank
-# test: rank([A_pooled, A_local]) vs rank(A_pooled) -- equal iff local
-# nests inside pooled's span (not testing the other direction, since the
-# two have different column counts by construction whenever a country's
-# own earliest year differs from the single global reference year).
-combined_rank = int(np.linalg.matrix_rank(np.hstack([A_pooled, A_local])))
-record(f"rank([pooled_single_ref | local]) = {combined_rank}")
-same_span = (combined_rank == rank_pooled == byear_pooled.shape[1]) and (byear_local.shape[1] == byear_pooled.shape[1])
-record(f"Same column count: {byear_local.shape[1] == byear_pooled.shape[1]}")
-record(f"local block's span fully contained in pooled_single_ref's span: {combined_rank == rank_pooled}")
-record(
-    "CONCLUSION (a)-vs-(b) for this reconstruction, stated precisely (not collapsed to a binary a/b label): "
-    "the two schemes are NOT an equivalent reparameterization in the strict sense -- pooled_single_ref has "
-    "one additional column (13 vs 12), because Nigeria's own observed birth-year range does not include the "
-    "single global reference year (2009), so no Nigeria row is actually dropped as a reference under that "
-    "scheme, leaving Nigeria's own earliest observed year (2013) with its own extra dummy. HOWEVER, because "
-    "the 'local' scheme's column span is fully nested inside 'pooled_single_ref's span (confirmed above), "
-    "this specific design difference has NO effect on the fitted coefficient of any OTHER column, including "
-    "E10 -- confirmed numerically below: the exposure coefficient is bit-for-bit identical between the two "
-    "schemes once age_m is held fixed. This is a real but inconsequential-for-this-coefficient difference in "
-    "design, not case (a) or case (b) as a clean dichotomy -- it nests, so it does not move beta."
-)
+codes, uniq = pd.factorize(panel.index.get_level_values("cluster_key"))
+W = panel["w"].astype(float).values
+sw_group = np.bincount(codes, weights=W)
+
+def wdemean(V):
+    out_ = np.empty_like(V, dtype=float)
+    for j in range(V.shape[1]):
+        num = np.bincount(codes, weights=W * V[:, j])
+        out_[:, j] = V[:, j] - (num / sw_group)[codes]
+    return out_
+
+def drop_absorbed(Xt, names, W_):
+    """Same criterion 16_estimate_preliminary.py uses: weighted column norm
+    after demeaning must exceed ABSORB_TOL, else the column is collinear
+    with the absorbed cluster fixed effect (no within-cluster variation)."""
+    scale = np.sqrt(np.sum(W_[:, None] * Xt ** 2, axis=0))
+    keep = scale > ABSORB_TOL
+    dropped = [n for n, k in zip(names, keep) if not k]
+    return Xt[:, keep], [n for n, k in zip(names, keep) if k], dropped
+
+other_raw = panel[["E10", "age_m", "AGE"]].astype(float).values
+other_raw = np.hstack([other_raw, dummies.values.astype(float)])
+other_names = ["E10", "age_m", "AGE"] + list(dummies.columns)
+other_t = wdemean(other_raw)
+other_t, other_names_kept, other_dropped = drop_absorbed(other_t, other_names, W)
+record(f"Shared non-birth-year columns after demeaning: kept {other_names_kept}, absorbed/dropped {other_dropped}")
+
+local_t_raw = wdemean(byear_local.values.astype(float))
+local_t, local_names_kept, local_dropped = drop_absorbed(local_t_raw, list(byear_local.columns), W)
+pooled_t_raw = wdemean(byear_pooled.values.astype(float))
+pooled_t, pooled_names_kept, pooled_dropped = drop_absorbed(pooled_t_raw, list(byear_pooled.columns), W)
+record(f"local scheme, post-demeaning: {len(local_names_kept)} surviving columns (raw {byear_local.shape[1]}); "
+       f"absorbed: {local_dropped}")
+record(f"pooled_single_ref scheme, post-demeaning: {len(pooled_names_kept)} surviving columns (raw {byear_pooled.shape[1]}); "
+       f"absorbed: {pooled_dropped}")
+
+# Residualize each scheme's surviving, demeaned birth-year columns against
+# the shared, demeaned non-birth-year columns (weighted OLS residuals) --
+# this isolates the "net new information" each scheme's birth-year block
+# contributes beyond what E10/age_m/AGE/dummies + the cluster FE already
+# explain. By the Frisch-Waugh-Lovell theorem, E10's coefficient (and every
+# other non-birth-year coefficient) is mathematically GUARANTEED identical
+# between the two schemes if and only if these residualized subspaces are
+# EQUAL (not merely one nested in the other).
+sw_row = np.sqrt(W)
+
+def wls_residualize(target, regressors, w_sqrt):
+    """Weighted-OLS residuals of `target` columns on `regressors`."""
+    Xw = regressors * w_sqrt[:, None]
+    Yw = target * w_sqrt[:, None]
+    coef, *_ = np.linalg.lstsq(Xw, Yw, rcond=None)
+    fitted = regressors @ coef
+    return target - fitted
+
+local_resid = wls_residualize(local_t, other_t, sw_row)
+pooled_resid = wls_residualize(pooled_t, other_t, sw_row)
+
+A_local_r = local_resid * sw_row[:, None]
+A_pooled_r = pooled_resid * sw_row[:, None]
+rank_local_r = int(np.linalg.matrix_rank(A_local_r, tol=RANK_TOL * np.linalg.norm(A_local_r, 2) if A_local_r.size else None))
+rank_pooled_r = int(np.linalg.matrix_rank(A_pooled_r, tol=RANK_TOL * np.linalg.norm(A_pooled_r, 2) if A_pooled_r.size else None))
+combined_r = np.hstack([A_pooled_r, A_local_r])
+rank_combined_r = int(np.linalg.matrix_rank(combined_r, tol=RANK_TOL * np.linalg.norm(combined_r, 2) if combined_r.size else None))
+
+record(f"\n=== Transformed (weighted within-cluster demeaned, then residualized against "
+       f"E10/age_m/AGE/dummies) rank comparison, rank tolerance = {RANK_TOL} relative to the largest singular value ===")
+record(f"rank(local, residualized) = {rank_local_r} (of {len(local_names_kept)} surviving raw columns)")
+record(f"rank(pooled_single_ref, residualized) = {rank_pooled_r} (of {len(pooled_names_kept)} surviving raw columns)")
+record(f"rank(combined [pooled_single_ref | local], residualized) = {rank_combined_r}")
+
+equal_span = (rank_local_r == rank_pooled_r == rank_combined_r)
+record(f"Raw column counts: local={byear_local.shape[1]}, pooled_single_ref={byear_pooled.shape[1]} (NOT required to be equal for equal transformed spans)")
+record(f"Transformed, residualized column spaces EQUAL: {equal_span}")
+if equal_span:
+    record(
+        "CONCLUSION: the transformed (post-cluster-FE, post-residualization) subspaces are EQUAL "
+        "(all three ranks match). By the Frisch-Waugh-Lovell theorem, this is a sufficient condition for "
+        "E10's coefficient -- and every other non-birth-year coefficient -- to be mathematically identical "
+        "between the two birth-year schemes, not merely an empirical coincidence. The two schemes are "
+        "equivalent controls once the cluster fixed effect and the other covariates are accounted for, "
+        "despite having different raw column counts (one is not a mere relabelling of the other, but the "
+        "two carry the same information after absorption)."
+    )
+else:
+    record(
+        "CONCLUSION: the transformed, residualized subspaces are NOT equal (at least one rank differs). "
+        "There is therefore NO algebraic guarantee that E10's coefficient must be identical between the two "
+        "birth-year schemes. If the fitted coefficients below nonetheless agree closely, that agreement is "
+        "reported as an empirical observation in this specific sample, not as a consequence of the design "
+        "comparison alone."
+    )
 
 # --- Four-way fit: {local, pooled_single_ref} x {with age_m, without age_m} ---
+# Full float64 precision retained throughout -- no rounding before differencing.
 results = {}
 for scheme_name, byear_df in [("local", byear_local), ("pooled_single_ref", byear_pooled)]:
     for age_mode in ["with_age_m", "without_age_m"]:
@@ -236,21 +331,31 @@ for scheme_name, byear_df in [("local", byear_local), ("pooled_single_ref", byea
         # E10 is already "per 10 points" -- do not multiply by 10 again (this
         # exact bug was caught and fixed once before, in script 21, this
         # same session; re-caught here on first run of this new script).
-        results[key] = {"beta_per_10": round(beta, 7), "se_per_10": round(se, 7), "n_byear_cols": byear_df.shape[1]}
-        record(f"{key}: beta_per_10={beta:.7f}  se_per_10={se:.7f}  n_byear_cols={byear_df.shape[1]}")
+        results[key] = {"beta_per_10": beta, "se_per_10": se, "n_byear_cols": byear_df.shape[1]}
+        record(f"{key}: beta_per_10={beta!r}  se_per_10={se!r}  n_byear_cols={byear_df.shape[1]}")
 
-record("\n=== Isolated effects ===")
-record(f"Effect of age_m alone, holding birth-year scheme = local (the correct scheme): "
-       f"{results['local__with_age_m']['beta_per_10']} (with age_m) vs "
-       f"{results['local__without_age_m']['beta_per_10']} (without age_m), "
-       f"diff = {results['local__with_age_m']['beta_per_10'] - results['local__without_age_m']['beta_per_10']:.7f}")
+record("\n=== Isolated effects, full precision, explicit absolute differences (not rounded before differencing) ===")
+diff_age = results['local__with_age_m']['beta_per_10'] - results['local__without_age_m']['beta_per_10']
+record(f"Effect of age_m alone, holding birth-year scheme = local: "
+       f"{results['local__with_age_m']['beta_per_10']!r} (with age_m) vs "
+       f"{results['local__without_age_m']['beta_per_10']!r} (without age_m), "
+       f"diff = {diff_age!r}")
+diff_scheme_with_age = results['local__with_age_m']['beta_per_10'] - results['pooled_single_ref__with_age_m']['beta_per_10']
 record(f"Effect of birth-year scheme alone, holding age_m included: "
-       f"{results['local__with_age_m']['beta_per_10']} (local) vs "
-       f"{results['pooled_single_ref__with_age_m']['beta_per_10']} (pooled_single_ref), "
-       f"diff = {results['local__with_age_m']['beta_per_10'] - results['pooled_single_ref__with_age_m']['beta_per_10']:.7f}")
-record(f"Stored authoritative value for comparison: 1.025553 (per 10 points)")
-record(f"Documented early-attempt value for comparison: 1.385 (per 10 points) -- NOT independently reproduced here; "
-       f"its exact originating code was never committed to this repository, so no row above is claimed to replicate it exactly.")
+       f"{results['local__with_age_m']['beta_per_10']!r} (local) vs "
+       f"{results['pooled_single_ref__with_age_m']['beta_per_10']!r} (pooled_single_ref), "
+       f"abs diff = {abs(diff_scheme_with_age)!r}")
+diff_scheme_without_age = results['local__without_age_m']['beta_per_10'] - results['pooled_single_ref__without_age_m']['beta_per_10']
+record(f"Effect of birth-year scheme alone, holding age_m excluded: "
+       f"{results['local__without_age_m']['beta_per_10']!r} (local) vs "
+       f"{results['pooled_single_ref__without_age_m']['beta_per_10']!r} (pooled_single_ref), "
+       f"abs diff = {abs(diff_scheme_without_age)!r}")
+record(f"Stored authoritative value for comparison: 1.025553 (per 10 points, as published in the manuscript/appendix; "
+       f"full-precision stored value: see model_results_RESTRICTED_coefficients.csv)")
+record(f"Documented early-attempt value for comparison: approximately 1.385 (per 10 points) -- this diagnostic's "
+       f"without-age_m results are offered as evidence that omitting age_m approximately reproduces the documented "
+       f"early-attempt discrepancy in this reconstruction; this is NOT a claim of exact recovery of the original, "
+       f"unpreserved historical script's output, which cannot be independently verified.")
 
 with open(os.path.join(OUT, "execution_log.txt"), "w", encoding="utf-8") as f:
     f.write("\n".join(log))
