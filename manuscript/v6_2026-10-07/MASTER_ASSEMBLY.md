@@ -1,6 +1,6 @@
-# Master assembly specification — manuscript v4 (2026-10-07, material verification gaps closed)
+# Master assembly specification — manuscript v6 (2026-10-07, PDF clipping fixed, inference/multiplicity corrections)
 
-Supersedes `../v3_2026-10-07/MASTER_ASSEMBLY.md` (and, transitively, v1/v2's). v1, v2, and v3 are preserved unchanged; see each version's own pointer file. This file is the current authority for assembling the full thesis. New in v4: all 24 primary historical model cells independently reproduced (`scripts/historical_wash/21_validate_all_primary_cells.py`); the spatial-extraction data layer independently verified via a different library (rasterio) against 48 test cases; IPUMS/IHME metadata re-checked from the raw files; one literature overclaim found and corrected (Donohue et al. 2023, §2.4). Diagnostic build rebuilt and re-verified (still 31-page main text, 0 errors). Full detail: `CORRECTION_LOG.md`.
+Supersedes `../v5_2026-10-07/MASTER_ASSEMBLY.md` (and, transitively, v1–v4's). v1 through v5 are preserved unchanged; see each version's own pointer file. This file is the current authority for assembling the full thesis. New in v6: real PDF table clipping found and fixed (`build/md2tex.py`'s table converter now wraps columns instead of leaving them unbounded); the historical-model SE/CI/p-value gap fully reconciled against the authoritative pipeline (not merely asserted as "numerical noise"); unsupported "unlikely to be a multiplicity artefact" language removed from Results §5.6 and Discussion §6.1. Diagnostic build rebuilt and re-verified (main text now **32 pages**, up from 31 in v5 because correctly wrapped table cells take more vertical space; still within the 40-page limit; 0 errors). Full detail: `CORRECTION_LOG.md` (this version's) and v5's own `CORRECTION_LOG.md` for the Addae et al. 2024 literature correction it made.
 
 ## Canonical v4 files and document order
 
@@ -52,7 +52,7 @@ Unchanged from v1: every table in the chapter text is reused directly from the s
 
 ## Draft-build readiness vs. submission readiness
 
-**Ready for a draft build**: yes, and now demonstrated rather than asserted — `build/main.pdf` is an actual compiling PDF under the exact university formatting specification, with a verified 31-page main text (40-page limit), 0 LaTeX errors, and all 20 cited keys resolving.
+**Ready for a draft build**: yes, and now demonstrated rather than asserted — `build/main.pdf` is an actual compiling PDF under the exact university formatting specification, with a verified 32-page main text (40-page limit), 0 LaTeX errors, all 20 cited keys resolving, and every page checked by direct visual rendering (not text extraction alone) to confirm no table or path content is clipped.
 
 **Not ready for submission**: the actual submission date and a handwritten signature cannot be filled in before the thesis is finished and printed; 38 cosmetic overfull-text-box warnings (long file paths not breaking across lines) should be cleaned up; the quality-review pass noted in `AUTHOR_CHECKLIST.md` should be re-run once more immediately before a submission build, after any further edits. No claim of supervisor approval or university acceptance is made anywhere in this package.
 

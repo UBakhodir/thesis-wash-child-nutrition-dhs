@@ -1,6 +1,6 @@
-# Author checklist — administrative and formatting items outside chapter prose (2026-10-07, v4)
+# Author checklist — administrative and formatting items outside chapter prose (2026-10-07, v6)
 
-Nothing below is fabricated or assumed anywhere in the chapter text. Supersedes `v3_2026-10-07/AUTHOR_CHECKLIST.md` (unchanged in substance; no new administrative items arose from this pass's material-verification work). Most formatting items below are now **resolved**, using the official university guidelines (`merkblatt-abschlussarbeiten-ba-ma-2026-07-23-eng.pdf`) and the author's registration confirmation email (Meldebestätigung, 25 June 2026, Matrikelnummer 50294516), both supplied by the author. Items genuinely still open are marked as such.
+Nothing below is fabricated or assumed anywhere in the chapter text. Supersedes `v5_2026-10-07/AUTHOR_CHECKLIST.md` (unchanged in substance; no new administrative items arose from the v5/v6 passes' source-correction work). Most formatting items below are now **resolved**, using the official university guidelines (`merkblatt-abschlussarbeiten-ba-ma-2026-07-23-eng.pdf`) and the author's registration confirmation email (Meldebestätigung, 25 June 2026, Matrikelnummer 50294516), both supplied by the author. Items genuinely still open are marked as such.
 
 ## Confirmed metadata (from the registration confirmation email — not inferred, not guessed)
 
@@ -15,7 +15,7 @@ Nothing below is fabricated or assumed anywhere in the chapter text. Supersedes 
 ## Formatting — resolved in this pass
 
 - [x] **Page layout**: A4; left/right margins 2.5 cm/4.0 cm (combined 6.5 cm); top/bottom 2.8 cm/2.8 cm (combined 5.6 cm); Times New Roman 11pt, 19.5pt leading for main text (35 lines/page); headings per the guidelines' four levels — all implemented in `build/preamble.tex` and verified by an actual compiling PDF.
-- [x] **Page limit**: Master's thesis in Economics, maximum 40 A4 pages of main text (figures/tables/formulas included; table of contents, appendices, references excluded). **Verified main text: 31 pages** (`build/README.md`). No trimming was needed.
+- [x] **Page limit**: Master's thesis in Economics, maximum 40 A4 pages of main text (figures/tables/formulas included; table of contents, appendices, references excluded). **Verified main text: 32 pages** (`build/README.md`; grew from 31 in v5 to 32 in v6 when table cells were correctly wrapped instead of left unbounded — see `CORRECTION_LOG.md`). No trimming was needed.
 - [x] **Required components**: title page, table of contents, main text, list of references, appendix, signed declaration — all present in `build/main.tex`'s assembly; only the declaration's date and signature are deliberately left blank (see below).
 - [x] **No acknowledgements or dedications**: the guidelines state these must **not** be included. None exists in this package (this resolves an item v1/v2 had left as "author's choice" — it is not a choice; it is prohibited).
 - [x] **No university seal or logo**: none used anywhere in this package.

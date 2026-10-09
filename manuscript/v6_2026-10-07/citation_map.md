@@ -1,4 +1,4 @@
-# Citation map (2026-10-07, v5)
+# Citation map (2026-10-07, v6)
 
 Every in-text citation in the chapter files, its bibliography key, the version of the source actually used, and the location supporting the specific claim made at that citation. Updated in v5: all 11 previously bibliographic-identity-only sources were read directly against their specific claims this pass (`docs/provenance/independent_audit_v1_2026-10-07/08_update_2026-10-07_pass3.md` §4); 10 of 11 confirmed accurate, 1 (Addae2024) found overstated and corrected (`CORRECTION_LOG.md`). All 20 of 20 cited sources now have claim-level verification. "Version used" distinguishes the working-paper from the published-article version where both exist (Geruso and Spears). "Supporting location" gives the page/section where available from direct reading.
 

@@ -1,4 +1,4 @@
-# Bibliography verification ledger (2026-10-07, v3)
+# Bibliography verification ledger (2026-10-07, v6)
 
 This ledger covers **bibliographic identity** (author spelling, year, title, journal/institution, DOI) for every source cited. For **claim-level verification** — which specific passage in which version of each source supports the specific claim this manuscript makes, and how deeply each source was actually read — see `citation_map.md`, the newer and more precise record for the three sources (Cumming et al. 2019, Headey and Palloni 2019, Geruso and Spears 2015) re-read in full specifically because this manuscript's argument depends most on getting them right. `bibliography.bib` uses pandoc-style `[@key]`/`Author [-@key]` citation syntax throughout the chapter text (`MASTER_ASSEMBLY.md` documents the rendering workflow, including the xelatex+biblatex path actually used for this pass's diagnostic build); the bibliographic content below is unchanged since v1.
 
