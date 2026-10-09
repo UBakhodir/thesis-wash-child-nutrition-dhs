@@ -19,7 +19,9 @@ Corrects two small issues found during a bounded final source-package verificati
 
 ## What this pass did not do
 
-Did not re-run any of the 291 historical models or any baseline model. Did not re-derive the full-precision values behind the two unresolved rounding-boundary ambiguities noted in `README.md` (the restricted source file no longer exists on disk). Did not generate, compile, rebuild, or render any PDF — explicitly not authorized for this task. Did not begin the next-stage draft-PDF build or page-by-page review.
+Did not re-run any of the 291 historical models or any baseline model. Did not generate, compile, rebuild, or render any PDF — explicitly not authorized for this task. Did not begin the next-stage draft-PDF build or page-by-page review.
+
+**Addendum (same day, later pass, commit `068ee4c`→):** the two rounding-boundary values noted above as unresolved were in fact resolvable — this pass's own search for the full-precision restricted source checked only this git repository's own `data/` subdirectory, not the master `C:\Users\user\Documents\Graduation_Thesis\data\` directory one level above, where the source actually resides, fully intact. Both values are now confirmed correct from that source; see `README.md` and `docs/provenance/source_lineage_correction_v1_2026-10-09.md`.
 
 ## Canonical path
 
