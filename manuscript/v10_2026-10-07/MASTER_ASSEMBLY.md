@@ -17,7 +17,7 @@ Supersedes `../v9_2026-10-07/MASTER_ASSEMBLY.md` (and, transitively, v1–v8's).
 | App. A | `appendices/A_variable_definitions_and_sample_flow.md` | Complete, unchanged since v8 |
 | App. B | `appendices/B_model_specifications_and_independent_verification.md` | Complete; corrected in v10 (§B.2 rewritten with all five steps' evidence reported explicitly) |
 | App. C | `appendices/C_historical_diagnostics_and_ethiopia.md` | Complete, unchanged since v1 |
-| — | `bibliography.bib` | Complete (26 entries total; 20 cited; 6 uncited reserve — see `citation_map.md`; count corrected in v3, see that version's `CORRECTION_LOG.md`). **2026-10-09**: 12 author-name/field corrections applied across 9 entries after a dedicated primary-source metadata audit (`docs/provenance/bibliographic_citation_audit_v1_2026-10-09.md`); edited in place (no new manuscript version), since no chapter prose, claim, or cross-reference changed |
+| — | `bibliography.bib` | Complete (26 entries total; 20 cited; 6 uncited reserve — see `citation_map.md`; count corrected in v3, see that version's `CORRECTION_LOG.md`). **2026-10-09**: 12 entries received author-name and/or missing-field corrections after a dedicated primary-source metadata audit (`docs/provenance/bibliographic_citation_audit_v1_2026-10-09.md`, cleaned up and reconciled in `_v2` and `_v3`); edited in place (no new manuscript version), since no chapter prose, claim, or cross-reference changed |
 
 Do not rely on heading text alone to resolve in-text "Section X.Y" references; use `CROSS_REFERENCE_MAP.md` for stable labels, and update that map in the same edit that changes section structure.
 
