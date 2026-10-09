@@ -23,10 +23,17 @@ preserved for the record but superseded (each has its own `POINTER_TO_V<n>.md`).
 2. **Historical extension** — a preliminary, explicitly bounded attempt to link an earlier DHS round in
    three of the four countries (Ghana 2014, Kenya 2014, Nigeria 2018; Ethiopia 2016 only as a provisional
    sensitivity) to IHME's gridded 2000–2017 local water/sanitation-coverage estimates, matched to each
-   child's own early-life window. This is **complete** — 291 models estimated, independently
-   re-reproduced by a second estimation library, and reported with a full, explicit list of documentation
-   limitations (Section 6; manuscript §5.6–5.9, Appendix B–C). It is not a panel, difference-in-differences,
-   or instrumental-variables design.
+   child's own early-life window. This is **complete** — **291 models estimated** in total (24 primary
+   established-date cells plus window/sensitivity/Ethiopia-provisional families); **the 24 primary cells
+   are independently reproduced** by a second estimation library (`linearmodels.PanelOLS`) to floating-point
+   precision, and separately design-checked (record-key uniqueness, cluster-to-survey mapping, weight
+   totals, design-matrix rank, singleton-cluster treatment); the remaining models were estimated by the
+   same validated pipeline but were not individually re-run in a second library. Exact per-model coverage is
+   documented in manuscript Appendix B §B.2–B.3 and
+   `docs/provenance/final_empirical_package_v3_2026-10-07/02_core_reporting_table.md` — **this is not a
+   claim that every one of the 291 models was independently reproduced.** Reported with a full, explicit
+   list of documentation limitations (Section 6; manuscript §5.6–5.9, Appendix B–C). It is not a panel,
+   difference-in-differences, or instrumental-variables design.
 
 Readable entry points into the results and evidence, without opening restricted data:
 - **Results index**: [`docs/provenance/final_empirical_package_v3_2026-10-07/00_results_index.md`](docs/provenance/final_empirical_package_v3_2026-10-07/00_results_index.md) and [`02_core_reporting_table.md`](docs/provenance/final_empirical_package_v3_2026-10-07/02_core_reporting_table.md) (the 24-cell historical core table, readable without the restricted source).
@@ -34,8 +41,15 @@ Readable entry points into the results and evidence, without opening restricted 
 - **Bibliography/citation evidence**: manuscript `bibliography.bib`, `bibliography_verification_ledger.md`, and `citation_map.md` (every cited source's verification depth stated per-source, not just per-bibliography-entry).
 - **Full verification trail**: `docs/provenance/` — each correction pass has its own dated file; `final_source_verification_v1_2026-10-09.md` and `source_lineage_correction_v1_2026-10-09.md` are the most recent full source-package checks.
 
-**No PDF has been built from the manuscript yet.** The author will generate it independently from this
-repository; this repository's job is to be an accurate, reviewable source package, not a finished document.
+**No PDF has been built from the canonical `manuscript/v11_2026-10-09/` manuscript.** Earlier manuscript
+versions `v3_2026-10-07/` through `v6_2026-10-07/` each have a diagnostic PDF build under their own
+`build/` subdirectory (e.g. `manuscript/v6_2026-10-07/build/main.pdf`, confirmed compiling under the
+university's formatting specification, 0 LaTeX errors) — these are preserved but **superseded**: they
+predate the source corrections made in `v7_2026-10-07/` through the current `v11_2026-10-09/` and do not
+reflect them (see `manuscript/v11_2026-10-09/MASTER_ASSEMBLY.md`, "Draft-build readiness vs. submission
+readiness"). No manuscript version from `v7` onward, including the current canonical `v11`, has been built
+into a PDF. The author will generate the canonical PDF independently from this repository; this
+repository's job is to be an accurate, reviewable source package, not a finished document.
 
 For a guided walkthrough of where each part of the **original Steps 00–13 pipeline** lives in the
 code — anthropometric outcome construction, WASH classification, the
@@ -177,8 +191,10 @@ than during a common developmental period for every child.
 > been carried out. That is no longer the case: the extension — linking an earlier DHS round in Ghana
 > (2014), Kenya (2014), and Nigeria (2018), plus Ethiopia (2016) as a provisional sensitivity, to IHME's
 > gridded 2000–2017 water/sanitation-coverage estimates, matched to each child's own early-life window —
-> has been fully implemented, estimated (291 models), independently re-reproduced by a second estimation
-> library, and written up with a full, explicit list of documentation limitations. **See the current
+> has been fully implemented and estimated (291 models total, of which the 24 primary established-date
+> cells are independently reproduced by a second estimation library and separately design-checked — see
+> the "Start here" section above for the exact coverage), and written up with a full, explicit list of
+> documentation limitations. **See the current
 > canonical manuscript, `manuscript/v11_2026-10-09/` (Sections 1.2, 3.5–3.8, 5.6–5.9, Appendix B–C), for
 > the actual, current description — not this paragraph**, which is retained below only as a historical
 > record of the project's state in an earlier phase.
