@@ -5,6 +5,16 @@
 **Status:** The empirical pipeline (`scripts/dhs_harmonization/00_config.py` through `13_final_outputs.py`) is complete and frozen, and has produced the regression outputs, tables, and figures included in this repository.
 **Last updated:** 2026-08-18
 
+> **Superseded notice (2026-10-09):** this document's "Part I — as-implemented design" describes the
+> original Steps 00–13 pipeline, whose Model 4 (administrative-region FE, leave-one-out community
+> exposure, household WASH only as a binary robustness check) was the preferred specification at the time
+> this document was last updated. Since then, the project added a household-cluster-fixed-effects main
+> specification and a complete historical WASH extension (291 models), neither described below. **The
+> current, final analysis is described in `manuscript/v11_2026-10-09/`** (see the repository root
+> `README.md` for the full map); this document is retained as the historical record of the original
+> pipeline's own design, which remains part of how the baseline sample was built, but is no longer a
+> complete or current description of the thesis's analysis.
+
 This document has two parts. **Part I** describes the empirical design exactly as it was implemented and estimated — this is the authoritative description of the analysis behind the results in this repository. **Part II** preserves the original pre-implementation research plan, since the implemented design departs from that plan in several respects (documented explicitly in Part I). Part II is retained for project history; it does not describe results that exist anywhere in this repository, and nothing in Part II should be read as a description of the frozen analysis.
 
 For a code-level walkthrough of where each element of Part I is implemented, see `docs/code_guide.md`. For exact raw and derived variable definitions, see `docs/data_dictionary.md`.

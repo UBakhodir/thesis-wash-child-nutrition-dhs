@@ -8,13 +8,44 @@ Nigeria (2024), using pooled DHS survey microdata linked to DHS geographic (GE) 
 analysis is the child, nested in a household, a DHS survey cluster, an administrative region, and a
 country. All reported coefficients are observational associations, not causal effects.
 
-For a guided walkthrough of where each part of the analysis lives in the
+## Start here: the current manuscript
+
+**The canonical, current manuscript source is [`manuscript/v11_2026-10-09/`](manuscript/v11_2026-10-09/).**
+Start with that folder's own [`README.md`](manuscript/v11_2026-10-09/README.md) and
+[`MASTER_ASSEMBLY.md`](manuscript/v11_2026-10-09/MASTER_ASSEMBLY.md) for the full chapter list, reading
+order, and correction history; earlier `manuscript/v1_2026-10-07/` through `v10_2026-10-07/` folders are
+preserved for the record but superseded (each has its own `POINTER_TO_V<n>.md`). The manuscript covers
+**two analyses**, both complete and source-verified as of this commit:
+
+1. **Baseline (current-round) analysis** — own-household WASH (DHS cluster fixed effects) and
+   surrounding-community WASH (leave-one-out cluster coverage, administrative-region fixed effects),
+   pooled across all four countries and estimated separately by country. Results: manuscript §5.1–5.5.
+2. **Historical extension** — a preliminary, explicitly bounded attempt to link an earlier DHS round in
+   three of the four countries (Ghana 2014, Kenya 2014, Nigeria 2018; Ethiopia 2016 only as a provisional
+   sensitivity) to IHME's gridded 2000–2017 local water/sanitation-coverage estimates, matched to each
+   child's own early-life window. This is **complete** — 291 models estimated, independently
+   re-reproduced by a second estimation library, and reported with a full, explicit list of documentation
+   limitations (Section 6; manuscript §5.6–5.9, Appendix B–C). It is not a panel, difference-in-differences,
+   or instrumental-variables design.
+
+Readable entry points into the results and evidence, without opening restricted data:
+- **Results index**: [`docs/provenance/final_empirical_package_v3_2026-10-07/00_results_index.md`](docs/provenance/final_empirical_package_v3_2026-10-07/00_results_index.md) and [`02_core_reporting_table.md`](docs/provenance/final_empirical_package_v3_2026-10-07/02_core_reporting_table.md) (the 24-cell historical core table, readable without the restricted source).
+- **Methods and limitations**: manuscript `04_empirical_strategy.md` and `06_discussion_and_limitations.md`; `docs/provenance/historical_wash_issue_register_v1_2026-10-07.md` for the open documentation questions.
+- **Bibliography/citation evidence**: manuscript `bibliography.bib`, `bibliography_verification_ledger.md`, and `citation_map.md` (every cited source's verification depth stated per-source, not just per-bibliography-entry).
+- **Full verification trail**: `docs/provenance/` — each correction pass has its own dated file; `final_source_verification_v1_2026-10-09.md` and `source_lineage_correction_v1_2026-10-09.md` are the most recent full source-package checks.
+
+**No PDF has been built from the manuscript yet.** The author will generate it independently from this
+repository; this repository's job is to be an accurate, reviewable source package, not a finished document.
+
+For a guided walkthrough of where each part of the **original Steps 00–13 pipeline** lives in the
 code — anthropometric outcome construction, WASH classification, the
 leave-one-out cluster exposure measure, fixed effects, the main regressions,
-and the robustness checks — see `docs/code_guide.md`. The full empirical
-design is documented in `docs/thesis_design.md` and `docs/data_dictionary.md`,
-and provenance notes on how specific methodological questions were resolved
-during implementation are collected in `outputs/final_audit/`.
+and the robustness checks — see `docs/code_guide.md`. `docs/thesis_design.md` and `docs/data_dictionary.md`
+document that original pipeline's design; both predate the household-cluster-FE specification and the
+historical extension described above and are kept as historical record, not as a description of the
+current, final analysis — see the current manuscript for that. Provenance notes on how specific
+methodological questions were resolved during implementation are collected in `outputs/final_audit/`
+(original pipeline) and `docs/provenance/` (current manuscript and historical extension).
 
 ## Data access
 
@@ -136,19 +167,27 @@ specification-sensitivity checks (including a Nigeria community-sanitation coeff
 sign depending on the control set).
 
 As with the original pipeline, every reported coefficient from this specification set remains an
-**observational association, not a causal effect**. This specification set also does not resolve a
-distinct limitation it identifies: household and community WASH are each measured once, at each survey's
-interview date, rather than during a common developmental period for every child. A historical/time-varying WASH extension to address this is
-**under active feasibility assessment**, per the supervisor's methodological recommendation
-(`docs/empirical_strategy.md`, §6). A candidate historical WASH source (IHME gridded improved-water/
-improved-sanitation estimates, 2000–2017) and a candidate geocoded child data source (IPUMS DHS) have
-been identified and independently verified against their own documentation, and the required historical
-WASH raster files have been obtained. A preliminary IPUMS DHS extract for four older, geocoded survey
-rounds has also been built, but its contents are not yet verified. **No exposure matching, extraction, or
-regression has been carried out, and no historical-WASH result exists.** The four older rounds used for
-this feasibility work (Ethiopia 2016, Ghana 2014, Kenya 2014, and a Nigeria round still to be finalized)
-are a separate, older sample used only because the historical WASH source ends in 2017 — they are **not**
-a substitute for this thesis's own four current survey rounds listed at the top of this document.
+**observational association, not a causal effect**. This specification set also identifies a distinct
+limitation: household and community WASH are each measured once, at each survey's interview date, rather
+than during a common developmental period for every child.
+
+> **Status update (2026-10-09): the historical/time-varying WASH extension described below as a future
+> feasibility question is now complete, not merely assessed.** The paragraph that originally followed this
+> point (written before the extension was built) said no exposure matching, extraction, or regression had
+> been carried out. That is no longer the case: the extension — linking an earlier DHS round in Ghana
+> (2014), Kenya (2014), and Nigeria (2018), plus Ethiopia (2016) as a provisional sensitivity, to IHME's
+> gridded 2000–2017 water/sanitation-coverage estimates, matched to each child's own early-life window —
+> has been fully implemented, estimated (291 models), independently re-reproduced by a second estimation
+> library, and written up with a full, explicit list of documentation limitations. **See the current
+> canonical manuscript, `manuscript/v11_2026-10-09/` (Sections 1.2, 3.5–3.8, 5.6–5.9, Appendix B–C), for
+> the actual, current description — not this paragraph**, which is retained below only as a historical
+> record of the project's state in an earlier phase.
+
+The four older rounds used for this extension (Ethiopia 2016, Ghana 2014, Kenya 2014, Nigeria 2018) are a
+separate, older sample used only because the historical WASH source ends in 2017 — they are **not** a
+substitute for this thesis's own four current survey rounds listed at the top of this document; both
+analyses are reported side by side in the current manuscript, not as competing estimates of the same
+thing.
 
 ## Important Methodological Notes
 

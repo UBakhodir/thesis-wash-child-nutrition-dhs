@@ -2,6 +2,8 @@
 
 This guide explains how the analytical pipeline is organized and where each methodological decision is implemented in code. It does not reinterpret or add to any empirical decision — it only points to where each one already lives in the code and the accompanying provenance record.
 
+**Scope note (2026-10-09):** this guide covers only the original `scripts/dhs_harmonization/00_config.py`–`13_final_outputs.py` pipeline. Two later additions are not covered here: `scripts/dhs_harmonization/14_household_community_wash_models.py` (the household-cluster-FE and community-region-FE models, documented in `docs/empirical_strategy.md`) and `scripts/historical_wash/` (the historical WASH extension, 25 scripts, documented in `manuscript/v11_2026-10-09/04_empirical_strategy.md` §4.6 and Appendix B–C). See the repository root `README.md` for the current, complete map.
+
 ## 1. Purpose and how to use this guide
 
 This guide lets you verify the pipeline's logic by reading, without needing to execute it (the raw DHS microdata that would be required to actually run Steps 00–10 is not included in this repository — see the main `README.md`). Section 3 is a quick lookup table; Section 4 is a stage-by-stage walkthrough; Sections 5–7 index specific methodological decisions, historical provenance, and key variables. Start with Section 2 for orientation, then use Section 3 as a jump table into the actual code.

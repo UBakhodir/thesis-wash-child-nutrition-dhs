@@ -1,5 +1,17 @@
 # Literature-to-Empirical-Design Gap Audit
 
+> **Superseded notice (2026-10-09):** this document uses an earlier bibliography scheme (35 sources,
+> IDs `S01`–`S35`) and an earlier project-stage vocabulary ("Development Model C," "Stage 2") that predate
+> the current manuscript's bibliography (`manuscript/v11_2026-10-09/bibliography.bib`, 26 entries,
+> author-year keys) and chapter structure. Most importantly, §8 and §12 of this document describe
+> historical/time-varying WASH exposure reconstruction as a **"GENUINE GAP... blocked on dataset
+> identification"** — that gap has since been closed: the current manuscript's historical extension
+> (Sections 1.2, 3.5–3.8, 5.6–5.9, Appendix B–C) implements exactly this, using IHME gridded coverage
+> data matched to each child's early-life window, fully estimated and verified. Retained as the historical
+> record of the literature-review stage that preceded that extension; **not a current description of the
+> thesis's literature base or design** — see `manuscript/v11_2026-10-09/02_literature_review.md` and
+> `citation_map.md` for that.
+
 This document assesses the consistency between the project's literature evidence base and the empirical
 design actually implemented. All claims below are drawn directly from `sources/bibliography/` and
 `sources/summaries/` (the git-tracked, verified copy — see §1) and, where explicitly noted, the
