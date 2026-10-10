@@ -4,6 +4,8 @@ Every table in this section is reused directly from the authoritative, validated
 
 ## 5.1 Household WASH
 
+**Table 5.1 — Household WASH: region-FE and cluster-FE results.**
+
 | Outcome | Water β [95% CI], *p* | Sanitation β [95% CI], *p* | N | Clusters |
 |---|---|---|---|---|
 | **Region FE** |
@@ -19,6 +21,8 @@ No household-level water or sanitation coefficient reaches conventional signific
 
 ## 5.2 Community WASH: the adjustment path
 
+**Table 5.2 — Community WASH: the four-stage adjustment path (HAZ).**
+
 | Stage | Water β [95% CI], *p* | Sanitation β [95% CI], *p* |
 |---|---|---|
 | Minimally adjusted | 0.447 [0.311, 0.584], <.001 | 0.472 [0.356, 0.587], <.001 |
@@ -29,6 +33,8 @@ No household-level water or sanitation coefficient reaches conventional signific
 (HAZ; N = 36,985, 4,434 clusters, all four stages — the outcome-valid sample, slightly larger than the 36,040-child, 4,426-cluster common sample used in Table 5.1 and Table 5.3, because this table's community-only specification does not also require household WASH to be classifiable for every child. The attenuation pattern below should not be read as directly comparable, cell for cell, against Table 5.1's household coefficients on a literally identical sample; Table 5.3's joint model, estimated on the common sample, is this thesis's apples-to-apples household-versus-community comparison.) The community water and sanitation coefficients are large and highly significant before adjustment and attenuate sharply — losing significance entirely by the fully adjusted stage — as socioeconomic status and region fixed effects are added. **This attenuation pattern is consistent with confounding by local socioeconomic conditions, but it does not, on its own, establish confounding as the sole explanation**: the same pattern would also be produced by, for example, measurement structure changing as additional controls absorb variance, or by other specification features that happen to coincide with the added controls. The same four-stage pattern holds for WAZ and WHZ, with one difference worth stating precisely: the WHZ water association is already small and statistically insignificant even before adjustment (0.033, *p* = .545) and remains so throughout, unlike the HAZ and WAZ water associations, which start large and attenuate to insignificance. Across all three outcomes, the fully adjusted community specifications do not show a consistent association between improved WASH and child anthropometric outcomes, at either the household or the community level — a conclusion read here as "this sample does not provide clear evidence of an association once the obvious confounders are controlled," not as "WASH has no true relationship with child growth," a materially stronger claim this design cannot support.
 
 ## 5.3 Joint household/community model
+
+**Table 5.3 — Joint household/community model: all four WASH terms entered together.**
 
 | Outcome | Household water | Household sanitation | Community water | Community sanitation |
 |---|---|---|---|---|
