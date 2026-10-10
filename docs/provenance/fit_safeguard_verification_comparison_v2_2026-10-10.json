@@ -1,0 +1,373 @@
+{
+  "comparison_script": "scripts/historical_wash/27_compare_fit_safeguard_verification_run.py",
+  "comparison_script_sha256": "400ea6a7ed3ad3c3e7f4d0b1f30587e7023a784d1df0649477fed32e8b91b940",
+  "original_run_dir": "C:\\Users\\user\\Documents\\Graduation_Thesis\\data\\processed\\estimation\\run_20261006T185646Z",
+  "verification_run_dir": "C:\\Users\\user\\Documents\\Graduation_Thesis\\data\\processed\\estimation\\run_20261010T140944Z",
+  "original_csv_sha256": "9e028ed4e4fd7ce6c7463c0a31ac65a704006e418e25755aab5b6cce8d727a29",
+  "verification_csv_sha256": "9e028ed4e4fd7ce6c7463c0a31ac65a704006e418e25755aab5b6cce8d727a29",
+  "estimator_script_sha256": {
+    "original_manifest_value": "00984178662a3e057277891edca6b0eb25ed52d117e48ab3572189c289aef5e9",
+    "verification_manifest_value": "7481ae6d1669364b77fe070c3615f0ad9c5cbc2f278b050f03cec9c8981fc685",
+    "note": "These differ because the verification run used the patched fit() (script content changed by the R05 fix itself); this is expected and does not indicate an unintended difference. What matters is whether the *inputs* were identical (next field) and whether the *outputs* were identical (see numeric comparison below)."
+  },
+  "input_hashes": {
+    "original_run": {
+      "analysis": "06f6d98d9e4101e614048955eb21c334ca1927024a5abfbbaf70a8c8242fa651",
+      "construction": "e095f48cb8917e9a88739c44685bd8243f8bfb80311096049cdc868ccfa50e49"
+    },
+    "verification_run": {
+      "analysis": "06f6d98d9e4101e614048955eb21c334ca1927024a5abfbbaf70a8c8242fa651",
+      "construction": "e095f48cb8917e9a88739c44685bd8243f8bfb80311096049cdc868ccfa50e49"
+    },
+    "agree": true
+  },
+  "required_columns": {
+    "required": [
+      "id",
+      "status",
+      "family",
+      "product",
+      "outcome",
+      "sample_group",
+      "window",
+      "weighted",
+      "beta_per_point",
+      "se_CRV1",
+      "ci95_low_per_point",
+      "ci95_high_per_point",
+      "p_value",
+      "beta_per_10",
+      "se_per_10",
+      "ci95_low_per_10",
+      "ci95_high_per_10",
+      "E_within_sd",
+      "E_residual_sd_after_controls",
+      "N",
+      "G_clusters",
+      "K_regressors",
+      "rank"
+    ],
+    "missing_from_original": [],
+    "missing_from_verification": []
+  },
+  "duplicate_ids": {
+    "original": [],
+    "verification": []
+  },
+  "model_counts": {
+    "original_rows": 291,
+    "verification_rows": 291,
+    "original_unique_ids": 291,
+    "verification_unique_ids": 291
+  },
+  "matching_key": "id",
+  "id_set_differences": {
+    "missing_from_verification": [],
+    "extra_in_verification": []
+  },
+  "spec_correspondence_mismatches_by_field": {},
+  "spec_correspondence_fields_checked": [
+    "family",
+    "product",
+    "outcome",
+    "sample_group",
+    "window",
+    "weighted"
+  ],
+  "status_agreement": {
+    "original_status_counts": {
+      "estimated": 291
+    },
+    "verification_status_counts": {
+      "estimated": 291
+    },
+    "rows_with_differing_status": []
+  },
+  "numeric_columns_compared": [
+    "beta_per_point",
+    "se_CRV1",
+    "ci95_low_per_point",
+    "ci95_high_per_point",
+    "p_value",
+    "beta_per_10",
+    "se_per_10",
+    "ci95_low_per_10",
+    "ci95_high_per_10",
+    "E_within_sd",
+    "E_residual_sd_after_controls",
+    "N",
+    "G_clusters",
+    "K_regressors",
+    "rank"
+  ],
+  "comparison_tolerance_absolute": 0.0,
+  "numeric_comparison_by_column": {
+    "beta_per_point": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "se_CRV1": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "ci95_low_per_point": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "ci95_high_per_point": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "p_value": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "beta_per_10": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "se_per_10": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "ci95_low_per_10": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "ci95_high_per_10": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "E_within_sd": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "E_residual_sd_after_controls": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "N": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "G_clusters": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "K_regressors": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    },
+    "rank": {
+      "n_rows_compared": 291,
+      "n_finite_pairs": 291,
+      "value_category_counts_original": {
+        "finite": 291
+      },
+      "value_category_counts_verification": {
+        "finite": 291
+      },
+      "n_category_mismatches": 0,
+      "ids_with_category_mismatch": [],
+      "max_abs_difference_among_finite_pairs": 0.0,
+      "mean_abs_difference_among_finite_pairs": 0.0,
+      "n_finite_pairs_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": [],
+      "column_has_any_mismatch": false
+    }
+  },
+  "overall_result": {
+    "rows_compared_both_sides": 291,
+    "unequal_row_counts": false,
+    "all_ids_matched": true,
+    "all_specs_matched": true,
+    "all_statuses_matched": true,
+    "all_numeric_values_and_categories_matched": true,
+    "max_absolute_difference_among_finite_pairs_across_all_numeric_columns": 0.0,
+    "failure_reasons": [],
+    "identical_within_stated_tolerance": true,
+    "coverage_note": "This comparison requires exactly these columns to be present in both inputs: 'id', 'status', the 6 spec-identity columns ['family', 'product', 'outcome', 'sample_group', 'window', 'weighted'], and the 15 numeric columns listed in 'numeric_columns_compared'. A missing required column, a duplicated id, a finite-vs-nonfinite difference, or a NaN-vs-infinity difference are each treated as a failure on their own, independent of whether any finite numeric value differs beyond the stated tolerance. It does not claim every column in the source CSV was compared - any column not in the required list above was not checked."
+  }
+}
