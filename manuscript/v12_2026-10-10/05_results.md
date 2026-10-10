@@ -46,6 +46,8 @@ No household-level water or sanitation coefficient reaches conventional signific
 
 ## 5.4 Specification sensitivity: Nigeria community sanitation
 
+**Table 5.4 — Nigeria community sanitation–HAZ: specification-sensitivity results.**
+
 | Specification | Sanitation–HAZ β | *p* |
 |---|---|---|
 | No controls | 0.274 | .004 |
@@ -64,6 +66,8 @@ Across the twelve water/sanitation joint-interaction tests estimated (two exposu
 
 All cells below are the primary, post-12-month-window, weighted models (established-date sample: Ghana 2014, Kenya 2014, Nigeria 2018). Coefficient is per 10 percentage points of IHME-modelled local coverage. Every cell carries the same methodological qualifications stated in Section 3.8 and discussed fully in Section 6 — none is promoted above the others for being significant.
 
+**Table 5.5 — Historical extension: primary established-date water (W_IMP) estimates.**
+
 **Water (W_IMP)** — coefficient [95% CI], *p*
 
 | Outcome | Ghana 2014 | Kenya 2014 | Nigeria 2018 | Pooled established |
@@ -72,6 +76,8 @@ All cells below are the primary, post-12-month-window, weighted models (establis
 | WAZ | 1.06 [−0.16, 2.28], .088 | −0.22 [−1.30, 0.86], .690 | 0.45 [0.00, 0.90], .050 | 0.65 [0.20, 1.10], .005 |
 | WHZ | −0.00 [−1.16, 1.16], .997 | −0.16 [−1.29, 0.96], .776 | −0.05 [−0.48, 0.38], .809 | −0.08 [−0.50, 0.35], .717 |
 
+**Table 5.6 — Historical extension: primary established-date sanitation (S_IMP) estimates.**
+
 **Sanitation (S_IMP)** — coefficient [95% CI], *p*
 
 | Outcome | Ghana 2014 | Kenya 2014 | Nigeria 2018 | Pooled established |
@@ -79,6 +85,8 @@ All cells below are the primary, post-12-month-window, weighted models (establis
 | HAZ | −2.48 [−4.91, −0.05], .046 | −0.21 [−0.53, 0.11], .190 | 0.20 [−0.34, 0.75], .467 | −0.10 [−0.37, 0.17], .483 |
 | WAZ | −0.08 [−2.04, 1.88], .935 | −0.15 [−0.38, 0.09], .223 | 0.02 [−0.44, 0.48], .937 | −0.07 [−0.29, 0.14], .511 |
 | WHZ | 1.64 [−0.27, 3.56], .092 | 0.00 [−0.22, 0.22], .980 | −0.17 [−0.59, 0.24], .407 | −0.03 [−0.24, 0.17], .742 |
+
+**Table 5.7 — Historical extension: primary established-date sample sizes (N children / G clusters).**
 
 **Sample sizes (N children / G clusters)** — identical for the water and sanitation tables above, since both exposures are estimated on the same anthropometric sample per outcome/country; shown once here rather than repeated in every coefficient cell
 
@@ -98,6 +106,8 @@ The pooled established-date water–HAZ coefficient (1.03, *p* < .001) is this s
 
 The 291-model register (`docs/provenance/historical_wash_preliminary_estimates_v1/model_coefficients_PRELIMINARY_AGGREGATE.csv`) decomposes exactly into: 24 primary established-date models; 24 unweighted-comparison models; 72 alternative-window models (window choice, §5.7, three further windows × 2 products × 3 outcomes × 4 sample groups); 24 wealth-adjustment models; 24 containing-pixel models; 24 rural-10km models; 48 stricter-completion-rule models (two postnatal windows); 24 calendar-age-construction models; 18 Ethiopia-provisional models; and three overlap-exclusion families of 3 models each (9 total) — summing to 291. A separate file, `window_common_sample_PRELIMINARY_AGGREGATE.csv` (192 rows: 96 own-eligible-sample fits and 96 common-sample-across-all-four-windows fits), re-presents the window comparison on two different sample bases; its own-eligible-sample rows overlap with, rather than add distinctly to, the primary-plus-alternative-window rows already counted in the 291-model register above — this is not a further 192 distinct registered specifications. The pooled water–HAZ cells from the relevant families are shown below as the headline case to avoid repeating every cell in the main text. The corresponding sanitation and WAZ/WHZ sensitivity cells are not more or less favourable to a WASH association than the water–HAZ cells shown — most show the same pattern of wide, zero-spanning confidence intervals as the primary sanitation and WAZ/WHZ results in Section 5.6 — and are reported in full in the public aggregate tables (`docs/provenance/historical_wash_preliminary_estimates_v1/`), not reproduced here solely because water–HAZ happened to be significant.
 
+**Table 5.8 — Historical extension: alternative exposure-window and common-sample comparison (pooled water–HAZ).**
+
 | Window | Pooled water–HAZ β [95% CI] | Sample |
 |---|---|---|
 | Post-12-month (main) | 1.03 [0.51, 1.54] | Own-eligible, N = 23,018 |
@@ -109,6 +119,8 @@ The 291-model register (`docs/provenance/historical_wash_preliminary_estimates_v
 The post-12-month estimate changes from 1.03 (its own eligible sample) to 1.64 when restricted to the smaller common sample eligible under all four windows — a **sample-composition effect** (children with complete 24-month windows differ systematically from the full post-12-month sample), not evidence favouring one window's validity over another. No window was selected because of its coefficient's significance; all four are reported together, as planned before any coefficient was examined (Appendix C).
 
 ## 5.8 Further sensitivity: wealth, spatial method, completion rule
+
+**Table 5.9 — Historical extension: further sensitivity — wealth, spatial method, and completion rule (pooled water–HAZ).**
 
 | Sensitivity | Pooled water–HAZ β [95% CI] |
 |---|---|
