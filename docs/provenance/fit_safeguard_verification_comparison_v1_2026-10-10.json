@@ -1,0 +1,236 @@
+{
+  "comparison_script": "scripts/historical_wash/27_compare_fit_safeguard_verification_run.py",
+  "comparison_script_sha256": "3394ba1dbc0a36abfaca99b03ddce0410ea801e5765a42d0a6ddaed2eac7469f",
+  "original_run_dir": "C:\\Users\\user\\Documents\\Graduation_Thesis\\data\\processed\\estimation\\run_20261006T185646Z",
+  "verification_run_dir": "C:\\Users\\user\\Documents\\Graduation_Thesis\\data\\processed\\estimation\\run_20261010T140944Z",
+  "original_csv_sha256": "9e028ed4e4fd7ce6c7463c0a31ac65a704006e418e25755aab5b6cce8d727a29",
+  "verification_csv_sha256": "9e028ed4e4fd7ce6c7463c0a31ac65a704006e418e25755aab5b6cce8d727a29",
+  "estimator_script_sha256": {
+    "original_manifest_value": "00984178662a3e057277891edca6b0eb25ed52d117e48ab3572189c289aef5e9",
+    "verification_manifest_value": "7481ae6d1669364b77fe070c3615f0ad9c5cbc2f278b050f03cec9c8981fc685",
+    "note": "These differ because the verification run used the patched fit() (script content changed by the R05 fix itself); this is expected and does not indicate an unintended difference. What matters is whether the *inputs* were identical (next field) and whether the *outputs* were identical (see numeric comparison below)."
+  },
+  "input_hashes": {
+    "original_run": {
+      "analysis": "06f6d98d9e4101e614048955eb21c334ca1927024a5abfbbaf70a8c8242fa651",
+      "construction": "e095f48cb8917e9a88739c44685bd8243f8bfb80311096049cdc868ccfa50e49"
+    },
+    "verification_run": {
+      "analysis": "06f6d98d9e4101e614048955eb21c334ca1927024a5abfbbaf70a8c8242fa651",
+      "construction": "e095f48cb8917e9a88739c44685bd8243f8bfb80311096049cdc868ccfa50e49"
+    },
+    "agree": true
+  },
+  "model_counts": {
+    "original_rows": 291,
+    "verification_rows": 291,
+    "original_unique_ids": 291,
+    "verification_unique_ids": 291
+  },
+  "matching_key": "id",
+  "duplicate_ids": {
+    "original": [],
+    "verification": []
+  },
+  "id_set_differences": {
+    "missing_from_verification": [],
+    "extra_in_verification": []
+  },
+  "spec_correspondence_mismatches_by_field": {},
+  "spec_correspondence_fields_checked": [
+    "family",
+    "product",
+    "outcome",
+    "sample_group",
+    "window",
+    "weighted"
+  ],
+  "status_agreement": {
+    "original_status_counts": {
+      "estimated": 291
+    },
+    "verification_status_counts": {
+      "estimated": 291
+    },
+    "rows_with_differing_status": []
+  },
+  "numeric_columns_compared": [
+    "beta_per_point",
+    "se_CRV1",
+    "ci95_low_per_point",
+    "ci95_high_per_point",
+    "p_value",
+    "beta_per_10",
+    "se_per_10",
+    "ci95_low_per_10",
+    "ci95_high_per_10",
+    "E_within_sd",
+    "E_residual_sd_after_controls",
+    "N",
+    "G_clusters",
+    "K_regressors",
+    "rank"
+  ],
+  "comparison_tolerance_absolute": 0.0,
+  "numeric_comparison_by_column": {
+    "beta_per_point": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "se_CRV1": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "ci95_low_per_point": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "ci95_high_per_point": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "p_value": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "beta_per_10": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "se_per_10": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "ci95_low_per_10": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "ci95_high_per_10": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "E_within_sd": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "E_residual_sd_after_controls": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "N": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "G_clusters": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "K_regressors": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    },
+    "rank": {
+      "n_compared_finite_pairs": 291,
+      "n_both_non_finite": 0,
+      "n_mismatched_finiteness": 0,
+      "ids_with_mismatched_finiteness": [],
+      "max_abs_difference": 0.0,
+      "mean_abs_difference": 0.0,
+      "n_rows_differing_beyond_tolerance": 0,
+      "ids_differing_beyond_tolerance": []
+    }
+  },
+  "overall_result": {
+    "rows_compared": 291,
+    "all_ids_matched": true,
+    "all_specs_matched": true,
+    "all_statuses_matched": true,
+    "max_absolute_difference_across_all_numeric_columns": 0.0,
+    "identical_within_stated_tolerance": true,
+    "coverage_note": "This comparison covers exactly the 15 numeric columns listed in 'numeric_columns_compared' above, plus the 'status' column and the spec-identity columns listed in 'spec_correspondence_fields_checked'. It does not claim every column in the source CSV was compared - any column not listed there was not checked by this script."
+  }
+}

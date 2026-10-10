@@ -44,6 +44,16 @@ Resolves `Independent_Thesis_Audit_2026-10-10.md`, an external audit of commit `
 
 Did not change any published historical-model coefficient, standard error, confidence interval, p-value, sample, weight, or control set. Did not rerun any baseline model (R01's correction was a transcription fix, not a re-estimation). Did not treat the R05 code fix as evidence that any stored result was wrong — it was run against the actual data specifically to rule that out, and the maximum-difference-0.0 result confirms it was not. Did not generate, compile, rebuild, or render any PDF. Did not reopen any item already closed in the prior passes beyond what this audit specifically identified.
 
+## Addendum (2026-10-10, same-day follow-up, still v12)
+
+A follow-up inspection of this pass found and closed three further small items, all corrected in place within this same v12 version (no v13 was needed):
+
+1. `06_discussion_and_limitations.md` §6.2 still used "household-census survey responses" to describe the baseline's own community exposure, inconsistent with R11's correction elsewhere in this version — corrected to "sampled, classifiable HR household survey responses," matching §3.3 exactly.
+2. `MASTER_ASSEMBLY.md` twice stated the v6 diagnostic build was "the only build that exists" / templates existed "only under" v6 — both overclaims; diagnostic builds and the same converter/template files also exist under v3–v5. Corrected to name v6 specifically as the evidence actually cited (most recent, most thoroughly verified), not as uniquely existing.
+3. `docs/provenance/independent_audit_resolution_v1_2026-10-10.md`'s own R02 entry mislabelled a hypothetical comparison as *t*(3114); the correct label is *t*(4425) (this baseline row's $G=4426$, confirmed from `03_household_cluster_fe.csv`'s `psu_count` field — 3114 belongs to an unrelated historical pooled model). The underlying computed values were always correct; only the degrees-of-freedom label was wrong. Corrected in place with a visible correction note.
+
+Also: the R05 safeguard tests were moved from an ephemeral scratch file into a tracked script, `scripts/historical_wash/26_test_fit_safeguard.py` (synthetic data only), and the all-291-model comparison backing R05's "no published model affected" claim was turned into a reproducible, tracked artifact — `scripts/historical_wash/27_compare_fit_safeguard_verification_run.py` (configurable paths, non-sensitive) and its output, `docs/provenance/fit_safeguard_verification_comparison_v1_2026-10-10.json` — rather than resting on narrative description alone. Re-running both confirms the same result reported previously: all 291 model rows match (the two CSVs are in fact byte-identical), and all four safeguard tests pass.
+
 ## Canonical path
 
 `manuscript/v12_2026-10-10/` supersedes `v11_2026-10-09/` (pointer added there). See `docs/provenance/independent_audit_resolution_v1_2026-10-10.md` for the complete, evidence-backed R01–R18 register.
