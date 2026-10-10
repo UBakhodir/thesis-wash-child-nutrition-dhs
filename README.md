@@ -10,9 +10,9 @@ country. All reported coefficients are observational associations, not causal ef
 
 ## Start here: the current manuscript
 
-**The canonical, current manuscript source is [`manuscript/v11_2026-10-09/`](manuscript/v11_2026-10-09/).**
-Start with that folder's own [`README.md`](manuscript/v11_2026-10-09/README.md) and
-[`MASTER_ASSEMBLY.md`](manuscript/v11_2026-10-09/MASTER_ASSEMBLY.md) for the full chapter list, reading
+**The canonical, current manuscript source is [`manuscript/v12_2026-10-10/`](manuscript/v12_2026-10-10/).**
+Start with that folder's own [`README.md`](manuscript/v12_2026-10-10/README.md) and
+[`MASTER_ASSEMBLY.md`](manuscript/v12_2026-10-10/MASTER_ASSEMBLY.md) for the full chapter list, reading
 order, and correction history; earlier `manuscript/v1_2026-10-07/` through `v10_2026-10-07/` folders are
 preserved for the record but superseded (each has its own `POINTER_TO_V<n>.md`). The manuscript covers
 **two analyses**, both complete and source-verified as of this commit:
@@ -39,15 +39,15 @@ Readable entry points into the results and evidence, without opening restricted 
 - **Results index**: [`docs/provenance/final_empirical_package_v3_2026-10-07/00_results_index.md`](docs/provenance/final_empirical_package_v3_2026-10-07/00_results_index.md) and [`02_core_reporting_table.md`](docs/provenance/final_empirical_package_v3_2026-10-07/02_core_reporting_table.md) (the 24-cell historical core table, readable without the restricted source).
 - **Methods and limitations**: manuscript `04_empirical_strategy.md` and `06_discussion_and_limitations.md`; `docs/provenance/historical_wash_issue_register_v1_2026-10-07.md` for the open documentation questions.
 - **Bibliography/citation evidence**: manuscript `bibliography.bib`, `bibliography_verification_ledger.md`, and `citation_map.md` (every cited source's verification depth stated per-source, not just per-bibliography-entry).
-- **Full verification trail**: `docs/provenance/` — each correction pass has its own dated file; `final_source_verification_v1_2026-10-09.md` and `source_lineage_correction_v1_2026-10-09.md` are the most recent full source-package checks.
+- **Full verification trail**: `docs/provenance/` — each correction pass has its own dated file; `independent_audit_resolution_v1_2026-10-10.md` is the most recent full source-package check, resolving an external audit's 18 findings (6 confidence-interval corrections, methods-vs-code description fixes, a historical-estimator code safeguard verified against all 291 published models, literature-source corrections, and assembly/reproduction documentation fixes).
 
-**No PDF has been built from the canonical `manuscript/v11_2026-10-09/` manuscript.** Earlier manuscript
+**No PDF has been built from the canonical `manuscript/v12_2026-10-10/` manuscript.** Earlier manuscript
 versions `v3_2026-10-07/` through `v6_2026-10-07/` each have a diagnostic PDF build under their own
 `build/` subdirectory (e.g. `manuscript/v6_2026-10-07/build/main.pdf`, confirmed compiling under the
 university's formatting specification, 0 LaTeX errors) — these are preserved but **superseded**: they
-predate the source corrections made in `v7_2026-10-07/` through the current `v11_2026-10-09/` and do not
-reflect them (see `manuscript/v11_2026-10-09/MASTER_ASSEMBLY.md`, "Draft-build readiness vs. submission
-readiness"). No manuscript version from `v7` onward, including the current canonical `v11`, has been built
+predate the source corrections made in `v7_2026-10-07/` through the current `v12_2026-10-10/` and do not
+reflect them (see `manuscript/v12_2026-10-10/MASTER_ASSEMBLY.md`, "Draft-build readiness vs. submission
+readiness"). No manuscript version from `v7` onward, including the current canonical `v12`, has been built
 into a PDF. The author will generate the canonical PDF independently from this repository; this
 repository's job is to be an accurate, reviewable source package, not a finished document.
 
@@ -195,7 +195,7 @@ than during a common developmental period for every child.
 > cells are independently reproduced by a second estimation library and separately design-checked — see
 > the "Start here" section above for the exact coverage), and written up with a full, explicit list of
 > documentation limitations. **See the current
-> canonical manuscript, `manuscript/v11_2026-10-09/` (Sections 1.2, 3.5–3.8, 5.6–5.9, Appendix B–C), for
+> canonical manuscript, `manuscript/v12_2026-10-10/` (Sections 1.2, 3.5–3.8, 5.6–5.9, Appendix B–C), for
 > the actual, current description — not this paragraph**, which is retained below only as a historical
 > record of the project's state in an earlier phase.
 
@@ -276,4 +276,19 @@ results. If you reproduce this pipeline on a different machine, update
 running anything. This alone does not make the pipeline runnable — you
 also need your own DHS Program-authorized copy of the four surveys (see
 "Data access" above); the code describes how that data was processed, but
-does not include or grant access to it.
+does not include or grant access to it. **A GitHub clone of this
+repository alone does not supply the licensed DHS/IPUMS microdata or IHME
+archives needed to reproduce either pipeline from raw data — those are
+restricted inputs the user must obtain separately under their own
+DHS Program/IPUMS authorization, as "Data access" above states.**
+
+## Historical WASH extension: master data root, working directory, and inputs (2026-10-10)
+
+The historical extension's 25 scripts under `scripts/historical_wash/` do **not** all use the same path convention, and this is stated explicitly here because the two conventions require different working directories to run correctly:
+
+- Most scripts (including `01_inventory_ihme_rasters.py`, `08_spatial_extraction_PREPARED.py`–`10_spatial_extraction_v3.py`, and `16_estimate_preliminary.py`) hardcode an **absolute** master-directory path, `MASTER = r"C:\Users\user\Documents\Graduation_Thesis"`, for both their inputs and their outputs. These scripts resolve their paths correctly **regardless of the current working directory** they are invoked from — including from inside `scripts/historical_wash/` itself.
+- A smaller number of independent-validation scripts (`20_validate_pooled_estimate.py`, `21_validate_all_primary_cells.py`) instead use bare, **working-directory-relative** paths (e.g. `"data/processed/analysis_samples/..."`, with no `MASTER` prefix). These resolve correctly **only if the process's current working directory is the master project directory itself** (`C:\Users\user\Documents\Graduation_Thesis`, i.e. the directory that *contains* this git repository as a subdirectory) — not this repository's own root, and not `scripts/historical_wash/`.
+
+All of the historical pipeline's actual restricted inputs and outputs — both conventions' paths resolve to the same place — live under `C:\Users\user\Documents\Graduation_Thesis\data\processed\...`, **outside this git repository** (this repository's own `data/` subdirectory is gitignored and, for the historical pipeline, essentially unused; do not assume an absent file there means the file does not exist — check the master directory first). Key timestamped runs actually used for the reported results: `data/processed/analysis_samples/run_20261006T184744Z/` and `data/processed/child_exposure/run_20261006T183803Z/` (inputs to the primary estimation stage); `data/processed/estimation/run_20261006T185646Z/` (the stored, authoritative 291-model output). A reader with authorized access to the restricted DHS/IPUMS/IHME inputs who wants to re-run `16_estimate_preliminary.py` should do so with the master directory itself as the working directory, to satisfy both path conventions at once; it will refuse to overwrite an existing output directory (`os.makedirs(..., exist_ok=False)`) and checksums its inputs before and after, so a fresh run cannot silently corrupt the stored results.
+
+Dependencies actually imported by the historical scripts beyond `requirements.txt`'s original list — `scipy`, `pyproj`, and `Pillow` — are now declared there directly (added 2026-10-10); they may previously have been satisfied transitively through other packages, but a transitive install is not a reliable substitute for a direct declaration. Most package versions remain unpinned except `polars`/`svy`, consistent with the rest of this file's "Environment" section.

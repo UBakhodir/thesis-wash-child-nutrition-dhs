@@ -185,14 +185,53 @@ def fit(df, ycol, weighted=True, wealth=False):
         return out_
     Xt = wdemean(X)
     yt = wdemean(y.reshape(-1, 1))[:, 0]
-    # drop absorbed (zero within variation) columns, keep E
+    # drop absorbed (zero within variation) columns
     scale = np.sqrt(np.sum(W[:, None] * Xt ** 2, axis=0))
     keep = scale > 1e-10
     absorbed = [n_ for n_, k_ in zip(names, keep) if not k_]
     Xt, names_k = Xt[:, keep], [n_ for n_, k_ in zip(names, keep) if k_]
+
+    # --- Exposure-safety safeguard (added 2026-10-10; see R05, independent audit
+    # 2026-10-10). The absorbed-column filter above can drop E itself (e.g. when
+    # E varies between clusters but is constant within every cluster: the raw-SD
+    # check above does not catch this, since it only tests raw, not within-cluster,
+    # variation). If E is absorbed, the previous code still read beta[0]/V[0,0]
+    # positionally and silently reported the next retained column's coefficient as
+    # if it were E's own. E's coefficient and variance are now retrieved by name,
+    # not position, and the fit is refused outright if E does not survive. ---
+    if "E" not in names_k:
+        out.update({
+            "status": "non_estimable_exposure_absorbed",
+            "N": int(Xt.shape[0]), "G_clusters": int(len(uniq)),
+            "columns_absorbed": absorbed,
+            "note": "E was absorbed by the cluster fixed effect (zero within-cluster "
+                    "variation after weighted demeaning); the exposure coefficient is "
+                    "not estimable in this configuration.",
+        })
+        out["_df"] = df
+        return out
+    e_idx = names_k.index("E")
+
     sW = np.sqrt(W)
     A_ = Xt * sW[:, None]
     rank = int(np.linalg.matrix_rank(A_))
+    K_retained = Xt.shape[1]
+
+    # --- Rank-deficiency safeguard (added 2026-10-10; see R05). A pseudoinverse
+    # always returns *some* coefficient vector even when the retained design is
+    # not full column rank, silently mislabelling an unidentified, minimum-norm
+    # solution as an ordinary estimate. Refuse rather than report one. ---
+    if rank < K_retained:
+        out.update({
+            "status": "non_estimable_rank_deficient",
+            "N": int(Xt.shape[0]), "G_clusters": int(len(uniq)), "K_regressors": int(K_retained),
+            "rank": rank, "columns_absorbed": absorbed,
+            "note": f"Retained design matrix has rank {rank} < {K_retained} retained columns "
+                    "after absorption; the exposure coefficient is not uniquely identified.",
+        })
+        out["_df"] = df
+        return out
+
     sv = np.linalg.svd(A_ / np.linalg.norm(A_, axis=0), compute_uv=False)
     cond = float(sv[0] / sv[-1]) if sv[-1] > 0 else float("inf")
     XtWX = Xt.T @ (Xt * W[:, None])
@@ -208,15 +247,16 @@ def fit(df, ycol, weighted=True, wealth=False):
         meat += np.outer(s, s)
     corr = (G / (G - 1)) * ((N - 1) / (N - K))
     V = corr * B @ meat @ B
-    b_e, se_e = beta[0], float(np.sqrt(V[0, 0]))
+    b_e, se_e = beta[e_idx], float(np.sqrt(V[e_idx, e_idx]))
     tcrit = stats.t.ppf(0.975, G - 1)
     # residual exposure variation: E projected on the other regressors (weighted, within)
     if K > 1:
-        Z = Xt[:, 1:] * sW[:, None]
-        bz, *_ = np.linalg.lstsq(Z, Xt[:, 0] * sW, rcond=None)
-        eres = Xt[:, 0] - Xt[:, 1:] @ bz
+        other = [j for j in range(K) if j != e_idx]
+        Z = Xt[:, other] * sW[:, None]
+        bz, *_ = np.linalg.lstsq(Z, Xt[:, e_idx] * sW, rcond=None)
+        eres = Xt[:, e_idx] - Xt[:, other] @ bz
     else:
-        eres = Xt[:, 0]
+        eres = Xt[:, e_idx]
     out.update({
         "status": "estimated", "N": int(N), "G_clusters": int(G), "K_regressors": int(K),
         "rank": rank, "columns_absorbed": absorbed, "condition_number_scaled": cond,
@@ -225,7 +265,7 @@ def fit(df, ycol, weighted=True, wealth=False):
         "p_value": float(2 * stats.t.sf(abs(b_e / se_e), G - 1)) if se_e > 0 else np.nan,
         "beta_per_10": float(10 * b_e), "se_per_10": float(10 * se_e),
         "ci95_low_per_10": float(10 * (b_e - tcrit * se_e)), "ci95_high_per_10": float(10 * (b_e + tcrit * se_e)),
-        "E_within_sd": float(np.sqrt(np.sum(W * Xt[:, 0] ** 2) / np.sum(W))),
+        "E_within_sd": float(np.sqrt(np.sum(W * Xt[:, e_idx] ** 2) / np.sum(W))),
         "E_residual_sd_after_controls": float(np.std(eres, ddof=1)),
         "clusters_with_exposure_variation": int(df.assign(_E=df["E"]).groupby("IDHSPSU")["_E"].nunique().gt(1).sum()),
         "weights_country_total": {str(SAMPLE_LABEL[int(k)]): float(v) for k, v in

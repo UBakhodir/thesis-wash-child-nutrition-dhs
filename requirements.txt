@@ -1,12 +1,15 @@
 pandas
 geopandas
 numpy
+scipy
 statsmodels
 linearmodels
 pyreadstat
 rasterio
 rasterstats
 shapely
+pyproj
+Pillow
 matplotlib
 seaborn
 jupyter
