@@ -205,7 +205,16 @@ substitute for this thesis's own four current survey rounds listed at the top of
 analyses are reported side by side in the current manuscript, not as competing estimates of the same
 thing.
 
-## Important Methodological Notes
+## Important Methodological Notes (original Steps 00–13 pipeline specifically)
+
+**Scope note (2026-10-10): the bullets below describe the original Steps 00–13 pipeline's own
+design and terminology — "Model 4," "preferred specification," and "household WASH as a
+robustness check" are that pipeline's own historical-stage vocabulary, superseded by the final
+design.** The current manuscript (`manuscript/v12_2026-10-10/`, see "Start here" above) reports
+household cluster-FE and community region-FE analyses as two distinct main comparisons, not one
+preferred region-FE model with household WASH as a secondary check. Read these bullets as a
+description of what the original pipeline computed and how, not as the current thesis's own
+hierarchy of preferred vs. robustness specifications.
 
 (Full detail lives in `docs/code_guide.md`, `docs/thesis_design.md`, each
 script's own docstring, and the provenance notes under
@@ -220,13 +229,17 @@ script's own docstring, and the provenance notes under
 - Standard errors are **PSU-clustered** (`country_psu` pooled, `psu`
   country-specific) — a cluster-robust approximation, not a full stratified
   DHS svyset-equivalent design-based variance estimator.
-- The preferred specification (Model 4) includes a **country-qualified
-  administrative-region fixed effect** (`country_admin_region`); no
-  survey-year or spatial-grid fixed effect is included.
-- The primary WASH exposures are **continuous, cluster-level, leave-one-out
-  household coverage rates** (`water_rate_loo`, `sanitation_rate_loo_core`),
-  not a simple household-level binary (that variant exists only as a
-  robustness/baseline check, per the original thesis design's Section 9.1).
+- In this original pipeline specifically, the specification labelled "preferred" (Model 4)
+  includes a **country-qualified administrative-region fixed effect**
+  (`country_admin_region`); no survey-year or spatial-grid fixed effect is included. The current
+  manuscript's own main household result instead uses DHS cluster fixed effects (see the
+  "Start here" section above), not this region-FE Model 4.
+- The primary WASH exposures **in this original pipeline** are **continuous, cluster-level,
+  leave-one-out household coverage rates** (`water_rate_loo`, `sanitation_rate_loo_core`), with a
+  simple household-level binary treated there only as a robustness/baseline check (per the
+  original thesis design's Section 9.1). The current manuscript instead reports household
+  (binary) and community (leave-one-out) WASH as two co-equal main exposures, not one primary and
+  one robustness-only.
 - All regression coefficients are reported and must be described as
   **associations, not causal effects**.
 
@@ -266,17 +279,23 @@ the legacy scaffold above and is not used by the active pipeline.)
 
 ## Reproducing on another machine
 
-The scripts in this repository are the exact, unmodified files used to
-produce the thesis's results, and `00_config.py` and `13_final_outputs.py`
-still contain the local Windows path (`PROJECT_ROOT`) used on the machine
-where the analysis was run. This is left as-is deliberately, to keep the
-frozen scripts byte-identical to what actually generated the reported
-results. If you reproduce this pipeline on a different machine, update
-`PROJECT_ROOT` in those two files to your own project directory before
-running anything. This alone does not make the pipeline runnable — you
-also need your own DHS Program-authorized copy of the four surveys (see
-"Data access" above); the code describes how that data was processed, but
-does not include or grant access to it. **A GitHub clone of this
+The `scripts/dhs_harmonization/` pipeline scripts (Steps 00–13, plus Step 14's extension — see
+"Household and Community WASH Specifications" above) in this repository are the exact,
+unmodified files used to produce the baseline thesis results, and `00_config.py` and
+`13_final_outputs.py` still contain the local Windows path (`PROJECT_ROOT`) used on the machine
+where the analysis was run. This is left as-is deliberately, to keep the frozen scripts
+byte-identical to what actually generated the reported results. If you reproduce this pipeline on
+a different machine, update `PROJECT_ROOT` in those two files to your own project directory
+before running anything. This alone does not make the pipeline runnable — you also need your own
+DHS Program-authorized copy of the four surveys (see "Data access" above); the code describes how
+that data was processed, but does not include or grant access to it. **This "exact, unmodified"
+statement does not extend to `scripts/historical_wash/`**: `16_estimate_preliminary.py` received a
+documented, disclosed defensive-safeguard patch on 2026-10-10 (see
+`docs/provenance/independent_audit_resolution_v1_2026-10-10.md`, R05), verified by a full re-run
+against the actual restricted inputs to leave every one of the 291 already-published historical
+model rows numerically unchanged; three further scripts (`26`–`28`) were added for its tests and
+verification. The historical pipeline's own *results* are unchanged, but its *script files* are
+not claimed to be byte-identical to an earlier, pre-patch state. **A GitHub clone of this
 repository alone does not supply the licensed DHS/IPUMS microdata or IHME
 archives needed to reproduce either pipeline from raw data — those are
 restricted inputs the user must obtain separately under their own
@@ -284,7 +303,7 @@ DHS Program/IPUMS authorization, as "Data access" above states.**
 
 ## Historical WASH extension: master data root, working directory, and inputs (2026-10-10)
 
-The historical extension's 25 scripts under `scripts/historical_wash/` do **not** all use the same path convention, and this is stated explicitly here because the two conventions require different working directories to run correctly:
+The historical extension's scripts under `scripts/historical_wash/` (estimation scripts `01`–`25`, plus tests and verification tooling added afterward — run `ls scripts/historical_wash/*.py` for the current exact count and list, rather than relying on a number stated here, which will go stale as tooling is added) do **not** all use the same path convention, and this is stated explicitly here because the two conventions require different working directories to run correctly:
 
 - Most scripts (including `01_inventory_ihme_rasters.py`, `08_spatial_extraction_PREPARED.py`–`10_spatial_extraction_v3.py`, and `16_estimate_preliminary.py`) hardcode an **absolute** master-directory path, `MASTER = r"C:\Users\user\Documents\Graduation_Thesis"`, for both their inputs and their outputs. These scripts resolve their paths correctly **regardless of the current working directory** they are invoked from — including from inside `scripts/historical_wash/` itself.
 - A smaller number of independent-validation scripts (`20_validate_pooled_estimate.py`, `21_validate_all_primary_cells.py`) instead use bare, **working-directory-relative** paths (e.g. `"data/processed/analysis_samples/..."`, with no `MASTER` prefix). These resolve correctly **only if the process's current working directory is the master project directory itself** (`C:\Users\user\Documents\Graduation_Thesis`, i.e. the directory that *contains* this git repository as a subdirectory) — not this repository's own root, and not `scripts/historical_wash/`.

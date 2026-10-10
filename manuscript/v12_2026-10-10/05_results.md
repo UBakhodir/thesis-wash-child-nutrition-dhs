@@ -1,6 +1,6 @@
 # 5. Results
 
-Every table in this section is reused directly from the authoritative, validated output files listed in Appendix A; no coefficient was computed for this chapter. Coefficients are reported with 95% confidence intervals and exact p-values throughout. Where two inference conventions exist for a model, both are labelled explicitly (Section 4.5); the primary convention is used in prose discussion unless the sensitivity convention is named.
+Every table in this section is reused directly from the authoritative, validated output files listed in Appendix A; no coefficient was computed for this chapter. Coefficients are reported with 95% confidence intervals throughout; p-values are reported to three decimal places where the underlying value is at least .0005, and as "<.001" where it is smaller than that — both are the displayed precision, not the stored full-precision value, which is available in the authoritative output files for any cell. Where two inference conventions exist for a model, both are labelled explicitly (Section 4.5); the primary convention is used in prose discussion unless the sensitivity convention is named.
 
 ## 5.1 Household WASH
 
