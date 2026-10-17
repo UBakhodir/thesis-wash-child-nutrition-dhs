@@ -1,0 +1,174 @@
+diff --git a/manuscript/v12_2026-10-10/05_results.md b/publishing/thesis_render_v12/chapters/md/05_results.md
+index d51e8f2..971031b 100644
+--- a/manuscript/v12_2026-10-10/05_results.md
++++ b/publishing/thesis_render_v12/chapters/md/05_results.md
+@@ -1,6 +1,6 @@
+# 5. Results
+
+Every table in this section is [-reused-]{+taken+} directly from the authoritative, validated output files listed in Appendix A; no coefficient was computed for this chapter. Coefficients are reported with 95% confidence [-intervals throughout;-]{+intervals, except in Table 5.4, which reports coefficients and+} p-values {+only. P-values+} are [-reported-]{+shown+} to three decimal places [-where-]{+when+} the underlying value is at least [-.0005,-]{+.0005+} and as "<.001" [-where-]{+when+} it is [-smaller than that — both-]{+smaller. Both forms+} are {+display precision only;+} the[-displayed precision, not the stored-] full-precision [-value, which-]{+value of every cell+} is [-available-]{+stored+} in the authoritative output [-files for any cell.-]{+files.+} Where {+a model has+} two inference [-conventions exist for a model,-]{+conventions,+} both are labelled explicitly (Section [-4.5);-]{+4.5), and the prose uses+} the primary convention[-is used in prose discussion-] unless the sensitivity convention is named.
+
+## 5.1 Household WASH
+
+@@ -17,7 +17,7 @@ Every table in this section is reused directly from the authoritative, validated
+| WAZ | −0.029 [−0.100, 0.043], .435 | 0.052 [−0.015, 0.120], .130 | 36,308 | 4,426 |
+| WHZ | 0.012 [−0.062, 0.085], .758 | 0.053 [−0.014, 0.119], .122 | 36,145 | 4,426 |
+
+{+Household water and sanitation are entered together in every model in Table 5.1, so each coefficient is adjusted for the other (Sections 4.1 and 4.2).+} No [-household-level-]{+household+} water or sanitation coefficient reaches[-conventional-] significance **at the 5% level** in the cluster-fixed-effects specification, which[-is the specification-] this thesis treats as the main household result (Section [-4.2): it-]{+4.2). That specification+} compares households within the same DHS cluster, net of the covariates, and {+of the two specifications it+} is the [-specification-]{+one+} least exposed to cluster-level [-confounding of the two. (Household water–HAZ, *p*-]{+confounding. Household water–HAZ (*p*+} = [-.062,-]{+.062)+} does cross [-a-]{+the+} 10% threshold; this is stated explicitly here rather than left implicit in a blanket "not [-significant.")-]{+significant".+} Non-significance[-here-] is read as an inconclusive association in this sample under this design, not as proof that no association [-exists — the-]{+exists. The+} confidence intervals remain wide enough[-(for example, water–HAZ spans −0.175 to +0.004)-] to be consistent with a range of true [-associations.-]{+associations: the water–HAZ interval, for example, runs from −0.175 to +0.004.+} Under the alternative, more conservative FULL_DUMMY_DF inference convention (Section 4.5), {+which is reported only as a labelled sensitivity,+} the household cluster-FE [-water–HAZ p-value is-]{+p-values are+} .080 {+for water–HAZ+} and [-sanitation–HAZ is .574; both-]{+.574 for sanitation–HAZ. Both+} conventions {+therefore+} lead to the same substantive conclusion for this pair of coefficients. These p-values and confidence intervals use the normal reference distribution, [-as-]{+which is what+} the baseline pipeline's code actually computes (Section [-4.5) —-]{+4.5),+} not the Student *t*(*G*−1) distribution used for {+inference in+} the historical [-extension's inference-]{+extension+} (Section 4.6).
+
+## 5.2 Community WASH: the adjustment path
+
+@@ -30,19 +30,39 @@ No household-level water or sanitation coefficient reaches conventional signific
+| + socioeconomic status | 0.127 [0.010, 0.244], .034 | 0.008 [−0.117, 0.133], .900 |
+| + SES + region FE (fully adjusted) | 0.033 [−0.083, 0.150], .573 | 0.008 [−0.113, 0.129], .894 |
+
+[-(HAZ;-]{+::: {.tablenote}+}
+{+*Note.* HAZ;+} N = [-36,985,-]{+36,985 and+} 4,434 [-clusters,-]{+clusters in+} all four [-stages —-]{+stages. This is+} the outcome-valid [-sample,-]{+sample. It is+} slightly larger than the 36,040-child, 4,426-cluster common sample used in Table 5.1 and Table 5.3, because this table's community-only specification does not also require household WASH to be classifiable for every child. The attenuation pattern {+described+} below should {+therefore+} not be [-read as directly comparable,-]{+compared+} cell for [-cell, against-]{+cell with+} Table 5.1's household coefficients [-on a literally identical sample;-]{+as if the two samples were identical.+} Table 5.3's joint model, estimated on the common sample, is this thesis's [-apples-to-apples household-versus-community comparison.)-]{+like-for-like comparison of household and community exposure.+}
+{+:::+}
+
+The community water and sanitation [-coefficients-]{+coefficients, which are entered together at every stage (Section 4.3),+} are large and highly significant before [-adjustment and-]{+adjustment. They+} attenuate sharply[-— losing significance entirely by the fully adjusted stage —-] as socioeconomic status and region fixed effects are [-added.-]{+added, and neither is significant at the fully adjusted stage.+} **This attenuation pattern is consistent with confounding by local socioeconomic conditions, but it does not, on its own, establish confounding as the sole [-explanation**: the-]{+explanation.** The+} same pattern [-would-]{+could+} also [-be produced by,-]{+arise,+} for example, {+from a change in+} measurement structure[-changing-] as additional controls absorb variance, or [-by-]{+from+} other specification features that happen to coincide with the added controls. The same four-stage pattern holds for WAZ and WHZ, with one difference [-worth stating precisely: the-]{+that should be stated precisely. The+} WHZ water association is already small and statistically insignificant[-even-] before adjustment (0.033, *p* = .545) and remains so throughout, [-unlike-]{+whereas+} the HAZ and WAZ water [-associations, which-]{+associations+} start large and attenuate to insignificance. Across all three outcomes, the fully adjusted[-community-] specifications {+(the community models here and the household models in Table 5.1)+} do not show a consistent association between improved WASH and child anthropometric outcomes, at either the household or the community [-level — a-]{+level. This+} conclusion {+is+} read[-here-] as "this sample does not provide clear evidence of an association once the obvious confounders are [-controlled,"-]{+controlled",+} not as "WASH has no true relationship with child [-growth,"-]{+growth", which is+} a materially stronger claim {+than+} this design [-cannot-]{+can+} support.
+
+## 5.3 Joint household/community model
+
+**Table 5.3 — Joint household/community model: all four WASH terms entered together.**
+
+| [-Outcome-]{+Exposure+} | [-Household water-]{+β [95% CI]+} | [-Household sanitation-]{+*p*+} |
+[-Community water-]{+|---|---|---|+}
+| [-Community sanitation-]{+**HAZ**+} |[-|---|---|---|---|---|-]
+| [-HAZ-]{+Household water+} | −0.085 [−0.167, [-−0.003],-]{+−0.003] |+} **.043** |
+{+| Household sanitation |+} 0.024 [−0.047, [-0.096],-]{+0.096] |+} .507 |
+{+| Community water |+} 0.120 [−0.008, [-0.248],-]{+0.248] |+} .066 |
+{+| Community sanitation |+} −0.018 [−0.148, [-0.112],-]{+0.112] |+} .784 |
+| [-WAZ-]{+**WAZ** |+}
+{+| Household water+} | −0.015 [−0.084, [-0.055],-]{+0.055] |+} .677 |
+{+| Household sanitation |+} 0.039 [−0.020, [-0.098],-]{+0.098] |+} .191 |
+{+| Community water |+} 0.081 [−0.021, [-0.184],-]{+0.184] |+} .121 |
+{+| Community sanitation |+} 0.022 [−0.092, [-0.136],-]{+0.136] |+} .706 |
+| [-WHZ-]{+**WHZ** |+}
+{+| Household water+} | 0.039 [−0.038, [-0.117],-]{+0.117] |+} .318 |
+{+| Household sanitation |+} 0.036 [−0.025, [-0.096],-]{+0.096] |+} .244 |
+{+| Community water |+} 0.019 [−0.099, [-0.137],-]{+0.137] |+} .750 |
+{+| Community sanitation |+} 0.045 [−0.070, [-0.160],-]{+0.160] |+} .446 |
+
+[-(N-]{+::: {.tablenote}+}
+{+*Note.* N+} = 36,040 for the HAZ [-row,-]{+model,+} 36,308 for [-WAZ,-]{+WAZ and+} 36,145 for [-WHZ — each this table's-]{+WHZ, with 4,426 clusters in each. Each outcome uses its+} own common sample, {+so the sample is+} not[-a-] literally identical[-sample-] across [-outcomes.)-]{+outcomes.+}
+{+:::+}
+
+One cell in this table reaches[-conventional-] significance [-(5% level):-]{+at the 5% level:+} household water {+for HAZ,+} conditional on community [-water, HAZ-]{+water and the other two WASH terms+} (β = −0.085, *p* = .043), [-in an unexpected (negative) direction. Given the correlation between household-]{+and its sign is unexpectedly negative. Household+} and community water [-measures,-]{+measures are correlated,+} and[-that-] this is one significant cell among {+the+} twelve estimated in this table [-alone, this-]{+alone. The+} result is {+therefore+} reported as a single finding rather than treated as a central conclusion of this [-thesis;-]{+thesis, and+} it is not interpreted as evidence that improved household water is harmful.
+
+## 5.4 Specification sensitivity: Nigeria community sanitation
+
+@@ -56,55 +76,83 @@ No household-level water or sanitation coefficient reaches conventional signific
+| + region FE | −0.184 | .035 |
+| Household cluster FE (own-household sanitation) | −0.007 | .919 |
+
+The Nigeria community sanitation–HAZ coefficient changes sign and [-more than doubles-]{+grows+} in [-magnitude-]{+absolute size+} as controls are added sequentially, [-and a-]{+from 0.274 with no controls to −0.457 once socioeconomic controls are included. A+} block-by-block audit finds that removing wealth quintile alone from the full control set moves the coefficient from −0.457 back to [-−0.196 —-]{+−0.196,+} the[-single-] largest movement [-of-]{+produced by+} any {+single+} control [-block, though this-]{+block. This+} demonstrates sensitivity to [-specification,-]{+specification; it is+} not proof that wealth is the specific mechanism behind the reversal. The corresponding household-level (cluster-fixed-effects) coefficient for Nigeria is close to zero and not significant. This instability is reported as evidence that the community-level, region-fixed-effects estimate for Nigeria sanitation is **not stable across [-specifications**-]{+specifications**,+} and {+it+} should not be read as evidence that improved sanitation harms child growth in Nigeria.
+
+## 5.5 Current-age heterogeneity
+
+[-Across-]{+In+} the [-twelve water/sanitation joint-interaction-]{+heterogeneity models, six current-age bands (0 to 5, 6 to 11, 12 to 23, 24 to 35, 36 to 47 and 48 to 59 completed months) replace the continuous age control, with 12 to 23 months as the reference band (Section 4.4). Twelve exposure-specific joint interaction+} tests {+were+} estimated (two exposures × three outcomes × two fixed-effects structures), {+each a $\chi^2$ test of five restrictions. Of these,+} **eleven of twelve reject the null of no heterogeneity** at the 5% [-level; the-]{+level. The+} single exception is the water interaction for WHZ under region fixed effects (*p* = .300). [-This indicates that the-]{+The combined tests of all ten interaction terms ($\chi^2$, 10 degrees of freedom) reject in all six outcome and fixed-effects combinations (largest *p* = .019). The+} household-WASH association with current anthropometric outcomes {+therefore+} varies with a child's current age in most of the specifications tested. As stated in Section 4.4, this is secondary evidence about the *current* survey-date [-association and-]{+association. It compares children of different current ages at a single survey date; it+} does not {+trace any child's growth over time,+} identify a developmental mechanism or reconstruct any child's actual early-life [-exposure — that-]{+exposure. That+} question is addressed only by the historical extension below, under its own, separate limitations.
+
+## 5.6 Historical extension: primary established-date models
+
+All cells below [-are-]{+come from+} the [-primary, post-12-month-window,-]{+primary+} weighted models [-(established-date sample: Ghana-]{+with the post-12-month window, estimated on the established-date sample (Ghana+} 2014, Kenya 2014, Nigeria 2018). [-Coefficient is-]{+Coefficients are+} per 10 percentage points of IHME-modelled local coverage. {+The exposure is an area average of the modelled coverage surface within each child's buffer; it is neither the source study's population-weighted aggregate nor a record of the child's own household facilities (Section 3.5). The estimates are weighted conditional associations among eligible measured children, not population-representative estimates (Section 3.8). Their confidence intervals and p-values use the Student *t*(*G*−1) reference distribution (Section 4.5).+} Every cell carries the same methodological [-qualifications-]{+qualifications,+} stated in Section 3.8 and discussed fully in Section [-6 —-]{+6, and+} none is promoted above the others for being significant.
+
+**Table 5.5 — Historical extension: primary established-date water (W_IMP) estimates.**
+
+**Water [-(W_IMP)** — coefficient [95% CI], *p*-]{+(W_IMP):** coefficients per 10 percentage points+}
+
+| [-Outcome-]{+Sample+} | [-Ghana 2014-]{+β [95% CI]+} | [-Kenya 2014-]{+*p*+} |
+[-Nigeria 2018-]{+|---|---|---|+}
+| [-Pooled established-]{+**HAZ**+} |[-|---|---|---|---|---|-]
+| [-HAZ-]{+Ghana 2014+} | 1.65 [0.34, [-2.96],-]{+2.96] |+} .014 |
+{+| Kenya 2014 |+} −0.61 [−2.07, [-0.86],-]{+0.86] |+} .417 |
+{+| Nigeria 2018 |+} 0.70 [0.15, [-1.25],-]{+1.25] |+} .013 |
+{+| Pooled established |+} **1.03 [0.51, [-1.54], <.001**-]{+1.54]**+} | {+**<.001**+} |
+[-WAZ-]{+| **WAZ** |+}
+{+| Ghana 2014+} | 1.06 [−0.16, [-2.28],-]{+2.28] |+} .088 |
+{+| Kenya 2014 |+} −0.22 [−1.30, [-0.86],-]{+0.86] |+} .690 |
+{+| Nigeria 2018 |+} 0.45 [0.00, [-0.90],-]{+0.90] |+} .050 |
+{+| Pooled established |+} 0.65 [0.20, [-1.10],-]{+1.10] |+} .005 |
+| [-WHZ-]{+**WHZ** |+}
+{+| Ghana 2014+} | −0.00 [−1.16, [-1.16],-]{+1.16] |+} .997 |
+{+| Kenya 2014 |+} −0.16 [−1.29, [-0.96],-]{+0.96] |+} .776 |
+{+| Nigeria 2018 |+} −0.05 [−0.48, [-0.38],-]{+0.38] |+} .809 |
+{+| Pooled established |+} −0.08 [−0.50, [-0.35],-]{+0.35] |+} .717 |
+
+**Table 5.6 — Historical extension: primary established-date sanitation (S_IMP) estimates.**
+
+**Sanitation [-(S_IMP)** — coefficient [95% CI], *p*-]{+(S_IMP):** coefficients per 10 percentage points+}
+
+| [-Outcome-]{+Sample+} | [-Ghana 2014-]{+β [95% CI]+} | [-Kenya 2014-]{+*p*+} |
+[-Nigeria 2018-]{+|---|---|---|+}
+| [-Pooled established-]{+**HAZ**+} |[-|---|---|---|---|---|-]
+| [-HAZ-]{+Ghana 2014+} | −2.48 [−4.91, [-−0.05],-]{+−0.05] |+} .046 |
+{+| Kenya 2014 |+} −0.21 [−0.53, [-0.11],-]{+0.11] |+} .190 |
+{+| Nigeria 2018 |+} 0.20 [−0.34, [-0.75],-]{+0.75] |+} .467 |
+{+| Pooled established |+} −0.10 [−0.37, [-0.17],-]{+0.17] |+} .483 |
+| [-WAZ-]{+**WAZ** |+}
+{+| Ghana 2014+} | −0.08 [−2.04, [-1.88],-]{+1.88] |+} .935 |
+{+| Kenya 2014 |+} −0.15 [−0.38, [-0.09],-]{+0.09] |+} .223 |
+{+| Nigeria 2018 |+} 0.02 [−0.44, [-0.48],-]{+0.48] |+} .937 |
+{+| Pooled established |+} −0.07 [−0.29, [-0.14],-]{+0.14] |+} .511 |
+| [-WHZ-]{+**WHZ** |+}
+{+| Ghana 2014+} | 1.64 [−0.27, [-3.56],-]{+3.56] |+} .092 |
+{+| Kenya 2014 |+} 0.00 [−0.22, [-0.22],-]{+0.22] |+} .980 |
+{+| Nigeria 2018 |+} −0.17 [−0.59, [-0.24],-]{+0.24] |+} .407 |
+{+| Pooled established |+} −0.03 [−0.24, [-0.17],-]{+0.17] |+} .742 |
+
+**Table 5.7 — Historical extension: primary established-date sample sizes (N children / G clusters).**
+
+[-**Sample sizes (N children / G clusters)** — identical for the water and sanitation tables above, since both exposures are estimated on the same anthropometric sample per outcome/country; shown once here rather than repeated in every coefficient cell-]
+
+| Outcome | Ghana 2014 | Kenya 2014 | Nigeria 2018 | Pooled established |
+|---|---|---|---|---|
+| HAZ | N1,940 / G353 | N14,166 / G1,498 | N6,912 / G1,263 | N23,018 / G3,114 |
+| WAZ | N1,940 / G353 | N14,166 / G1,498 | N6,951 / G1,264 | N23,057 / G3,115 |
+| WHZ | N1,940 / G353 | N14,166 / G1,498 | N6,942 / G1,264 | N23,048 / G3,115 |
+
+{+::: {.tablenote}+}
+{+*Note.* The sample sizes are identical for the water and sanitation estimates in Table 5.5 and Table 5.6, because both exposures are estimated on the same anthropometric sample for each outcome and country. They are therefore shown once here rather than repeated in every coefficient cell.+}
+{+:::+}
+
+The pooled established-date water–HAZ coefficient (1.03, *p* < .001) is this section's selected [-headline —-]{+headline,+} the cell this thesis discusses in[-the-] most [-depth — but it-]{+depth. It+} is **not** the only nominally significant cell among the 24 shown [-above: at-]{+above. At+} conventional *p* < .05, **six** of the 24 cells reach [-significance (pooled-]{+significance: pooled+} water–HAZ, pooled water–WAZ, Ghana water–HAZ, Nigeria water–HAZ, Nigeria water–WAZ [-at *p*-]{+(*p*+} = [-.0498,-]{+.0498)+} and Ghana sanitation–HAZ, the last in an unexpected negative [-direction; the-]{+direction. The+} displayed, rounded *p* = .050 for Nigeria water–WAZ in [-the table above-]{+Table 5.5+} should not be read as {+lying+} exactly at the [-threshold —-]{+threshold, because+} the underlying value is below [-.05).-]{+.05.+} The pooled water–HAZ cell was [-selected-]{+chosen+} as the headline because it is the pooled, established-date estimate for this thesis's primary outcome and primary window, [-decided-]{+a choice made+} before any coefficient was examined (Section 6.4), not because it is the only significant [-result — a-]{+result. A+} reader comparing {+the tables with+} this [-table against this prose-]{+text+} should {+therefore+} see six significant cells, not one.[-It was independently reconstructed and re-estimated with a different estimation library and a separately rebuilt sample, matching the figures above to six significant digits (Appendix B). This establishes that the reported number is what the documented specification, correctly implemented, actually produces. It is not a multiplicity correction: no formal adjustment for testing 24 cells (2 products × 3 outcomes × 4 sample groups) has been applied anywhere in this section, and computational reproduction of a single coefficient does not substitute for one or establish that this result, or any of its five other nominally significant siblings, is any less likely to reflect chance given the number of cells examined. This coefficient's reporting status relative to its sibling cells is therefore unchanged by the computational check — all 24 cells carry the same unresolved documentation issues (Section 3.8, Section 6) — and the check does not establish causality.-]
+
+[-**Weighted vs. unweighted, same observations.** The pooled water–HAZ coefficient is sensitive to the equal-country weighting convention: 1.03 (weighted, equal country totals) vs. 0.41 [0.03, 0.80], *p* = .035 (unweighted, identical 23,018 observations).-]This [-is-]{+cell was independently reconstructed and re-estimated with+} a [-disclosed, authorised sensitivity-]{+different estimation library and a separately rebuilt sample, which matched the figures above+} to {+six significant digits (Appendix B). All 24 primary cells in Table 5.5 and Table 5.6 were likewise re-estimated with the second library on+} a [-stated design choice-]{+separately rebuilt sample, and their coefficients, standard errors, confidence intervals and p-values match the stored values (Appendix B). The other 267 of the 291 historical models+} (Section [-4.5),-]{+5.7) passed internal design checks; apart from two unweighted counterparts verified in Appendix B, they were+} not [-evidence-]{+re-estimated with a second library. These checks establish+} that [-either weighting is more "correct"; both are-]{+the+} reported [-together whenever-]{+numbers are what the documented specification, correctly implemented, actually produces. They are not a multiplicity correction. No formal adjustment for testing 24 cells (2 products × 3 outcomes × 4 sample groups) has been applied anywhere in+} this [-coefficient is cited.-]{+section, and computational reproduction does not substitute for one. Nor does it make this result, or any of its five other nominally significant siblings, any less likely to reflect chance given the number of cells examined. The computational check therefore leaves this coefficient's reporting status relative to its sibling cells unchanged, because all 24 cells carry the same unresolved documentation issues (Section 3.8, Section 6), and it does not establish causality.+}
+
+{+**Weighted vs. unweighted, same observations.** The pooled water–HAZ coefficient is sensitive to the equal-country weighting convention. It is 1.03 when weighted (equal country totals) and 0.41 [0.03, 0.80], *p* = .035, when unweighted on the identical 23,018 observations. This is a disclosed, authorised sensitivity to a stated design choice (Section 4.5), not evidence that either weighting is more "correct", and both are reported together whenever this coefficient is cited. Equal country weight totals do not give each country equal influence on the pooled slope, which also depends on each country's residual exposure variation (Section 4.5). Neither the weighted nor the unweighted estimate is a population-representative estimate (Section 3.8).+}
+
+**Residual exposure variation and the 10-point scale.** The pooled water–HAZ model's residual within-cluster exposure standard deviation after all controls is 0.43 percentage [-points — meaning the-]{+points. The+} conventional 10-percentage-point coefficient scale is {+therefore+} roughly 23 times larger than the exposure contrast that actually identifies the model. [-The effect corresponding to one residual-exposure-]{+One residual+} standard deviation [-is-]{+of exposure corresponds to+} approximately 0.044 HAZ standard deviations. The 10-point coefficient should therefore be read as a reporting convention for comparability across studies, not as a description of a change that is typically observed within a cluster.
+
+## 5.7 Alternative windows and common-sample comparison
+
+The 291-model register (`docs/provenance/historical_wash_preliminary_estimates_v1/model_coefficients_PRELIMINARY_AGGREGATE.csv`) decomposes exactly [-into:-]{+into the following families:+} 24 primary established-date models; 24 unweighted-comparison models; 72 alternative-window models [-(window choice, §5.7,-]{+(the window choice examined in this section:+} three further windows × 2 products × 3 outcomes × 4 sample groups); 24 wealth-adjustment models; 24 containing-pixel models; 24 rural-10km models; 48 stricter-completion-rule models (two postnatal windows); 24 calendar-age-construction models; 18 Ethiopia-provisional models; and three overlap-exclusion families of 3 models each (9 [-total) — summing-]{+in total). These sum+} to 291. A separate file, [-`window_common_sample_PRELIMINARY_AGGREGATE.csv` (192-]{+`window_common_sample_PRELIMINARY_AGGREGATE.csv`, has 192+} rows: 96[-own-eligible-sample-] fits {+on each window's own eligible sample+} and 96 [-common-sample-across-all-four-windows fits),-]{+fits on the sample common to all four windows. It+} re-presents the window comparison on {+these+} two[-different-] sample [-bases; its-]{+bases. Its+} own-eligible-sample rows overlap [-with, rather than add distinctly to,-]{+with+} the [-primary-plus-alternative-window-]{+primary and alternative-window+} rows already counted in the 291-model register [-above — this is-]{+rather than adding to them, so the file does+} not {+contain+} a further 192 distinct registered specifications. [-The-]{+To avoid repeating every cell in the main text, the+} pooled water–HAZ cells from the relevant families are shown below as the headline [-case to avoid repeating every cell in the main text.-]{+case.+} The corresponding sanitation and WAZ/WHZ sensitivity cells are [-not-]{+neither+} more [-or-]{+nor+} less favourable to a WASH association than the water–HAZ cells [-shown —-]{+shown;+} most show the same[-pattern of-] wide, zero-spanning confidence intervals as the primary sanitation and WAZ/WHZ results in Section [-5.6 — and-]{+5.6. They+} are reported in full in the public aggregate tables [-(`docs/provenance/historical_wash_preliminary_estimates_v1/`), not reproduced-]{+(`docs/provenance/historical_wash_preliminary_estimates_v1/`) and are left out+} here [-solely-]{+to avoid repetition, not+} because water–HAZ happened to be significant.
+
+**Table 5.8 — Historical extension: alternative exposure-window and common-sample comparison (pooled water–HAZ).**
+
+@@ -116,11 +164,15 @@ The 291-model register (`docs/provenance/historical_wash_preliminary_estimates_v
+| Post-24-month | 1.75 [0.81, 2.70] | Own-eligible |
+| Post-12-month, common-sample | 1.64 [0.68, 2.60] | All-window-eligible common sample, N = 16,419 |
+
+{+::: {.tablenote}+}
+{+*Note.* Coefficients are per 10 percentage points, as in Table 5.5. "Own-eligible" denotes each window's own eligible sample; the common sample contains only the children eligible under all four windows.+}
+{+:::+}
+
+{+The first four rows each use their own window's eligible sample, so differences between them reflect differences in samples as well as in windows; only the last row holds the sample fixed.+} The post-12-month estimate changes from 1.03 [-(its-]{+on its+} own eligible [-sample)-]{+sample+} to 1.64 [-when restricted to-]{+on+} the smaller common sample eligible under all four [-windows —-]{+windows. This is+} a **sample-composition effect** (children with complete 24-month windows differ systematically from the full post-12-month sample), not evidence favouring [-one window's-]{+the+} validity {+of one window+} over another. No window was selected because of {+the significance of+} its [-coefficient's significance;-]{+coefficient;+} all four are reported together, as planned before any coefficient was examined (Appendix C).
+
+## 5.8 Further sensitivity: wealth, spatial method, completion rule
+
+**Table 5.9 — Historical extension: further sensitivity [-— wealth,-]{+of pooled water–HAZ to wealth adjustment,+} spatial method,[-and-] completion rule [-(pooled water–HAZ).**-]{+and the exclusion of Ghana.**+}
+
+| Sensitivity | Pooled water–HAZ β [95% CI] |
+|---|---|
+@@ -131,8 +183,12 @@ The post-12-month estimate changes from 1.03 (its own eligible sample) to 1.64 w
+| Stricter completion rule (+1 month) | 0.95 [0.43, 1.47] |
+| Excluding Ghana (DHS/IHME input overlap) | 0.74 [0.24, 1.24] |
+
+{+::: {.tablenote}+}
+{+*Note.* Coefficients are per 10 percentage points, as in Table 5.5. The row excluding Ghana pools Kenya and Nigeria only; every other row uses the three-country established-date sample.+}
+{+:::+}
+
+Adding wealth leaves the coefficient essentially unchanged (1.01 vs. 1.03). This shows only that the reported conditional coefficient is not sensitive to this particular [-adjustment; it-]{+adjustment. It+} does not establish that wealth [-is a mediator of-]{+mediates+} the historical WASH exposure, and a small change under adjustment is not itself evidence against the competing possibility that wealth is a confounder the main specification should have [-included (Section-]{+included. Section+} 3.8 states both the mediator concern and this competing [-concern;-]{+concern, and+} this sensitivity adjudicates [-neither). It also-]{+neither. Nor+} does [-not,-]{+it,+} on its own, support or contradict a cluster-fixed-effects absorption mechanism, which this thesis's own baseline model separately demonstrates is not how cluster fixed effects behave (Section 4.2). The spatial-method and completion-rule sensitivities move the coefficient by amounts smaller than, or comparable to, the gap between the main weighted and unweighted estimates, and [-are reported without privileging any one-]{+none of them is privileged+} over the main specification.
+
+## 5.9 Ethiopia: provisional, excluded from the established-date pooled sample
+
+Ethiopia's three interview-date candidates are not treated as equally valid sensitivity evidence. Candidate C1 uses a 30-day Ethiopian-calendar arithmetic conversion {+that has+} already {+been+} shown, independently of the WASH analysis, to be invalid for the delivered recoded date fields (Appendix [-C); it-]{+C). It+} is excluded from this section and from [-any-]{+every+} reporting table, and its past numerical agreement with the other two candidates is not treated as evidence of robustness. Candidates C2 and C3 remain [-provisional (neither-]{+provisional, since neither has been+} independently [-validated) and-]{+validated. They+} agree closely with each other (water–HAZ: −0.39 {+for+} both; sanitation–HAZ: −0.45 [-both, both CIs including zero),-]{+for both; all four confidence intervals include zero). These estimates are+} reported [-here,-]{+here and+} in Appendix [-C,-]{+C+} only as an explicitly exploratory [-sensitivity,-]{+sensitivity analysis. They are+} never pooled [-into-]{+into,+} or compared [-against-]{+with,+} the established-date headline results above.

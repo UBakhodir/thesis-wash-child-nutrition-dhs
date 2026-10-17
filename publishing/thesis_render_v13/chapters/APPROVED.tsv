@@ -1,0 +1,5 @@
+unit	tex_sha256	approved_by	approved_utc	note
+# One line per unit, added only after the author has reviewed that unit's preview.
+# tex_sha256 = sha256 of chapters/tex/<file>.tex at approval; `build.py thesis --final`
+# refuses any unit whose current .tex differs from the approved hash.
+ch01	13155ac51ef54456bfa37e9b791a420d3d04f5249867ca6b4be2991c825d678e	author (Bakhodir Izzatulloev), decision stated by the author and recorded on the author's instruction in the ch02 session	2026-10-14T06:02:24Z	Author review: carried forward as previewed in REVIEW-COPY_ch01-introduction_preview_2026-10-13_740f004.pdf. This is not supervisor approval and not final-submission approval. Chapter 1 open points 1-7 (HANDOVER section 11) remain as recorded.

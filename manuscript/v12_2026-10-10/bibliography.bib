@@ -29,13 +29,15 @@
 }
 
 @article{Black2013,
-  author  = {Black, Robert E. and Victora, Cesar G. and Walker, Susan P. and Bhutta, Zulfiqar A. and Christian, Parul and de Onis, Mercedes and others},
+  author  = {Black, Robert E. and Victora, Cesar G. and Walker, Susan P. and Bhutta, Zulfiqar A. and Christian, Parul and de Onis, Mercedes and Ezzati, Majid and Grantham-McGregor, Sally and Katz, Joanne and Martorell, Reynaldo and Uauy, Ricardo},
   title   = {Maternal and child undernutrition and overweight in low-income and middle-income countries},
   journal = {The Lancet},
   year    = {2013},
   volume  = {382},
+  number  = {9890},
   pages   = {427--451},
-  doi     = {10.1016/S0140-6736(13)60937-X}
+  doi     = {10.1016/S0140-6736(13)60937-X},
+  note    = {For the Maternal and Child Nutrition Study Group. Eleven named authors (Crossref); the bibliography style's own more-than-ten-authors rule truncates the printed list to the first seven, not a stored six-plus-"others" shortcut.}
 }
 
 @article{Victora2008,
@@ -73,8 +75,11 @@
   title   = {WHO Child Growth Standards based on length/height, weight and age},
   journal = {Acta Paediatrica},
   year    = {2006},
+  volume  = {95},
+  number  = {S450},
+  pages   = {76--85},
   doi     = {10.1111/j.1651-2227.2006.tb02378.x},
-  note    = {Print/issue year 2006 (Acta Paediatrica supplement 450, April 2006), used here as the citation year; Crossref records this article's own "first published" online date as 2 January 2007, later than its issue year -- a documented publisher-metadata discrepancy, not an error in this citation's year field.}
+  note    = {Crossref's own publisher record (checked directly) gives volume 95, issue S450 (supplement 450), pages 76--85 -- not "Acta Paediatrica Supplement" as a separate journal title, nor supplement 450 as the volume number; both appear in some secondary records but not in the publisher's own metadata. Print/issue year 2006 is used as the citation year; Crossref records this article's own "first published" online date as 2 January 2007, later than its issue year -- a documented publisher-metadata discrepancy, not an error in this citation's year field.}
 }
 
 @article{CummingCairncross2016,
@@ -189,28 +194,34 @@
 @techreport{Donohue2023,
   author      = {Donohue, Rose E. and Church, Rachael and Assaf, Shireen and Mayala, Benjamin K.},
   title       = {Community Improved Sanitation Coverage and Childhood Stunting},
-  institution = {The DHS Program/ICF},
+  institution = {ICF},
+  address     = {Rockville, Maryland},
   type        = {DHS Spatial Analysis Reports},
   number      = {23},
-  year        = {2023}
+  year        = {2023},
+  note        = {Publisher name follows this report's own recommended citation (Rockville, Maryland, USA: ICF), the organization's name at the time of this 2023 report -- not the 2013-era "ICF International" used for Burgert2013 and PerezHeydrich2013, nor an umbrella "The DHS Program/ICF" not used by any of these reports' own title pages.}
 }
 
 @techreport{Burgert2013,
   author      = {Burgert, Clara R. and Colston, Josh and Roy, Thea and Zachary, Blake},
   title       = {Geographic Displacement Procedure and Georeferenced Data Release Policy for the Demographic and Health Surveys},
-  institution = {The DHS Program/ICF},
+  institution = {ICF International},
+  address     = {Calverton, Maryland},
   type        = {DHS Spatial Analysis Reports},
   number      = {7},
-  year        = {2013}
+  year        = {2013},
+  note        = {Publisher name follows this report's own recommended citation (Calverton, Maryland, USA: ICF International), the organization's name at the time of this 2013 report -- not the later "ICF" used for Donohue2023.}
 }
 
 @techreport{PerezHeydrich2013,
   author      = {Perez-Heydrich, Carolina and Warren, Joshua L. and Burgert, Clara R. and Emch, Michael E.},
   title       = {Guidelines on the Use of DHS GPS Data},
-  institution = {The DHS Program/ICF},
+  institution = {ICF International},
+  address     = {Calverton, Maryland},
   type        = {DHS Spatial Analysis Reports},
   number      = {8},
-  year        = {2013}
+  year        = {2013},
+  note        = {Publisher name follows this report's own recommended citation (Calverton, Maryland, USA: ICF International), matching Burgert2013's same-era imprint.}
 }
 
 @techreport{ICF2012,
@@ -261,4 +272,19 @@
   title  = {The State of the World's Children 2025: Ending Child Poverty -- Our Shared Imperative},
   year   = {2025},
   note   = {UNICEF flagship report; no DOI assigned by the publisher.}
+}
+
+@inproceedings{Seabold2010Statsmodels,
+  author    = {Seabold, Skipper and Perktold, Josef},
+  title     = {statsmodels: Econometric and Statistical Modeling with Python},
+  booktitle = {Proceedings of the 9th Python in Science Conference},
+  year      = {2010},
+  note      = {Cited here for the statsmodels library (installed version 0.14.6, confirmed in docs/provenance/cluster_fe_inference_adjudication.md), used for the baseline pipeline's cluster-fixed-effects regressions (Section 4.5).}
+}
+
+@misc{Sheppard2024Linearmodels,
+  author = {Sheppard, Kevin},
+  title  = {linearmodels},
+  year   = {2024},
+  note   = {Software package, version 7.0 (installed version confirmed in docs/provenance/cluster\_fe\_inference\_adjudication.md and Appendix B), used for the independent PanelOLS re-estimation described in Section 4.5 and Appendix B. https://github.com/bashtage/linearmodels}
 }

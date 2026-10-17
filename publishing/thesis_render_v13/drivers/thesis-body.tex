@@ -1,0 +1,59 @@
+% =====================================================================
+% thesis-body.tex -- MASTER ASSEMBLY ORDER for the complete thesis.
+% Included by the wrapper that `python scripts/build.py thesis` writes
+% into its build directory (that wrapper defines \ThesisRoot, loads the
+% shared preamble, adds the shared bibliography and metadata).
+%
+% One document, one table of contents, one reference list (cited works
+% only), continuous Arabic page numbers from the first main-text page to
+% the declaration. Chapters are not merged as separate PDFs.
+%
+% Abstract placement is carried over from the superseded v6 build
+% (abstract = first numbered page; REQUIREMENTS_CHECKLIST.md R-14).
+% Page breaks between main-text chapters (R-15) were likewise carried
+% over from v6 at first, but R-15 is documented there as a publishing
+% choice, not an explicit university requirement, that "adds pages to
+% the main-text count, so revisit if the 40-page maximum becomes
+% tight" -- which it did at final assembly (54 pages before this
+% change). Main-text chapters therefore flow continuously below
+% (no \clearpage between abstract/ch01..ch07); each chapter still
+% opens with its own numbered \section heading. The reference list and
+% each appendix still start on their own page, since neither is part
+% of the main-text page count this choice was made to fit.
+% =====================================================================
+
+% ---- Preliminary material (not numbered) ----------------------------
+\pagenumbering{gobble}
+\input{\ThesisRoot/template/titlepage.tex}
+\ThesisTableOfContents
+\clearpage
+
+% ---- Main text: Arabic page 1 starts here ---------------------------
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\input{\ThesisRoot/chapters/tex/08_abstract.tex}
+\input{\ThesisRoot/chapters/tex/01_introduction.tex}
+\input{\ThesisRoot/chapters/tex/02_literature_review.tex}
+\input{\ThesisRoot/chapters/tex/03_data_and_variables.tex}
+\input{\ThesisRoot/chapters/tex/04_empirical_strategy.tex}
+\input{\ThesisRoot/chapters/tex/05_results.tex}
+\input{\ThesisRoot/chapters/tex/06_discussion_and_limitations.tex}
+\input{\ThesisRoot/chapters/tex/07_conclusion.tex}
+% ---- End of main text (40-page maximum applies up to here) ----------
+\label{ThesisEndOfMainText}
+
+% ---- References: one list, cited works only ------------------------
+\clearpage
+\printbibliography[heading=bibintoc,title={References}]
+
+% ---- Appendices ------------------------------------------------------
+\clearpage
+\ThesisAppendixStart
+\input{\ThesisRoot/chapters/tex/A_variable_definitions_and_sample_flow.tex}
+\clearpage
+\input{\ThesisRoot/chapters/tex/B_model_specifications_and_independent_verification.tex}
+\clearpage
+\input{\ThesisRoot/chapters/tex/C_historical_diagnostics_and_ethiopia.tex}
+
+% ---- Declaration: final separate page, numbered, unsigned -----------
+\input{\ThesisRoot/template/declaration.tex}

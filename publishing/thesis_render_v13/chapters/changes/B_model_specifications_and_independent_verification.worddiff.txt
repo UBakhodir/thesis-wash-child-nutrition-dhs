@@ -1,0 +1,268 @@
+# Appendix B — Model specifications, inference conventions, and independent verification
+
+{+The estimating equations are stated in Chapter<nbsp>4 (Sections<nbsp>4.1–4.6). This appendix records how they are implemented for inference and how far the implementation has been verified. It covers the baseline household cluster-fixed-effects model (Section<nbsp>B.1), the historical extension (Sections<nbsp>B.2–B.4) and the estimator safeguard added after an external audit (Section<nbsp>B.4). Figures marked RESTRICTED come from execution logs and output folders that contain or derive from restricted microdata; they are carried here from those records and from the public provenance documents named in the text. They were not re-executed in preparing this appendix.+}
+
+## B.1 Inference-convention comparison (baseline household cluster-FE model, HAZ)
+
+{+**Table B.1 — Household water and sanitation coefficients for HAZ under the two inference conventions (baseline household cluster-fixed-effects model)**+}
+
+| Convention | Water β | SE | p | Sanitation β | SE | p |
+|---|---|---|---|---|---|---|
+| PRIMARY (same-group CRV1; this thesis's main convention) | −0.085 | 0.046 | .062 | 0.026 | 0.043 | .548 |
+| FULL\_DUMMY\_DF sensitivity | −0.085 | 0.049 | .080 | 0.026 | 0.046 | .574 |
+
+[-The two conventions differ only in whether the small-sample CRV1 correction additionally penalises degrees of freedom for the absorbed cluster dummies (FULL\_DUMMY\_DF does; PRIMARY does not, following the project's cross-validated adjudication against `linearmodels.PanelOLS(auto_df=True)`; see `docs/provenance/cluster_fe_inference_adjudication.md`). Point estimates are identical by construction; only standard errors and p-values differ. The adjudicated PRIMARY convention is the one presented throughout the abstract, introduction, and conclusion; the FULL\_DUMMY\_DF sensitivity is documented here and reported alongside the primary values specifically in `04_empirical_strategy.md` §4.5 and `05_results.md` §5.1, each time named explicitly — this is not a claim that both conventions are repeated at every one of this coefficient's other mentions throughout the thesis.-]{+::: {.tablenote}+}
+{+```{=latex}+}
+{+\raggedright+}
+{+```+}
+
+[-## B.2 Independent verification of-]{+Note: Household water and sanitation are entered together; N = 36,040 children in G = 4,426 PSUs (`country_psu`). Both rows use+} the [-pooled historical model (Section 4.6, Section 5.6)-]{+normal reference distribution for *p*-values and confidence intervals. Source: `outputs/household_community_wash/03_household_cluster_fe.csv`, rows `natural_sample_PRIMARY_SAME_CLUSTER_CRV1` and `natural_sample_FULL_DUMMY_DF_SENSITIVITY`, outcome `haz`.+}
+{+:::+}
+
+[-This thesis's own pipeline (`scripts/historical_wash/16_estimate_preliminary.py`) estimates all 291 historical models using a hand-written weighted within-cluster demeaning estimator. A prior independent check (`scripts/historical_wash/17_validate_estimates.py`) re-estimated four representative *country-specific* cells (Ghana water HAZ weighted and unweighted; Ghana sanitation WAZ; Nigeria sanitation HAZ) with an explicit-dummy-variable statsmodels implementation, matching to 3×10⁻¹⁴.-]{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+[-This did not cover-]{+The two conventions differ only in whether the small-sample CRV1 correction also penalises degrees of freedom for+} the [-pooled, multi-country model, which-]{+absorbed cluster dummies. FULL\_DUMMY\_DF does; PRIMARY does not, following the project's cross-validated adjudication against `linearmodels.PanelOLS(auto_df=True)` (see `docs/provenance/cluster_fe_inference_adjudication.md`). Point estimates are identical by construction; only standard errors and *p*-values differ. The adjudicated PRIMARY convention+} is the [-headline result of-]{+one presented in+} the [-historical extension. `scripts/historical_wash/20_validate_pooled_estimate.py`, written for this manuscript-preparation phase of-]{+abstract, the introduction and+} the [-project, independently:-]{+conclusion. The FULL\_DUMMY\_DF sensitivity is documented here and reported next to the primary values in Section<nbsp>4.5 and Section<nbsp>5.1, where it is named explicitly. This does not mean that both conventions are repeated wherever else this coefficient is mentioned.+}
+
+[-1. Rebuilds the estimation sample from the analysis-candidates stage directly (not from the stored, already-estimated model dataset), applying every filtering step explicitly and logging row counts (reproduced in Appendix A.3).-]
+[-2. Estimates with `linearmodels.PanelOLS` — a different software library from the project's own hand-written estimator — using entity (cluster) fixed effects and clustered CRV1 standard errors.-]
+[-3. Reports both the PRIMARY (`auto_df=True`) and FULL\_DUMMY\_DF (`auto_df=False`) conventions.-]
+[-4. Estimates the unweighted counterpart on exactly the same final observations.-]{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+[-**First attempt and its correction, reported for transparency.** An initial run of this independent script used a single pooled reference birth-year cell (rather than a separate reference year per country) and omitted the child's own age-in-months as a linear control. This produced β per 10 points = 1.385 against the stored 1.026 — a roughly 35% discrepancy — despite the sample size (N=23,018), cluster count (G=3,114), and exposure mean/SD matching the stored values exactly, which is what indicated a specification difference rather than a sample-construction error. After matching the documented design exactly (country-local-reference birth-year dummies; child age-in-months included), the independent estimate converged to:-]{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+[-**Which of-]{+**How+} the two [-changes actually explains the 1.385-vs-1.026 gap (2026-10-09 diagnostic, not speculation).** Because both changes were made at once in the original attempt,-]{+conventions are computed.** The model is fitted as weighted least squares on data demeaned within each PSU (weighted within-cluster demeaning, which uses only within-cluster variation+} and [-that attempt's exact code was never committed-]{+is equivalent+} to [-this repository, this gap could not originally be decomposed. A dedicated diagnostic (`scripts/historical_wash/25_diagnose_birthyear_coding_and_age_control.py`) isolates them on-]{+including+} a [-faithful reconstruction-]{+full set+} of [-the described design, comparing the two birth-year schemes-]{+PSU dummies), with `statsmodels` `cov_type="cluster"` clustered+} on the [-actual transformed design the estimator uses — the weighted within-cluster-demeaned matrix, not the raw one — because raw-space comparisons alone cannot establish whether a fitted coefficient must be unaffected. **The exposure variable (E10)-]{+same `country_psu` grouping. The library's correction is+}
+{+$$c = \frac{G}{G-1}\times\frac{N-1}{N-K},$$+}
+{+where $K$+} is[-never used to construct any of-] the [-comparisons below**: an earlier version-]{+number+} of [-this diagnostic residualized-]{+columns in+} the [-birth-year blocks against a set-]{+design matrix it receives. Under PRIMARY+} that[-included E10 itself before comparing ranks, which-] is [-circular (residualizing against E10 can remove exactly-]{+$K = 18$:+} the [-part-]{+household exposures and covariates after demeaning, with no constant and no PSU dummies. FULL\_DUMMY\_DF counts every absorbed PSU dummy as an estimated parameter, $K = 18 + 4{,}426 = 4{,}444$, which multiplies the PRIMARY standard error by $\sqrt{(N-18)/(N-4{,}444)}$ (1.0677 for HAZ) and recomputes *p*-values and confidence intervals from the normal distribution. The executed run log records `use_t: False` for these fits, so the PRIMARY *p*-values are normal-reference values as well (Section<nbsp>4.5). The equivalence+} of {+demeaning and explicit PSU dummies was checked in the same script on+} a [-block that would otherwise be shown to affect E10's own coefficient);-]{+Ghana subset (N = 4,287, 613 PSUs):+} the [-corrected version below keeps E10 entirely separate from every column-space comparison-]{+two coefficients differ by 2.59×10⁻¹⁵ (water)+} and [-instead verifies directly that E10's own residual values-]{+5.57×10⁻¹⁵ (sanitation). The baseline code contains no singleton-cluster exclusion step, so $G$ counts every PSU in the estimation sample (Section<nbsp>4.5). The region-fixed-effects models+} are [-unaffected by-]{+fitted differently: they use explicit region dummies, so $K$ counts the constant, the covariates and+} the [-choice-]{+region dummies, and they too use the normal reference distribution. They are not part+} of [-scheme.-]{+Table<nbsp>B.1.+}
+
+[-*Raw design matrix.* The single-pooled-reference birth-year scheme does change the raw design matrix: 13 birth-year dummy columns vs. the country-local scheme's 12, because Nigeria's own observed birth-year range (2013–2017) does not include the single global reference year (2009, the earliest birth year observed anywhere in the pooled sample), so Nigeria keeps a dummy for its own earliest year that the country-local scheme drops as its reference category. This extra column survives the cluster-fixed-effect demeaning step on its own (it is not itself absorbed).-]{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+[-*Step 1 — direct comparison, before touching E10 or any other covariate.* Demeaning each scheme's birth-year block (weighted within-cluster demeaning,-]{+## B.2 Independent verification of+} the [-identical transformation `PanelOLS`'s entity effects use) and comparing the two blocks' ranks directly: local = 12 (of 12 surviving columns), pooled-single-reference = 12 (of 13 surviving columns — one is already redundant at this stage), combined = 12. The two demeaned blocks already span **equal** subspaces before any residualization is performed.-]{+pooled historical model (Section 4.6, Section 5.6)+}
+
+[-*Step 2 — residualized against the shared nuisance controls only (age-in-months, maternal age, demographic dummies), E10 explicitly excluded from this projection, checked separately with and without age-in-months.* Equal span confirmed in both cases (rank 12/12/12 throughout).-]{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+[-*Step 3 — E10's-]{+This thesis's+} own [-residual, compared directly.* Building each scheme's complete nuisance specification (the absorbed cluster fixed effect, plus-]{+pipeline (`scripts/historical_wash/16_estimate_preliminary.py`) estimates all 291 historical models with a hand-written estimator based on weighted within-cluster demeaning. An earlier independent check (`scripts/historical_wash/17_validate_estimates.py`) re-estimated four representative *country-specific* cells: Ghana water–HAZ, weighted and unweighted; Ghana sanitation–WAZ; and Nigeria sanitation–HAZ. Three are primary cells; the unweighted Ghana cell (`m0005`) belongs to+} the [-shared controls, plus that scheme's-]{+unweighted comparison family. That script rebuilds each sample with its+} own [-birth-year block)-]{+filters, fits weighted least squares with explicit cluster dummies in `statsmodels`,+} and [-residualizing E10 against each:-]{+computes+} the [-two resulting weighted residual-exposure vectors differ-]{+CRV1 sandwich+} by {+hand with $K$ counting only the non-fixed-effect regressors. Coefficients agreed within 3×10⁻¹⁴ (maximum absolute difference 2.96×10⁻¹⁴), standard errors within+} a [-maximum-]{+relative difference+} of [-1.73×10⁻¹⁵-]{+7.5×10⁻¹⁰, and N and G were identical+} in [-absolute terms (relative to the vector's own norm, 2.23×10⁻¹⁶) — the same vector, not merely a similar one, confirmed elementwise rather than inferred from rank alone.-]{+all four cells (public output: `docs/provenance/historical_wash_preliminary_estimates_v1/independent_validation_PRELIMINARY_AGGREGATE.csv`).+}
+
+[-*Step 4 — independent cross-check via the explicit weighted Frisch–Waugh–Lovell formula*, β = (e′Wỹ)/(e′We), computed from first principles rather than read off `PanelOLS`'s internal output: this independently computed β matches `PanelOLS`'s own fitted coefficient to within 4.4×10⁻¹⁶ across all four scheme/age-control combinations.-]{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+[-*Step 5 — mechanical explanation of the redundant column, without reference to E10.* Nigeria's full set of five own-year dummy columns in-]{+That check did not cover+} the [-pooled-single-reference scheme sums, exactly (confirmed elementwise across all 23,018 observations), to Nigeria's own raw country indicator; that indicator demeans to exactly 0.0, because every DHS cluster belongs to exactly one country, so a column that is constant within every cluster-]{+pooled multi-country model, which+} is[-trivially absorbed by-] the [-cluster fixed effect. This is-]{+headline result of+} the [-specific mechanism behind-]{+historical extension. `scripts/historical_wash/20_validate_pooled_estimate.py`, written for this manuscript-preparation phase of+} the [-equal-span result above, not an unexplained coincidence.-]{+project, independently:+}
+
+[-Taken together, Steps 1–3 establish — directly, not merely by inference from one rank comparison — that the two birth-year schemes are equivalent nuisance specifications for the exposure coefficient; Step 4 independently confirms the resulting coefficient via a from-scratch computation; Step 5 explains the mechanism. The fitted values confirm the exposure coefficient is identical between schemes at floating-point precision: 1.0255530672006674 (local) vs. 1.0255530672006667 (pooled-single-reference), an absolute difference of 6.661338147750939×10⁻¹⁶ (holding the age-in-months control fixed), and 1.3852855197991372 vs. 1.3852855197991374 (absolute difference 2.220446049250313×10⁻¹⁶) holding it excluded — both differences at the level of floating-point machine epsilon, not an approximation, and reported here as independently observed numerical evidence consistent with the algebraic result, not merely inferred from it.-]{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+[-The age-in-months control, in contrast, fully accounts for-]{+1. Rebuilds+} the [-gap on its own: 1.0255530672006674 with it included vs. 1.3852855197991372 without it —-]{+estimation sample directly from+} the [-former matches-]{+analysis-candidates stage (not from+} the [-stored value (1.025553)-]{+stored, already-estimated model dataset), applying every filtering step explicitly+} and {+logging row counts (reproduced in Appendix<nbsp>A, Section<nbsp>A.3).+}
+{+2. Estimates with `linearmodels.PanelOLS`, a different software library from+} the [-latter approximately reproduces the documented early-attempt value ("1.385") on this reconstruction, under *either* birth-year scheme. This is evidence, on this reconstruction, that the age-in-months omission explains the historical 1.385-vs-1.026 gap,-]{+project's own hand-written estimator, using entity (cluster) fixed effects+} and [-that the birth-year reference-coding choice — though it genuinely does change-]{+clustered CRV1 standard errors.+}
+{+3. Reports both+} the [-raw design matrix,-]{+PRIMARY (`auto_df=True`)+} and [-this is not dismissed as a non-issue — does not affect-]{+FULL\_DUMMY\_DF (`auto_df=False`) conventions.+}
+{+4. Estimates+} the [-fitted exposure coefficient, because the two schemes carry equal information after cluster-FE absorption. Stated as this diagnostic's finding-]{+unweighted counterpart+} on [-a faithful reconstruction, with full numerical tolerances and-]{+exactly+} the [-complete five-step evidence chain reported in its own execution log (`data/processed/estimation/birthyear_coding_diagnostic_20261009T081301Z/`, RESTRICTED), not as certainty about the specific, unpreserved original code, and not as exact recovery of its reported output.-]{+same final observations.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+The rebuild is independent in its filtering, weighting, design construction and estimation. It reads the same analysis-candidates file as the main pipeline, so the variables constructed upstream of that file are shared: the exposure assignment, the outcome validity flags, the birth year, the calendar age and the weight field. The check therefore does not re-verify those constructions.+}
+
+{+**First attempt and its correction, reported for transparency.** An initial run of this independent script used a single pooled reference birth-year cell (rather than a separate reference year per country) and omitted the child's own age in months as a linear control. It produced β per 10 points = 1.385 against the stored 1.026, a discrepancy of roughly 35%. The sample size (N = 23,018), cluster count (G = 3,114) and exposure mean and SD nevertheless matched the stored values exactly, which pointed to a specification difference rather than a sample-construction error. After the documented design was matched exactly (country-local-reference birth-year dummies; child age in months included), the independent estimate converged to the values in Table<nbsp>B.2.+}
+
+{+**Table B.2 — Independent re-estimation of the pooled established-date water–HAZ model compared with the stored estimate**+}
+
+| Quantity | Independent (corrected) | Stored {+(`m0004`)+} | Absolute difference |
+|---|---|---|---|
+| β per 10 points | 1.0255531 | [-1.025553-]{+1.025553067+} | 6.7×10⁻⁸ {+against the six-decimal value 1.025553 (see note)+} |
+| SE per 10 points (as originally run) | 0.260694 | 0.260730 | 3.6×10⁻⁵ {+(explained below)+} |
+| N | 23,018 | 23,018 | 0 |
+| G (clusters) | 3,114 | 3,114 | 0 |
+| K (regressors) / rank | 24 / 24 | 24 / 24 | 0 |
+| Residual exposure SD (points) | 0.428348 | 0.428348 | [-~0-]{+none at six decimals+} |
+| Unweighted counterpart β per 10 | 0.4147 | [-0.41 (documented)-]{+0.4146971 (`m0008`)+} | [-consistent-]{+none at four decimals+} |
+
+{+::: {.tablenote}+}
+{+```{=latex}+}
+{+\raggedright+}
+{+```+}
+
+{+Note: Stored values are from `docs/provenance/historical_wash_preliminary_estimates_v1/model_coefficients_PRELIMINARY_AGGREGATE.csv` (rows `m0004` and `m0008`; β per 10 for `m0004` is 1.025553067200643 at full precision). Script 20 compared its estimate with six-decimal constants written into the script (β 1.025553, SE 0.260730), so the 6.7×10⁻⁸ in the β row measures that rounding, not a disagreement between estimators; the full-precision comparison for this cell, made by `21_validate_all_primary_cells.py`, is 2.4×10⁻¹⁴ (pass-3 audit record). The independent rank is that of the regressor matrix before the fixed-effect transformation; the stored rank is that of the weighted within-transformed matrix. Independent values are carried from the RESTRICTED execution log; where only rounded values are recorded, agreement is stated at that precision.+}
+{+:::+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+Full execution log and comparison JSON: `data/processed/estimation/pooled_independent_validation_20261007T090003Z/` (RESTRICTED; aggregate figures only, reproduced above).
+
+[-**The SE difference above is fully explained, not residual numerical noise.** `16_estimate_preliminary.py`'s declared small-sample correction is `(G/(G-1)) × ((N-1)/(N-K))` applied-]{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+**Which of the two changes explains the 1.385-versus-1.026 gap (2026-10-09 diagnostic).** Both changes were made together in the original attempt, and that attempt's code was never committed+} to {+this repository, so+} the [-raw cluster-robust sandwich, with CIs/p-values from a Student's *t* distribution-]{+gap could not at first be decomposed. A dedicated diagnostic (`scripts/historical_wash/25_diagnose_birthyear_coding_and_age_control.py`) separates them+} on [-*G*−1 degrees of freedom (read directly from its source, lines 209–212). `20_validate_pooled_estimate.py`'s and `21_validate_all_primary_cells.py`'s **original, incomplete** `PanelOLS.fit(cov_type="clustered", cluster_entity=True, auto_df=True)` call applied only *one*-]{+a reconstruction+} of the {+described design. It compares the+} two [-factors the full correction requires: `auto_df=True` correctly sets the same-group, no-double-penalty degrees-of-freedom convention (confirmed by reading the installed `linearmodels` 7.0 source, `panel/model.py`'s `_determine_df_adjustment`), and `debiased=True` (the library's own default) applies an `N/(N-K)` scale — but that original call did-]{+birth-year schemes on the transformed design the estimator actually uses, the weighted within-cluster-demeaned matrix,+} not [-also pass-]{+on+} the [-*separate*, opt-in `group_debias=True` flag, so it-]{+raw matrix, because raw-space comparisons alone cannot show whether a fitted coefficient must be unaffected. **The exposure variable (E10, exposure in units of 10 percentage points) is+} never [-applied linearmodels' own `(G/(G-1)) × ((N-1)/N)` cluster-count adjustment (`shared/covariance.py`, `group_debias_coefficient`) at all. **After adding-]{+used to construct any of+} the [-missing `group_debias=True` flag**,-]{+comparisons below.** An earlier version of+} the [-two factors-]{+diagnostic residualized+} the {+birth-year blocks against a set that included E10 itself before comparing ranks. That is circular: residualizing against E10 can remove exactly the part of a block that would otherwise affect E10's own coefficient. The+} corrected [-call then applies together, `[N/(N-K)] × [(G/(G-1))×(N-1)/N]`, multiply-]{+version keeps E10+} out {+of every column-space comparison and instead checks directly that E10's own residual values do not depend on the choice of scheme. The script's tolerances are a rank tolerance of 10⁻⁸ relative+} to[-something algebraically identical to `16`'s declared `(G/(G-1))×(N-1)/(N-K)` — so-] the [-missing flag, not-]{+largest singular value,+} a [-different formula-]{+weighted column-norm threshold of 10⁻¹⁰ for treating a demeaned column as absorbed,+} and {+a relative tolerance of 10⁻⁸ for "the same residual vector".+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+*Raw design matrix.* The single-pooled-reference birth-year scheme does change the raw design matrix: it has 13 birth-year dummy columns against the country-local scheme's 12. Nigeria's observed birth-year range (2013–2017) does+} not [-floating-point noise, is-]{+include+} the [-entire explanation-]{+single global reference year (2009, the earliest birth year observed anywhere in the pooled sample), so Nigeria keeps a dummy+} for [-why the original, incomplete call's SE disagreed. `scripts/historical_wash/24_reconcile_inference_corrections.py` (new) re-fits all 24 primary cells with `group_debias=True` added: **every-]{+its own earliest year, which the country-local scheme drops as its reference category. This extra column survives the cluster-fixed-effect demeaning on its own; it is not itself absorbed.+}
+
+{+*Step 1: direct comparison, before E10 or any other covariate is involved.* Each scheme's birth-year block is demeaned (weighted within-cluster demeaning, the transformation that `PanelOLS`’s entity effects use) and the weighted blocks' ranks are compared directly: local 12 (of 12 surviving columns), pooled single reference 12 (of 13 surviving columns,+} one of {+which is already redundant at this stage), combined 12. The two demeaned blocks span **equal** subspaces before any residualization.+}
+
+{+*Step 2: residualized against+} the [-24 cells' SE now matches-]{+shared nuisance controls only.* The blocks are residualized against age in months, maternal age and+} the [-stored value to-]{+demographic dummies, with E10 explicitly excluded from+} the [-displayed precision (max remaining difference 0.0 at 8 decimal places)**,-]{+projection,+} and [-a direct algebraic-]{+the+} check [-(uncorrected sandwich SE ×-]{+is run separately with and without age in months. The spans are equal in both cases (rank 12/12/12 throughout).+}
+
+{+*Step 3: E10's own residual, compared directly.* For each scheme,+} the [-manually computed combined scalar vs.-]{+complete nuisance specification is built (the absorbed cluster fixed effect,+} the [-library's-]{+shared controls and that scheme's+} own [-corrected SE) confirms a zero-]{+birth-year block) and E10 is residualized against it. The two weighted residual-exposure vectors differ by at most 1.73×10⁻¹⁵ in absolute terms; divided by the weighted norm of the+} residual [-for all 24 cells. Full detail-]{+vector, that maximum is 2.23×10⁻¹⁶. The vectors are the same, which is confirmed elementwise rather than inferred from rank alone.+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+*Step 4: independent cross-check with the explicit weighted Frisch–Waugh–Lovell formula*+}
+{+$$\hat\beta = \frac{e'W\tilde y}{e'We},$$+}
+{+where $W$ is the diagonal matrix of model weights, $e$ is the demeaned E10 residualized on that scheme's nuisance columns,+} and {+$\tilde y$ is+} the [-per-cell table: `docs/provenance/independent_audit_v1_2026-10-07/09_update_2026-10-07_pass4.md`.-]{+demeaned HAZ residualized on the same columns.+} This [-does-]{+β is computed from first principles,+} not [-change-]{+read from the output of `PanelOLS`, and it agrees with+} the [-stored, authoritative SE-]{+coefficient that `PanelOLS` itself fits to within 4.4×10⁻¹⁶+} in [-`16_estimate_preliminary.py`'s-]{+all four scheme and age-control combinations.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+*Step 5: mechanical explanation of the redundant column, without reference to E10.* In the pooled-single-reference scheme, Nigeria's five own-year dummy columns sum to Nigeria's+} own [-output anywhere —-]{+raw country indicator, confirmed elementwise across all 23,018 observations (absolute tolerance 10⁻¹² for these 0/1 columns). That indicator demeans to exactly 0.0: every DHS cluster belongs to exactly one country, so a column+} that [-estimator's formula was correct throughout; what was corrected-]{+is constant within every cluster is absorbed by the cluster fixed effect. This+} is the [-*validation* scripts' covariance configuration,-]{+mechanism behind the equal-span result above.+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+Steps 1–3 establish directly,+} not {+by inference from a single rank comparison, that the two birth-year schemes are equivalent nuisance specifications for+} the [-pipeline being validated.-]{+exposure coefficient. Step 4 confirms the resulting coefficient by an independent computation, and Step 5 explains the mechanism. The fitted values agree with this result at floating-point precision. With the age-in-months control included, the exposure coefficient is 1.0255530672006674 (local) against 1.0255530672006667 (pooled single reference), an absolute difference of 6.661338147750939×10⁻¹⁶. With the control excluded, it is 1.3852855197991372 against 1.3852855197991374, an absolute difference of 2.220446049250313×10⁻¹⁶. These differences are three and one units in the last place of a double-precision number near 1 (machine epsilon 2.2×10⁻¹⁶). They are reported as independently observed numerical evidence consistent with the algebraic result, not merely inferred from it.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+The age-in-months control, by contrast, accounts for the gap on this reconstruction: 1.0255530672006674 with it and 1.3852855197991372 without it, under *either* birth-year scheme. The first value matches the stored value (1.025553). The second approximately reproduces the documented early-attempt value ("1.385"). On this reconstruction, therefore, the age-in-months omission explains the 1.385-versus-1.026 gap. The birth-year reference coding does change the raw design matrix, and this is not dismissed as a non-issue, but it does not affect the fitted exposure coefficient, because the two schemes carry the same information after cluster-fixed-effect absorption. This is the diagnostic's finding on a reconstruction of the described design. It is not a claim about what the specific, unpreserved original code did, and it is not an exact recovery of that code's reported output. The full tolerances and the complete five-step evidence chain are in the diagnostic's own execution log (`data/processed/estimation/birthyear_coding_diagnostic_20261009T081301Z/`, RESTRICTED); the values above are also recorded in the script's docstring.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+**The SE difference in Table<nbsp>B.2 is fully explained; it is not residual numerical noise.** The declared small-sample correction of `16_estimate_preliminary.py` is $(G/(G-1)) \times ((N-1)/(N-K))$, applied to the raw cluster-robust sandwich, with confidence intervals and *p*-values from a Student *t* distribution on $G-1$ degrees of freedom. Here $K$ counts the non-fixed-effect regressors retained (24 for the pooled cell); the absorbed cluster effects are not counted (function `fit()`, lines 248, 251 and 264–265 at commit `c58fc47`). The **original, incomplete** call in `20_validate_pooled_estimate.py` and `21_validate_all_primary_cells.py`, `PanelOLS.fit(cov_type="clustered", cluster_entity=True, auto_df=True)`, applied only one of the two factors that this correction requires. `auto_df=True` correctly sets the same-group, no-double-penalty degrees-of-freedom convention: with the entity effect nested in the clusters, `_determine_df_adjustment` in `panel/model.py` sets the extra degrees of freedom to zero (confirmed in the `linearmodels` 7.0 source). `debiased=True`, the library's own default, applies the scale $N/(N-K)$. The original call did not pass the *separate*, opt-in `group_debias=True` setting, so it never applied the library's cluster-count adjustment $(G/(G-1)) \times ((N-1)/N)$ (`group_debias_coefficient` in `shared/covariance.py`). With that setting added, the two factors multiply out to the declared correction:+}
+{+$$+}
+{+\begin{aligned}+}
+{+\frac{N}{N-K}\times\left(\frac{G}{G-1}\times\frac{N-1}{N}\right) &= \frac{G}{G-1}\times\frac{N-1}{N-K}.+}
+{+\end{aligned}+}
+{+$$+}
+{+The difference between the two pipelines is therefore a covariance-setting discrepancy in the validation scripts, not a different formula and not floating-point noise. `scripts/historical_wash/24_reconcile_inference_corrections.py` refits all 24 primary cells with `group_debias=True` added, using sample-construction code copied from script<nbsp>21. For every one of the 24 cells, the pass-4 audit record reports a maximum absolute SE difference of 0.0 against the stored value at its displayed eight-decimal precision. A direct algebraic check (the uncorrected sandwich SE multiplied by the manually computed combined scalar, compared with the library's own corrected SE) leaves a residual of 0.0 in all 24 cells.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+A reconciled SE does not by itself reconcile confidence intervals and *p*-values, because these also depend on the reference distribution. `linearmodels` computes its native intervals and *p*-values from a *t* distribution on `df_resid` $= N - K - G$, which counts every absorbed entity effect (1,571 to 19,918 in these cells, against $G-1$ of 352 to 3,114). Script 24 therefore computes confidence intervals and *p*-values explicitly from the corrected SE with Student *t*(*G*−1), the stored pipeline's reference distribution, and does not use the library's native values. Against the stored values, the maximum absolute differences over the 24 cells are 1.4×10⁻¹³ (lower CI bound), 7.6×10⁻¹⁴ (upper CI bound) and 1.2×10⁻¹³ (*p*), all within the script's "exact" tolerance of 10⁻⁹. The native `df_resid`-based values, shown for contrast only, differ by up to 0.0065 in a CI bound and 0.00069 in *p* in three of the six Ghana cells, which have the smallest cluster count (*G* = 353). Full detail is in `docs/provenance/independent_audit_v1_2026-10-07/09_update_2026-10-07_pass4.md`; the per-cell table is RESTRICTED. None of this changes the stored, authoritative SE in the output of `16_estimate_preliminary.py`. That estimator's formula was correct throughout; what was corrected is the covariance configuration of the *validation* scripts, not the pipeline being validated. The SE in Table<nbsp>B.2 is kept as originally run, and the CIs and *p*-values printed by script<nbsp>20 itself, which use the native reference, are not reported here.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+**Coverage across the 291 historical models.** The verification described above covers the following, and no more:+}
+
+{+1. All 24 primary established-date cells (2 products × 3 outcomes × Ghana, Kenya, Nigeria and pooled) were re-estimated with a second library on separately rebuilt samples: β, SE, N and G by script<nbsp>21, then SE, CI and *p* under the corrected covariance setting by script<nbsp>24.+}
+{+2. Two further cells, both unweighted counterparts, were re-estimated individually: `m0005` by script<nbsp>17 and `m0008` by script<nbsp>20.+}
+{+3. The remaining 265 models were not re-estimated with a second implementation. They were checked only internally: by the estimator's own absorbed-column and rank safeguards and by the same-function verification rerun described in Section<nbsp>B.4, which reproduces the output but is not an independent implementation.+}
+
+**What this verification establishes, and what it does not.** It establishes that the reported pooled coefficient and its standard error are computationally [-correct —-]{+correct: they are+} the numbers {+that+} the documented [-specification, correctly-]{+specification produces when it is+} implemented {+correctly+} in a second, independent library with an equivalent covariance [-configuration, actually produce.-]{+configuration.+} It does not establish that the specification identifies a causal [-effect, and it-]{+effect. It+} does not {+show that the samples represent the populations of the surveyed countries, that the results hold outside them, that the weighting and selection limitations are resolved, or that the result is robust to the number of cells tested; no multiplicity adjustment is applied. Nor does it+} place this[-one-] cell in a higher *reporting* tier than its sibling historical models, all of which share the same unresolved documentation issues [-(Section 6;-]{+(Section<nbsp>6;+} `docs/provenance/historical_wash_issue_register_v1_2026-10-07.md`).
+
+## B.3 Design checks applied to all 24 primary historical models
+
+[-Record-key uniqueness,-]{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+The following were checked programmatically for all 24 primary models (`scripts/historical_wash/19_check_model_design.py`): record-key uniqueness; the+} cluster-to-survey mapping (one survey per [-cluster),-]{+cluster);+} country weight totals equal to $N/M$[-(the equal-country-total weighting of Section 4.5)-] within each model's own estimation [-sample, where-]{+sample (relative tolerance 10⁻⁶); full design-matrix rank, meaning that the rank recorded by the estimator equals the number of retained regressors; and the absence of singleton clusters in the final estimation data. All checks pass. The per-model results are public (`docs/provenance/historical_wash_preliminary_estimates_v1/design_checks_per_model_PRELIMINARY_AGGREGATE.csv`, 24 rows); the summary file is RESTRICTED (`data/processed/estimation/run_20261006T185646Z/design_checks_20261006T190020Z/design_checks_summary.json`).+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+$M$ is the number of countries[-included-] in that particular [-model — $M=1$-]{+model: $M = 1$+} for the 18 country-specific models and [-$M=3$-]{+$M = 3$+} for the 6 established-date pooled models, not [-$M=3$ uniformly across all 24 — full design-matrix rank, and absence of singleton clusters in the final estimation data were checked programmatically-]{+$M = 3$+} for all [-24 primary-]{+24. The historical scripts set each country's weight total to $N/M$; the baseline pooled+} models [-(`scripts/historical_wash/19_check_model_design.py`; all checks pass, `data/processed/estimation/run_20261006T185646Z/design_checks_20261006T190020Z/design_checks_summary.json`, RESTRICTED). (The design-check script's own internal variable `K` in this one context denotes-]{+set each country's total to 1 (Section<nbsp>4.5). The two differ by+} the [-regressor count, not-]{+common constant $N/M$, which changes neither the weighted least-squares coefficients nor the cluster-robust variance: multiplying every weight by the same constant scales the bread of the sandwich by its inverse and the meat by its square, and+} the {+two cancel. Equal+} country [-count, matching Section 4.5's own notation —-]{+weight totals do not mean equal influence on+} the [-script's comment describing this specific-]{+pooled slope, which depends on each country's residual exposure variation (Section<nbsp>4.5). In the design-check script itself, the weight+} check {+is described+} as "N / K" [-uses a different, looser sense-]{+(comment and output field `country_weight_totals_equal_N_over_K`), with K meaning the number+} of {+countries; `equal_country_weights()` in `16_estimate_preliminary.py` uses+} K [-than this manuscript's $K$/$M$ distinction and-]{+in the same sense. This appendix writes $M$ for that count. Elsewhere in the design-check script, the variable `K`+} is [-not reproduced here.)-]{+the regressor count, which is also this appendix's $K$.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+## B.4 Estimator safeguard: the exposure-absorption and rank-deficiency defect, and its resolution (2026-10-10)
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+An external independent audit [-(`Independent_Thesis_Audit_2026-10-10.md`)-]{+(`Independent_Thesis_Audit_2026-10-10.md`, which is not in this repository; its finding R05 and the resolution are recorded in `docs/provenance/independent_audit_resolution_v1_2026-10-10.md`)+} identified a genuine code defect in [-`scripts/historical_wash/16_estimate_preliminary.py`'s-]{+the+} `fit()` [-function.-]{+function of `scripts/historical_wash/16_estimate_preliminary.py`.+} The function's absorbed-column filter dropped any column with zero within-cluster variation after weighted demeaning, but the exposure coefficient and its variance were then read by **fixed array position** (`beta[0]`, `V[0,0]`), not by the retained variable's name. [-If-]{+Suppose+} the exposure [-variable, $E$, happened to be-]{+variable $E$ itself were+} absorbed by this [-filter — which the-]{+filter. The+} function's[-own-] earlier[-raw-standard-deviation-] check [-does-]{+on the raw standard deviation would+} not [-catch,-]{+catch this,+} because [-that check-]{+it+} tests *raw* (between-cluster) variation, not *within-cluster* [-variation — the-]{+variation. The+} next retained column would {+then+} silently occupy position 0 after the drop, and its coefficient would be reported as if it were [-$E$'s own.-]{+$E$'s.+} Separately, the function computed a design-matrix rank but never [-checked-]{+compared+} it [-against-]{+with+} the number of retained columns before using a pseudoinverse to solve for [-coefficients, so a-]{+the coefficients. A+} rank-deficient retained design [-(e.g.-]{+(for example,+} from an accidental exact collinearity between the exposure and a retained control) would [-silently return-]{+therefore have returned+} a minimum-norm pseudoinverse solution {+silently, instead of flagging that the coefficient is not identified.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+**Fix.** The function now (a) checks explicitly that `"E"` survives the absorbed-column filter and refuses to proceed if it does not (`status: "non_estimable_exposure_absorbed"`); when $E$ survives, its coefficient and variance are retrieved by its retained name and index+} rather than [-flagging non-identifiability.-]{+by position. It also (b) checks that the rank of the retained design matrix equals its column count before computing coefficients, and refuses (`status: "non_estimable_rank_deficient"`) rather than returning a pseudoinverse-based estimate if not. Neither change alters the computation for an estimable, full-rank case with $E$ retained. The ordinary path recovers the identical coefficient, standard error and every other reported statistic, because $E$ is always constructed as the first design-matrix column and so still occupies position 0 whenever it is retained.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+**Targeted tests** are tracked at `scripts/historical_wash/26_test_fit_safeguard.py`. They use synthetic data only, run against the actual patched function through a direct import (not a reimplementation), and are re-run with `python 26_test_fit_safeguard.py` from that directory. The four cases are: (a) an ordinary estimable exposure, with genuine between- and within-cluster variation, which is estimated normally and recovers the simulated coefficient; (b) an exposure that varies between clusters but is constant within each cluster, the exact failure mode described above, which is correctly refused as `non_estimable_exposure_absorbed` with no `beta_per_point`, `se_CRV1` or `p_value` returned; (c) an exposure made exactly collinear with a retained nuisance control after demeaning, correctly refused as `non_estimable_rank_deficient`; and (d) a directly rank-deficient retained design created by a duplicated dummy block, correctly refused as `non_estimable_rank_deficient`. All four tests pass, according to the project's recorded run; they were not re-run in preparing this appendix.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+**Verification that no published model was affected.** The patched script was re-run in full against the actual restricted inputs (`data/processed/analysis_samples/run_20261006T184744Z/` and `data/processed/child_exposure/run_20261006T183803Z/`, confirmed by SHA-256 to be bit-identical to the inputs of the original stored run). It wrote a fresh 291-model output to a new timestamped folder (`data/processed/estimation/run_20261010T140944Z/`, RESTRICTED) and left the original `run_20261006T185646Z/` unchanged. This rerun uses the same estimator function and the same inputs, so it shows that the patch left the output unchanged; it is not an independent implementation. A tracked comparison script, `scripts/historical_wash/27_compare_fit_safeguard_verification_run.py` (paths passed as `--original` and `--verification`; no restricted path is hard-coded as a requirement), produced a public, machine-readable comparison summary. All 291 model IDs are present in both runs, with no duplicates. All six specification fields (`family`, `product`, `outcome`, `sample_group`, `window`, `weighted`) match in every row, and both runs' `status` column reads `estimated` for all 291 rows. The maximum absolute difference is exactly 0.0 in each of the 15 numeric columns checked: the coefficient, SE and both CI bounds at both the per-point and the per-10-point scale, the *p*-value, `E_within_sd`, `E_residual_sd_after_controls`, `N`, `G_clusters`, `K_regressors` and `rank`. This is the exact list, not an unenumerated "every column". The two runs' output CSV files are also byte-for-byte identical (identical SHA-256 hash), a stronger result than the per-column check requires.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+[-**Fix.**-]{+**Same-day correction (2026-10-10).**+} The [-function now (a) checks explicitly-]{+comparison script's overall-success flag was found not to account for a value+} that [-`"E"` survives the absorbed-column filter-]{+is finite on one side+} and [-refuses to proceed (`status: "non_estimable_exposure_absorbed"`) if it does not, retrieving $E$'s coefficient-]{+NaN or infinite on the other, for duplicate IDs, for missing required columns, or for a NaN-versus-infinity difference. All of these are now fixed+} and [-variance-]{+covered+} by [-its retained name/index-]{+synthetic regression tests (`scripts/historical_wash/28_test_compare_fit_safeguard_run.py`). Re-running the corrected, stricter comparison on the same two runs reaches the same conclusion (`docs/provenance/fit_safeguard_verification_comparison_v2_2026-10-10.json`); the original, pre-correction summary is kept at `_v1_2026-10-10.json` for the record. Together, these results confirm directly,+} rather than by [-position when it does survive; and (b) checks that-]{+inference from+} the [-retained-]{+earlier+} design [-matrix's rank equals its column count before computing coefficients, refusing (`status: "non_estimable_rank_deficient"`) rather than returning a pseudoinverse-based estimate if not. Neither change alters the computation for an already-estimable, full-rank case with $E$ retained: the ordinary path recovers-]{+checks, that none of+} the [-identical coefficient, standard error, and-]{+291 published historical models was affected by this defect: in+} every [-other reported statistic, since-]{+one,+} $E$ [-is always constructed as the first design-matrix column-]{+was retained+} and [-therefore still occupies position 0 whenever it is retained.-]{+the design matrix had full rank.+}
+
+[-**Targeted tests**, tracked at `scripts/historical_wash/26_test_fit_safeguard.py` (synthetic data only; run against the actual patched function via direct import, not a reimplementation; re-run with `python 26_test_fit_safeguard.py` from that directory): (a) an ordinary estimable exposure (genuine between- and within-cluster variation) — estimates normally, recovering the simulated coefficient; (b) exposure varying between clusters but constant within each cluster — the exact failure mode described above — correctly refused as `non_estimable_exposure_absorbed`, with no `beta_per_point`/`se_CRV1`/`p_value` returned; (c) exposure made exactly collinear with a retained nuisance control after demeaning — correctly refused as `non_estimable_rank_deficient`; (d) a directly rank-deficient retained design via a duplicated dummy block — correctly refused as `non_estimable_rank_deficient`. All four tests pass.-]
+
+[-**Verification that no published model was affected.** The patched script was re-run in full against the actual restricted inputs (`data/processed/analysis_samples/run_20261006T184744Z/`, `data/processed/child_exposure/run_20261006T183803Z/` — confirmed by SHA-256 to be bit-identical to the inputs used for the original, stored run), producing a fresh 291-model output written to a new timestamped directory (`data/processed/estimation/run_20261010T140944Z/`, RESTRICTED) without altering the original `run_20261006T185646Z/`. A dedicated, tracked comparison script, `scripts/historical_wash/27_compare_fit_safeguard_verification_run.py` (configurable `--original`/`--verification` paths; takes no hardcoded restricted path as a requirement), produced a public, machine-readable comparison summary: all 291 model IDs present in both runs with no duplicates; all six spec-identity fields (`family`, `product`, `outcome`, `sample_group`, `window`, `weighted`) matching for every row; both runs' `status` column reading `estimated` for all 291 rows; and, across the 15 numeric columns checked (coefficient, SE, both CI bounds, and p-value at both the per-point and per-10-point scale, plus `E_within_sd`, `E_residual_sd_after_controls`, `N`, `G_clusters`, `K_regressors`, `rank`) — this exact list, not an unenumerated "every column" — a maximum absolute difference of exactly 0.0 in every one. The two runs' output CSV files are in fact byte-for-byte identical (identical SHA-256 hash), a stronger result than the per-column check alone required. **2026-10-10, same-day correction**: the comparison script's own overall-success flag was found not to account for a value that is finite on one side and NaN/infinite on the other, nor for duplicate ids, missing required columns, or a NaN-vs-infinity difference — all now fixed and covered by synthetic regression tests (`scripts/historical_wash/28_test_compare_fit_safeguard_run.py`); re-running the corrected, stricter comparison against the same two real runs reaches the same conclusion (`docs/provenance/fit_safeguard_verification_comparison_v2_2026-10-10.json`; the original, pre-correction summary is preserved at `_v1_2026-10-10.json` for the record). This directly confirms, rather than merely infers from the earlier design-check evidence, that none of the 291 published historical models were affected by this defect: every one already had $E$ genuinely retained with full design-matrix rank.-]{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}

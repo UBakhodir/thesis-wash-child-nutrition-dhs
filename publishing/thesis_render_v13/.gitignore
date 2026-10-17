@@ -1,0 +1,6 @@
+# build intermediates (logs, aux, page images) -- regenerate with scripts/build.py
+builds/*/work/
+diagnostics/*.tex
+!diagnostics/diagnostic-cover.tex
+!diagnostics/component-titlepage.tex
+__pycache__/

@@ -1,0 +1,217 @@
+# Appendix C — Historical exposure-assignment diagnostics and the Ethiopia provisional analysis
+
+[-Clearly labelled-]{+This appendix holds+} exploratory [-material,-]{+material and is+} consistent with [-Section 5.9.-]{+Section<nbsp>5.9.+} Nothing in [-this appendix-]{+it+} is part of the established-date pooled headline [-result-]{+result,+} and none of it should be cited as such. {+It has two parts. Sections<nbsp>C.1–C.3 cover Ethiopia 2016, which is analysed only as a separately labelled provisional sensitivity outside the established-date pooled sample of Ghana 2014, Kenya 2014 and Nigeria 2018. Section<nbsp>C.4 summarises the spatial-extraction rule and selected sensitivity results of the established-date family.+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+The reporting status of each part follows the final reporting map (`docs/provenance/final_empirical_package_v3_2026-10-07/01_final_reporting_map.md`). Ethiopia candidate C1 is **invalid and superseded**. Candidates C2 and C3 are **provisional and exploratory**. The rows of Table<nbsp>C.3 belong to the **sensitivity family** of the established-date models. Like every historical estimate in this thesis, they are conditional associations among eligible measured children, not causal effects and not population estimates.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+## C.1 Ethiopia's three interview-date candidates
+
+[-Ethiopian survey rounds record-]{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+For Ethiopia 2016, the IPUMS-DHS extract provides no Gregorian+} interview [-dates-]{+date. It provides the interview year, month and day+} in the Ethiopian [-calendar, which must be converted to-]{+calendar and a century-day code for the interview date (`docs/provenance/historical_wash_milestone_2026-10-06.md`, section 4). The child's birth date is a different field:+} the Gregorian [-calendar to place-]{+birth century-month code that IPUMS supplies already converted, at month precision (`KIDDOBCMC`). All three candidates share that birth date. The interview-date candidates therefore differ only in the interview date.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+The interview date and the birth date enter the historical construction at different points (`scripts/historical_wash/12_construct_exposure_windows.py`, `14_build_analysis_samples.py`, `16_estimate_preliminary.py`):+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+1. **Birth date.** Each window's months, and hence its annual weights and its exposure *value*, are placed from the birth century-month code alone. The birth year, and with it the survey-qualified birth-year terms, is identical under all three candidates for all 10,641 Ethiopian children.+}
+{+2. **Interview date.** The candidate interview date decides whether+} a child's {+dates are valid at all and whether the birth precedes the interview; both conditions apply to every window. It also decides whether a+} postnatal[-exposure-] window [-relative to-]{+has been completed by the interview (the post-12-month and post-24-month windows only), and it sets+} the [-(Gregorian-dated) IHME-]{+descriptive flag for an+} annual [-rasters. Three-]{+value that covers months after the interview.+}
+{+3. **Age.** The under-five rule and the age control in the Ethiopia models use the reported completed age in months (`KIDCURAGEMO`), which the extract supplies for all 10,641 Ethiopian children (`docs/provenance/historical_wash_analysis_samples_v1/age_rule_reconciliation_AGGREGATE.csv`). Neither depends on the candidate. A calendar age computed from the candidate interview date exists in the data but is used only in the calendar-age sensitivity, which is estimated for the established-date samples and not for Ethiopia.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+The three+} candidate conversions [-were constructed:-]{+of the interview date are (`scripts/historical_wash/06_ethiopia_calendar_audit.py`):+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+[-- **C1** ("triple," 30-day Ethiopian-calendar arithmetic applied directly to the delivered day and month fields). **Invalid and superseded**: the delivered Ethiopian day and month fields are not themselves original 30-day Ethiopian dates (day value 31 occurs in months the Ethiopian calendar defines as having 30 days), so direct 30-day arithmetic conversion is invalid for these fields — a conclusion reached independently of, and prior to, any WASH-outcome analysis. 275 of 10,641 Ethiopia children have an outright invalid C1 day value under this method; the remainder share the same invalid conversion logic. C1 is excluded from all reporting tables in this thesis and its historical agreement with C2/C3 is not treated as evidence of either candidate's validity.-]
+[-- **C2** ("century-day route," origin 1 Meskerem 1900 = 12 September 1907). Provisional; not independently validated.-]
+[-- **C3** ("century-day route," anchored 1 Meskerem 2008 = 12 September 2015, Gregorian cumulative month lengths). Provisional; not independently validated.-]{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+- **C1** ("triple": 30-day Ethiopian-calendar arithmetic applied directly to the delivered year, month and day fields). **Invalid and superseded.** The delivered Ethiopian day and month fields are not original 30-day Ethiopian dates: the day value 31 occurs in months that the Ethiopian calendar defines as having 30 days. Direct 30-day arithmetic is therefore invalid for these fields. The milestone record that states this was committed on 6 October 2026, before the historical outcome models were estimated, and the finding does not depend on any outcome result. C1 was nevertheless estimated as a provisional candidate in that run. It was reclassified as invalid and superseded on 7 October 2026 (`docs/provenance/historical_wash_ethiopia_candidate_status_v1_2026-10-07.md`, section 1). Under this method, 275 of the 10,641 Ethiopian children have a day value that cannot be converted at all, so C1 gives them no date; the conversions for the other children use the same invalid logic. C1 is excluded from every reporting table in this thesis. Its earlier numerical agreement with C2 and C3 is not treated as evidence for either of them, because a method already known to be invalid cannot corroborate another one.+}
+{+- **C2** ("century-day route"): the delivered century-day code read with the origin 1 Meskerem 1900 = 12 September 1907. Provisional; not independently validated.+}
+{+- **C3** ("century-day route", anchored): 1 Meskerem 2008 = 12 September 2015, with the delivered month and day fields counted in Gregorian cumulative month lengths. Provisional; not independently validated.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+The candidate-status record (section 2) names the weakness that C2 and C3 share, quoting the milestone record: the century-day code follows a month-length structure that differs from a 30-day count, and its origin and the source of a constant two-day offset are not established. Neither candidate has been independently validated. A support inquiry about the calendar question was drafted but, according to the dated records of 6 October 2026, not sent (milestone record; `docs/provenance/historical_wash_decisions_2026-10-06.md`); this repository contains no record that it was sent or answered.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+## C.2 How [-much-]{+closely+} C2 and C3[-actually-] agree [-(measured directly, not assumed)-]{+on window eligibility+}
+
+{+**Table C.1 — Ethiopia 2016: children eligible for each exposure window under candidates C2 and C3**+}
+
+| Window | C2 eligible | C3 eligible | Disagree |
+|---|---|---|---|
+| Birth-year | 9,862 | 9,862 | 0 |
+| Prenatal (9 months) | 9,862 | 9,862 | 0 |
+| Post-12-month | 7,930 | 7,922 | 8 |
+| Post-24-month | 5,974 | 5,969 | 5 |
+
+[-Out-]{+::: {.tablenote}+}
+{+```{=latex}+}
+{+\raggedright+}
+{+```+}
+
+{+*Note.* Counts+} of [-10,641 Ethiopia children: C1-vs-C2/C3 differ by exactly-]{+children, out of 10,641, whose exposure for+} the [-275 invalid-day exclusions (and C2/C3 never differ-]{+window is eligible under the primary complete-coverage construction, before any outcome-specific exclusion; they are not model samples. "Disagree" counts children who are eligible under one candidate and not under the other. Each row is a different window for largely the same children, so the rows must not be added. Evidence: the candidate-status record (`historical_wash_ethiopia_candidate_status_v1_2026-10-07.md`, section 3) reports these comparisons+} from [-each other on birth year itself — identical across all three candidates-]{+the restricted analysis file. It states 9,862+} for [-every child, since-]{+both candidates in the birth-year and prenatal windows and the disagreement counts 0, 0, 8 and 5, but gives the postnatal counts only approximately (about 7,930 and about 5,970). The exact postnatal counts are carried from the canonical appendix; no public output contains them. In both postnatal rows the difference between the two counts equals the number of disagreements.+}
+{+:::+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+Table<nbsp>C.1 reflects how the interview date enters eligibility (Section<nbsp>C.1). In the birth-year and prenatal windows, the interview date matters only through date validity and the requirement that+} birth [-year-]{+precede the interview, and C2 and C3 classify every child in the same way. In the two postnatal windows, the completion check compares the window's end with the interview month, and the two candidates place a few borderline children on different sides of it: 8 children in the post-12-month window and 5 in the post-24-month window. The stored analysis samples show the same pattern. For water and HAZ, the birth-year and prenatal samples are 8,250 children under both candidates, while the post-12-month samples are 6,580 under C2 and 6,573 under C3 before singleton clusters are dropped, and 6,568 and 6,561 in the estimated models (`docs/provenance/historical_wash_analysis_samples_v1/design_diagnostics_by_sample_window_AGGREGATE.csv`; `model_coefficients_PRELIMINARY_AGGREGATE.csv`, rows `m0045` and `m0046`).+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+The comparison with C1+} is [-derived-]{+narrower. For the birth-year window, the stored aggregate shows that C1 differs+} from {+C2 and C3 for exactly 275 children, all of them+} the [-birth-date fields, not-]{+children without a C1 date; no candidate places any birth after+} the interview [-date).-]{+(`docs/provenance/historical_wash_analysis_samples_v1/ethiopia_birthyear_attribution_AGGREGATE.json`).+} This [-supports-]{+stored comparison covers the birth-year window only.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+These counts support+} two[-precise,-] narrow [-claims: (1)-]{+statements. First, the choice between+} C2 and C3[-agree almost perfectly on window eligibility, so the remaining uncertainty between them-] changes {+the window classification of+} very few [-children's classification; (2)-]{+children. Second,+} this is [-*not*-]{+**not**+} evidence that either candidate's absolute date is correct. {+The two candidates share the unexplained recode structure described in Section<nbsp>C.1, so their agreement is not independent validation. Nor is the difference between them a confidence interval, an uncertainty bound or a guaranteed range for the true interview date: both could be wrong in the same direction.+}
+
+A [-working-]{+valid+} Gregorian interview date is still required for every child [-regardless of-]{+in every+} window, because it [-determines-]{+decides+} whether [-a-]{+the+} child is validly dated[-at all-] and whether [-their-]{+the+} birth[-genuinely-] precedes[-their interview (Section 3.7) — but, as Section 3.7 and-] the [-construction script state precisely, this-]{+interview (Section<nbsp>3.7). This+} requirement is distinct from the postnatal-window **completion** [-check specifically: that-]{+check, as Section<nbsp>3.7 and the construction script state. The+} completion check [-(whether enough time-]{+asks whether all months of the window+} had [-elapsed-]{+ended+} by the interview [-date for the window itself to have finished)-]{+month, and it+} applies only to the [-two postnatal windows (post-12-month, post-24-month), not to the-]{+post-12-month and post-24-month windows. The prenatal window ends before birth and needs no such check. The+} birth-year [-window, which-]{+window+} has no completion check at [-all and is satisfied by construction once-]{+all:+} a [-child's birth date-]{+child born early in a year and interviewed before that year ends+} is [-validly placed-]{+still assigned that year's full annual value. Eligibility+} in {+the birth-year window still requires valid dates,+} a {+birth year inside the 2000–2017 raster span and complete spatial coverage. In any window, the annual value used for the interview's own+} calendar [-year.-]{+year can cover months after the interview; such cases are flagged and not excluded (Section<nbsp>3.7). The candidate-status record (section 4) describes the completion rule as applying to every window, including the birth year, citing the design draft; the implemented construction does not do this, and Section<nbsp>3.7 and this appendix follow the implementation.+}
+
+## C.3 Ethiopia provisional coefficients (water HAZ, sanitation HAZ, post-12-month window)
+
+{+**Table C.2 — Ethiopia 2016 provisional HAZ coefficients under candidates C2 and C3 (post-12-month window, per 10 percentage points)**+}
+
+| Candidate | Water β per 10 | Sanitation β per 10 |
+|---|---|---|
+| C2 | −0.39 | −0.45 |
+| C3 | −0.39 | −0.45 |
+
+[-Both-]{+::: {.tablenote}+}
+{+```{=latex}+}
+{+\raggedright+}
+{+```+}
+
+{+*Note.* Stored values from `docs/provenance/historical_wash_preliminary_estimates_v1/model_coefficients_PRELIMINARY_AGGREGATE.csv`, family `sens_ethiopia_PROVISIONAL`, outcome HAZ, window `post_12m`. Water (`W_IMP`): C2 `m0045`, −0.39 [−0.84, 0.06], *p*<nbsp>=<nbsp>.086, N<nbsp>=<nbsp>6,568; C3 `m0046`, −0.39 [−0.84, 0.06], *p*<nbsp>=<nbsp>.088, N<nbsp>=<nbsp>6,561. Sanitation (`S_IMP`): C2 `m0186`, −0.45 [−1.32, 0.41], *p*<nbsp>=<nbsp>.303, N<nbsp>=<nbsp>6,568; C3 `m0187`, −0.45 [−1.31, 0.42], *p*<nbsp>=<nbsp>.312, N<nbsp>=<nbsp>6,561. G<nbsp>=<nbsp>586 clusters in all four models. Specification as for the established-date models (Section<nbsp>4.6): cluster fixed effects, primary buffer with complete coverage, `PERWEIGHT` normalised within the estimation sample, reported age, wealth excluded. Standard errors are CRV1 clustered by DHS cluster; confidence intervals and *p*-values use a Student *t* distribution with G − 1 degrees of freedom. C1 estimates exist in the same file but are not shown, because C1 is invalid.+}
+{+:::+}
+
+{+All four+} confidence intervals include zero. [-These-]{+The estimates+} are reported here, and cross-referenced in [-Section 5.9,-]{+Section<nbsp>5.9,+} as an exploratory sensitivity with no bearing on the established-date pooled results in [-Section 5.6.-]{+Section<nbsp>5.6. Ethiopia is not pooled with Ghana, Kenya and Nigeria under any established-date label. The near-identical C2 and C3 coefficients follow from the near-identical samples in Section<nbsp>C.2 and do not validate either date. The gap between the two estimates is not a measure of how far either lies from an estimate based on the true interview dates.+}
+
+## C.4 Spatial-extraction and sensitivity diagnostics (established-date models, summarised)
+
+{+Each result row of Table<nbsp>C.3 changes one element of the main pooled specification and compares the pooled water–HAZ coefficient with the main estimate. The main estimate is model `m0004`: Ghana 2014, Kenya 2014 and Nigeria 2018 pooled, improved water (`W_IMP`), HAZ, post-12-month window, primary buffer with complete coverage, `PERWEIGHT` with equal country totals, reported age where delivered, wealth excluded, coefficient per 10 percentage points. Everything else is held fixed. Each sensitivity model, however, is estimated on its own eligible sample, so a difference from the main estimate can reflect a change in the children included as well as the change in specification.+}
+
+{+**Table C.3 — Spatial-extraction rule and sensitivity of the pooled established-date water–HAZ coefficient (per 10 percentage points)**+}
+
+| Diagnostic | Result |
+|---|---|
+| Buffer coverage-completeness tolerance | Within 10⁻³ of full buffer area {+(valid-area fraction ≥ 1 − 10⁻³)+} |
+| Spatial-method sensitivity (containing-pixel vs.[-exact-] buffer average) | Pooled water–HAZ: 0.68 vs. main 1.03 |
+| [-Rural-10km-]{+Rural 10<nbsp>km+} buffer sensitivity (urban unchanged) | Pooled water–HAZ: 1.01 vs. main 1.03 |
+| Stricter postnatal completion rule (+1 month) | Pooled water–HAZ: 0.95 vs. main 1.03 |
+| Calendar-month age construction throughout | Pooled water–HAZ: 1.03 (materially unchanged) |
+| [-DHS/IHME-]{+Ghana excluded (DHS/IHME overlap; Kenya's water+} overlap [-exclusion (Ghana removed)-]{+remains)+} | [-Pooled-]{+Kenya and Nigeria pooled+} water–HAZ: [-0.74, Kenya+Nigeria only-]{+0.74 vs. three-country main 1.03+} |
+
+{+::: {.tablenote}+}
+{+```{=latex}+}
+{+\raggedright+}
+{+```+}
+
+{+*Note.* Stored values from `docs/provenance/historical_wash_preliminary_estimates_v1/model_coefficients_PRELIMINARY_AGGREGATE.csv`, all HAZ, `W_IMP`, post-12-month window, weighted. Main `m0004` (primary): 1.03 [0.51, 1.54], *p*<nbsp><<nbsp>.001, N<nbsp>=<nbsp>23,018, G<nbsp>=<nbsp>3,114. Containing pixel `m0028`: 0.68 [0.26, 1.10], *p*<nbsp>=<nbsp>.002, N<nbsp>=<nbsp>23,642, G<nbsp>=<nbsp>3,196. Rural 10<nbsp>km `m0032`: 1.01 [0.42, 1.60], *p*<nbsp><<nbsp>.001, N<nbsp>=<nbsp>22,521, G<nbsp>=<nbsp>3,062. Stricter completion `m0036`: 0.95 [0.43, 1.47], *p*<nbsp><<nbsp>.001, N<nbsp>=<nbsp>22,639, G<nbsp>=<nbsp>3,113. Calendar age `m0044`: 1.03 [0.52, 1.53], *p*<nbsp><<nbsp>.001, N<nbsp>=<nbsp>23,018, G<nbsp>=<nbsp>3,114. Ghana excluded `o003` (family `sens_overlap_excl_GH_water`, Kenya and Nigeria only): 0.74 [0.24, 1.24], *p*<nbsp>=<nbsp>.004, N<nbsp>=<nbsp>21,078, G<nbsp>=<nbsp>2,761. Inference as in Table<nbsp>C.2: CRV1 clustered by DHS cluster, *t*(G − 1) confidence intervals and *p*-values.+}
+{+:::+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+**Coverage rule and spatial assignment.** The first row states a rule, not a result. For each cluster and year, the extraction computes the exact area of overlap between a disk of the stated radius and each raster pixel, after projecting the pixel's corners into a local azimuthal equidistant projection (Section<nbsp>3.6). Pixels outside the raster, NoData pixels and values outside 0–100 are excluded from the valid area; they are never set to zero, and the buffer mean is taken over the valid area only. An annual value counts as complete when the valid area is at least 1 − 10⁻³ of the buffer's total area (`scripts/historical_wash/10_spatial_extraction_v3.py`, `FULL_TOL`). A window is used only if every year it touches has a complete value within 2000–2017; nothing is extrapolated or filled. The primary buffer is 2<nbsp>km for urban and 5<nbsp>km for rural clusters. Partial-coverage values are kept only as a diagnostic status and enter none of the 291 stored models. The buffer is centred on the DHS-displaced cluster location, so it does not recover the true location. It is an area average of modelled coverage, not a population-weighted coverage estimate.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+**Containing pixel.** This row replaces the buffer average with the value of the single pixel that contains the displaced cluster point. NoData gives a missing value, and no nearest-cell value is substituted. Because a valid value is needed only for that pixel, the eligible sample differs from the main one (N<nbsp>=<nbsp>23,642 against 23,018). The move from 1.03 to 0.68 therefore reflects both the assignment rule and the sample.+}
+
+{+**Rural 10<nbsp>km.** Rural children are assigned the 10<nbsp>km buffer average; urban children keep the 2<nbsp>km primary buffer. The sample again differs (N<nbsp>=<nbsp>22,521). A larger rural radius is a sensitivity to the size of the averaging area. It does not validate the DHS displacement probabilities or recover true locations.+}
+
+{+**Stricter completion.** The postnatal completion rule is tightened from "interview month at least L months after the birth month" to at least L + 1 months, because the birth day is unknown. It applies only to the post-12-month and post-24-month windows; the table shows the post-12-month case. The estimation sample falls from 23,018 to 22,639.+}
+
+{+**Calendar age.** The age control uses the calendar-month difference between interview and birth for all children instead of the reported completed age where it is delivered. In the established-date family, reported age is delivered only for Nigeria; Ghana and Kenya use calendar age in both versions. The sample is unchanged (N<nbsp>=<nbsp>23,018), and the coefficient moves only in the third decimal (1.027 against 1.026).+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+**Ghana excluded.** Ghana's 2014 DHS round is an input to the IHME model for both products, and Kenya's 2014 round is an input for water (`docs/provenance/historical_wash_issue_register_v1_2026-10-07.md`, item 7). Removing Ghana leaves a two-country model pooled over Kenya and Nigeria (N<nbsp>=<nbsp>21,078), not a three-country pooled model, and Kenya's water overlap remains in it. This row therefore shows the effect of removing Ghana's overlap, not an estimate free of DHS/IHME overlap. The stored file also contains a water model excluding both Ghana and Kenya; it leaves Nigeria alone and is a country-specific estimate, not a pooled one.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+**Weighting.** Every row uses `PERWEIGHT` with equal country totals within its own estimation sample. Equal country totals do not give the countries equal influence on the pooled slope, which also depends on each country's residual exposure variation. The unweighted counterpart of the main model (0.41) is reported in Section<nbsp>5.6 and Appendix<nbsp>B. Neither the weighted nor the unweighted version corrects for selection into anthropometric measurement. The window and wealth sensitivities of the same family are shown in Section<nbsp>5.7 and Section<nbsp>5.8.+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+No sensitivity cell was selected or suppressed because of its significance. The sensitivity families were listed in the estimation specification (`docs/provenance/historical_wash_analysis_specification_v1_2026-10-06.md`, section 8). That record states that no coefficient had yet been estimated, and it was committed before the recorded time of the 291-model estimation run. The families are reported together in the methods note (`docs/provenance/historical_wash_preliminary_estimation_methods_2026-10-06.md`, section 7), and every one of the 291 models, including all outcomes and both products, is in the stored coefficient file. Table<nbsp>C.3 shows the pooled water–HAZ cells only.+}
+
+{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}
+
+{+```{=latex}+}
+{+\begingroup\edef\ThesisSavedIndent{\the\parindent}\raggedright\parindent=\ThesisSavedIndent\relax\widowpenalty=10000\clubpenalty=10000+}
+{+```+}
+
+{+**What these diagnostics do not establish.** All 291 historical models were estimated by `16_estimate_preliminary.py`. The 24 primary established-date cells, including the main model `m0004`, were independently reproduced with a second implementation, and two unweighted counterparts (`m0005`, `m0008`) were checked individually (Appendix<nbsp>B). The remaining 265 models, including every other row of Table<nbsp>C.3 and all 18 Ethiopia models, were not reproduced with a second implementation; they passed only internal checks. Agreement among these internally consistent diagnostics is not independent replication. Neither the reproduction nor the sensitivity results resolve causal identification, the undocumented weighting of the measured subsample, differential non-response among eligible children, the Nigeria 2018 measured-count discrepancy, the DHS/IHME input overlap, the use of current residence for early-life residence, coordinate displacement, the uncertainty of the modelled exposure surface, the uncertainty of Ethiopia's interview dates, or multiple testing, for which no adjustment has been made (Section<nbsp>3.8, Section<nbsp>5.6, Section<nbsp>6). These remain qualifications of the research, not implementation errors.+}
+
+
+[-No sensitivity cell was selected or suppressed based on its significance; all are reported together as a pre-specified sensitivity family (`docs/provenance/historical_wash_preliminary_estimation_methods_2026-10-06.md` §7).-]{+```{=latex}+}
+{+\par\endgroup+}
+{+```+}

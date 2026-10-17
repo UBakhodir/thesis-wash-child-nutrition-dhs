@@ -1,0 +1,7 @@
+% Diagnostic only: shows the reusable title-page component with the review
+% header (the real title page uses an empty page style).
+\begingroup
+\let\ThesisOrigThisPageStyle\thispagestyle
+\renewcommand\thispagestyle[1]{\ThesisOrigThisPageStyle{thesisreview}}
+\input{\ThesisRoot/template/titlepage.tex}
+\endgroup
