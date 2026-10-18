@@ -26,7 +26,7 @@ Nothing below is fabricated or assumed anywhere in the chapter text. Supersedes 
 
 ## Formatting — still open
 
-- [ ] **Exact submission date** for the title page's "Submitted in [month and year] by:" line — cannot be filled in before the thesis is actually finished and submitted; left as a bracketed placeholder in `build/titlepage.tex`, not invented.
+- [x] **Submission month/year** for the title page's "Submitted in [month and year] by:" line — filled in as "October 2026" (2026-10-18) per the author's confirmed intended submission month, in `publishing/thesis_render_v13/template/metadata.tex`. The exact day is deliberately not shown (the 22 October 2026 deadline is a separate fact, not the signing or submission day).
 - [ ] **Handwritten signature and date** on the declaration page — left blank in `build/declaration.tex` by design; the guidelines require an original handwritten signature on the printed copy (no scans, no electronic signatures), so this cannot be completed in a PDF at all.
 - [ ] **Official university LaTeX/Word template** by Dr. Holger Gerhardt was not available locally; `build/preamble.tex` was built directly from the published specification instead (the guidelines explicitly permit this, provided the specification is matched exactly and text-per-page is not increased — verified: this build reproduces the line-spacing/margin combination that yields exactly 35 lines/page).
 - [ ] **Hard-copy binding and submission logistics** (professional binding, Einwurfeinschreiben postal submission, etc.) are procedural steps for the author at actual submission time, not something this package can or should prepare.

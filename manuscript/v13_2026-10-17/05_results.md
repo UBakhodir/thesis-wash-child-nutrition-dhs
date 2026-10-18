@@ -74,6 +74,9 @@ Figure 5.1 breaks the fully adjusted stage out by country, for the same model, n
 
 One cell reaches significance at 5%: household water for HAZ, conditional on the other three terms (β = −0.085, *p* = .043), unexpectedly negative. Household and community water are correlated, and this is one significant cell among twelve in this table; it is reported as a single finding, not treated as central, and not read as evidence that improved household water is harmful.
 
+```{=latex}
+\clearpage
+```
 ## 5.4 Specification sensitivity: Nigeria community sanitation
 
 **Table 5.4 — Nigeria community sanitation–HAZ: specification-sensitivity results.**
