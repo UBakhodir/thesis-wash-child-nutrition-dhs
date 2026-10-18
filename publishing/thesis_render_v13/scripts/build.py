@@ -9,6 +9,7 @@
     python scripts/build.py diagnostic           TEMPLATE-VERIFICATION PDF + report
     python scripts/build.py selftest             preview pipeline run on diagnostic text
     python scripts/build.py thesis [--final]     full assembly from chapters/tex/
+    python scripts/build.py thesis-clean         banner-free reading copy (no approval gate)
     python scripts/build.py references           REVIEW-COPY of the consolidated reference list only
     python scripts/build.py inspect PDF          layout checks + page images
     python scripts/build.py manifest             check canonical inputs against source_manifest.tsv
@@ -583,6 +584,36 @@ def cmd_thesis(final: bool) -> None:
     print(f"Main text runs from page 1 to page {logs['main_text_last_page']} (limit: 40).")
 
 
+def cmd_thesis_clean() -> None:
+    """A banner-free reading copy for the author, built from the same chapters/tex sources as
+    `thesis` (no --final gate): it uses \\ThesisFinalMode (no 'DRAFT / unapproved' margin label,
+    same as a --final build) purely for readability, but is named CLEAN-REVIEW-COPY, not FINAL,
+    and is not gated on chapters/APPROVED.tsv or the submission-month placeholder, because neither
+    of those is a university requirement this copy needs to satisfy -- they track an internal
+    chapter sign-off workflow. Producing this copy does not record, imply, or substitute for any
+    such approval; it exists only so the author can read the current draft without the margin
+    label repeated on every page. The bannered DRAFT build remains the audit-trail artifact."""
+    missing = [u[0] for u in UNITS if not tex_out(u).exists()]
+    if missing:
+        die("chapters/tex is missing: " + ", ".join(missing) + " (prepare/convert them first)")
+    day, ts = stamp()
+    sha7 = git("rev-parse", "--short=7", "HEAD")
+    work = BUILDS / "thesis" / "work" / ts
+    work.mkdir(parents=True)
+    body = r"\input{\ThesisRoot/drivers/thesis-body.tex}"
+    (work / "thesis.tex").write_text(wrapper(work, None, body, final=True), encoding="utf-8")
+    out = BUILDS / "thesis" / f"CLEAN-REVIEW-COPY_full-thesis_{day}_{sha7}.pdf"
+    inputs = {f"tex {u[0]}": tex_out(u) for u in UNITS}
+    inputs.update({"assembly order": PKG / "drivers" / "thesis-body.tex",
+                   "preamble": TEMPLATE / "thesis-preamble.tex", "metadata": TEMPLATE / "metadata.tex",
+                   "bibliography": BIB, "build script": Path(__file__)})
+    logs, _ = finish("FULL THESIS CLEAN-REVIEW-COPY", work, "thesis", out, inputs,
+                     "## Status\n\nBanner-free reading copy. Not gated on chapter approvals or the "
+                     "submission-month placeholder; not a claim of supervisor or university approval. "
+                     "See the DRAFT build for the audit-trail labels.")
+    print(f"Main text runs from page 1 to page {logs['main_text_last_page']} (limit: 40).")
+
+
 def cited_keys_in_publishing_copies() -> dict:
     """Citation keys actually used by the thesis: every [@key] / [-@key] inside a bracketed
     citation in the eleven chapters/md publishing copies (the same rule as `lint`). Preview
@@ -670,8 +701,8 @@ def cmd_manifest(write: bool) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("command", choices=["env", "lint", "prepare", "convert", "preview",
-                                        "diagnostic", "selftest", "thesis", "inspect", "manifest",
-                                        "references"])
+                                        "diagnostic", "selftest", "thesis", "thesis-clean", "inspect",
+                                        "manifest", "references"])
     ap.add_argument("--write", action="store_true", help="manifest: record hashes (first time only)")
     ap.add_argument("args", nargs="*")
     ap.add_argument("--final", action="store_true")
@@ -699,6 +730,8 @@ def main() -> None:
         cmd_preview(None, selftest=True)
     elif a.command == "thesis":
         cmd_thesis(a.final)
+    elif a.command == "thesis-clean":
+        cmd_thesis_clean()
     elif a.command == "references":
         cmd_references()
     elif a.command == "inspect":

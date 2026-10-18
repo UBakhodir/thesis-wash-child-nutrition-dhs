@@ -28,7 +28,7 @@ The unit of analysis in both samples is the child. Scripts named in Table A.1 a
 |---|---|---|
 | `IDHSPSU` | Sample-qualified DHS cluster code from IPUMS-DHS, unique across survey rounds; used for cluster fixed effects and clustered standard errors. **It is the historical extension's own cluster identifier, distinct from the baseline's `country_psu` above.** | IPUMS-DHS / DHS recode; `16_estimate_preliminary.py` |
 | `PERWEIGHT` | The IPUMS-DHS standard sampling weight for child-level tabulations, rescaled to equal country totals within each model's final estimation sample (Section 4.5). **It is the historical extension's own weight field, distinct from the baseline's `weight_original` above.** It is not a documented anthropometry-specific weight (Section A.4). `KIDWT`, an IPUMS population adjustment factor, is not used. | IPUMS-DHS documentation; `16_estimate_preliminary.py` |
-| W\_IMP, S\_IMP | IHME modelled annual local coverage of JMP-improved water and sanitation: percent of the population with access, on a 0–100 scale, ~5×5 km grid, 2000–2017. Each child's value is the area average of the MEAN surface within a buffer of 2 km (urban) or 5 km (rural) around the displaced cluster coordinates; it is not population-weighted. Containing-pixel assignment and a rural 10 km buffer are sensitivity methods. | `docs/provenance/historical_wash_ihme_product_definitions_v1_2026-10-07.md`; `10_spatial_extraction_v3.py` |
+| W\_IMP, S\_IMP | IHME modelled annual local coverage of JMP-improved water and sanitation: percent of the population with access, on a 0–100 scale, ~5×5 km grid, 2000–2017. W\_IMP sums piped water (on- or off-premises) and other JMP-improved sources (protected wells and springs, bottled water, rainwater collection, bought water); S\_IMP sums sewer/septic sanitation and other JMP-improved facilities (improved and ventilated improved latrines, composting toilets); both verified directly from the primary source, not inferred from the raster scale or file names. Each child's value is the area average of the MEAN surface within a buffer of 2 km (urban) or 5 km (rural) around the displaced cluster coordinates; it is not population-weighted. Containing-pixel assignment and a rural 10 km buffer are sensitivity methods. | `docs/provenance/historical_wash_ihme_product_definitions_v1_2026-10-07.md`; `10_spatial_extraction_v3.py` |
 | `age_m` (child's own age in months) | **The historical extension's own age field, distinct from the baseline's `b19` above.** Reported completed months (`KIDCURAGEMO`) where the source delivers them (Ethiopia, Nigeria); otherwise the documented calendar-month difference between interview and birth dates (Ghana, Kenya). | `16_estimate_preliminary.py`, `14_build_analysis_samples.py` |
 | `b_year` (birth year) | The child's birth year, from the birth-date century-month code; used for survey-qualified country-by-birth-year terms in the historical models. Derived in the analysis-sample construction stage and confirmed independent of the Ethiopian interview-date candidate (Appendix C). | `14_build_analysis_samples.py` |
 | `cluster_key` | A copy of `IDHSPSU` (`cluster_key = IDHSPSU`), which already encodes survey and cluster, so the key is sample-qualified by construction. | `14_build_analysis_samples.py`; stored in `data/processed/analysis_samples/run_20261006T184744Z/analysis_candidates_RESTRICTED.parquet` (RESTRICTED; schema only cited here) |
@@ -114,3 +114,23 @@ The current index of baseline and historical output files cited in this thesis, 
 ```{=latex}
 \par\endgroup
 ```
+
+## A.6 Descriptive figures (baseline sample)
+
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{\ThesisRoot/figures/figure1_prevalence_by_country.png}
+\end{figure}
+```
+
+**Figure A.1 — Weighted anthropometric prevalence by country (stunting, wasting, underweight), with 95% confidence intervals.** Baseline sample, Section 3.2; underlying values in `outputs/final_tables/final_table2_anthropometric_prevalence.csv`.
+
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{\ThesisRoot/figures/figure3_wash_characteristics.png}
+\end{figure}
+```
+
+**Figure A.2 — Weighted household WASH characteristics by country, full category breakdown (water and sanitation panels).** Explicit states (Unknown, structurally not applicable, Ghana's unclassified bio-digester, surface water, open defecation) are shown as their own segments, never merged into Improved/Unimproved. Source: `outputs/final_tables/final_table3_wash_characteristics.csv`.

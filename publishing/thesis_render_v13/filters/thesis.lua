@@ -75,8 +75,14 @@ local function convert_header(h)
   local cmd = LEVEL_CMD[level]
 
   if level == 1 and text == 'Abstract' then
+    -- \phantomsection is required before \addcontentsline on a starred section:
+    -- without it, hyperref has no local anchor to attach the TOC/bookmark link
+    -- to, and the link falls back to the nearest preceding anchor -- the title
+    -- page / document start, since Abstract is the first content after it.
+    -- Found via the author's reported PDF-navigation check (2026-10-17 revision
+    -- pass): the Abstract's own contents/bookmark entry opened the title page.
     return pandoc.RawBlock('latex',
-      '\\section*{Abstract}\\label{sec:abstract}\\addcontentsline{toc}{section}{Abstract}')
+      '\\phantomsection\\section*{Abstract}\\label{sec:abstract}\\addcontentsline{toc}{section}{Abstract}')
   end
 
   local number, body

@@ -153,6 +153,8 @@
 % ...; A.1 in appendices), independently of subsection numbers.
 % ---------------------------------------------------------------------
 \usepackage{array,calc,longtable,booktabs,needspace}
+\usepackage{graphicx}% figures (first used 2026-10-17 revision pass: existing project graphics, Appendix C/A)
+\usepackage{float}% [H] placement so a figure cannot float away from its own caption text (the latter is plain text, like this thesis's table captions, not a floating \caption)
 \usepackage{caption}
 \usepackage{ltcaption}% longtable*: tables that do not step the table counter
 \DeclareCaptionLabelSeparator{thesisdash}{\ ---\ }
@@ -226,9 +228,12 @@
     % by a table. The previous 12\baselineskip (~3.25in) blindly
     % reserved before every such heading (9 of 9 Chapter 5 sections,
     % plus 3 appendix sections) forced premature page breaks; 4\baselineskip
-    % keeps the heading from being orphaned alone at a page bottom
-    % without reserving that much room regardless of actual table size.
-    \ifdim\ThesisNeed<4\baselineskip\global\ThesisNeed 4\baselineskip\fi
+    % still left avoidable blank space at several page bottoms once the
+    % main-text page budget became tight (R-page-limit, 2026-10-17).
+    % 2\baselineskip (~1 line plus inter-paragraph space) is still enough
+    % to keep the heading from being orphaned alone at a page bottom,
+    % without reserving room for table content this mechanism cannot see.
+    \ifdim\ThesisNeed<2\baselineskip\global\ThesisNeed 2\baselineskip\fi
     \par\Needspace{\ThesisNeed}\fi}
 \pretocmd{\section}{\ThesisHeadingNeedspace}{}{\PackageError{thesis-preamble}{could not patch \string\section}{}}
 \pretocmd{\subsection}{\ThesisHeadingNeedspace}{}{\PackageError{thesis-preamble}{could not patch \string\subsection}{}}
@@ -259,10 +264,14 @@
   % every table regardless of its actual size, forcing premature page
   % breaks across this thesis's 12 tables at final assembly (54->48
   % pages before this change, together with other edits). 3\baselineskip
-  % is enough to keep a caption from being orphaned alone at a page
+  % was enough to keep a caption from being orphaned alone at a page
   % bottom -- the actual failure mode this mechanism exists to prevent
   % -- without blindly reserving two-plus inches for every table.
-  \ifdim\ThesisNeed<3\baselineskip\global\ThesisNeed 3\baselineskip\fi
+  % 2\baselineskip tightens this further once the main-text page budget
+  % became tight (R-page-limit, 2026-10-17): still enough for the
+  % caption's own heading line, not enough to force a break the actual
+  % content would not have needed.
+  \ifdim\ThesisNeed<2\baselineskip\global\ThesisNeed 2\baselineskip\fi
   \par\Needspace{\ThesisNeed}\addvspace{9.75bp}%
   \begin{ThesisCaptionBlock}\captionsetup{hypcap=false}%
     \captionof{table}{#2}\label{tab:#1}\ThesisCheckNumber{table}{#1}%

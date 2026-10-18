@@ -11,7 +11,7 @@ Supersedes `../v12_2026-10-10/MASTER_ASSEMBLY.md` (and, transitively, v1–v11's
 | 2 | `02_literature_review.md` | Complete; corrected in v13 (Skoufias–Vinha comparison FA-1), on top of v12's R14/R15 |
 | 3 | `03_data_and_variables.md` | Complete; corrected in v13 (§3.9 cross-reference FA-7 A; §3.2 single-rule wording FA-19 B; §3.5 interview-date-role wording FA-23 B), on top of v12's R11/R12/R13 |
 | 4 | `04_empirical_strategy.md` | Complete; corrected in v13 (§4.5 four required methods-description items FA-8 A–D, FA-12; §4.6 reconstruction wording FA-22 B), on top of v10–v12's prior corrections |
-| 5 | `05_results.md` | Complete; corrected in v13 (Nigeria "more than doubles" synchronised FA-13; Table 5.9 Ghana-overlap note FA-23 C; all nine results tables numbered 5.1–5.9), on top of v12's R01/R02/R06/R07/R18 |
+| 5 | `05_results.md` | Complete; corrected in v13 (Nigeria "more than doubles" synchronised FA-13; Ghana-overlap note FA-23 C), on top of v12's R01/R02/R06/R07/R18; **table count reduced from 9 to 8 in the 2026-10-17 revision pass** (sample-size table merged into Table 5.5; see `CORRECTION_LOG.md`) — the paragraph below describing nine tables numbered 5.1–5.9 is superseded and kept only as a historical record of the 2026-10-10 captioning pass |
 | 6 | `06_discussion_and_limitations.md` | Complete; corrected in v13 (residence-proxy wording FA-15 A), on top of v12's R07/R08/R09 |
 | 7 | `07_conclusion.md` | Complete; language-edited in the publishing package; v12's R07 carried forward |
 | App. A | `appendices/A_variable_definitions_and_sample_flow.md` | Complete; language-edited and verified in the publishing package (FA-19 A1–A6); v12's R12 carried forward |

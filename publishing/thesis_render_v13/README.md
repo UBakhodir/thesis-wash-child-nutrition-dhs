@@ -103,6 +103,9 @@ python scripts/build.py lint --publishing-copies
 python scripts/build.py thesis              # DRAFT: review header on every page, still one complete document
 # after every unit is in chapters/APPROVED.tsv and the author has set the submission month/year:
 python scripts/build.py thesis --final
+# banner-free reading copy at any time, not gated on approvals or the submission-month placeholder,
+# and not a claim of supervisor/university approval (added 2026-10-17):
+python scripts/build.py thesis-clean
 ```
 
 `thesis` compiles `drivers/thesis-body.tex` once (xelatex → biber → xelatex → xelatex): title page and
