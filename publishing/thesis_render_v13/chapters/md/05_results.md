@@ -39,7 +39,7 @@ The community coefficients, entered together at every stage, are large and highl
 ```{=latex}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.65\textwidth]{\ThesisRoot/figures/figure2_model4_coefficient_forest.png}
+\includegraphics[width=0.92\textwidth]{\ThesisRoot/figures/figure2_model4_coefficient_forest.png}
 \ThesisFigureCaption{5.1}{Fully adjusted community water and sanitation coefficients (Table 5.2's final stage), pooled and by country, with 95\% confidence intervals.}
 \end{figure}
 ```

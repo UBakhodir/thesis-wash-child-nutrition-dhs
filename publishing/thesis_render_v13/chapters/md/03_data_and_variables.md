@@ -9,7 +9,7 @@ The unit of analysis is the child. The baseline pools each country's most recent
 ```{=latex}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.60\textwidth]{\ThesisRoot/figures/map_survey_cluster_coverage.png}
+\includegraphics[width=0.92\textwidth]{\ThesisRoot/figures/map_survey_cluster_coverage.png}
 \ThesisFigureCaption{3.1}{Survey cluster locations, by country (descriptive only; coordinates randomly displaced for confidentiality, Section 3.4).}
 \end{figure}
 ```
@@ -21,12 +21,12 @@ Three outcomes follow standard DHS/WHO practice: height-for-age (HAZ), weight-fo
 ```{=latex}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.60\textwidth]{\ThesisRoot/figures/figure1_prevalence_by_country.png}
+\includegraphics[width=0.92\textwidth]{\ThesisRoot/figures/figure1_prevalence_by_country.png}
 \ThesisFigureCaption{3.2}{Weighted anthropometric prevalence by country, with 95\% confidence intervals (each outcome's own outcome-valid sample, Section 3.2).}
 \end{figure}
 ```
 
-Figure 3.2 reports weighted stunting, wasting and underweight prevalence by country, each on that outcome's own outcome-valid sample above (not a single shared "HAZ sample"), under a stratum/PSU/weight survey design (`strata`, `psu`, the `v005`-derived weight of Section 3.4) with 95% confidence intervals from a logit-transformed interval. This descriptive design is distinct from the PSU-clustered inference the regression models in Section 4 implement; the two are not the same variance-estimation procedure and neither substitutes for the other. Stunting is highest in Ethiopia (39.9%) and Nigeria (39.1%), roughly double Ghana (16.9%) and Kenya (17.4%); wasting is lower and more similar across countries (4.9–8.4%); underweight is highest in Nigeria (26.4%) and lowest in Kenya (10.0%). These are descriptive estimates, not regression results; Section 5 models the within-country variation they motivate.
+Figure 3.2 reports weighted stunting, wasting and underweight prevalence by country, each estimated on that outcome's own outcome-valid sample above, under a stratum/PSU/weight survey design (`strata`, `psu`, the `v005`-derived weight of Section 3.4) with 95% confidence intervals from a logit-transformed interval. This descriptive design is distinct from the PSU-clustered inference the regression models in Section 4 implement; the two are not interchangeable. Stunting is highest in Ethiopia (39.9%) and Nigeria (39.1%), roughly double Ghana (16.9%) and Kenya (17.4%); wasting is lower and more similar across countries (4.9–8.4%); underweight is highest in Nigeria (26.4%) and lowest in Kenya (10.0%). These are descriptive estimates, not regression results; Section 5 models the within-country variation they motivate.
 
 ## 3.3 Baseline WASH exposures: household and leave-one-out community
 
@@ -35,12 +35,12 @@ The baseline sample has four exposures: own-household improved/non-improved wate
 ```{=latex}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.68\textwidth]{\ThesisRoot/figures/figure3_wash_characteristics.png}
-\ThesisFigureCaption{3.3}{Weighted household WASH characteristics by country. Unknown, structurally not applicable, Ghana's unclassified biodigester, surface water and open defecation are kept as their own segments, never merged into Improved/Unimproved.}
+\includegraphics[width=0.78\textwidth]{\ThesisRoot/figures/figure3_wash_characteristics.png}
+\ThesisFigureCaption{3.3}{Weighted household WASH characteristics by country, as percentages of each country's full weighted sample (Unknown and structurally-not-applicable cases included in the denominator, not excluded). The sanitation panel uses the collapsed Improved/Non-improved scale: open defecation and other unimproved facility types are folded into Non-improved, not shown as a separate segment.}
 \end{figure}
 ```
 
-Figure 3.3 situates these exposures in their country context: weighted percentages on each country's own classifiable sample, drinking water at full category detail (left) and sanitation on the collapsed Improved/Non-improved scale used in the regressions (right), with Unknown, structurally-not-applicable and unclassified-biodigester cases kept as their own segments. Improved water ranges from 68.1% (Ethiopia) to 84.2% (Ghana). Improved sanitation is lower and ordered differently: 42.5% (Ethiopia), 55.2% (Ghana), 61.2% (Nigeria), 63.8% (Kenya). Only Ethiopia combines high stunting (Figure 3.2) with low sanitation coverage; Nigeria has the second-highest stunting prevalence but sanitation coverage close to Kenya's, so the two figures together do not support a simple cross-country ordering linking WASH coverage to stunting. Sections 4 and 5 examine the within-country, household- and community-level association directly, which this descriptive comparison cannot.
+Figure 3.3 situates these exposures in their country context. Its denominator is each country's full weighted descriptive sample, not the classifiable-household denominator used to construct the regression's leave-one-out community exposure (Section 3.3) — a different quantity for a different purpose. The left panel shows drinking water at full category detail, with surface water and unimproved as their own segments; the right panel shows sanitation on the collapsed Improved/Non-improved scale used in the regressions, where open defecation and other unimproved types are folded into Non-improved rather than displayed separately. Unknown, structurally-not-applicable and (sanitation only) unclassified-biodigester cases remain their own segments in both panels. Improved water ranges from 68.1% (Ethiopia) to 84.2% (Ghana). Improved sanitation is lower and ordered differently: 42.5% (Ethiopia), 55.2% (Ghana), 61.2% (Nigeria), 63.8% (Kenya). Only Ethiopia combines high stunting (Figure 3.2) with low sanitation coverage; Nigeria has the second-highest stunting prevalence but sanitation coverage close to Kenya's, so the two figures together do not support a simple cross-country ordering linking WASH coverage to stunting. Sections 4 and 5 examine the within-country, household- and community-level association directly, which this descriptive comparison cannot.
 
 ## 3.4 Baseline covariates, geography, and weights
 
@@ -56,7 +56,7 @@ Each child's exposure buffer is centred on its cluster's displaced coordinates (
 
 ## 3.7 Historical exposure windows and completion rules
 
-Four candidate windows apply to the same annual raster series: birth year, prenatal (nine months before birth), post-12 and post-24 completed postnatal months (the working main window; Section 6.4 states why). A window spanning two calendar years is weighted by each year's share of months, and every touched year must have a verified raster value. The interview-date completion check applies only to the two postnatal windows; the prenatal window needs none (it ends at birth), and the birth-year window has no completion check at all — a disclosed limit on that window's eligibility rule, not an oversight. Because IHME's product is annual, the value used for a window's final touched year can reflect conditions after the interview even when the postnatal completion check is satisfied; this project flags every such case but does not exclude or adjust for it.
+Four candidate windows apply to the same annual raster series. **The primary window is the first 12 completed postnatal months** (birth month through birth month + 11, with completion requiring the interview month $t \geq$ birth month + 12; Section 6.4 states why this window was proposed). **The first 24 postnatal months** (birth month through birth month + 23, completion $t \geq$ birth month + 24) is a sensitivity window, not the primary one. Two further alternatives carry no postnatal completion rule: the prenatal window (the nine months before birth, ending at birth) and the birth-year window (the full calendar year of birth). A window spanning two calendar years is weighted by each year's share of months, and every touched year must have a verified raster value. The birth-year window's lack of a completion check is a disclosed limit on that window's eligibility rule, not an oversight. Because IHME's product is annual, the value used for a window's final touched year can reflect conditions after the interview even when the postnatal completion check is satisfied; this project flags every such case but does not exclude or adjust for it.
 
 ## 3.8 Historical covariates, weights, and the established-date measurement universe
 
