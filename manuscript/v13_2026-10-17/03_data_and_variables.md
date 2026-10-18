@@ -9,11 +9,10 @@ The unit of analysis throughout the baseline sample is the child. The baseline p
 ```{=latex}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.72\textwidth]{\ThesisRoot/figures/map_survey_cluster_coverage.png}
+\includegraphics[width=0.95\textwidth]{\ThesisRoot/figures/map_survey_cluster_coverage.png}
+\ThesisFigureCaption{3.1}{Survey cluster locations, by country (descriptive only; coordinates randomly displaced for confidentiality, Section 3.4).}
 \end{figure}
 ```
-
-**Figure 3.1 — Survey cluster locations, by country.** Descriptive only: one point per DHS cluster, not weighted by sample size or any WASH exposure value. Coordinates are DHS's own randomly displaced locations (Section 3.4), so points mark approximate, not exact, cluster positions. Source: `data/processed/pooled_kr_four_country_birth_order.parquet` (`LATNUM`/`LONGNUM`), plotted by the frozen pipeline's own Step 13 (Appendix A).
 
 ## 3.2 Baseline anthropometric outcomes and under-five eligibility
 

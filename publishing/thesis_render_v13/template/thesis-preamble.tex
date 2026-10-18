@@ -158,7 +158,15 @@
 \usepackage{caption}
 \usepackage{ltcaption}% longtable*: tables that do not step the table counter
 \DeclareCaptionLabelSeparator{thesisdash}{\ ---\ }
-\captionsetup{font=small, labelfont=bf, labelsep=thesisdash,
+\DeclareCaptionFont{thesistablefont}{\ThesisTableFont}
+% font=thesistablefont (10bp/15bp), not the generic 'small' keyword, which
+% at this document's 11pt base class would give 10pt/12pt -- the wrong
+% leading for the guidelines' 10pt/15pt caption requirement (R-page-limit
+% figure-caption fix, 2026-10-17: found by measuring a figure caption's
+% actual rendered size, 11pt/19.5pt, because the figure captions below were
+% plain bold paragraphs, not \caption calls, so this setting never reached
+% them until \ThesisFigureCaption was added to use it).
+\captionsetup{font=thesistablefont, labelfont=bf, labelsep=thesisdash,
   justification=raggedright, singlelinecheck=false, skip=4pt}
 \counterwithin{table}{section}
 \counterwithin{figure}{section}
@@ -276,6 +284,17 @@
   \begin{ThesisCaptionBlock}\captionsetup{hypcap=false}%
     \captionof{table}{#2}\label{tab:#1}\ThesisCheckNumber{table}{#1}%
   \end{ThesisCaptionBlock}\nopagebreak}
+
+% Figure captions (added 2026-10-17, R-page-limit figure-caption fix): used
+% INSIDE a \begin{figure}[H] ... \end{figure} environment, immediately after
+% \includegraphics, so the real \caption call and the \thesisfigurecaption
+% font setting above both attach to the actual float (unlike the table
+% mechanism above, a figure this size needs no needspace reservation -- [H]
+% already pins it at this point in the text). #1 = number written in the
+% Markdown source (checked against the real counter); #2 = caption text.
+\newcommand\ThesisFigureCaption[2]{%
+  \captionsetup{hypcap=false}%
+  \caption{#2}\label{fig:#1}\ThesisCheckNumber{figure}{#1}}
 
 % Table/figure notes (9pt / 13.5pt). Available to the converter as a
 % fenced div ::: {.tablenote} ... ::: ; not applied automatically (first used

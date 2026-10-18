@@ -28,11 +28,14 @@ citation keys or variable names. What it does:
     after / _ . - so long file paths wrap instead of overflowing.
  6. A fenced div  ::: {.tablenote} ... :::  is typeset in the 9pt/13.5pt
     table-note style (not used by the v12 sources; available if approved).
- 7. Appendix tables only (caption number "A.1", "B.2", ...): the table gets
-    a separate first head and, on every continuation page, a line
-    "Table A.1 (continued)" above the repeated column heads (added in the
-    Appendix A session). Chapter tables (numbers "5.1", ...) are written
-    exactly as before.
+ 7. Every table (caption number "A.1", "B.2", "5.1", ...) gets a separate
+    first head and, on every continuation page, a line "Table 5.6
+    (continued)" above the repeated column heads. Originally appendix
+    tables only (added in the Appendix A session); extended to chapter
+    tables (2026-10-18) after Table 5.6 was found splitting across pages
+    with no continuation identifier, the same defect this mechanism exists
+    to prevent -- chapter tables are long enough to split now that one
+    carries an added N/G column (R-table-pagination fix).
 
 Citations are not touched here: pandoc's --biblatex writer turns [@key]
 into \autocite{key} and [-@key] into \autocite*{key}.
@@ -313,7 +316,7 @@ local function Pandoc(doc)
         out:insert(sub)
         out:insert(pandoc.RawBlock('latex', '\\nopagebreak'))
       end
-      if num:match('^%u%.%d+$') then
+      if num:match('^%w+%.%d+$') then
         out:insert(continued_table(convert_table(blocks[t_idx]), num))
       else
         out:insert(convert_table(blocks[t_idx]))
