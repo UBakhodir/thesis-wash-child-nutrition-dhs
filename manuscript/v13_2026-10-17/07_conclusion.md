@@ -1,6 +1,6 @@
 # 7. Conclusion
 
-This thesis examined the association between water and sanitation conditions and child anthropometric outcomes in four Sub-Saharan African countries: Ethiopia, Ghana, Kenya and Nigeria. Two distinctions ran throughout: household facilities versus surrounding community WASH, and a single survey-date exposure versus a preliminary, geospatially matched measure of early-life WASH coverage, built for an earlier survey round in three of the four countries, with Ethiopia retained only as a provisional sensitivity analysis (Section 1.4).
+This thesis examined the association between water and sanitation conditions and child anthropometric outcomes in four Sub-Saharan African countries: Ethiopia, Ghana, Kenya and Nigeria. Two distinctions ran throughout: household facilities versus surrounding community WASH, and a single survey-date exposure versus a preliminary, geospatially matched measure of early-life WASH coverage, built for an earlier survey round in three of the four countries, with Ethiopia retained only as a provisional sensitivity analysis (Section 1.3).
 
 The baseline evidence shows no clear, robust association between improved household WASH and child outcomes within the same DHS cluster (Section 5.1): inconclusive, not evidence of no association. The community measure shows a large, significant association before covariate adjustment, attenuating to non-significance once socioeconomic status and region fixed effects are added (Section 5.2), consistent with, though not proof of, confounding by local development.
 
