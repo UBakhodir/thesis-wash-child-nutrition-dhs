@@ -9,7 +9,7 @@ The unit of analysis throughout the baseline sample is the child. The baseline p
 ```{=latex}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.78\textwidth]{\ThesisRoot/figures/map_survey_cluster_coverage.png}
+\includegraphics[width=0.65\textwidth]{\ThesisRoot/figures/map_survey_cluster_coverage.png}
 \ThesisFigureCaption{3.1}{Survey cluster locations, by country (descriptive only; coordinates randomly displaced for confidentiality, Section 3.4).}
 \end{figure}
 ```
@@ -18,9 +18,29 @@ The unit of analysis throughout the baseline sample is the child. The baseline p
 
 Three outcomes are constructed according to standard DHS/WHO anthropometric practice: height-for-age (HAZ), weight-for-age (WAZ), and weight-for-height (WHZ), each a standard-deviation z-score relative to the WHO Child Growth Standards reference population [@deOnis2006]. A child contributes to an outcome only if that outcome's z-score is flagged valid in the DHS recode: the implementing code applies one rule, excluding DHS's own documented special codes (9996–9999) and system-missing values, with no separate measurement-universe filter applied in code — restriction to the under-five anthropometric-measurement universe is, in practice, a property of which children DHS itself records these fields for, not an additional filtering step this pipeline applies. Because valid measurements are not available for every child in the pooled file, the outcome-specific baseline samples are smaller: 36,985 children (HAZ), 37,260 (WAZ), and 37,088 (WHZ). Comparing the household and community specifications on identical observations further requires both exposures to be classifiable for every child, giving common baseline samples of 36,040 (HAZ), 36,308 (WAZ), and 36,145 (WHZ), spread across 4,426 DHS clusters. Under-five age is taken uniformly, for all four baseline countries, from the DHS recode's own standard current-age-in-months field (`b19`), with no country-varying fallback construction. (The historical extension, described separately in Sections 3.5–3.8, constructs its own `age_m` field with a country-varying reported/calendar-difference rule, for a reason specific to that extension's older DHS rounds; the two are distinct constructions over different samples and must not be conflated.)
 
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.60\textwidth]{\ThesisRoot/figures/figure1_prevalence_by_country.png}
+\ThesisFigureCaption{3.2}{Weighted anthropometric prevalence by country, with 95\% confidence intervals (HAZ sample, Section 3.2).}
+\end{figure}
+```
+
+Figure 3.2 gives weighted stunting, wasting and underweight prevalence by country on each country's own outcome-valid sample above, under the same stratum/PSU/weight survey design used throughout (`strata`, `psu`, the `v005`-derived weight of Section 3.4), with 95% confidence intervals from a logit-transformed interval. Stunting is the largest burden in Ethiopia (39.9%) and Nigeria (39.1%), roughly double Ghana (16.9%) and Kenya (17.4%); wasting is lower and more similar across countries (4.9–8.4%); underweight follows stunting's ordering, highest in Nigeria (26.4%) and lowest in Kenya (10.0%). These are descriptive estimates, not regression results; Section 5 models the within-country variation they motivate.
+
 ## 3.3 Baseline WASH exposures: household and leave-one-out community
 
 The baseline sample has four exposures: own-household improved/non-improved water and sanitation, and their leave-one-out community counterparts, each following the WHO/UNICEF JMP "improved" facility classification (piped water, protected wells/springs, etc. for water; sewer/septic and improved latrines for sanitation), the same classification independently verified for the historical extension's gridded product (Section 3.5, Appendix A). Household WASH is a household-level binary indicator. **Community WASH is an unweighted leave-one-out proportion among other sampled, classifiable HR households in the same DHS cluster, excluding the child's own household** — not a census of the geographical community, and not an average over other children in the analytical sample. For each child, the numerator and denominator are built from every *other* surveyed household in the cluster whose status is itself classifiable; households recorded as Unknown or not applicable, and (for Ghana's sanitation core variant) an unclassified biodigester, are excluded from **both** numerator and denominator, not merely treated as unimproved. The resulting rate is a $[0,1]$ proportion, missing (not imputed) if no other classifiable household exists in the cluster. Improved *shared* sanitation is included in the improved category via a Basic+Limited collapse, following the JMP convention that shared use alone does not make an otherwise-improved facility unimproved; a separate robustness variant treats Ghana's biodigester classification differently. These are the construction choices as implemented in the baseline pipeline's community-exposure construction step (Appendix A, Table A.1). A child's own classification is never part of its own community exposure, which by design makes community WASH vary mainly *between* clusters rather than within them — Section 4.3 derives how little within-cluster variation this leaves, and why it rules out a cluster-fixed-effects specification for this exposure specifically, unlike for household WASH.
+
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.68\textwidth]{\ThesisRoot/figures/figure3_wash_characteristics.png}
+\ThesisFigureCaption{3.3}{Weighted household WASH characteristics by country. Unknown, structurally not applicable, Ghana's unclassified biodigester, surface water and open defecation are kept as their own segments, never merged into Improved/Unimproved.}
+\end{figure}
+```
+
+Figure 3.3 situates the household exposures above in their country context: weighted percentages on each country's own classifiable sample, drinking-water source at full category detail (left) and sanitation on the collapsed Improved/Non-improved scale used in the regressions (right), with every Unknown, structurally-not-applicable and unclassified-biodigester case kept as its own segment rather than folded into Improved or Unimproved. Improved water access ranges from 68.1% (Ethiopia) to 84.2% (Ghana); improved sanitation is lower everywhere and more variable, from 42.5% (Ethiopia) to above 60% in Kenya and Nigeria. Ethiopia and Nigeria, the two countries with the highest stunting prevalence in Figure 3.2, also have the lowest improved-sanitation coverage; Ghana and Kenya, with markedly lower stunting, have higher coverage of both facilities. This country-level pattern is consistent with, but does not establish, a role for WASH conditions in the stunting gap; Sections 4 and 5 test that question directly, within countries.
 
 ## 3.4 Baseline covariates, geography, and weights
 

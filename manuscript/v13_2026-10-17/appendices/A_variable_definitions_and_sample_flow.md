@@ -69,20 +69,6 @@ No DHS or IPUMS source consulted for this thesis documents a sampling weight spe
 
 The current index of baseline and historical output files cited in this thesis, with their status labels (validated for main reporting, validated sensitivity, exploratory, invalid or superseded, not estimable), is kept in the repository's `docs/provenance/` directory, cross-referenced by result rather than reproduced here.
 
-## A.6 Descriptive figures (baseline sample)
+## A.6 Descriptive figures
 
-```{=latex}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.78\textwidth]{\ThesisRoot/figures/figure1_prevalence_by_country.png}
-\ThesisFigureCaption{A.1}{Weighted anthropometric prevalence by country, with 95\% confidence intervals (baseline sample, Section 3.2).}
-\end{figure}
-```
-
-```{=latex}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.85\textwidth]{\ThesisRoot/figures/figure3_wash_characteristics.png}
-\ThesisFigureCaption{A.2}{Weighted household WASH characteristics by country. Explicit states (Unknown, structurally not applicable, Ghana's unclassified bio-digester, surface water, open defecation) are kept as their own segments, never merged into Improved/Unimproved.}
-\end{figure}
-```
+The baseline sample's descriptive anthropometric-prevalence and household-WASH-characteristics figures are reported in the main text, next to the variable constructions and sample descriptions they illustrate (Figure 3.2, Section 3.2; Figure 3.3, Section 3.3), not duplicated here.
